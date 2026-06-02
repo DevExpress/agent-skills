@@ -1,0 +1,74 @@
+# IDE
+.idea/
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+bin/
+obj/
+dist/
+build/
+*.dll
+*.exe
+*.pdb
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+*.nuspec
+ROADMAP.md
+
+# User-specific files
+*.user
+*.userprefs
+*.suo
+*.VisualState.xml
+*.csproj.user
+
+# Test results
+TestResults/
+*.trx
+
+# Node/npm
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+.npm/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Package manager locks (optional - uncomment to track)
+# package-lock.json
+# yarn.lock
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Environment variables
+.env
+.env.local
+
