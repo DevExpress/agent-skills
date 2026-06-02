@@ -1,0 +1,24 @@
+<!--
+  Quickstart MainView for the DevExpress WPF Pivot Grid.
+  Drop this into a new WPF .NET 8 project after adding the
+  DevExpress.Wpf.PivotGrid NuGet package.
+
+  Note: PivotGrid uses xmlns:dxpg (not dxg). The control is configured
+  almost entirely in code-behind — XAML just hosts the empty control.
+
+  Verified APIs (apidoc / lesson articles):
+    - DevExpress.Xpf.PivotGrid.PivotGridControl
+    - DevExpress.Xpf.PivotGrid.PivotGridControl.DataProcessingEngine ("Optimized")
+-->
+<Window x:Class="DevExpressPivotGridQuickstart.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
+        Title="DevExpress WPF Pivot Grid Quickstart"
+        Height="500" Width="900"
+        Loaded="Window_Loaded">
+    <Grid>
+        <dxpg:PivotGridControl x:Name="pivotGridControl1"
+                               DataProcessingEngine="Optimized"/>
+    </Grid>
+</Window>

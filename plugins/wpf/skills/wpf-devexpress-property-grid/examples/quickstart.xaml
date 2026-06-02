@@ -1,0 +1,53 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+        xmlns:local="clr-namespace:MyApp"
+        Title="DevExpress Property Grid Quickstart" Width="450" Height="500">
+    <Window.DataContext>
+        <local:Customer/>
+    </Window.DataContext>
+
+    <!-- 1. Auto-generate editors for all public properties -->
+    <dxprg:PropertyGridControl SelectedObject="{Binding}"
+                               PropertyValueChanged="OnPropertyValueChanged"/>
+
+</Window>
+
+<!-- ============================================================
+     2. Selective property definitions
+     ============================================================
+<dxprg:PropertyGridControl SelectedObject="{Binding Customer}">
+    <dxprg:PropertyGridControl.PropertyDefinitions>
+        <dxprg:PropertyDefinition Name="Id"        IsReadOnly="True"/>
+        <dxprg:PropertyDefinition Name="FirstName" ShowName="True"/>
+        <dxprg:PropertyDefinition Name="LastName"  ShowName="True"/>
+        <dxprg:PropertyDefinition Name="BirthDate" ShowName="True"/>
+    </dxprg:PropertyGridControl.PropertyDefinitions>
+</dxprg:PropertyGridControl>
+
+     ============================================================
+     3. Category grouping
+     ============================================================
+<dxprg:PropertyGridControl SelectedObject="{Binding Customer}"
+                           ShowCategories="True">
+    <dxprg:PropertyGridControl.CategoryDefinitions>
+        <dxprg:CategoryDefinition Name="Personal" DisplayName="Personal Info" IsExpanded="True"/>
+        <dxprg:CategoryDefinition Name="Contact"  DisplayName="Contact Details"/>
+    </dxprg:PropertyGridControl.CategoryDefinitions>
+</dxprg:PropertyGridControl>
+
+     ============================================================
+     4. Collection editor — nested list property
+     ============================================================
+<dxprg:PropertyGridControl SelectedObject="{Binding Customer}">
+    <dxprg:PropertyGridControl.PropertyDefinitions>
+        <dxprg:CollectionDefinition Name="Addresses">
+            <dxprg:CollectionDefinition.ItemPropertyDefinitions>
+                <dxprg:PropertyDefinition Name="Street"/>
+                <dxprg:PropertyDefinition Name="City"/>
+            </dxprg:CollectionDefinition.ItemPropertyDefinitions>
+        </dxprg:CollectionDefinition>
+    </dxprg:PropertyGridControl.PropertyDefinitions>
+</dxprg:PropertyGridControl>
+-->

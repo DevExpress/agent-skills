@@ -1,0 +1,46 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
+        Title="DevExpress Accordion Quickstart" Height="500" Width="350">
+
+    <!-- 1. Hierarchical binding — departments + employees -->
+    <dxa:AccordionControl ItemsSource="{Binding EmployeeDepartments}"
+                          ChildrenPath="Employees"
+                          DisplayMemberPath="Name"
+                          SelectedItemChanged="OnSelectedItemChanged"/>
+
+</Window>
+
+<!-- ============================================================
+     2. Accordion with search panel
+     ============================================================
+<dxa:AccordionControl ItemsSource="{Binding EmployeeDepartments}"
+                      ChildrenPath="Employees"
+                      DisplayMemberPath="Name"
+                      AllowItemSearch="True"/>
+
+     ============================================================
+     3. Custom item template
+     ============================================================
+<dxa:AccordionControl ItemsSource="{Binding EmployeeDepartments}"
+                      ChildrenPath="Employees">
+    <dxa:AccordionControl.ItemTemplate>
+        <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                <TextBlock Text=" — "/>
+                <TextBlock Text="{Binding Position}" Foreground="Gray"/>
+            </StackPanel>
+        </DataTemplate>
+    </dxa:AccordionControl.ItemTemplate>
+</dxa:AccordionControl>
+
+     ============================================================
+     4. View mode: expanded header only (no collapse)
+     ============================================================
+<dxa:AccordionControl ItemsSource="{Binding EmployeeDepartments}"
+                      ChildrenPath="Employees"
+                      DisplayMemberPath="Name"
+                      ViewMode="Collapsed"/>
+-->

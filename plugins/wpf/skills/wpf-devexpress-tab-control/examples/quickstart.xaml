@@ -1,0 +1,49 @@
+<dx:ThemedWindow x:Class="MyApp.MainWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                Title="DevExpress Tab Control Quickstart" Height="450" Width="700">
+
+    <!-- 1. Static tabs — explicit DXTabItem children -->
+    <dx:DXTabControl>
+        <dx:DXTabItem Header="General">
+            <Label Content="General settings…" Margin="8"/>
+        </dx:DXTabItem>
+        <dx:DXTabItem Header="Appearance">
+            <Label Content="Appearance settings…" Margin="8"/>
+        </dx:DXTabItem>
+        <dx:DXTabItem Header="Advanced" AllowHide="True">
+            <Label Content="Advanced settings…" Margin="8"/>
+        </dx:DXTabItem>
+    </dx:DXTabControl>
+
+</dx:ThemedWindow>
+
+<!-- ============================================================
+     2. Dynamic tabs from ItemsSource
+     ============================================================
+<dx:DXTabControl ItemsSource="{Binding Tabs}" SelectedIndex="0">
+    <dx:DXTabControl.ItemHeaderTemplate>
+        <DataTemplate>
+            <TextBlock Text="{Binding Header}"/>
+        </DataTemplate>
+    </dx:DXTabControl.ItemHeaderTemplate>
+    <dx:DXTabControl.ItemTemplate>
+        <DataTemplate>
+            <TextBlock Text="{Binding Content}" Margin="8"/>
+        </DataTemplate>
+    </dx:DXTabControl.ItemTemplate>
+</dx:DXTabControl>
+
+     ============================================================
+     3. Tab view: scrollable tab strip
+     ============================================================
+<dx:DXTabControl>
+    <dx:DXTabControl.View>
+        <dx:ScrollableTabControlView/>
+    </dx:DXTabControl.View>
+    <dx:DXTabItem Header="Tab 1"><Label Content="Content 1"/></dx:DXTabItem>
+    <dx:DXTabItem Header="Tab 2"><Label Content="Content 2"/></dx:DXTabItem>
+    <dx:DXTabItem Header="Tab 3"><Label Content="Content 3"/></dx:DXTabItem>
+</dx:DXTabControl>
+-->

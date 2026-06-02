@@ -1,0 +1,69 @@
+<!-- DevExpress WPF Reporting — XAML Examples -->
+
+<!-- ============================================================
+     Example 1: DocumentPreviewControl with MVVM binding
+     (MainWindow.xaml)
+     ============================================================ -->
+<dx:ThemedWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:local="clr-namespace:MyApp"
+    x:Class="MyApp.MainWindow"
+    Title="Report Preview" Height="700" Width="1100"
+    DataContext="{dxmvvm:ViewModelSource Type=local:ReportViewModel}">
+
+    <dxp:DocumentPreviewControl
+        RequestDocumentCreation="True"
+        DocumentSource="{Binding Report}"
+        CommandBarStyle="Ribbon" />
+
+</dx:ThemedWindow>
+
+<!-- ============================================================
+     Example 2: ReportDesigner (WPF license required)
+     (DesignerWindow.xaml)
+     ============================================================ -->
+<dx:ThemedWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxrud="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner"
+    x:Class="MyApp.DesignerWindow"
+    Title="Report Designer" Height="700" Width="1200">
+
+    <dxrud:ReportDesigner
+        x:Name="reportDesigner"
+        UseOfficeInspiredRibbonStyle="True" />
+
+</dx:ThemedWindow>
+
+<!-- ============================================================
+     Example 3: Preview + Designer buttons in one window
+     (CombinedWindow.xaml)
+     ============================================================ -->
+<dx:ThemedWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:local="clr-namespace:MyApp"
+    x:Class="MyApp.CombinedWindow"
+    Title="Reports" Height="700" Width="1100"
+    DataContext="{dxmvvm:ViewModelSource Type=local:ReportViewModel}">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="5">
+            <Button Content="Load Report" Command="{Binding LoadReportCommand}" Margin="0,0,5,0" />
+        </StackPanel>
+
+        <dxp:DocumentPreviewControl
+            RequestDocumentCreation="True"
+            DocumentSource="{Binding Report}"
+            CommandBarStyle="Ribbon" />
+    </DockPanel>
+
+</dx:ThemedWindow>

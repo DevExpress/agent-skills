@@ -1,0 +1,18 @@
+{
+  "name": "devexpress-skills-experiment",
+  "owner": {
+    "name": "DevExpress"
+  },
+  "plugins": [
+    {
+      "name": "office-file-api",
+      "source": "./office-file-api",
+      "description": "DevExpress Office File API skills: Spreadsheet, Word Processing, PDF, Presentation, Barcode, Unit Conversion, Excel Export, Zip, and AI-Powered Extensions for headless .NET document automation."
+    },
+    {
+      "name": "reporting",
+      "source": "./reporting",
+      "description": "DevExpress XtraReports skills for .NET and Angular: runtime report creation, WinForms/WPF preview, End-User Designer, ASP.NET Core/Blazor/Angular Document Viewer and Report Designer integration, export (PDF, XLSX, DOCX, and more)."
+    }
+  ]
+}

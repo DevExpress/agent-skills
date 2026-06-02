@@ -1,0 +1,89 @@
+<dx:ThemedWindow x:Class="MyApp.MainWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+                xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+                Title="DevExpress Ribbon Quickstart" Width="900" Height="600"
+                WindowKind="Ribbon">
+
+    <!-- 1. Full ribbon with QAT, default category, contextual category, status bar -->
+    <DockPanel>
+        <dxr:RibbonControl DockPanel.Dock="Top" RibbonStyle="Office2019">
+            <!-- Quick Access Toolbar -->
+            <dxr:RibbonControl.ToolbarItems>
+                <dxb:BarButtonItem Content="Save" Command="{Binding SaveCommand}"/>
+                <dxb:BarButtonItem Content="Undo"/>
+            </dxr:RibbonControl.ToolbarItems>
+
+            <!-- Default (always visible) category -->
+            <dxr:RibbonDefaultPageCategory>
+                <dxr:RibbonPage Caption="Home">
+                    <dxr:RibbonPageGroup Caption="File">
+                        <dxb:BarButtonItem Content="New"  Command="{Binding NewCommand}"/>
+                        <dxb:BarButtonItem Content="Open" Command="{Binding OpenCommand}"/>
+                        <dxb:BarButtonItem Content="Save" Command="{Binding SaveCommand}"/>
+                    </dxr:RibbonPageGroup>
+                    <dxr:RibbonPageGroup Caption="Edit">
+                        <dxb:BarButtonItem Content="Cut"/>
+                        <dxb:BarButtonItem Content="Copy"/>
+                        <dxb:BarButtonItem Content="Paste"/>
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+                <dxr:RibbonPage Caption="View">
+                    <dxr:RibbonPageGroup Caption="Layout">
+                        <dxb:BarCheckItem Content="Show Grid"/>
+                        <dxb:BarCheckItem Content="Show Ruler"/>
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+            </dxr:RibbonDefaultPageCategory>
+
+            <!-- Contextual category — shown only when relevant (e.g., table selected) -->
+            <dxr:RibbonPageCategory x:Name="tableToolsCategory"
+                                    Caption="Table Tools"
+                                    Color="LightBlue"
+                                    IsVisible="False">
+                <dxr:RibbonPage Caption="Design">
+                    <dxr:RibbonPageGroup Caption="Table Style">
+                        <dxb:BarButtonItem Content="Borders"/>
+                        <dxb:BarButtonItem Content="Shading"/>
+                    </dxr:RibbonPageGroup>
+                </dxr:RibbonPage>
+            </dxr:RibbonPageCategory>
+        </dxr:RibbonControl>
+
+        <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">
+            <dxr:RibbonStatusBarControl.LeftItems>
+                <dxb:BarStaticItem Content="Ready"/>
+            </dxr:RibbonStatusBarControl.LeftItems>
+        </dxr:RibbonStatusBarControl>
+
+        <ContentControl/>
+    </DockPanel>
+
+</dx:ThemedWindow>
+
+<!-- ============================================================
+     2. Bars-only UI (no Ribbon) — MainMenu + ToolBar + StatusBar
+     ============================================================
+<dx:ThemedWindow ...>
+    <DockPanel>
+        <dxb:MainMenuControl DockPanel.Dock="Top">
+            <dxb:BarSubItem Content="File">
+                <dxb:BarButtonItem Content="New"/>
+                <dxb:BarButtonItem Content="Open"/>
+            </dxb:BarSubItem>
+            <dxb:BarSubItem Content="Edit">
+                <dxb:BarButtonItem Content="Undo"/>
+            </dxb:BarSubItem>
+        </dxb:MainMenuControl>
+        <dxb:ToolBarControl DockPanel.Dock="Top">
+            <dxb:BarButtonItem Content="Save"/>
+        </dxb:ToolBarControl>
+        <dxb:StatusBarControl DockPanel.Dock="Bottom">
+            <dxb:BarStaticItem Content="Ready"/>
+        </dxb:StatusBarControl>
+        <ContentControl/>
+    </DockPanel>
+</dx:ThemedWindow>
+-->

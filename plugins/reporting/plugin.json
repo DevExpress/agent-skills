@@ -1,0 +1,20 @@
+{
+  "name": "reporting",
+  "version": "0.1.2",
+  "description": "DevExpress XtraReports skills for .NET and Angular: runtime report creation, WinForms/WPF preview, End-User Designer, ASP.NET Core/Blazor/Angular Document Viewer and Report Designer integration, export (PDF, XLSX, DOCX, and more).",
+  "skills": "./skills/",
+  "keywords": [
+    "devexpress",
+    "reporting",
+    "xtrareports",
+    "angular",
+    "aspnetcore",
+    "blazor",
+    "winforms",
+    "wpf",
+    "skills"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/DevExpress/devexpress-skills-experiment"
+}
+

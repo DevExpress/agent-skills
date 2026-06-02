@@ -1,0 +1,45 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        DataContext="{dxmvvm:ViewModelSource Type=local:PivotViewModel}"
+        Title="DevExpress Pivot Grid Quickstart" Height="500" Width="800">
+
+    <!-- 1. Pivot with fields declared in XAML -->
+    <dxpg:PivotGridControl DataSource="{Binding Sales}"
+                           DataProcessingEngine="Optimized">
+        <dxpg:PivotGridControl.Fields>
+            <dxpg:PivotGridField Caption="Country"  FieldName="Country"   Area="RowArea"/>
+            <dxpg:PivotGridField Caption="Category" FieldName="Category"  Area="RowArea"   AreaIndex="1"/>
+            <dxpg:PivotGridField Caption="Year"     FieldName="OrderDate" Area="ColumnArea"
+                                 GroupInterval="DateYear"/>
+            <dxpg:PivotGridField Caption="Sales"    FieldName="Amount"    Area="DataArea"
+                                 SummaryType="Sum"/>
+        </dxpg:PivotGridControl.Fields>
+    </dxpg:PivotGridControl>
+
+</Window>
+
+<!-- ============================================================
+     2. Fields configured in code-behind (see quickstart.cs § 2)
+     ============================================================
+<dxpg:PivotGridControl x:Name="pivotGridControl1"
+                       DataProcessingEngine="Optimized"
+                       Loaded="Window_Loaded"/>
+
+     ============================================================
+     3. Chart integration — bound to pivot data
+     ============================================================
+<dxpg:PivotGridControl x:Name="pivot" DataSource="{Binding Sales}"
+                       DataProcessingEngine="Optimized">
+    <dxpg:PivotGridControl.Fields>
+        <dxpg:PivotGridField Caption="Country"  FieldName="Country"   Area="RowArea"/>
+        <dxpg:PivotGridField Caption="Year"     FieldName="OrderDate" Area="ColumnArea" GroupInterval="DateYear"/>
+        <dxpg:PivotGridField Caption="Sales"    FieldName="Amount"    Area="DataArea"   SummaryType="Sum"/>
+    </dxpg:PivotGridControl.Fields>
+    <dxpg:PivotGridControl.ChartDataSource>
+        <dxpg:PivotChartDataSource PivotGrid="{Binding ElementName=pivot}"/>
+    </dxpg:PivotGridControl.ChartDataSource>
+</dxpg:PivotGridControl>
+-->
