@@ -26,7 +26,7 @@ This installation method is the fastest way to obtain all DevExpress skills at o
 
 ```bash
 /plugin marketplace add DevExpress/agent-skills
-/plugin install devextreme@devexpress-agent-skills
+/plugin install devextreme@DevExpress-agent-skills
 ```
 
 Restart your IDE after installing new skills. Run /skills to list active entries.
