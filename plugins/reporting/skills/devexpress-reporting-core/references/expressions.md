@@ -14,7 +14,6 @@ DevExpress expressions are similar to SQL expressions with C#-style functions.
 Iif([Status] = 'Active', 1, 0)   -- conditional
 [Name] + ' ' + [Surname]         -- string concat
 ?ParameterName                   -- report parameter reference
-[ReportItems.Label1.Text]        -- reference another control's value - not recommended
 ```
 
 ## ExpressionBinding

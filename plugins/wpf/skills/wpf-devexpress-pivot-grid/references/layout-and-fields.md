@@ -101,7 +101,7 @@ A built-in window that lets end users **add / remove / rearrange fields** at run
 
 ```xaml
 <dxpg:PivotGridControl AllowCustomizationForm="True"
-                       AllowHideFields="True"
+                       AllowHideFields="Always"
                        FieldListIncludeVisibleFields="True"/>
 ```
 

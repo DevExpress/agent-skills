@@ -27,12 +27,6 @@ Use when you need to understand which band type to use for a layout requirement:
 
 **`DetailBand` is mandatory.** A report without a `DetailBand` throws an exception at render time.
 
-```csharp
-var detail = new DetailBand();
-report.Bands.Add(detail);
-detail.HeightF = 30;
-```
-
 ## Grouping
 
 ```csharp
@@ -40,12 +34,9 @@ var groupHeader = new GroupHeaderBand {
     GroupFields = { new GroupField("Category", XRColumnSortOrder.Ascending) }
 };
 var groupFooter = new GroupFooterBand();
-var detailBand = new DetailBand();
 report.Bands.Add(groupHeader);
-report.Bands.Add(detailBand);
 report.Bands.Add(groupFooter);
 groupHeader.HeightF = 25;
-detailBand.HeightF = 25;
 groupFooter.HeightF = 25;
 
 // Group header label

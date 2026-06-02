@@ -346,6 +346,7 @@ cell2.WidthF = availableWidth * 0.33f;
 13. **Never use `DataBindings`**: `DataBindings` is the legacy binding mode. For new reports, always use `ExpressionBindings` with `new ExpressionBinding(eventName, propertyName, expression)`. Generating `DataBindings.Add(...)` is not recommended unless maintaining legacy reports.
 <!-- Addresses: 2026-05-15-data-binding-expression.md -->
 14. **Set size/position properties AFTER adding to parent — never in object initializers**: Always call `Bands.Add(band)` before setting `band.HeightF`, and always call `Controls.Add(control)` before setting `control.BoundsF`, `control.LocationF`, or `control.SizeF`. Report objects inherit the parent's measure unit when added to a parent; sizes assigned before this point will be silently recalculated and produce incorrect layout. **Other properties** (Text, Font, TextAlignment, ForeColor, ExpressionBindings, GroupFields, etc.) may be set at any time, including in object initializers. ✅ Correct: `var label = new XRLabel { Text = "X", Font = … }; band.Controls.Add(label); label.BoundsF = …;` ❌ Wrong: `var label = new XRLabel { BoundsF = …, Text = "X" }; band.Controls.Add(label);`
+15. **Content properties are mandatory — never omit them**: Some controls have one or more essential content properties that hold the actual data to be displayed. `XRLabel` requires `Text`, `XRPictureBox` requires `ImageSource` or `ImageUrl`, `XRBarCode` requires `Text` or `BinaryData`, `XRCheckBox` requires `CheckBoxState`, `XRGauge` requires `ActualValue`, `XRRichText` requires `Rtf` or `Html`, etc. **These are not optional styling tweaks** — without them the control will be invisible or non-functional. Always bind content properties via `ExpressionBindings` or assign values directly. See `references/report-controls.md` for each control's content property requirements.
 
 ## Antipatterns
 
@@ -364,6 +365,8 @@ The following patterns produce incorrect output, runtime errors, or layout bugs.
 | AP9 | Hardcoded pixel width spanning the full band (e.g., `new SizeF(650, 25)` as a magic constant) | `var availableWidth = PageWidthF - Margins.Left - Margins.Right;` then use `availableWidth` as the control width. See Pattern 8. |
 | AP10 | Model or helper class placed before the `XtraReport` subclass in the same `.cs` file | Place model/helper classes in a separate file. Visual Studio requires the designed class to be the first class in its file. See Constraint 10. |
 | AP11 | New folder created (e.g., `Data/`, `Models/`, `Reports/`) when a similar folder already exists in the project | Inspect the project tree first. Reuse the existing folder name and match its namespace exactly. See Constraint 11. |
+| AP12 | Adding a control to a band without setting its content property: `var label = new XRLabel(); band.Controls.Add(label);` — no `Text` property set. Or `var pic = new XRPictureBox(); band.Controls.Add(pic);` — no `ImageSource`. | Always set the control's primary content property. For `XRLabel` → `Text` or `ExpressionBinding("BeforePrint", "Text", "[Field]")`. For `XRPictureBox` → `ImageSource` or `ImageUrl`. For `XRBarCode` → `Text` or `BinaryData`. For `XRCheckBox` → `CheckBoxState`. For `XRGauge` → `ActualValue`. See Constraint 15 and `references/report-controls.md`. |
+| AP13 | Expression that references another control's value: `[ReportItems.Label1.Text]` — creates tight coupling between controls and may not work reliably (the referenced control's value might not be resolved at the moment the current expression is calculated) | Use `CalculatedField` or share the underlying data binding instead. If Label1 displays a data field, bind the second control to the same data field rather than to the first control's output. For derived or composite values, create a `CalculatedField` and bind both controls to it. See `references/expressions.md`. |
 
 ## Navigation Guide
 
@@ -371,7 +374,22 @@ The following patterns produce incorrect output, runtime errors, or layout bugs.
 |------|---------------|
 | NuGet setup and first report | `references/getting-started.md` |
 | Band types and when to use each | `references/report-bands.md` |
-| Control types, properties, examples | `references/report-controls.md` |
+| **Control types & properties (index)** | **`references/report-controls.md`** |
+| └─ Text controls | `references/report-controls-text.md` |
+| └─ Table layout | `references/report-controls-table.md` |
+| └─ Images | `references/report-controls-images.md` |
+| └─ Barcodes | `references/report-controls-barcode.md` |
+| └─ Checkboxes | `references/report-controls-checkbox.md` |
+| └─ Page info | `references/report-controls-pageinfo.md` |
+| └─ Charts | `references/report-controls-charts.md` |
+| └─ Cross-tabs | `references/report-controls-crosstab.md` |
+| └─ Sparklines | `references/report-controls-sparkline.md` |
+| └─ Gauges | `references/report-controls-gauge.md` |
+| └─ Layout & structure | `references/report-controls-layout.md` |
+| └─ Subreports | `references/report-controls-subreport.md` |
+| └─ Table of contents | `references/report-controls-toc.md` |
+| └─ PDF & signatures | `references/report-controls-pdf.md` |
+| └─ Common properties & expressions | `references/report-controls-common.md` |
 | Data binding — all data source types | `references/data-binding.md` |
 | Parameters, cascading, multi-value | `references/parameters.md` |
 | Expressions, calculated fields, filtering | `references/expressions.md` |
