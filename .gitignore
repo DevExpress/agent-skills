@@ -72,3 +72,4 @@ Desktop.ini
 .env
 .env.local
 
+*.orig
