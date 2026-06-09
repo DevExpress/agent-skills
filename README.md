@@ -15,11 +15,8 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 | [Office & PDF File API](plugins/dx-office-file-api/README.md)         | Spreadsheet, Word Processing, PDF, PDF New (CTP), Presentation, Barcode, Unit Conversion, Excel Export, ZIP, AI-powered Extensions | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
 | [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | Business Model, Business Logic, Business Logic XPO, Controllers, Views, Editors, Filtering, Filtering XPO, Appearance, Validation, Security, Reports, Performance | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
 | ASP.NET Core Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/AspNetCore/) |
-
 | WinForms Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
-
 | VCL Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/VCL/) |
-
 | BI Dashboard | *(coming soon)* | [Overview](https://docs.devexpress.com/Dashboard/) |
 
 
@@ -136,7 +133,8 @@ cp -r plugins/dx-devextreme/skills/* ~/.cursor/skills/
 
 Skills activate automatically in agent mode. No additional configuration is needed once the files are in place.
 
-- [Cursor plugins documentation](https://cursor.com/docs/plugins)
+- [Cursor plugins documentation](https://cursor.com/docs/plugins)
+
 
 > /devextreme-datagrid How do I activate inline row editing?
 
