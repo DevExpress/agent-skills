@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-tab-control
+name: devexpress-wpf-tab-control
 description: Build WPF tabbed UIs with DevExpress DXTabControl — define tabs explicitly as DXTabItem children or generate them from a data collection via ItemsSource + ItemHeaderTemplate / ItemTemplate, pick one of three views (MultiLine, Scroll, Stretch) for how headers overflow, customize colors per tab (AccentColor/BorderColor), and template every region of the control (left/right control box, content header/footer, panel area). Use when building document tabs, settings panes, master-detail editors, or any tabbed-page UI in WPF. Also use when someone mentions "DXTabControl", "DXTabItem", "TabControlMultiLineView", "TabControlScrollView", "TabControlStretchView", "TabContentCacheMode", "AccentColor", "AllowHide", "Glyph", "PinMode", or "DragDropMode". The host window should be ThemedWindow (not Window) for proper visual integration. Covers .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows. NuGet package `DevExpress.Wpf.Core` (DXTabControl lives in `DevExpress.Xpf.Core.v<version>.dll`). A valid DevExpress license is required.
 metadata:

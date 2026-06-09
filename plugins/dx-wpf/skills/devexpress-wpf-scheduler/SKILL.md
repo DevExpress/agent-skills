@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-scheduler
+name: devexpress-wpf-scheduler
 description: Build WPF applications with the DevExpress Scheduler Control (SchedulerControl) — an Outlook-style calendar control for displaying and editing appointments, time regions, and resources. Use when adding SchedulerControl to a WPF project; binding to a DataSource with AppointmentsSource / ResourcesSource / AppointmentLabelsSource / AppointmentStatusesSource / TimeRegionsSource; configuring AppointmentMappings, ResourceMappings, custom field mappings; switching between Day, Work Week, Week, Month, Timeline, Agenda, List views; customizing appointment appearance via templates (AppointmentContentTemplate), styles (AppointmentStyle), brushes (BrushSet, BrushProvider); managing recurrence, reminders, labels, statuses, time regions, time zones. Also use when someone asks about "DevExpress WPF scheduler", "dxsch:SchedulerControl", "DevExpress.Xpf.Scheduling", "AppointmentItem", "ResourceItem", "TimelineView", "GroupType". Covers .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). A valid DevExpress license is required.
 metadata:

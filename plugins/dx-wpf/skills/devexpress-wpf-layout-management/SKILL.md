@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-layout-management
+name: devexpress-wpf-layout-management
 description: Build WPF applications with the DevExpress layout-management controls — DockLayoutManager (Visual Studio-style dockable panels and MDI), LayoutControl (compound forms with auto-aligned labels and groups), DataLayoutControl (auto-generated form from a POCO via DataAnnotations), TileLayoutControl (Windows UI-style tiles), FlowLayoutControl (wrapping flow of items), DockLayoutControl (edge docking inside a single panel). Use when picking the right layout container, building compound forms with LayoutGroup / LayoutItem, configuring tile sizes and groups, arranging flow items with break-flow and maximization, persisting user customizations with WriteToXML / SaveLayoutToXml. Also use when someone mentions "DockLayoutManager", "LayoutControl", "DataLayoutControl", "TileLayoutControl", "FlowLayoutControl", "DockLayoutControl", "DevExpress.Xpf.LayoutControl", "DevExpress.Xpf.Docking", "dxdo:", "dxlc:". Covers .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). A valid DevExpress license is required.
 metadata:

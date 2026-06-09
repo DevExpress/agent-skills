@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-data-grid
+name: devexpress-wpf-data-grid
 description: Build WPF applications with the DevExpress Data Grid (GridControl) — a data-aware control that displays and edits data in table, card, and treelist layouts. Use when adding GridControl to a WPF project, binding to data sources (Entity Framework Core, XPO, local collections, ICollectionView, virtual sources, server mode), configuring columns and editors, sorting, filtering, grouping, summaries, master-detail, conditional formatting, printing, and exporting (XLSX/CSV/PDF). Also use when someone mentions "DevExpress WPF grid", "GridControl", "TableView", "CardView", "TreeListView", "dxg:GridControl", "DevExpress.Xpf.Grid", "DevExpress.Wpf.Grid", "Items Source Wizard", "WPF data grid", or asks about working with tabular data, server-mode large datasets, instant feedback mode, or grid CRUD operations in WPF. Covers both .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). A valid DevExpress license is required.
 metadata:

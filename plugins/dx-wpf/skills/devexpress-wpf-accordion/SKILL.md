@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-accordion
+name: devexpress-wpf-accordion
 description: Build WPF applications with the DevExpress Accordion Control (AccordionControl) — a hierarchical navigation control for compact app sidebars and category-based UIs. Use when adding AccordionControl to a WPF project; defining static items in XAML (AccordionItem with Header, Glyph, Items); binding to a data source with ChildrenPath, ChildrenSelector, or HierarchicalDataTemplate; switching between Default and NavigationPane view modes; configuring expand modes (Single/Multiple/None); enabling the search field; integrating with OfficeNavigationBar; customizing items (header, glyph, content) and the collapsed/expanded UI. Also use when someone asks about "AccordionControl vs NavBarControl", "AccordionControl vs HamburgerMenu", "AccordionItem", "ChildrenPath", "AccordionViewMode", "dxa:", or "DevExpress.Xpf.Accordion". Covers .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). A valid DevExpress license is required.
 metadata:

@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-ribbon-and-bars
+name: devexpress-wpf-ribbon-and-bars
 description: Build WPF applications with the DevExpress Ribbon control, toolbars, and menus. Use when adding RibbonControl, ToolBarControl, MainMenuControl, StatusBarControl, BarManager, or RibbonStatusBarControl to a WPF window; defining bar items (BarButtonItem, BarCheckItem, BarSplitButtonItem, BarSubItem, BarEditItem, BarStaticItem, BarItemSeparator) and bar item links; building Ribbon structure with RibbonPageCategory, RibbonPage, RibbonPageGroup; configuring Quick Access Toolbar, Application Menu, BackstageView, Ribbon Status Bar; using glyphs, ItemDisplayMode, RibbonStyle; merging child window bars/ribbons into the parent (MDI merging via DockLayoutManager). Also use when someone mentions "ThemedWindow", "WindowKind=Ribbon", "DevExpress.Xpf.Ribbon", "DevExpress.Xpf.Bars", "dxr:", "dxb:", "BarItem", or asks about Office-style UIs in WPF. Covers .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). The main window must be a ThemedWindow (not a regular Window) for full Ribbon integration. A valid DevExpress license is required.
 metadata:

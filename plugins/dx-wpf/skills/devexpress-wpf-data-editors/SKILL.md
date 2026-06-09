@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-data-editors
+name: devexpress-wpf-data-editors
 description: Build WPF applications with the DevExpress Data Editors library — text, numeric, date/time, lookup, combo/listbox, image, color, visualization and utility editors. Use when adding TextEdit, ButtonEdit, ComboBoxEdit, DateEdit, SpinEdit, LookUpEdit, MemoEdit, PasswordBoxEdit, ListBoxEdit, CheckEdit, ToggleSwitchEdit, BrowsePathEdit, ImageEdit, ColorEdit/PopupColorEdit, TrackBarEdit, ProgressBarEdit, RatingEdit, SparklineEdit, BarCodeEdit, HyperlinkEdit, AutoSuggestEdit, PopupCalcEdit, or simple controls (SimpleButton, DropDownButton, SplitButton, FlyoutControl, RangeControl, Calculator, DateNavigator, DateRangeControl, TimePicker). Also use when someone mentions "BaseEdit", "EditValue", "DevExpress.Xpf.Editors", "dxe:", "StyleSettings", "operation modes", "editor masks", "ButtonInfo", "GlyphKind", or asks about input validation, masked input, in-place editors for GridControl/PropertyGrid, password fields, calendar pickers, or token combos. Covers both .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires Windows-targeted .NET 6+ applications (for example, `net8.0-windows`) or .NET Framework 4.6.2+ applications. A valid DevExpress license is required.
 metadata:

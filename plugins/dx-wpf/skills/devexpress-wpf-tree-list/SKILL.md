@@ -1,5 +1,5 @@
 ---
-name: wpf-devexpress-tree-list
+name: devexpress-wpf-tree-list
 description: Build WPF applications with the DevExpress TreeList (TreeListControl) — a data-aware control for hierarchical data. Use when adding TreeListControl, binding to self-referential data (Key/Parent fields), hierarchical data (ChildNodesPath/Selector/DataTemplate), or building unbound trees with TreeListNode. Covers TreeListColumn, sorting, filtering, summaries, expand/collapse, drag-and-drop, multi-selection, edit forms, validation, conditional formatting, printing, exporting. Also use when someone mentions "DevExpress WPF tree", "TreeListControl", "TreeListView", "dxg:TreeListControl", "DevExpress.Xpf.Grid.TreeListControl", "self-referential tree", "KeyFieldName ParentFieldName", "unbound tree", or asks about org charts, file trees, project hierarchies, BOM, parent-child collections, or any tree UI in WPF. Covers both .NET (6/7/8+) and .NET Framework 4.6.2+.
 compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). A valid DevExpress license is required.
 metadata:
