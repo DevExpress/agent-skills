@@ -9,12 +9,12 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 |  |  |  |
 | --- | --- | --- |
 | **Product** | **Skills** | **Docs** |
-| [JavaScript & ASP.NET Core - DevExtreme](plugins/devextreme/README.md) | DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, Theming | [Overview](https://js.devexpress.com/Documentation/) |
-| [WinForms Controls](plugins/winforms/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
-| [WPF Controls](plugins/wpf/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/WPF/) |
-| [.NET Reports](plugins/reporting/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/XtraReports/) |
-| [Office & PDF File API](plugins/office-file-api/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
-| [XAF: Cross-Platform .NET App UI & Web API](plugins/xaf/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
+| [JavaScript & ASP.NET Core - DevExtreme](plugins/dx-devextreme/README.md) | DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, Theming | [Overview](https://js.devexpress.com/Documentation/) |
+| [WinForms Controls](plugins/dx-winforms/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
+| [WPF Controls](plugins/dx-wpf/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/WPF/) |
+| [.NET Reports](plugins/dx-reporting/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/XtraReports/) |
+| [Office & PDF File API](plugins/dx-office-file-api/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
+| [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
 
 ## **Installation**
 

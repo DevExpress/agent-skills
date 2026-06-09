@@ -188,7 +188,7 @@ See [save-restore-layout.md](save-restore-layout.md) § MVVM Persistence — sto
 
 ## Apply to GridControl
 
-For shared MVVM concepts (ViewModelBase, `[Command]`, DelegateCommand, DXSerializer for layout, services from DevExpress.Mvvm), see [the data-grid skill's MVVM patterns](../../wpf-devexpress-data-grid/SKILL.md).
+For shared MVVM concepts (ViewModelBase, `[Command]`, DelegateCommand, DXSerializer for layout, services from DevExpress.Mvvm), see [the data-grid skill's MVVM patterns](../../devexpress-wpf-data-grid/SKILL.md).
 
 The Pivot Grid extends those patterns with `FieldsSource` / `GroupsSource` and the template/selector mechanism documented above.
 

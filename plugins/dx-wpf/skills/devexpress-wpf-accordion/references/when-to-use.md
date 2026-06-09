@@ -90,7 +90,7 @@ The migration is straightforward when the existing app uses 2-level hierarchy (m
 
 For top-bar navigation (across the top of the window), don't use any of the three above. Use:
 
-- **`RibbonControl`** — Office-style tabbed command surface. See the `wpf-devexpress-ribbon-and-bars` skill.
+- **`RibbonControl`** — Office-style tabbed command surface. See the `devexpress-wpf-ribbon-and-bars` skill.
 - **`OfficeNavigationBar`** — Outlook-2013-style bar with click-to-switch sections. Often combined with `AccordionControl` in NavigationPane mode.
 - **`MainMenuControl`** / **`ToolBarControl`** — classic menu / toolbar. See the ribbon-and-bars skill.
 

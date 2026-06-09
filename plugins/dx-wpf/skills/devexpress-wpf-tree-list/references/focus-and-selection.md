@@ -2,7 +2,7 @@
 
 `TreeListControl` shares the focus and selection infrastructure with `GridControl` — same `DataViewBase` / `DataControlBase` API surface with TreeList-specific extensions for nodes (`FocusedNode`, `GetSelectedNodes`, node expansion in selection state).
 
-**For the full focus / selection reference (`NavigationStyle`, `SelectionMode`, `CurrentItem`, `SelectedItems`, `BeginSelection`/`EndSelection`, Check-Box Selector Column, Selection Rectangle, MVVM binding, keyboard navigation tables, custom selected appearance) see [the data-grid skill's `references/focus-and-selection.md`](../../wpf-devexpress-data-grid/references/focus-and-selection.md).** This reference covers only TreeList-specific concerns.
+**For the full focus / selection reference (`NavigationStyle`, `SelectionMode`, `CurrentItem`, `SelectedItems`, `BeginSelection`/`EndSelection`, Check-Box Selector Column, Selection Rectangle, MVVM binding, keyboard navigation tables, custom selected appearance) see [the data-grid skill's `references/focus-and-selection.md`](../../devexpress-wpf-data-grid/references/focus-and-selection.md).** This reference covers only TreeList-specific concerns.
 
 ## When to Use This Reference
 
@@ -131,7 +131,7 @@ void View_CanSelectCell(object sender, CanSelectCellEventArgs e) {
 
 ## Check-Box Selector Column in TreeList
 
-Works the same as in `GridControl` (`ShowCheckBoxSelectorColumn`, `CheckBoxSelectorColumnPosition`, etc.). See data-grid's [focus-and-selection.md § Check-Box Selector Column](../../wpf-devexpress-data-grid/references/focus-and-selection.md).
+Works the same as in `GridControl` (`ShowCheckBoxSelectorColumn`, `CheckBoxSelectorColumnPosition`, etc.). See data-grid's [focus-and-selection.md § Check-Box Selector Column](../../devexpress-wpf-data-grid/references/focus-and-selection.md).
 
 > Don't confuse with **node checkboxes** (`ShowCheckboxes` + `CheckBoxFieldName`) — those are per-row data checkboxes for app-specific marking (e.g., "On Vacation"). Selector column is for row selection.
 
@@ -172,7 +172,7 @@ See [nodes.md § Expand and Collapse](nodes.md) for full keyboard shortcuts.
 
 For shared concepts (NavigationStyle, SelectionMode, BeginSelection / EndSelection, Selection Rectangle, hover effects, selection fade, MVVM binding, keyboard navigation):
 
-See [the data-grid skill's focus-and-selection.md](../../wpf-devexpress-data-grid/references/focus-and-selection.md).
+See [the data-grid skill's focus-and-selection.md](../../devexpress-wpf-data-grid/references/focus-and-selection.md).
 
 This tree-list reference covers only TreeList-specific extensions (`FocusedNode`, `GetSelectedNodes`, node-based cell selection, tree-specific keyboard shortcuts).
 

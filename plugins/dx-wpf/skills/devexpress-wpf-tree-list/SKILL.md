@@ -149,7 +149,7 @@ When you need to:
 - Add / remove nodes programmatically in bound and unbound modes
 
 ### Editing (Cell Display + Editing)
-Refer to [references/editing.md](references/editing.md) (TreeList-focused) and [the data-grid skill's cell-display-and-editing.md](../wpf-devexpress-data-grid/references/cell-display-and-editing.md) for the full 9-techniques decision matrix
+Refer to [references/editing.md](references/editing.md) (TreeList-focused) and [the data-grid skill's cell-display-and-editing.md](../devexpress-wpf-data-grid/references/cell-display-and-editing.md) for the full 9-techniques decision matrix
 
 When you need to:
 - Configure in-place editors per column (`ComboBoxEdit`, `DateEdit`, `CheckEdit`); show/hide New Item Row; handle `CellValueChanged`
@@ -158,7 +158,7 @@ When you need to:
 - Use modern `CellDisplayTemplate` + `CellEditTemplate` split; configure read-only vs disable editing
 
 ### Validation
-Refer to [references/validation.md](references/validation.md) (TreeList-focused) and [the data-grid skill's validation.md](../wpf-devexpress-data-grid/references/validation.md) for full decision matrix
+Refer to [references/validation.md](references/validation.md) (TreeList-focused) and [the data-grid skill's validation.md](../devexpress-wpf-data-grid/references/validation.md) for full decision matrix
 
 When you need to:
 - Wire **`ValidateNodeCommand`** (not `ValidateRowCommand`) and `ValidateCellCommand`; customize via `InvalidNodeExceptionCommand`
@@ -167,7 +167,7 @@ When you need to:
 - Display errors via `ValidationErrorInfo` (Critical / Warning / Information severities)
 
 ### Focus and Selection
-Refer to [references/focus-and-selection.md](references/focus-and-selection.md) (TreeList-focused) and [the data-grid skill's focus-and-selection.md](../wpf-devexpress-data-grid/references/focus-and-selection.md) for shared API
+Refer to [references/focus-and-selection.md](references/focus-and-selection.md) (TreeList-focused) and [the data-grid skill's focus-and-selection.md](../devexpress-wpf-data-grid/references/focus-and-selection.md) for shared API
 
 When you need to:
 - Read / set the focused node (`FocusedNode` vs `CurrentItem` vs `FocusedRowHandle`)
@@ -176,7 +176,7 @@ When you need to:
 - Configure single/multi-node/cell selection; Check-Box Selector Column (not to be confused with node checkboxes)
 
 ### Drag-and-Drop
-Refer to [references/drag-and-drop.md](references/drag-and-drop.md) (TreeList-focused) and [the data-grid skill's drag-and-drop.md](../wpf-devexpress-data-grid/references/drag-and-drop.md) for 6-event details
+Refer to [references/drag-and-drop.md](references/drag-and-drop.md) (TreeList-focused) and [the data-grid skill's drag-and-drop.md](../devexpress-wpf-data-grid/references/drag-and-drop.md) for 6-event details
 
 When you need to:
 - Enable drag-drop with TreeList-specific `DropPosition.Inside` (makes dragged node a child)
@@ -186,7 +186,7 @@ When you need to:
 - Update `ParentID` (self-ref) or move between `Children` collections (hierarchical) in `DropRecord`
 
 ### Save and Restore Layout
-Refer to [references/save-restore-layout.md](references/save-restore-layout.md) (TreeList-focused) and [the data-grid skill's save-restore-layout.md](../wpf-devexpress-data-grid/references/save-restore-layout.md) for serializer internals
+Refer to [references/save-restore-layout.md](references/save-restore-layout.md) (TreeList-focused) and [the data-grid skill's save-restore-layout.md](../devexpress-wpf-data-grid/references/save-restore-layout.md) for serializer internals
 
 When you need to:
 - Persist TreeList layout including **node expand state + check state** (`SaveLayoutToXml`/`Stream`)

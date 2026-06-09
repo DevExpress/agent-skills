@@ -2,7 +2,7 @@
 
 `TreeListControl` supports the same validation strategies as `GridControl` — **GridControl-level** (event / MVVM command on user edits) and **Data-level** (interfaces or DataAnnotations). The naming differs at the row scope: TreeList uses **`ValidateNodeCommand`** instead of `ValidateRowCommand`.
 
-**For the full validation reference (decision matrix, `ValidationErrorInfo`, severity types, `IDXDataErrorInfo`/`IDataErrorInfo`/`INotifyDataErrorInfo`, DataAnnotations, error window customization, `ValidationService`, `CellTemplate` caveat) see [the data-grid skill's `references/validation.md`](../../wpf-devexpress-data-grid/references/validation.md).** This reference covers only TreeList-specific differences.
+**For the full validation reference (decision matrix, `ValidationErrorInfo`, severity types, `IDXDataErrorInfo`/`IDataErrorInfo`/`INotifyDataErrorInfo`, DataAnnotations, error window customization, `ValidationService`, `CellTemplate` caveat) see [the data-grid skill's `references/validation.md`](../../devexpress-wpf-data-grid/references/validation.md).** This reference covers only TreeList-specific differences.
 
 ## When to Use This Reference
 
@@ -105,7 +105,7 @@ Without this property: collapsed parent shows no error even though its child fai
 
 ## Interface-Based Validation in a Tree
 
-`IDXDataErrorInfo`, `IDataErrorInfo`, `INotifyDataErrorInfo` all work identically to `GridControl`. The grid evaluates per-record errors regardless of tree level. See [data-grid validation.md § Interface-Based Validation](../../wpf-devexpress-data-grid/references/validation.md).
+`IDXDataErrorInfo`, `IDataErrorInfo`, `INotifyDataErrorInfo` all work identically to `GridControl`. The grid evaluates per-record errors regardless of tree level. See [data-grid validation.md § Interface-Based Validation](../../devexpress-wpf-data-grid/references/validation.md).
 
 For tree-specific scenarios where a parent's validity depends on its children's state, implement the parent's `GetError` to walk the children:
 
@@ -153,7 +153,7 @@ public class Task {
 }
 ```
 
-See [data-grid validation.md § Attribute-Based Validation](../../wpf-devexpress-data-grid/references/validation.md).
+See [data-grid validation.md § Attribute-Based Validation](../../devexpress-wpf-data-grid/references/validation.md).
 
 **Same limitation**: DataAnnotations don't work on `ColumnBase.Binding`-bound columns. Use `FieldName`.
 
@@ -161,7 +161,7 @@ See [data-grid validation.md § Attribute-Based Validation](../../wpf-devexpress
 
 Edit Forms work on `TreeListView` (`EditFormShowMode`, `ShowEditFormOnDoubleClick`, etc.). Validation pipeline is identical to GridControl's Edit Form validation — DataAnnotations + interface errors show on form editors; `ValidateNodeCommand` fires on form save.
 
-See [data-grid cell-display-and-editing.md § Edit Form](../../wpf-devexpress-data-grid/references/cell-display-and-editing.md).
+See [data-grid cell-display-and-editing.md § Edit Form](../../devexpress-wpf-data-grid/references/cell-display-and-editing.md).
 
 ## Common Issues
 
@@ -173,7 +173,7 @@ See [data-grid cell-display-and-editing.md § Edit Form](../../wpf-devexpress-da
 
 ## Apply to GridControl
 
-For all shared concerns (`ValidationErrorInfo`, severity types, interface-based, attribute-based, `ValidationService`, decision matrix), see [the data-grid skill's `references/validation.md`](../../wpf-devexpress-data-grid/references/validation.md).
+For all shared concerns (`ValidationErrorInfo`, severity types, interface-based, attribute-based, `ValidationService`, decision matrix), see [the data-grid skill's `references/validation.md`](../../devexpress-wpf-data-grid/references/validation.md).
 
 This tree-list reference covers only the renamed commands (`ValidateNodeCommand`, `InvalidNodeExceptionCommand`) and tree-specific patterns (parent-child validation, child error indication).
 

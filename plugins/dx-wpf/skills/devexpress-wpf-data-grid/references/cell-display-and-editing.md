@@ -363,7 +363,7 @@ Everything in this reference applies identically to `TreeListControl` — the AP
 | `TableView.ShowEditForm()` etc. | `TreeListView.ShowEditForm()` etc. |
 | `GridColumn.CellDisplayTemplate` / `CellEditTemplate` | `TreeListColumn.CellDisplayTemplate` / `CellEditTemplate` (inherited from `ColumnBase`) |
 
-In the `wpf-devexpress-tree-list` skill, `references/editing.md` covers tree-specific concerns (node add/remove, expand state); refer to this file for the shared cell display + editing details.
+In the `devexpress-wpf-tree-list` skill, `references/editing.md` covers tree-specific concerns (node add/remove, expand state); refer to this file for the shared cell display + editing details.
 
 ## Source Material
 

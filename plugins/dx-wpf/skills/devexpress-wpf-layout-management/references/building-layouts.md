@@ -449,7 +449,7 @@ DockLayoutManager
 
 ### MDI Bar/Ribbon Merging
 
-When document panels host their own `RibbonControl` or bars, the parent `DockLayoutManager` can merge them into the host's command surface. See the `wpf-devexpress-ribbon-and-bars` skill, `merging.md` reference.
+When document panels host their own `RibbonControl` or bars, the parent `DockLayoutManager` can merge them into the host's command surface. See the `devexpress-wpf-ribbon-and-bars` skill, `merging.md` reference.
 
 ### Document Selector
 

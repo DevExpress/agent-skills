@@ -2,7 +2,7 @@
 
 `TreeListControl` supports drag-and-drop with the same `DataViewBase`-level API as `GridControl` (six events, drag hint, drop marker, auto-expand on hover) — plus tree-specific semantics: dropping **inside** a node makes the dragged node a child (creating a parent-child relationship), and the `IndentNode` / `OutdentNode` API enables restructuring without drag.
 
-**For the full reference (`AllowDragDrop`, the six events, `RecordDragDropData`, `DragDropHintTemplate`, `DropMarkerTemplate`, cross-grid drag, cross-app drag with .NET 9 limitations) see [the data-grid skill's `references/drag-and-drop.md`](../../wpf-devexpress-data-grid/references/drag-and-drop.md).** This reference covers TreeList-specific concerns.
+**For the full reference (`AllowDragDrop`, the six events, `RecordDragDropData`, `DragDropHintTemplate`, `DropMarkerTemplate`, cross-grid drag, cross-app drag with .NET 9 limitations) see [the data-grid skill's `references/drag-and-drop.md`](../../devexpress-wpf-data-grid/references/drag-and-drop.md).** This reference covers TreeList-specific concerns.
 
 ## When to Use This Reference
 
@@ -207,7 +207,7 @@ For `DropPosition="Inside"` to make sense across trees, the data class needs the
 
 ## Drag-Drop Between TreeList and External Controls
 
-Same approach as Grid: handle `StartRecordDrag` to package data, attach standard WPF `DragDrop` events on the target. See [data-grid drag-and-drop.md § Drag Between GridControl and Standard WPF Controls](../../wpf-devexpress-data-grid/references/drag-and-drop.md).
+Same approach as Grid: handle `StartRecordDrag` to package data, attach standard WPF `DragDrop` events on the target. See [data-grid drag-and-drop.md § Drag Between GridControl and Standard WPF Controls](../../devexpress-wpf-data-grid/references/drag-and-drop.md).
 
 For `ListBoxEdit` specifically, use `ListBoxDragDropBehavior` attached properties on the target.
 
@@ -242,7 +242,7 @@ When the tree is built in unbound mode (XAML / code `TreeListNode` tree), drag-d
 
 ### .NET 9 Cross-App Limitation
 
-Inherits the same restriction as Grid: .NET 9 cross-app drag requires the BinaryFormatter compatibility package. See [data-grid drag-and-drop.md § .NET 9+ Limitation](../../wpf-devexpress-data-grid/references/drag-and-drop.md).
+Inherits the same restriction as Grid: .NET 9 cross-app drag requires the BinaryFormatter compatibility package. See [data-grid drag-and-drop.md § .NET 9+ Limitation](../../devexpress-wpf-data-grid/references/drag-and-drop.md).
 
 ## Common Issues
 
@@ -254,7 +254,7 @@ Inherits the same restriction as Grid: .NET 9 cross-app drag requires the Binary
 
 ## Apply to GridControl
 
-For shared concepts (`AllowDragDrop`, six events, `RecordDragDropData`, `DragDropHintTemplate`, `DropMarkerTemplate`, cross-app drag, .NET 9 BinaryFormatter): see [the data-grid skill's `references/drag-and-drop.md`](../../wpf-devexpress-data-grid/references/drag-and-drop.md).
+For shared concepts (`AllowDragDrop`, six events, `RecordDragDropData`, `DragDropHintTemplate`, `DropMarkerTemplate`, cross-app drag, .NET 9 BinaryFormatter): see [the data-grid skill's `references/drag-and-drop.md`](../../devexpress-wpf-data-grid/references/drag-and-drop.md).
 
 This tree-list reference covers tree-specific semantics: `DropPosition.Inside`, `AutoExpandOnDrag`, indent/outdent, level-aware drop logic.
 

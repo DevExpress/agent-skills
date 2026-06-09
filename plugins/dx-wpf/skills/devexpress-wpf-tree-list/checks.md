@@ -1,11 +1,11 @@
-﻿# Skill Generation Report — `wpf-devexpress-tree-list`
+﻿# Skill Generation Report — `devexpress-wpf-tree-list`
 
 Generated against WPF docs repo HEAD `b16066c633b85ee391d1e6188ffc4cd815ee5e8f` on 2026-05-15.
 
 ## Files Created
 
 ```
-skills/wpf/wpf-devexpress-tree-list/
+skills/wpf/devexpress-wpf-tree-list/
 ├── SKILL.md                            (417 lines)
 ├── checks.md                           (this file)
 ├── references/
@@ -116,8 +116,8 @@ No unresolved includes.
    dotnet run
    ```
 3. **Run the 5-prompt manual test** from the meta-skill.
-4. **Compare with `wpf-devexpress-data-grid`**: many references (binding, theming, validation, conditional formatting) follow the same pattern. Discrepancies are intentional (e.g., master-detail is GridControl-only; unbound mode is TreeList-only).
+4. **Compare with `devexpress-wpf-data-grid`**: many references (binding, theming, validation, conditional formatting) follow the same pattern. Discrepancies are intentional (e.g., master-detail is GridControl-only; unbound mode is TreeList-only).
 
 ## Ready to Apply Pattern to PivotGrid?
 
-This skill validates that the data-grid pilot pattern scales to a smaller member of the family. PivotGrid (`wpf-devexpress-pivot-grid`) is next — different feature set (data shaping, OLAP binding, field areas) but the same shape: SKILL.md + references + examples + checks.md.
+This skill validates that the data-grid pilot pattern scales to a smaller member of the family. PivotGrid (`devexpress-wpf-pivot-grid`) is next — different feature set (data shaping, OLAP binding, field areas) but the same shape: SKILL.md + references + examples + checks.md.

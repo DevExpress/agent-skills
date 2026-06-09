@@ -1,11 +1,11 @@
-﻿# Skill Generation Report — `wpf-devexpress-pivot-grid`
+﻿# Skill Generation Report — `devexpress-wpf-pivot-grid`
 
 Generated against WPF docs repo HEAD `b16066c633b85ee391d1e6188ffc4cd815ee5e8f` on 2026-05-15.
 
 ## Files Created
 
 ```
-skills/data-grid/wpf-devexpress-pivot-grid/
+skills/data-grid/devexpress-wpf-pivot-grid/
 ├── SKILL.md                            (404 lines)
 ├── checks.md                           (this file)
 ├── references/
@@ -143,6 +143,6 @@ Current repository status for the WPF data-grid family from the perspective of t
 
 | Product | Skill | Status |
 |---|---|---|
-| **PivotGrid** | **`wpf-devexpress-pivot-grid`** | **✅ Generated, not yet tested in real project** |
+| **PivotGrid** | **`devexpress-wpf-pivot-grid`** | **✅ Generated, not yet tested in real project** |
 
 Family completion should be evaluated only after the other data-grid family skills are added to this repository. Next family from the original 11-family plan: **editors** (data-editors + property-grid), **charts-and-gauges**, or **scheduling**. Or pause to test PivotGrid in a real project first.

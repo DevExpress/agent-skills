@@ -164,7 +164,7 @@ You'll see a scheduler grouped by doctor, with the two pre-populated appointment
 
 In Visual Studio Designer, select the `SchedulerControl` and use its **Quick Actions** menu → **Create Ribbon**. This adds a `RibbonControl` with built-in scheduler commands (navigate, change view, switch grouping, today, etc.).
 
-Requires the `DevExpress.Wpf.Ribbon` package. The host window must be a `ThemedWindow` with `WindowKind="Ribbon"` for full integration — see the `wpf-devexpress-ribbon-and-bars` skill.
+Requires the `DevExpress.Wpf.Ribbon` package. The host window must be a `ThemedWindow` with `WindowKind="Ribbon"` for full integration — see the `devexpress-wpf-ribbon-and-bars` skill.
 
 ## Unbound Mode (No Data Binding)
 

@@ -1,11 +1,11 @@
-﻿# Pilot Skill Generation Report — `wpf-devexpress-data-grid`
+﻿# Pilot Skill Generation Report — `devexpress-wpf-data-grid`
 
 Generated against WPF docs repo HEAD `b16066c633b85ee391d1e6188ffc4cd815ee5e8f` on 2026-05-15.
 
 ## Files Created
 
 ```
-skills/wpf/wpf-devexpress-data-grid/
+skills/wpf/devexpress-wpf-data-grid/
 ├── SKILL.md                            (477 lines)
 ├── checks.md                           (this file)
 ├── references/
@@ -142,7 +142,7 @@ The VS Code DevExpress DocFX linter flags the following warnings on files in `sk
 
 This pilot validated the structure, elicitation, theming integration, and reference-file shape for the data-grid family. Once you review and approve, the same shape can be cloned for:
 
-- `skills/data-grid/wpf-devexpress-tree-list/` — narrower scope (18 source articles, 5 feature areas)
-- `skills/data-grid/wpf-devexpress-pivot-grid/` — different feature set (data shaping, OLAP binding, 203 source articles)
+- `skills/data-grid/devexpress-wpf-tree-list/` — narrower scope (18 source articles, 5 feature areas)
+- `skills/data-grid/devexpress-wpf-pivot-grid/` — different feature set (data shaping, OLAP binding, 203 source articles)
 
 Each will take less time because the WPF infrastructure (theming, MVVM patterns, `.NET` vs `.NET Framework` split, designer-vs-code paths) is already documented and reusable.

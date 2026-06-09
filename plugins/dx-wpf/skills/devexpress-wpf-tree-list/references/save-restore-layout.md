@@ -2,7 +2,7 @@
 
 `TreeListControl` uses the same layout-serialization API as `GridControl`: `SaveLayoutToXml/Stream` and `RestoreLayoutFromXml/Stream` (inherited from `DataControlBase`). The serialized state additionally captures TreeList-specific data — **node expand state** and **node check state** — alongside the standard column / sort / filter / group state.
 
-**For the full reference (`DXSerializer`, `StoreLayoutMode`, `AllowProperty` event, `AddNewColumns` / `RemoveOldColumns`, `XamlHelper.Name`, MVVM persistence patterns, what doesn't serialize) see [the data-grid skill's `references/save-restore-layout.md`](../../wpf-devexpress-data-grid/references/save-restore-layout.md).** This reference covers TreeList-specific concerns.
+**For the full reference (`DXSerializer`, `StoreLayoutMode`, `AllowProperty` event, `AddNewColumns` / `RemoveOldColumns`, `XamlHelper.Name`, MVVM persistence patterns, what doesn't serialize) see [the data-grid skill's `references/save-restore-layout.md`](../../devexpress-wpf-data-grid/references/save-restore-layout.md).** This reference covers TreeList-specific concerns.
 
 ## When to Use This Reference
 
@@ -118,7 +118,7 @@ Same rules as Grid (see data-grid reference):
 
 OR rely on `UseFieldNameForSerialization="True"` (default).
 
-For ViewModel-generated columns / bands, use `dx:XamlHelper.Name` — see [data-grid save-restore-layout.md § ViewModel-Generated Elements](../../wpf-devexpress-data-grid/references/save-restore-layout.md).
+For ViewModel-generated columns / bands, use `dx:XamlHelper.Name` — see [data-grid save-restore-layout.md § ViewModel-Generated Elements](../../devexpress-wpf-data-grid/references/save-restore-layout.md).
 
 ## MVVM Persistence
 
@@ -196,7 +196,7 @@ Same as Grid:
 
 For all shared serialization concepts (`DXSerializer`, `StoreLayoutMode`, `AllowProperty`, `AddNewColumns`/`RemoveOldColumns`, MVVM patterns, lifecycle events):
 
-See [the data-grid skill's `references/save-restore-layout.md`](../../wpf-devexpress-data-grid/references/save-restore-layout.md).
+See [the data-grid skill's `references/save-restore-layout.md`](../../devexpress-wpf-data-grid/references/save-restore-layout.md).
 
 This tree-list reference covers only the TreeList-specific state (expand / check) and ordering requirements (load before restore).
 

@@ -484,7 +484,7 @@ Source: `articles/controls-and-libraries/data-grid/bind-to-data.md` § "Dynamic 
 - **Virtual Sources NOT supported** — `InfiniteAsyncSource`, `PagedAsyncSource`, etc. do not work.
 - **Hierarchy modes specific to TreeList**: `KeyFieldName`/`ParentFieldName` (self-referential), `ChildNodesPath` (nested), `ChildNodesSelector` (type-aware), `HierarchicalDataTemplate`, **Unbound Mode** (TreeListNode tree).
 
-For TreeListControl-specific binding details, see the `wpf-devexpress-tree-list` skill's `references/data-binding.md` and `nodes.md`.
+For TreeListControl-specific binding details, see the `devexpress-wpf-tree-list` skill's `references/data-binding.md` and `nodes.md`.
 
 ## Source Type Decision Tree
 

@@ -1,6 +1,6 @@
 ﻿# Editing — DevExpress WPF TreeList
 
-`TreeListControl` uses the **same in-place editor infrastructure as `GridControl`** — `EditSettings`, `CellDisplayTemplate` + `CellEditTemplate`, Edit Forms, Edit Entire Row, `CustomColumnDisplayText`, unbound columns, read-only patterns. This reference covers TreeList-specific quirks; for the full editing decision matrix (9 display techniques, when to use which), see [the data-grid skill's `references/cell-display-and-editing.md`](../../wpf-devexpress-data-grid/references/cell-display-and-editing.md).
+`TreeListControl` uses the **same in-place editor infrastructure as `GridControl`** — `EditSettings`, `CellDisplayTemplate` + `CellEditTemplate`, Edit Forms, Edit Entire Row, `CustomColumnDisplayText`, unbound columns, read-only patterns. This reference covers TreeList-specific quirks; for the full editing decision matrix (9 display techniques, when to use which), see [the data-grid skill's `references/cell-display-and-editing.md`](../../devexpress-wpf-data-grid/references/cell-display-and-editing.md).
 
 For validation (which has a renamed command in TreeList — `ValidateNodeCommand` instead of `ValidateRowCommand`), see [validation.md](validation.md).
 
@@ -15,7 +15,7 @@ Use this when you need to:
 - Add and remove nodes programmatically (bound and unbound modes)
 - Understand TreeList-specific editor activation differences
 
-> For the full **cell display + edit decision matrix** (9 techniques × 4 dimensions of coverage), `CellDisplayTemplate` vs `CellEditTemplate` split, editor activation API, `EditFormShowMode` modes, **Edit Entire Row** vs **Edit Form** decision — see [the data-grid `cell-display-and-editing.md`](../../wpf-devexpress-data-grid/references/cell-display-and-editing.md). It applies identically to TreeList (`TreeListView` replaces `TableView`, `TreeListColumn` replaces `GridColumn`).
+> For the full **cell display + edit decision matrix** (9 techniques × 4 dimensions of coverage), `CellDisplayTemplate` vs `CellEditTemplate` split, editor activation API, `EditFormShowMode` modes, **Edit Entire Row** vs **Edit Form** decision — see [the data-grid `cell-display-and-editing.md`](../../devexpress-wpf-data-grid/references/cell-display-and-editing.md). It applies identically to TreeList (`TreeListView` replaces `TableView`, `TreeListColumn` replaces `GridColumn`).
 
 ## Key Classes
 
