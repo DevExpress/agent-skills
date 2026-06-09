@@ -133,12 +133,9 @@ cp -r plugins/dx-devextreme/skills/* ~/.cursor/skills/
 
 Skills activate automatically in agent mode. No additional configuration is needed once the files are in place.
 
-- [Cursor plugins documentation](https://cursor.com/docs/plugins)
-
-
 > /devextreme-datagrid How do I activate inline row editing?
 
-- [Cursor plugins documentation](https://cursor.com/docs/plugins) 
+- [Cursor plugins documentation](https://cursor.com/docs/plugins)
 - [Cursor skills documentation](https://cursor.com/docs/skills)
 
 ## **License**
