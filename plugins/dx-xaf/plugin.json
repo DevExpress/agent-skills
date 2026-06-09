@@ -1,5 +1,5 @@
 {
-  "name": "xaf",
+  "name": "dx-xaf",
   "description": "DevExpress XAF (eXpressApp Framework) skills: business model, business logic, controllers, views, editors, filtering, appearance, validation, security, reports, and performance for EF Core and XPO.",
   "version": "0.1.0",
   "license": "MIT",
