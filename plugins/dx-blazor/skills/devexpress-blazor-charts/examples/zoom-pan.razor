@@ -1,0 +1,64 @@
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+@* Chart with zoom/pan enabled:
+   - Mouse wheel zooms the argument axis
+   - Drag pans; hold Shift and drag to draw a zoom rectangle
+   - Horizontal scroll bar appears below the chart
+   - VisualRangeChanged fires on every zoom/pan gesture
+   - "Reset" button restores the full range programmatically *@
+
+<DxChart @ref="Chart"
+         Data="@DataSource"
+         VisualRangeChanged="OnVisualRangeChanged"
+         Width="100%">
+    <DxChartLineSeries ArgumentField="@((DataPoint v) => v.Date)"
+                       ValueField="@((DataPoint v) => v.Value)"
+                       Name="Temperature °C" />
+    <DxChartTitle Text="Daily Temperatures — Zoom &amp; Pan Demo" />
+    <DxChartArgumentAxis>
+        <DxChartAxisTitle Text="Date" />
+    </DxChartArgumentAxis>
+    <DxChartValueAxis>
+        <DxChartAxisTitle Text="Temperature (°C)" />
+    </DxChartValueAxis>
+    <DxChartZoomAndPanSettings ArgumentAxisZoomAndPanMode="ChartAxisZoomAndPanMode.Both"
+                               AllowMouseWheel="true"
+                               AllowDragToZoom="true"
+                               PanKey="ChartPanKey.Shift" />
+    <DxChartScrollBarSettings ArgumentAxisScrollBarVisible="true"
+                              ArgumentAxisScrollBarPosition="ChartScrollBarPosition.Bottom" />
+    <DxChartLegend Visible="false" />
+</DxChart>
+
+<div style="margin-top:8px; display:flex; gap:12px; align-items:center;">
+    <button @onclick="ResetZoom">Reset Zoom</button>
+    <span>Range: @RangeDisplay</span>
+</div>
+
+@code {
+    DxChart<DataPoint> Chart;
+    IEnumerable<DataPoint> DataSource;
+    string RangeDisplay = "Full";
+
+    protected override void OnInitialized() {
+        // 90 days of simulated temperature data
+        var rng = new Random(42);
+        var start = new DateTime(2024, 1, 1);
+        DataSource = Enumerable.Range(0, 90)
+            .Select(i => new DataPoint(start.AddDays(i), Math.Round(rng.NextDouble() * 30 - 5, 1)))
+            .ToList();
+    }
+
+    void OnVisualRangeChanged(ChartVisualRangeChangedEventArgs args) {
+        if (args.StartValue is DateTime s && args.EndValue is DateTime e)
+            RangeDisplay = $"{s:MMM d} – {e:MMM d}";
+    }
+
+    async Task ResetZoom() {
+        await Chart.ResetVisualRange();
+        RangeDisplay = "Full";
+    }
+
+    record DataPoint(DateTime Date, double Value);
+}

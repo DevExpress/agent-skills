@@ -1,0 +1,45 @@
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+@* Quick Start: DevExpress Blazor Bar Chart with two series, labels, title, and legend *@
+
+<DxChart Data="DataSource">
+    <DxChartBarSeries ArgumentField="@((DataPoint v) => v.Country)"
+                      ValueField="@((DataPoint v) => v.AppleProduction)"
+                      Name="Apples">
+        <DxChartSeriesLabel Visible="true" />
+    </DxChartBarSeries>
+    <DxChartBarSeries ArgumentField="@((DataPoint v) => v.Country)"
+                      ValueField="@((DataPoint v) => v.GrapeProduction)"
+                      Name="Grapes">
+        <DxChartSeriesLabel Visible="true" />
+    </DxChartBarSeries>
+    <DxChartTitle Text="Fruit Production by Country">
+        <DxChartSubTitle Text="(Millions of Tons)" />
+    </DxChartTitle>
+    <DxChartArgumentAxis>
+        <DxChartAxisTitle Text="Country" />
+    </DxChartArgumentAxis>
+    <DxChartValueAxis>
+        <DxChartAxisTitle Text="Production (M Tons)" />
+    </DxChartValueAxis>
+    <DxChartLegend Position="RelativePosition.Outside"
+                   HorizontalAlignment="HorizontalAlignment.Right"
+                   Orientation="Orientation.Vertical" />
+</DxChart>
+
+@code {
+    IEnumerable<DataPoint> DataSource;
+
+    protected override void OnInitialized() {
+        DataSource = new List<DataPoint> {
+            new DataPoint("USA",    4.21, 6.22),
+            new DataPoint("China",  3.33, 8.65),
+            new DataPoint("Turkey", 2.60, 4.25),
+            new DataPoint("Italy",  2.20, 7.78),
+            new DataPoint("India",  2.16, 2.26),
+        };
+    }
+
+    record DataPoint(string Country, double AppleProduction, double GrapeProduction);
+}

@@ -1,0 +1,63 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        DataContext="{dxmvvm:ViewModelSource Type=local:MainViewModel}"
+        Title="DevExpress Scheduler Quickstart" Height="600" Width="900">
+
+    <!-- 1. Bound mode — weekly view grouped by resource (doctor).
+         ActiveViewIndex="2" selects the Week view from the default
+         seven-view set (0=Day, 1=WorkWeek, 2=Week, 3=Month, ...). -->
+    <dxsch:SchedulerControl GroupType="Resource" ActiveViewIndex="2">
+        <dxsch:SchedulerControl.DataSource>
+            <dxsch:DataSource AppointmentsSource="{Binding Appointments}"
+                              ResourcesSource="{Binding Doctors}">
+                <dxsch:DataSource.AppointmentMappings>
+                    <dxsch:AppointmentMappings Id="Id"
+                                               Type="Type"
+                                               Start="StartTime"
+                                               End="EndTime"
+                                               Subject="Subject"
+                                               Location="Location"
+                                               ResourceId="DoctorId"
+                                               RecurrenceInfo="RecurrenceInfo"
+                                               Reminder="ReminderInfo"/>
+                </dxsch:DataSource.AppointmentMappings>
+                <dxsch:DataSource.ResourceMappings>
+                    <dxsch:ResourceMappings Id="Id" Caption="Name"/>
+                </dxsch:DataSource.ResourceMappings>
+            </dxsch:DataSource>
+        </dxsch:SchedulerControl.DataSource>
+    </dxsch:SchedulerControl>
+
+</Window>
+
+<!-- ============================================================
+     2. Day view with a custom time slot interval.
+        DayViewBase.TimeScale is a single TimeSpan (slot size);
+        DayViewBase.TimeScales is a TimeSpanCollection of values
+        the user can pick from the time-ruler context menu.
+     ============================================================
+<dxsch:SchedulerControl>
+    <dxsch:SchedulerControl.Views>
+        <dxsch:DayView DayCount="3" TimeScale="00:30:00"/>
+    </dxsch:SchedulerControl.Views>
+</dxsch:SchedulerControl>
+
+     ============================================================
+     3. Timeline view — TimelineView.TimeScales is a
+        TimeScaleCollection of TimeScale objects defined by
+        ScaleUnit + UnitCount.
+     ============================================================
+<dxsch:SchedulerControl>
+    <dxsch:SchedulerControl.Views>
+        <dxsch:TimelineView>
+            <dxsch:TimelineView.TimeScales>
+                <dxsch:TimeScale ScaleUnit="Day"  UnitCount="1"/>
+                <dxsch:TimeScale ScaleUnit="Hour" UnitCount="1"/>
+            </dxsch:TimelineView.TimeScales>
+        </dxsch:TimelineView>
+    </dxsch:SchedulerControl.Views>
+</dxsch:SchedulerControl>
+-->

@@ -1,0 +1,57 @@
+@* DevExpress Blazor AI Chat — File Attachments Example
+   File: Pages/AIChatWithFiles.razor
+
+   Demonstrates:
+   - Enabling file upload in DxAIChat
+   - Restricting accepted file types, count, and size
+   - Sending images and PDFs to the AI for multimodal analysis
+
+   Prerequisites:
+   Your AI provider must support multimodal input (e.g., GPT-4o, Claude 3).
+   Register the provider in Program.cs — see quickstart.razor for setup. *@
+
+@page "/ai-chat-files"
+@rendermode InteractiveServer
+@using DevExpress.AIIntegration.Blazor.Chat
+@using Microsoft.Extensions.AI
+
+<PageTitle>AI Chat with File Attachments</PageTitle>
+<h1>AI Chat — File Attachments</h1>
+
+<DxAIChat Initialized="ChatInitialized"
+          FileUploadEnabled="true"
+          ResponseContentFormat="ResponseContentFormat.Markdown">
+    <AIChatSettings>
+        <!--
+            MaxFileCount  — up to 3 files per message
+            MaxFileSize   — 5 MB per file (value is in bytes)
+            AllowedFileExtensions — whitelist by extension
+            FileTypeFilter        — MIME filter shown in the OS file picker
+        -->
+        <DxAIChatFileUploadSettings MaxFileCount="3"
+                                    MaxFileSize="5242880"
+                                    AllowedFileExtensions="@(new List<string> { ".jpg", ".jpeg", ".png", ".gif", ".pdf" })"
+                                    FileTypeFilter="@(new List<string> { "image/*", "application/pdf" })" />
+    </AIChatSettings>
+    <PromptSuggestions>
+        <DxAIChatPromptSuggestion Title="Describe this image"
+                                  Text="Attach an image and ask the AI to describe it"
+                                  PromptMessage="Please describe what you see in the attached image." />
+        <DxAIChatPromptSuggestion Title="Summarize a PDF"
+                                  Text="Attach a PDF document for a quick summary"
+                                  PromptMessage="Please summarize the key points from the attached document." />
+        <DxAIChatPromptSuggestion Title="Extract data from image"
+                                  Text="Turn a photo of a table or form into structured data"
+                                  PromptMessage="Extract all data from the attached image and present it in a table." />
+    </PromptSuggestions>
+</DxAIChat>
+
+@code {
+    async Task ChatInitialized(IAIChat chat) {
+        chat.LoadMessages(new[] {
+            new BlazorChatMessage(ChatRole.System,
+                "You are a helpful assistant capable of analyzing images and documents. " +
+                "When files are attached, describe their content accurately and concisely.")
+        });
+    }
+}

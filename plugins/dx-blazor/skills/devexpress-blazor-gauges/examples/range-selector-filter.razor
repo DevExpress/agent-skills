@@ -1,0 +1,77 @@
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+@* DxRangeSelector controls which time window is displayed in a DxChart below.
+   The user drags the sliders; SelectedRangeChanged filters the chart's visible data.
+   This pattern — "range selector as a navigator" — is the most common real-world use case. *@
+
+@* The range selector shows all data as a miniature bar chart for context *@
+<DxRangeSelector Data="@AllData"
+                 SelectedRangeStartValue="@Start"
+                 SelectedRangeEndValue="@End"
+                 SelectedRangeChanged="OnRangeChanged"
+                 Width="100%"
+                 Height="120px">
+    <DxRangeSelectorScale StartValue="@(new DateTime(2024, 1, 1))"
+                          EndValue="@(new DateTime(2024, 12, 31))"
+                          TickInterval="ChartAxisInterval.Month"
+                          ValueType="ChartAxisDataType.DateTime">
+        <DxRangeSelectorScaleMarker>
+            <DxRangeSelectorScaleMarkerLabel>
+                <DxTextFormatSettings Type="TextFormat.MonthAndYear" />
+            </DxRangeSelectorScaleMarkerLabel>
+        </DxRangeSelectorScaleMarker>
+    </DxRangeSelectorScale>
+    <DxRangeSelectorSliderMarker>
+        <DxTextFormatSettings Type="TextFormat.MonthAndDay" />
+    </DxRangeSelectorSliderMarker>
+    <DxRangeSelectorChart>
+        <DxChartBarSeries ArgumentField="@((SalePoint s) => s.Date)"
+                          ValueField="@((SalePoint s) => s.Revenue)" />
+    </DxRangeSelectorChart>
+</DxRangeSelector>
+
+@* The main chart shows only the filtered slice *@
+<DxChart Data="@FilteredData"
+         Width="100%">
+    <DxChartAreaSeries ArgumentField="@((SalePoint s) => s.Date)"
+                       ValueField="@((SalePoint s) => s.Revenue)"
+                       Name="Revenue" />
+    <DxChartTitle Text="@($"Daily Revenue: {Start:MMM d} – {End:MMM d, yyyy}")" />
+    <DxChartArgumentAxis>
+        <DxChartAxisTitle Text="Date" />
+    </DxChartArgumentAxis>
+    <DxChartValueAxis>
+        <DxChartAxisTitle Text="Revenue (USD)" />
+    </DxChartValueAxis>
+    <DxChartLegend Visible="false" />
+</DxChart>
+
+@code {
+    List<SalePoint> AllData = new();
+    IEnumerable<SalePoint> FilteredData = Enumerable.Empty<SalePoint>();
+
+    DateTime Start = new DateTime(2024, 3, 1);
+    DateTime End   = new DateTime(2024, 5, 31);
+
+    protected override void OnInitialized() {
+        var rng = new Random(7);
+        var date = new DateTime(2024, 1, 1);
+        while (date <= new DateTime(2024, 12, 31)) {
+            AllData.Add(new SalePoint(date, rng.Next(800, 5000)));
+            date = date.AddDays(1);
+        }
+        FilteredData = Filter();
+    }
+
+    void OnRangeChanged(RangeSelectorSelectedRangeChangedEventArgs args) {
+        Start = (DateTime)args.StartValue;
+        End   = (DateTime)args.EndValue;
+        FilteredData = Filter();
+    }
+
+    IEnumerable<SalePoint> Filter() =>
+        AllData.Where(p => p.Date >= Start && p.Date <= End);
+
+    record SalePoint(DateTime Date, int Revenue);
+}

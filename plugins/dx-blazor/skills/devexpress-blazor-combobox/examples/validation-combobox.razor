@@ -1,0 +1,93 @@
+@* validation-combobox.razor
+   DevExpress Blazor ComboBox — Validation with EditForm
+   Demonstrates:
+     - ComboBoxValidateBy.Value  (default – validate the selected object)
+     - ComboBoxValidateBy.Text   (validate text typed with AllowUserInput="true")
+     - KeyFieldName + scalar [Range] validation
+   Requires: @rendermode InteractiveServer
+*@
+
+@page "/combobox-validation"
+@rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+
+<h3>ComboBox — Validation</h3>
+
+<EditForm Model="@FormModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+
+    <h4>1. Validate Selected Object ([Required])</h4>
+    <DxComboBox Data="@Products"
+                TextFieldName="@nameof(Product.Name)"
+                @bind-Value="@FormModel.SelectedProduct"
+                NullText="Select a product…"
+                ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto" />
+    <ValidationMessage For="@(() => FormModel.SelectedProduct)" />
+
+    <h4>2. Validate Key Field ([Range]) — no Equals/GetHashCode needed</h4>
+    <DxComboBox Data="@Products"
+                TextFieldName="@nameof(Product.Name)"
+                KeyFieldName="@nameof(Product.Id)"
+                @bind-Value="@FormModel.SelectedProductId"
+                NullText="Select a product…" />
+    <ValidationMessage For="@(() => FormModel.SelectedProductId)" />
+
+    <h4>3. Allow Custom Values — validate the typed text ([Required])</h4>
+    <DxComboBox Data="@Tags"
+                AllowUserInput="true"
+                ValidateBy="ComboBoxValidateBy.Text"
+                @bind-Value="@FormModel.SelectedTag"
+                @bind-Text="@FormModel.TagText"
+                NullText="Type or select a tag…" />
+    <ValidationMessage For="@(() => FormModel.TagText)" />
+
+    <p style="margin-top:1rem">
+        <button type="submit">Submit</button>
+    </p>
+
+    @if (Submitted) {
+        <p style="color:green">Form submitted successfully!</p>
+    }
+</EditForm>
+
+@code {
+    OrderModel FormModel = new();
+    bool Submitted;
+
+    IEnumerable<Product> Products = new List<Product>
+    {
+        new() { Id = 1, Name = "Widget A" },
+        new() { Id = 2, Name = "Widget B" },
+        new() { Id = 3, Name = "Gadget X" },
+    };
+
+    IEnumerable<string> Tags = new List<string> { "urgent", "review", "approved", "blocked" };
+
+    void HandleValidSubmit() => Submitted = true;
+
+    // ── Models ─────────────────────────────────────────────────────────────
+
+    class OrderModel {
+        [Required(ErrorMessage = "Please select a product.")]
+        public Product SelectedProduct { get; set; }
+
+        // Range applied to the ID key, not the full object
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a product.")]
+        public int SelectedProductId { get; set; }
+
+        // ValidateBy.Text → validation targets the typed/displayed text
+        public string SelectedTag { get; set; }
+
+        [Required(ErrorMessage = "Please select or type a tag.")]
+        public string TagText { get; set; }
+    }
+
+    class Product {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        // No Equals/GetHashCode needed when KeyFieldName is specified (SelectedProductId field)
+        // BUT required for SelectedProduct (TData == TValue binding without KeyFieldName)
+        public override bool Equals(object obj) => obj is Product p && Id == p.Id;
+        public override int GetHashCode() => Id.GetHashCode();
+    }
+}

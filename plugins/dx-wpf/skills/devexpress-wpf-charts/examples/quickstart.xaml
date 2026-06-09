@@ -1,0 +1,91 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+        Title="DevExpress Charts Quickstart" Height="450" Width="700">
+
+    <!-- 1. Bar chart — multiple series from a shared DataSource -->
+    <dxc:ChartControl x:Name="chartControl" DataSource="{Binding Sales}">
+        <dxc:ChartControl.Legend>
+            <dxc:Legend HorizontalPosition="Right" VerticalPosition="Top"/>
+        </dxc:ChartControl.Legend>
+        <dxc:XYDiagram2D>
+            <dxc:XYDiagram2D.AxisX>
+                <dxc:AxisX2D>
+                    <dxc:AxisX2D.Title>
+                        <dxc:AxisTitle Content="Region"/>
+                    </dxc:AxisX2D.Title>
+                </dxc:AxisX2D>
+            </dxc:XYDiagram2D.AxisX>
+            <dxc:XYDiagram2D.AxisY>
+                <dxc:AxisY2D>
+                    <dxc:AxisY2D.Title>
+                        <dxc:AxisTitle Content="USD (M)"/>
+                    </dxc:AxisY2D.Title>
+                </dxc:AxisY2D>
+            </dxc:XYDiagram2D.AxisY>
+
+            <dxc:BarSideBySideSeries2D DisplayName="Revenue"
+                                       ArgumentDataMember="Region"
+                                       ValueDataMember="Revenue"
+                                       LabelsVisibility="True"/>
+            <dxc:BarSideBySideSeries2D DisplayName="Expenses"
+                                       ArgumentDataMember="Region"
+                                       ValueDataMember="Expenses"/>
+        </dxc:XYDiagram2D>
+    </dxc:ChartControl>
+
+</Window>
+
+<!-- ============================================================
+     2. Pie chart — SimpleDiagram2D
+     ============================================================
+<dxc:ChartControl DataSource="{Binding Sales}">
+    <dxc:SimpleDiagram2D>
+        <dxc:PieSeries2D ArgumentDataMember="Region"
+                         ValueDataMember="Revenue"
+                         LabelsVisibility="True">
+            <dxc:PieSeries2D.Label>
+                <dxc:SeriesLabel TextPattern="{}{A}: {VP:P1}"/>
+            </dxc:PieSeries2D.Label>
+        </dxc:PieSeries2D>
+    </dxc:SimpleDiagram2D>
+</dxc:ChartControl>
+
+     ============================================================
+     3. Line chart with crosshair and tooltips enabled
+     ============================================================
+<dxc:ChartControl DataSource="{Binding Sales}"
+                  CrosshairEnabled="True">
+    <dxc:ChartControl.CrosshairOptions>
+        <dxc:CrosshairOptions ContentShowMode="Label"/>
+    </dxc:ChartControl.CrosshairOptions>
+    <dxc:XYDiagram2D EnableAxisXNavigation="True">
+        <dxc:LineSeries2D ArgumentDataMember="Region"
+                          ValueDataMember="Revenue"
+                          LabelsVisibility="True"/>
+    </dxc:XYDiagram2D>
+</dxc:ChartControl>
+
+     ============================================================
+     4. Secondary Y axis — two different scales
+     ============================================================
+<dxc:ChartControl DataSource="{Binding Sales}">
+    <dxc:XYDiagram2D>
+        <dxc:XYDiagram2D.SecondaryAxesY>
+            <dxc:SecondaryAxisY2D x:Name="axisPercent">
+                <dxc:SecondaryAxisY2D.Title>
+                    <dxc:AxisTitle Content="Share (%)"/>
+                </dxc:SecondaryAxisY2D.Title>
+            </dxc:SecondaryAxisY2D>
+        </dxc:XYDiagram2D.SecondaryAxesY>
+        <dxc:BarSideBySideSeries2D DisplayName="Revenue"
+                                   ArgumentDataMember="Region"
+                                   ValueDataMember="Revenue"/>
+        <dxc:LineSeries2D DisplayName="Share"
+                          ArgumentDataMember="Region"
+                          ValueDataMember="Expenses"
+                          AxisY="{Binding ElementName=axisPercent}"/>
+    </dxc:XYDiagram2D>
+</dxc:ChartControl>
+-->

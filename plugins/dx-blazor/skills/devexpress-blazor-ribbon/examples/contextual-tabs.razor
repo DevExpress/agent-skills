@@ -1,0 +1,126 @@
+@* DevExpress Blazor Ribbon — Contextual Tabs Example
+   File: Pages/RibbonContextualTabs.razor
+
+   Demonstrates:
+   - DxRibbonTab with Contextual="true" — hidden by default
+   - Showing/hiding a contextual tab via one-way `Visible="@imageSelected"` based on selection state
+   - Automatically activating the contextual tab when it becomes visible
+   - Returning to a default tab when context is cleared
+
+   Program.cs setup:
+   builder.Services.AddDevExpressBlazor(); *@
+
+@page "/ribbon-contextual"
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+<PageTitle>Ribbon — Contextual Tabs</PageTitle>
+
+<DxRibbon @bind-ActiveTabIndex="activeTab">
+
+    <DxRibbonApplicationTab Text="File">
+        <DxRibbonApplicationTabItem Text="New" />
+        <DxRibbonApplicationTabItem Text="Open" />
+        <DxRibbonApplicationTabItem Text="Save" />
+    </DxRibbonApplicationTab>
+
+    <!-- Always-visible tabs -->
+    <DxRibbonTab Text="Home">
+        <DxRibbonGroup Text="Clipboard">
+            <DxRibbonItem Text="Cut"   Click="OnCut" />
+            <DxRibbonItem Text="Copy"  Click="OnCopy" />
+            <DxRibbonItem Text="Paste" Click="OnPaste" />
+        </DxRibbonGroup>
+        <DxRibbonGroup Text="Font">
+            <DxRibbonToggleItem Text="Bold"   @bind-Checked="isBold" />
+            <DxRibbonToggleItem Text="Italic" @bind-Checked="isItalic" />
+        </DxRibbonGroup>
+    </DxRibbonTab>
+
+    <DxRibbonTab Text="Insert">
+        <DxRibbonGroup Text="Media">
+            <DxRibbonItem Text="Insert Image"  Click="SelectImage" />
+            <DxRibbonItem Text="Insert Table"  Click="OnInsertTable" />
+        </DxRibbonGroup>
+    </DxRibbonTab>
+
+    <!--
+        Contextual tab: appears only when an image is selected.
+        Bind Visible to a boolean that reflects the current selection state.
+        When Visible becomes true, switch ActiveTabIndex to this tab's index.
+    -->
+    <DxRibbonTab Text="Image Tools — Format"
+                 Contextual="true"
+                 Visible="@imageSelected">
+        <DxRibbonGroup Text="Adjust">
+            <DxRibbonItem Text="Brightness +" Click="@(() => Log("Brightness +"))" />
+            <DxRibbonItem Text="Brightness -" Click="@(() => Log("Brightness -"))" />
+            <DxRibbonItem Text="Contrast +"   Click="@(() => Log("Contrast +"))" />
+        </DxRibbonGroup>
+        <DxRibbonGroup Text="Size">
+            <DxRibbonSpinEditItem Value="@imageWidth"
+                                  ValueChanged="@((int v) => imageWidth = v)"
+                                  MinValue="50"
+                                  MaxValue="2000"
+                                  Increment="10"
+                                  Width="90px" />
+            <DxRibbonItem Text="Crop"          Click="@(() => Log("Crop"))" />
+            <DxRibbonItem Text="Reset Size"    Click="@(() => Log("Reset Size"))" />
+        </DxRibbonGroup>
+        <DxRibbonGroup Text="Arrange">
+            <DxRibbonItem Text="Bring Forward" Click="@(() => Log("Bring Forward"))" />
+            <DxRibbonItem Text="Send Backward" Click="@(() => Log("Send Backward"))" />
+        </DxRibbonGroup>
+    </DxRibbonTab>
+
+</DxRibbon>
+
+<!-- Simulate a canvas area where the user can select/deselect an image -->
+<div class="mt-4 p-3 border rounded"
+     style="min-height:160px; cursor:pointer; user-select:none;"
+     @onclick="ToggleImageSelection">
+    @if (imageSelected) {
+        <div class="border border-primary p-2 d-inline-block" style="background:#e8f0fe">
+            <strong>[Image selected]</strong> — click to deselect
+        </div>
+    } else {
+        <span class="text-muted">Click to simulate selecting an image — the "Image Tools" tab will appear.</span>
+    }
+</div>
+
+<div class="mt-2">
+    <p>Last action: <strong>@lastAction</strong></p>
+</div>
+
+@code {
+    int activeTab = 0;
+    bool imageSelected = false;
+    bool isBold   = false;
+    bool isItalic = false;
+    int imageWidth = 400;
+    string lastAction = "—";
+
+    void ToggleImageSelection() {
+        imageSelected = !imageSelected;
+        // Switch to the contextual tab (index 3) when image is selected,
+        // return to Home tab (index 0) when deselected.
+        activeTab = imageSelected ? 3 : 0;
+        Log(imageSelected ? "Image selected" : "Image deselected");
+    }
+
+    void SelectImage() {
+        imageSelected = true;
+        activeTab = 3;
+        Log("Image inserted and selected");
+    }
+
+    void OnCut()        => Log("Cut");
+    void OnCopy()       => Log("Copy");
+    void OnPaste()      => Log("Paste");
+    void OnInsertTable() => Log("Insert Table");
+
+    void Log(string action) {
+        lastAction = action;
+        StateHasChanged();
+    }
+}

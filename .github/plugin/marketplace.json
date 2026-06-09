@@ -9,19 +9,34 @@
   },
   "plugins": [
     {
-      "name": "office-file-api",
-      "source": "./plugins/office-file-api",
-      "description": "DevExpress Office File API skills: Spreadsheet, Word Processing, PDF, Presentation, Barcode, Unit Conversion, Excel Export, Zip, and AI-Powered Extensions for headless .NET document automation."
+      "name": "dx-blazor",
+      "source": "./plugins/dx-blazor",
+      "description": "DevExpress Blazor skills: AI Chat, charts, gauges, Grid, Treelist, Pivot Table, Scheduler, Combo Box, Ribbon, and Toolbar."
     },
     {
-      "name": "reporting",
-      "source": "./plugins/reporting",
-      "description": "DevExpress XtraReports skills for .NET and Angular: runtime report creation, WinForms/WPF preview, End-User Designer, ASP.NET Core/Blazor/Angular Document Viewer and Report Designer integration, export (PDF, XLSX, DOCX, and more)."
+      "name": "dx-devextreme",
+      "source": "./plugins/dx-devextreme",
+      "description": "DevExtreme JavaScript UI skills: DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, and Theming for Angular, React, Vue, and jQuery."
     },
     {
-      "name": "wpf",
-      "source": "./plugins/wpf",
+      "name": "dx-office-file-api",
+      "source": "./plugins/dx-office-file-api",
+      "description": "DevExpress Office File API skills: Spreadsheet, Word Processing, legacy PDF, new PDF (CTP), Presentation, Barcode, Unit Conversion, Excel Export, Zip, and AI-Powered Extensions for headless .NET document automation."
+    },
+    {
+      "name": "dx-reporting",
+      "source": "./plugins/dx-reporting",
+      "description": "DevExpress XtraReports skills for .NET, ASP.NET Core, Blazor, and Visual Studio designer code patterns: runtime report creation, web viewer/designer integration, safe *.Designer.cs edits, report storage, customization, and export (PDF, XLSX, DOCX, and more)."
+    },
+    {
+      "name": "dx-wpf",
+      "source": "./plugins/dx-wpf",
       "description": "DevExpress WPF skills: Data Grid, Tree List, Pivot Grid, Scheduler, Charts, Tab Control, Ribbon and Bars, MVVM Framework, Property Grid, Data Editors, Layout Management, Loading Indicators, Accordion, AI Chat Control."
+    },
+    {
+      "name": "dx-xaf",
+      "source": "./plugins/dx-xaf",
+      "description": "DevExpress XAF (eXpressApp Framework) skills: business model, business logic, controllers, views, editors, filtering, appearance, validation, security, reports, and performance for EF Core and XPO."
     }
   ]
 }

@@ -1,0 +1,82 @@
+@* drag-and-drop.razor
+   Demonstrates row reordering within one grid and moving rows between two grids.
+   Requires: ObservableCollection<T> as the data source.
+   Render mode: InteractiveServer (or WebAssembly/Auto) *@
+
+@page "/grid-dnd-demo"
+@rendermode InteractiveServer
+@using System.Collections.ObjectModel
+
+<h3>In-Stock Products</h3>
+
+@* Source grid: AllowDragRows lets users start a drag.
+   AllowedDropTarget.External means rows can be dropped onto OTHER components.
+   No ItemsDropped handler needed on the source. *@
+<DxGrid @ref="InStockGrid"
+        Data="@InStockItems"
+        KeyFieldName="Id"
+        AllowDragRows="true"
+        AllowedDropTarget="GridAllowedDropTarget.External">
+    <Columns>
+        <DxGridDataColumn FieldName="Name" />
+        <DxGridDataColumn FieldName="UnitPrice" DisplayFormat="c2" />
+    </Columns>
+</DxGrid>
+
+<h3>Discontinued Products</h3>
+
+@* Target grid: AllowedDropTarget.All = rows can be reordered internally
+   AND dropped from this grid to other components.
+   ItemsDropped fires when rows arrive from InStockGrid OR from itself (reorder). *@
+<DxGrid Data="@DiscontinuedItems"
+        KeyFieldName="Id"
+        AllowDragRows="true"
+        AllowedDropTarget="GridAllowedDropTarget.All"
+        ItemsDropped="OnItemsDropped">
+    <Columns>
+        <DxGridDataColumn FieldName="Name" />
+        <DxGridDataColumn FieldName="UnitPrice" DisplayFormat="c2" />
+    </Columns>
+</DxGrid>
+
+@code {
+    record Product(int Id, string Name, decimal UnitPrice);
+
+    IGrid InStockGrid { get; set; }
+    ObservableCollection<Product> InStockItems { get; set; }
+    ObservableCollection<Product> DiscontinuedItems { get; set; }
+
+    protected override void OnInitialized() {
+        InStockItems = new ObservableCollection<Product> {
+            new(1, "Chai", 18m),
+            new(2, "Chang", 19m),
+            new(3, "Aniseed Syrup", 10m),
+        };
+        DiscontinuedItems = new ObservableCollection<Product> {
+            new(4, "Chef Anton's Gumbo Mix", 21.35m),
+            new(5, "Mishi Kobe Niku", 97m),
+        };
+    }
+
+    ObservableCollection<Product> GetCollection(object grid) =>
+        grid == InStockGrid ? InStockItems : DiscontinuedItems;
+
+    void OnItemsDropped(GridItemsDroppedEventArgs e) {
+        var source = GetCollection(e.SourceComponent);
+        var destination = GetCollection(e.Grid);
+
+        // Remove from the source collection
+        foreach (var item in e.DroppedItems)
+            source.Remove((Product)item);
+
+        // Compute insertion index
+        var target = (Product)e.TargetItem;
+        var index = target != null
+            ? destination.IndexOf(target) + (e.DropPosition == GridItemDropPosition.After ? 1 : 0)
+            : destination.Count;
+
+        // Insert in reverse order to preserve original display order for multi-row drops
+        foreach (var item in e.DroppedItems.Reverse())
+            destination.Insert(index, (Product)item);
+    }
+}

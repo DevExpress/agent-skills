@@ -1,0 +1,59 @@
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+@* Candlestick (OHLC) financial chart.
+   DxChartCandlestickSeries requires four value fields:
+     OpenField, HighField, LowField, CloseField
+   DxChartFinancialReduction highlights bars where the close fell vs. the prior close. *@
+
+<DxChart Data="@StockData"
+         Width="100%">
+    <DxChartCandlestickSeries ArgumentField="@((StockPoint v) => v.Date)"
+                              OpenField="@((StockPoint v) => v.Open)"
+                              HighField="@((StockPoint v) => v.High)"
+                              LowField="@((StockPoint v) => v.Low)"
+                              CloseField="@((StockPoint v) => v.Close)"
+                              Name="ACME Corp">
+        @* Highlight "reduction" (close < prior close) in red *@
+        <DxChartFinancialReduction Color="crimson"
+                                   Level="ChartFinancialReductionLevel.Close" />
+    </DxChartCandlestickSeries>
+    <DxChartTitle Text="ACME Corp — Daily OHLC" />
+    <DxChartArgumentAxis>
+        <DxChartAxisTitle Text="Date" />
+    </DxChartArgumentAxis>
+    <DxChartValueAxis>
+        <DxChartAxisTitle Text="Price (USD)" />
+    </DxChartValueAxis>
+    <DxChartZoomAndPanSettings ArgumentAxisZoomAndPanMode="ChartAxisZoomAndPanMode.Both"
+                               AllowMouseWheel="true" />
+    <DxChartScrollBarSettings ArgumentAxisScrollBarVisible="true"
+                              ArgumentAxisScrollBarPosition="ChartScrollBarPosition.Bottom" />
+    <DxChartLegend Position="RelativePosition.Outside"
+                   HorizontalAlignment="HorizontalAlignment.Right" />
+</DxChart>
+
+@code {
+    IEnumerable<StockPoint> StockData;
+
+    protected override void OnInitialized() {
+        var rng = new Random(7);
+        var date = new DateTime(2024, 1, 2);
+        double price = 150;
+        var list = new List<StockPoint>();
+        for (int i = 0; i < 60; i++) {
+            double open  = price;
+            double close = open + (rng.NextDouble() - 0.48) * 6;
+            double high  = Math.Max(open, close) + rng.NextDouble() * 3;
+            double low   = Math.Min(open, close) - rng.NextDouble() * 3;
+            list.Add(new StockPoint(date, Math.Round(open, 2), Math.Round(high, 2),
+                                          Math.Round(low, 2),  Math.Round(close, 2)));
+            price = close;
+            date = date.AddDays(1);
+            if (date.DayOfWeek == DayOfWeek.Saturday) date = date.AddDays(2);
+        }
+        StockData = list;
+    }
+
+    record StockPoint(DateTime Date, double Open, double High, double Low, double Close);
+}

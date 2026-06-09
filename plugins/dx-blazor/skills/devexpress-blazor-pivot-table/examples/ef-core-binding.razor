@@ -1,0 +1,83 @@
+@* DevExpress Blazor Pivot Table — EF Core / IQueryable Binding Example
+   Binds DxPivotTable to IQueryable<T> so the pivot engine issues optimized queries
+   instead of loading all rows into memory.
+   Prerequisites:
+     1. NuGet: Microsoft.EntityFrameworkCore.SqlServer (or Sqlite/Npgsql)
+              + DevExpress.Blazor.PivotTable + DevExpress.PivotGrid.Core
+     2. SalesDbContext defined in a separate file (see comments in @code)
+     3. Connection string in appsettings.json
+     4. Program.cs registration (see comments in @code)
+     5. dotnet ef migrations add Init && dotnet ef database update *@
+@page "/pivot-sales"
+@rendermode InteractiveServer
+@using DevExpress.Blazor.PivotTable
+@inject IDbContextFactory<SalesDbContext> DbFactory
+@implements IDisposable
+
+<DxPivotTable Data="@SalesQuery">
+    <Fields>
+        <DxPivotTableField Field="@nameof(SaleRecord.Country)"
+                           Area="PivotTableArea.Row"
+                           AreaIndex="0"
+                           Caption="Country" />
+        <DxPivotTableField Field="@nameof(SaleRecord.Category)"
+                           Area="PivotTableArea.Row"
+                           AreaIndex="1"
+                           Caption="Category" />
+        <DxPivotTableField Field="@nameof(SaleRecord.OrderDate)"
+                           Area="PivotTableArea.Column"
+                           AreaIndex="0"
+                           GroupInterval="PivotTableGroupInterval.DateYear"
+                           Caption="Year" />
+        <DxPivotTableField Field="@nameof(SaleRecord.OrderDate)"
+                           Area="PivotTableArea.Column"
+                           AreaIndex="1"
+                           GroupInterval="PivotTableGroupInterval.DateQuarter"
+                           Caption="Quarter" />
+        <DxPivotTableField Field="@nameof(SaleRecord.Amount)"
+                           Area="PivotTableArea.Data"
+                           SummaryType="PivotTableSummaryType.Sum"
+                           Caption="Total Sales ($)" />
+        <DxPivotTableField Field="@nameof(SaleRecord.Amount)"
+                           Area="PivotTableArea.Data"
+                           SummaryType="PivotTableSummaryType.Count"
+                           Caption="Order Count" />
+        <DxPivotTableField Field="@nameof(SaleRecord.Region)"
+                           Area="PivotTableArea.Filter"
+                           Caption="Region" />
+    </Fields>
+</DxPivotTable>
+
+@code {
+    SalesDbContext Db;
+    IQueryable<SaleRecord> SalesQuery;
+
+    protected override void OnInitialized() {
+        Db = DbFactory.CreateDbContext();
+        // Assign IQueryable — the pivot engine issues queries on demand.
+        // Do NOT call .ToList() here; that would load everything into memory.
+        SalesQuery = Db.Sales;
+    }
+
+    public void Dispose() => Db?.Dispose();
+
+    // Data model — move to a separate SaleRecord.cs in production
+    public class SaleRecord {
+        public int Id { get; set; }
+        public string Country { get; set; }
+        public string Region { get; set; }
+        public string Category { get; set; }
+        public DateTime OrderDate { get; set; }
+        public decimal Amount { get; set; }
+    }
+
+    // Create a separate SalesDbContext.cs:
+    // public class SalesDbContext : DbContext {
+    //     public DbSet<SaleRecord> Sales { get; set; }
+    //     public SalesDbContext(DbContextOptions<SalesDbContext> options) : base(options) { }
+    // }
+
+    // Program.cs registration:
+    // builder.Services.AddDbContextFactory<SalesDbContext>(opt =>
+    //     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+}

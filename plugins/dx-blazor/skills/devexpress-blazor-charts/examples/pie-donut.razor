@@ -1,0 +1,58 @@
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+@* Pie chart (donut variant) with inside labels, tooltip, and legend.
+   InnerDiameter converts a pie into a donut. *@
+
+<DxPieChart Data="@DataSource"
+            Width="600px">
+    <DxPieChartSeries ArgumentField="@((MarketShare v) => v.Vendor)"
+                      ValueField="@((MarketShare v) => v.Share)"
+                      Name="Market Share">
+        <DxChartSeriesLabel Visible="true"
+                            Position="RelativePosition.Inside"
+                            BackgroundColor="transparent">
+            <DxChartSeriesLabelConnector Visible="false" />
+        </DxChartSeriesLabel>
+    </DxPieChartSeries>
+    <DxChartTitle Text="Browser Market Share 2024" />
+    <DxChartLegend Position="RelativePosition.Outside"
+                   HorizontalAlignment="HorizontalAlignment.Right"
+                   Orientation="Orientation.Vertical" />
+    <DxChartTooltip Enabled="true" />
+</DxPieChart>
+
+@* Donut: set InnerDiameter on the series (0–1 range) *@
+<DxPieChart Data="@DataSource"
+            Width="600px">
+    <DxPieChartSeries ArgumentField="@((MarketShare v) => v.Vendor)"
+                      ValueField="@((MarketShare v) => v.Share)"
+                      InnerDiameter="0.6"
+                      Name="Market Share">
+        <DxChartSeriesLabel Visible="true"
+                            Position="RelativePosition.Outside" />
+    </DxPieChartSeries>
+    <DxChartTitle Text="Browser Market Share 2024 (Donut)">
+        <DxChartSubTitle Text="Inner diameter: 60%" />
+    </DxChartTitle>
+    <DxChartLegend Position="RelativePosition.Outside"
+                   HorizontalAlignment="HorizontalAlignment.Center"
+                   VerticalAlignment="VerticalEdge.Bottom"
+                   Orientation="Orientation.Horizontal" />
+</DxPieChart>
+
+@code {
+    IEnumerable<MarketShare> DataSource;
+
+    protected override void OnInitialized() {
+        DataSource = new List<MarketShare> {
+            new MarketShare("Chrome",  65.4),
+            new MarketShare("Safari",  18.7),
+            new MarketShare("Edge",     5.1),
+            new MarketShare("Firefox",  2.9),
+            new MarketShare("Other",    7.9),
+        };
+    }
+
+    record MarketShare(string Vendor, double Share);
+}

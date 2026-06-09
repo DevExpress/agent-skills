@@ -1,0 +1,39 @@
+@* editbox-template-combobox.razor
+   DevExpress Blazor ComboBox — EditBoxDisplayTemplate with DxInputBox
+   Demonstrates: custom prefix text in the edit box + search/filter + Clear button
+   
+   IMPORTANT: When using EditBoxDisplayTemplate with search mode or Clear button,
+   you MUST include a <DxInputBox /> inside the template. Without it, search/filter
+   and the Clear button will not function.
+   
+   Requires: @rendermode InteractiveServer
+*@
+
+@page "/combobox-editbox-template"
+@rendermode InteractiveServer
+
+<h3>ComboBox — EditBoxDisplayTemplate with Search Support</h3>
+
+<p>The edit box shows a "City: " prefix before the selected value. Search and Clear still work because <code>DxInputBox</code> is included in the template.</p>
+
+<DxComboBox Data="@Cities"
+            @bind-Value="@CurrentCity"
+            AllowUserInput="true"
+            SearchMode="ListSearchMode.AutoSearch"
+            SearchFilterCondition="ListSearchFilterCondition.StartsWith"
+            NullText="Select City …"
+            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto">
+    <EditBoxDisplayTemplate>
+        @if (context != null) {
+            <span style="white-space:pre">City: </span>
+        }
+        <DxInputBox />
+    </EditBoxDisplayTemplate>
+</DxComboBox>
+
+<p>Selected: @CurrentCity</p>
+
+@code {
+    string CurrentCity { get; set; } = "London";
+    IEnumerable<string> Cities = new List<string> { "New York", "London", "Berlin", "Paris", "Tokyo" };
+}

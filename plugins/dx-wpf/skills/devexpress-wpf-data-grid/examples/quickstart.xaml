@@ -1,0 +1,67 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        DataContext="{dxmvvm:ViewModelSource Type=local:MainViewModel}"
+        Title="DevExpress Data Grid Quickstart" Height="500" Width="800">
+
+    <!-- 1. Basic grid with explicit columns, sorting, grouping, editing enabled -->
+    <dxg:GridControl ItemsSource="{Binding Orders}">
+        <dxg:GridControl.Columns>
+            <dxg:GridColumn FieldName="Id"        Header="ID"       Width="50" ReadOnly="True"/>
+            <dxg:GridColumn FieldName="Customer"  Header="Customer"/>
+            <dxg:GridColumn FieldName="Product"   Header="Product"/>
+            <dxg:GridColumn FieldName="Total"     Header="Total"    DisplayFormat="c2"/>
+            <dxg:GridColumn FieldName="OrderDate" Header="Date"     DisplayFormat="d"/>
+            <dxg:GridColumn FieldName="Status"    Header="Status"/>
+        </dxg:GridControl.Columns>
+        <dxg:GridControl.View>
+            <dxg:TableView AllowEditing="True"
+                           ShowGroupPanel="True"
+                           SearchPanelAllowFilter="True"
+                           ValidateRow="OnValidateRow"/>
+        </dxg:GridControl.View>
+    </dxg:GridControl>
+
+</Window>
+
+<!-- ============================================================
+     2. Auto-generate columns
+     ============================================================
+<dxg:GridControl ItemsSource="{Binding Orders}" AutoGenerateColumns="AddNew">
+    <dxg:GridControl.View>
+        <dxg:TableView/>
+    </dxg:GridControl.View>
+</dxg:GridControl>
+
+     ============================================================
+     3. Card view
+     ============================================================
+<dxg:GridControl ItemsSource="{Binding Orders}">
+    <dxg:GridControl.View>
+        <dxg:CardView CardTemplate="{StaticResource OrderCardTemplate}"
+                      CardWidth="250"/>
+    </dxg:GridControl.View>
+</dxg:GridControl>
+
+     ============================================================
+     4. Master-detail
+     ============================================================
+<dxg:GridControl ItemsSource="{Binding Orders}">
+    <dxg:GridControl.DetailDescriptor>
+        <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding Details}">
+            <dxg:DataControlDetailDescriptor.DetailControl>
+                <dxg:GridControl AutoGenerateColumns="AddNew">
+                    <dxg:GridControl.View>
+                        <dxg:TableView/>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </dxg:DataControlDetailDescriptor.DetailControl>
+        </dxg:DataControlDetailDescriptor>
+    </dxg:GridControl.DetailDescriptor>
+    <dxg:GridControl.View>
+        <dxg:TableView/>
+    </dxg:GridControl.View>
+</dxg:GridControl>
+-->

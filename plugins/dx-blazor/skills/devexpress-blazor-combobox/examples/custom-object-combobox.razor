@@ -1,0 +1,65 @@
+@* custom-object-combobox.razor
+   DevExpress Blazor ComboBox — Custom Object Binding
+   Demonstrates: TextFieldName, KeyFieldName, Equals/GetHashCode
+   Requires: @rendermode InteractiveServer
+*@
+
+@page "/combobox-custom-object"
+@rendermode InteractiveServer
+
+<h3>ComboBox — Custom Object Binding</h3>
+
+<h4>Bind to Whole Object (requires Equals/GetHashCode)</h4>
+<DxComboBox Data="@Staff.DataSource"
+            TextFieldName="@nameof(Person.Text)"
+            @bind-Value="@SelectedPerson"
+            NullText="Select a person…"
+            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto" />
+<p>Selected: @SelectedPerson?.Text</p>
+
+<h4>Bind to Key Field (no Equals/GetHashCode needed)</h4>
+<DxComboBox Data="@Staff.DataSource"
+            TextFieldName="@nameof(Person.Text)"
+            KeyFieldName="@nameof(Person.Id)"
+            @bind-Value="@SelectedPersonId"
+            NullText="Select a person…" />
+<p>Selected Id: @SelectedPersonId</p>
+
+@code {
+    Person SelectedPerson { get; set; } = Staff.DataSource[0];
+    int SelectedPersonId { get; set; } = Staff.DataSource[0].Id;
+}
+
+@code {
+    // ── Models ────────────────────────────────────────────────────────────────
+
+    public class Person {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Department Department { get; set; }
+        public string Text => $"{FirstName} {LastName} ({Department} Dept.)";
+
+        // Required when TData == TValue (binding to the whole object)
+        public override bool Equals(object obj) =>
+            obj is Person p && Id == p.Id && FirstName == p.FirstName
+                && LastName == p.LastName && Department == p.Department;
+
+        public override int GetHashCode() => HashCode.Combine(Id, FirstName, LastName);
+    }
+
+    public enum Department { Motors, Electronics, Software }
+
+    public static class Staff {
+        private static readonly Lazy<List<Person>> _data = new(() => new List<Person>
+        {
+            new() { Id=0, FirstName="John",     LastName="Heart",    Department=Department.Electronics },
+            new() { Id=1, FirstName="Samantha", LastName="Bright",   Department=Department.Motors },
+            new() { Id=2, FirstName="Arthur",   LastName="Miller",   Department=Department.Software },
+            new() { Id=3, FirstName="Robert",   LastName="Reagan",   Department=Department.Electronics },
+            new() { Id=4, FirstName="Greta",    LastName="Sims",     Department=Department.Motors },
+        });
+
+        public static List<Person> DataSource => _data.Value;
+    }
+}

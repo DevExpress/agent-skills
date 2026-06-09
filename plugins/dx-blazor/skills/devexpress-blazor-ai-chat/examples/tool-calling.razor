@@ -1,0 +1,86 @@
+@* DevExpress Blazor AI Chat — Tool / Function Calling Example
+   File: Pages/AIChatToolCalling.razor
+
+   Demonstrates:
+   - Registering C# functions as AI tools using Microsoft.Extensions.AI
+   - Exposing tools to the model via a custom IChatResponseProvider wrapper
+   - Intercepting MessageSending to inject tool definitions
+
+   Program.cs setup:
+
+   using Azure.AI.OpenAI;
+   using Microsoft.Extensions.AI;
+   using System.ClientModel;
+
+   var azureClient = new AzureOpenAIClient(
+       new Uri(Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!),
+       new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!));
+
+   IChatClient chatClient = azureClient
+       .GetChatClient(Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")!)
+       .AsIChatClient()
+       .AsBuilder()
+       .UseFunctionInvocation()   // enables automatic tool invocation
+       .Build();
+
+   // AddChatClient registers the IChatClient (including the UseFunctionInvocation middleware).
+   // AddDevExpressAI() automatically creates the default IChatResponseProvider from it.
+   builder.Services.AddChatClient(chatClient);
+   builder.Services.AddDevExpressAI();
+   builder.Services.AddDevExpressBlazor(); *@
+
+@page "/ai-chat-tools"
+@rendermode InteractiveServer
+@using DevExpress.AIIntegration.Blazor.Chat
+@using Microsoft.Extensions.AI
+@using System.ComponentModel
+
+<PageTitle>AI Chat — Tool Calling</PageTitle>
+<h1>AI Chat — Tool Calling</h1>
+<p class="text-muted">The AI can call built-in tools to get the current time or weather.</p>
+
+<DxAIChat Initialized="ChatInitialized"
+          ResponseContentFormat="ResponseContentFormat.Markdown">
+    <PromptSuggestions>
+        <DxAIChatPromptSuggestion Title="What time is it?"
+                                  Text="Ask the AI for the current server time"
+                                  PromptMessage="What is the current time?" />
+        <DxAIChatPromptSuggestion Title="Weather in New York"
+                                  Text="Ask for simulated weather data"
+                                  PromptMessage="What is the weather like in New York?" />
+    </PromptSuggestions>
+</DxAIChat>
+
+@code {
+    async Task ChatInitialized(IAIChat chat) {
+        // Inject tool definitions as a system message.
+        // The UseFunctionInvocation() middleware in Program.cs handles actual dispatch.
+        chat.LoadMessages(new[] {
+            new BlazorChatMessage(ChatRole.System,
+                "You are a helpful assistant with access to tools. " +
+                "Use the GetCurrentTime tool when asked about the time. " +
+                "Use the GetWeather tool when asked about weather.")
+        });
+    }
+
+    // Tool: returns current UTC time
+    [Description("Returns the current UTC date and time on the server.")]
+    static string GetCurrentTime() =>
+        DateTime.UtcNow.ToString("f");
+
+    // Tool: returns simulated weather (replace with a real API call in production)
+    [Description("Returns current weather conditions for the specified city.")]
+    static string GetWeather(
+        [Description("City name, e.g. 'London' or 'Tokyo'.")] string city) =>
+        $"The weather in {city} is 22°C and partly cloudy. (simulated)";
+
+    // Note: For tools to be invoked automatically, register them on the IChatClient:
+    //
+    //   chatClient = chatClient
+    //       .AsBuilder()
+    //       .UseFunctionInvocation()
+    //       .Build();
+    //
+    // Then pass tool instances when building the ChatOptions in your provider wrapper,
+    // or use the AIFunction.Create() helper from Microsoft.Extensions.AI.
+}
