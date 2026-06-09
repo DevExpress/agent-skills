@@ -20,8 +20,8 @@ Use this when you need to:
 |---|---|
 | `PivotGridField.SummaryType` | Aggregation function. `Sum`, `Count`, `Average`, `Min`, `Max`, `Custom`, `StdDev`, `Var`, etc. |
 | `FieldSummaryType` | Enum of standard summary functions. |
-| `DataSourceColumnBinding.GroupInterval` | Grouping resolution: `Default`, `Alphabetical`, `DateYear`, `DateMonth`, `DateDay`, `DateQuarter`, `DateWeekOfYear`, `DateWeekOfMonth`, `DateDayOfYear`, `DateDayOfWeek`, `DateHour`, `DateMinute`, `DateSecond`, `NumericRange`. |
-| `DataSourceColumnBinding.GroupIntervalNumericRange` | When `GroupInterval = NumericRange`, the bucket width (e.g., `100` → 0–99, 100–199, ...). |
+| `DataSourceColumnBinding.GroupInterval` | Grouping resolution: `Default`, `Alphabetical`, `DateYear`, `DateMonth`, `DateDay`, `DateQuarter`, `DateWeekOfYear`, `DateWeekOfMonth`, `DateDayOfYear`, `DateDayOfWeek`, `DateHour`, `Minute`, `Second`, `Numeric`. |
+| `DataSourceColumnBinding.GroupIntervalNumericRange` | When `GroupInterval = Numeric`, the bucket width (e.g., `100` → 0–99, 100–199, ...). |
 | `PivotGridField.SortOrder` | `Ascending` or `Descending`. |
 | `PivotGridField.SortByField` / `SortByFieldName` | The data field whose summary defines the sort order. |
 | `PivotGridField.TopValueCount` / `TopValueType` / `TopValueShowOthers` | Top-N display limit (absolute count or percentage). |
@@ -49,7 +49,7 @@ Available functions (from the docs):
 - `Median` / `Mode`
 - `Custom` (handle `PivotGridControl.CustomSummary` event for arbitrary aggregation)
 
-Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Aggregation (`xref:11732`) and `pivot-grid/data-shaping/aggregation/summaries/`.
+Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Aggregation (https://docs.devexpress.com/content/WPF/11732?md=true) and `pivot-grid/data-shaping/aggregation/summaries/`.
 
 ## Date Grouping
 
@@ -74,7 +74,7 @@ AddDate("Month",   FieldArea.ColumnArea, "OrderDate", FieldGroupInterval.DateMon
 
 User can expand Year → Quarter → Month inline.
 
-Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Grouping (`xref:8061`).
+Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Grouping (https://docs.devexpress.com/content/WPF/8061?md=true).
 
 ## Numeric Range Grouping
 
@@ -85,7 +85,7 @@ var priceField = pivotGridControl1.Fields.Add();
 priceField.Caption = "Price Range";
 priceField.Area = FieldArea.RowArea;
 priceField.DataBinding = new DataSourceColumnBinding("UnitPrice") {
-    GroupInterval = FieldGroupInterval.NumericRange,
+    GroupInterval = FieldGroupInterval.Numeric,
     GroupIntervalNumericRange = 50    // 0–49, 50–99, 100–149, ...
 };
 ```
@@ -178,8 +178,8 @@ In **OLAP mode** with `TopValueType.Percent`, the Pivot Grid shows top values wh
 Sort by Summary ignores: running totals, custom `SummaryDisplayType`, and values produced by `CustomCellValue` / `CustomCellDisplayText` events.
 
 Source:
-- `articles/controls-and-libraries/pivot-grid/data-shaping/sorting/sorting-by-summary.md` (`xref:8072`)
-- `articles/controls-and-libraries/pivot-grid/data-shaping/sorting/display-top-n-values.md` (`xref:8063`)
+- `articles/controls-and-libraries/pivot-grid/data-shaping/sorting/sorting-by-summary.md` (https://docs.devexpress.com/content/WPF/8072?md=true)
+- `articles/controls-and-libraries/pivot-grid/data-shaping/sorting/display-top-n-values.md` (https://docs.devexpress.com/content/WPF/8063?md=true)
 
 ## Filtering
 
@@ -194,8 +194,7 @@ End users click the field's filter glyph to open a checkbox list of values:
 For programmatic filter setup:
 
 ```csharp
-field.FilterValues.FilterType = FieldFilterType.Excluded;
-field.FilterValues.Values.Add("Beverages");
+field.FilterValues.SetValues(new object[] { "Beverages" }, FieldFilterType.Excluded, showBlanks: false);
 ```
 
 `FieldFilterValues.FilterType` is of type `FieldFilterType` (values: `Included`, `Excluded`).
@@ -210,7 +209,7 @@ pivotGridControl1.FilterString = "[Amount] > 500";
 
 The filter criterion uses the same Criteria Language Syntax as `GridControl.FilterString`. Available via `DevExpress.Data.Filtering`.
 
-Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Filtering (`xref:10927`).
+Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Filtering (https://docs.devexpress.com/content/WPF/10927?md=true).
 
 ## Calculated Fields
 
@@ -226,7 +225,7 @@ profit.SummaryType = FieldSummaryType.Sum;
 
 The expression uses Criteria Language Syntax — field names in square brackets, operators `+`, `-`, `*`, `/`, parentheses, and functions (`Iif`, `Substring`, etc.).
 
-Source: `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md` references `xref:8025`.
+Source: `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md` references https://docs.devexpress.com/content/WPF/8025?md=true.
 
 ## Window Calculations
 
@@ -285,7 +284,7 @@ runningTotal.DataBinding = new RunningTotalBinding {
 
 > Window calculations require `DataProcessingEngine.Optimized` (the default for non-legacy data sources). The Legacy engine ignores window-calculation bindings.
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/in-memory-mode/Optimized-Mode/bind-pivot-grid-fields-to-window-calculations.md` (`xref:403913`).
+Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/in-memory-mode/Optimized-Mode/bind-pivot-grid-fields-to-window-calculations.md` (https://docs.devexpress.com/content/WPF/403913?md=true).
 
 ## Custom Summary
 

@@ -1,0 +1,18 @@
+<!-- AIChatControl XAML Quickstart -->
+<!-- Mirrors the official DevExpress CLI template: `dotnet new dx.wpf.aichat`. -->
+<!-- The host window MUST be dx:ThemedWindow. The theme is set in App.xaml.cs (see quickstart.cs). -->
+
+<dx:ThemedWindow x:Class="DxAiChatDemo.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                 xmlns:dxaichat="http://schemas.devexpress.com/winfx/2008/xaml/aichat"
+                 Title="DevExpress AI Chat Quickstart" Height="800" Width="1000">
+
+    <Grid>
+        <!-- Uses the IChatClient registered in App.xaml.cs. -->
+        <!-- UseStreaming renders the assistant response token-by-token as it arrives. -->
+        <dxaichat:AIChatControl x:Name="aiChatControl" UseStreaming="True" />
+    </Grid>
+
+</dx:ThemedWindow>

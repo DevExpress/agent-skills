@@ -328,10 +328,10 @@ Provide a 20×20 `MediumGlyph` on bar items used in Simplified mode (fallback to
 
 ## Source Material
 
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-control.md` (`xref:7954`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-page-categories-and-contextual-pages.md` (`xref:7960`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-page.md` (`xref:7955`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-page-group.md` (`xref:7956`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-quick-access-toolbar.md` (`xref:7957`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-status-bar.md` (`xref:7958`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/dxribbonwindow.md` (`xref:7980`)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-control.md` (https://docs.devexpress.com/content/WPF/7954?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-page-categories-and-contextual-pages.md` (https://docs.devexpress.com/content/WPF/7960?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-page.md` (https://docs.devexpress.com/content/WPF/7955?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-page-group.md` (https://docs.devexpress.com/content/WPF/7956?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-quick-access-toolbar.md` (https://docs.devexpress.com/content/WPF/7957?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-status-bar.md` (https://docs.devexpress.com/content/WPF/7958?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/dxribbonwindow.md` (https://docs.devexpress.com/content/WPF/7980?md=true)

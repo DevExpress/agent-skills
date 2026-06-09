@@ -313,10 +313,10 @@ Leaf items (no children) can act like buttons. Combine with `Click` event or bin
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items.md` (`xref:118548`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/adding-accordion-items.md` (`xref:119831`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-header-customization.md` (`xref:119847`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-glyph-customization.md` (`xref:119848`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-content-customization.md` (`xref:119849`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/expanding-and-collapsing.md` (`xref:119808`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/selection.md` (`xref:118345`)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items.md` (https://docs.devexpress.com/content/WPF/118548?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/adding-accordion-items.md` (https://docs.devexpress.com/content/WPF/119831?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-header-customization.md` (https://docs.devexpress.com/content/WPF/119847?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-glyph-customization.md` (https://docs.devexpress.com/content/WPF/119848?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-content-customization.md` (https://docs.devexpress.com/content/WPF/119849?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/expanding-and-collapsing.md` (https://docs.devexpress.com/content/WPF/119808?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/selection.md` (https://docs.devexpress.com/content/WPF/118345?md=true)

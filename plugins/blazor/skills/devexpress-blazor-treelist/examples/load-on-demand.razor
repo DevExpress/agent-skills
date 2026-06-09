@@ -1,0 +1,84 @@
+@* DevExpress Blazor TreeList — Load Children on Demand Example
+   Provides only root nodes initially, then loads children async when a node is expanded.
+   Use when the full tree is too large to fetch upfront.
+
+   The ICategoryService and InMemoryCategoryService types below are defined as nested
+   classes for self-containment. In a real project, extract them to separate .cs files
+   and register in Program.cs:
+     builder.Services.AddScoped<ICategoryService, InMemoryCategoryService>(); *@
+@page "/treelist-lazy"
+@rendermode InteractiveServer
+@inject ICategoryService CategoryService
+
+<DxTreeList Data="@RootCategories"
+            KeyFieldName="Id"
+            ParentKeyFieldName="ParentId"
+            ChildrenLoaded="OnChildrenLoaded">
+    <Columns>
+        <DxTreeListDataColumn FieldName="Name" Caption="Category" />
+        <DxTreeListDataColumn FieldName="ProductCount" Caption="Products" />
+        <DxTreeListDataColumn FieldName="IsActive" Caption="Active" />
+    </Columns>
+</DxTreeList>
+
+@code {
+    List<Category> RootCategories { get; set; }
+
+    protected override async Task OnInitializedAsync() {
+        RootCategories = await CategoryService.GetRootCategoriesAsync();
+    }
+
+    async Task OnChildrenLoaded(TreeListChildrenLoadingEventArgs e) {
+        var parent = (Category)e.DataItem;
+        e.Children = await CategoryService.GetChildrenAsync(parent.Id);
+    }
+
+    // ── Data model ─────────────────────────────────────────────────────────────
+    public class Category {
+        public int Id { get; set; }
+        public int? ParentId { get; set; }   // null for root categories
+        public string Name { get; set; }
+        public int ProductCount { get; set; }
+        public bool IsActive { get; set; }
+    }
+
+    // ── Service interface — extract to a separate ICategoryService.cs ──────────
+    public interface ICategoryService {
+        Task<List<Category>> GetRootCategoriesAsync();
+        Task<List<Category>> GetChildrenAsync(int parentId);
+    }
+
+    // ── In-memory stub — extract to InMemoryCategoryService.cs ────────────────
+    // Register in Program.cs: builder.Services.AddScoped<ICategoryService, InMemoryCategoryService>();
+    public class InMemoryCategoryService : ICategoryService {
+        static readonly List<Category> All = new() {
+            new Category { Id = 1,  ParentId = null, Name = "Electronics",  ProductCount = 42, IsActive = true  },
+            new Category { Id = 2,  ParentId = null, Name = "Clothing",     ProductCount = 18, IsActive = true  },
+            new Category { Id = 3,  ParentId = 1,    Name = "Phones",       ProductCount = 20, IsActive = true  },
+            new Category { Id = 4,  ParentId = 1,    Name = "Laptops",      ProductCount = 12, IsActive = true  },
+            new Category { Id = 5,  ParentId = 1,    Name = "Accessories",  ProductCount = 10, IsActive = false },
+            new Category { Id = 6,  ParentId = 2,    Name = "Men",          ProductCount =  9, IsActive = true  },
+            new Category { Id = 7,  ParentId = 2,    Name = "Women",        ProductCount =  9, IsActive = true  },
+            new Category { Id = 8,  ParentId = 3,    Name = "Android",      ProductCount = 12, IsActive = true  },
+            new Category { Id = 9,  ParentId = 3,    Name = "iOS",          ProductCount =  8, IsActive = true  },
+        };
+
+        public Task<List<Category>> GetRootCategoriesAsync()
+            => Task.FromResult(All.Where(c => c.ParentId == null).ToList());
+
+        public Task<List<Category>> GetChildrenAsync(int parentId)
+            => Task.FromResult(All.Where(c => c.ParentId == parentId).ToList());
+    }
+
+    // ── EF Core alternative — extract to EfCoreCategoryService.cs ─────────────
+    // public class EfCoreCategoryService : ICategoryService {
+    //     readonly AppDbContext Db;
+    //     public EfCoreCategoryService(AppDbContext db) => Db = db;
+    //
+    //     public Task<List<Category>> GetRootCategoriesAsync()
+    //         => Db.Categories.Where(c => c.ParentId == null).ToListAsync();
+    //
+    //     public Task<List<Category>> GetChildrenAsync(int parentId)
+    //         => Db.Categories.Where(c => c.ParentId == parentId).ToListAsync();
+    // }
+}

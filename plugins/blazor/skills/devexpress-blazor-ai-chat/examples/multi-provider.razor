@@ -1,0 +1,74 @@
+@* DevExpress Blazor AI Chat — Multiple AI Providers Example
+   File: Pages/AIChatMultiProvider.razor
+
+   Demonstrates:
+   - Registering multiple AI providers with unique keys in DI
+   - Switching between providers at runtime via ChatResponseProviderServiceKey
+   - Preserving conversation context when switching providers
+
+   Program.cs setup required — add BOTH providers:
+
+   using Azure.AI.OpenAI;
+   using OllamaSharp;
+   using System.ClientModel;
+   using DevExpress.AIIntegration.Chat;
+
+   // Azure OpenAI
+   var azureClient = new AzureOpenAIClient(
+       new Uri(Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!),
+       new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!));
+   builder.Services.AddKeyedScoped<IChatResponseProvider>("azure",
+       _ => azureClient.GetChatClient(Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")!)
+                       .AsIChatClient()
+                       .AsIChatResponseProvider());
+
+   // Ollama (local) — ask the developer which model to use before generating
+   IChatClient ollamaClient = new OllamaApiClient("http://localhost:11434", "<model-name>");
+   builder.Services.AddKeyedScoped<IChatResponseProvider>("ollama",
+       (sp, _) => ollamaClient.AsIChatResponseProvider());
+
+   builder.Services.AddDevExpressAI();
+   builder.Services.AddDevExpressBlazor(); *@
+
+@page "/ai-chat-multi-provider"
+@rendermode InteractiveServer
+@using DevExpress.AIIntegration.Blazor.Chat
+@using Microsoft.Extensions.AI
+
+<PageTitle>AI Chat — Multiple Providers</PageTitle>
+<h1>AI Chat — Multiple Providers</h1>
+
+<!-- Provider selector -->
+<div class="mb-3">
+    <label><strong>Active provider:</strong></label>
+    <select class="form-select d-inline-block w-auto ms-2" @onchange="OnProviderChanged">
+        <option value="azure"  selected="@(selectedProvider == "azure")">Azure OpenAI</option>
+        <option value="ollama" selected="@(selectedProvider == "ollama")">Ollama (local)</option>
+    </select>
+    <span class="badge bg-secondary ms-2">@selectedProvider</span>
+</div>
+
+<!--
+    ChatResponseProviderServiceKey wires the component to the keyed DI registration.
+    Changing the key causes DxAIChat to switch providers on the next message.
+-->
+<DxAIChat ChatResponseProviderServiceKey="@selectedProvider"
+          Initialized="ChatInitialized"
+          ResponseContentFormat="ResponseContentFormat.Markdown" />
+
+@code {
+    string selectedProvider = "azure";
+
+    async Task ChatInitialized(IAIChat chat) {
+        chat.LoadMessages(new[] {
+            new BlazorChatMessage(ChatRole.System,
+                "You are a helpful assistant. Be concise and clear.")
+        });
+    }
+
+    void OnProviderChanged(ChangeEventArgs e) {
+        selectedProvider = e.Value?.ToString() ?? "azure";
+        // DxAIChat automatically picks up the new key on the next render.
+        // Conversation history is maintained in the component state.
+    }
+}

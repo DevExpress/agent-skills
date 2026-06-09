@@ -23,7 +23,7 @@ Use this when you need to:
 
 `ShowSearchControl` defaults to `false`; setting it to `true` adds a search field at the top of the panel. End users can type to filter items live.
 
-> Tip: a smart AI-powered search is also available as an extension — see DevExpress Smart Search documentation (`xref:405385`).
+> Tip: a smart AI-powered search is also available as an extension — see DevExpress Smart Search documentation (https://docs.devexpress.com/content/WPF/405385?md=true).
 
 ## What's Searched
 
@@ -237,4 +237,4 @@ This matches against name, description, and synonyms — well beyond what `Displ
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/searching.md` (`xref:118715`)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/searching.md` (https://docs.devexpress.com/content/WPF/118715?md=true)

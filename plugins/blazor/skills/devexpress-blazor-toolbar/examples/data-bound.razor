@@ -1,0 +1,79 @@
+@* DevExpress Blazor Toolbar — Data-Bound Toolbar Example
+   File: Pages/ToolbarDataBound.razor
+
+   Demonstrates:
+   - Loading toolbar items from a data collection (bound mode)
+   - Using DxToolbarDataMapping to map data fields
+   - Handling clicks via the toolbar-level ItemClick event
+   - Building hierarchical items (parent/child) from flat data
+
+   Program.cs setup:
+   builder.Services.AddDevExpressBlazor(); *@
+
+@page "/toolbar-data-bound"
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+<PageTitle>Toolbar — Data Bound</PageTitle>
+<h1>Toolbar — Data Bound</h1>
+
+<DxToolbar Data="@menuItems"
+           ItemClick="OnItemClick"
+           Title="Document Editor">
+    <DataMappings>
+        <!--
+            Text      — item label
+            Key       — unique identifier for each item
+            ParentKey — links child items to their parent (creates drop-down menus)
+        -->
+        <DxToolbarDataMapping Text="@nameof(MenuItem.Label)"
+                              Key="@nameof(MenuItem.Id)"
+                              ParentKey="@nameof(MenuItem.ParentId)" />
+    </DataMappings>
+</DxToolbar>
+
+<div class="mt-3">
+    <p>Last clicked: <strong>@lastClicked</strong></p>
+</div>
+
+@code {
+    string lastClicked = "—";
+
+    record MenuItem(int Id, int? ParentId, string Label);
+
+    List<MenuItem> menuItems = new() {
+        // Root items
+        new(1,  null, "File"),
+        new(2,  null, "Edit"),
+        new(3,  null, "View"),
+        new(10, null, "Help"),
+
+        // File children
+        new(11, 1, "New"),
+        new(12, 1, "Open"),
+        new(13, 1, "Save"),
+        new(14, 1, "Save As"),
+        new(15, 1, "Close"),
+
+        // Edit children
+        new(21, 2, "Undo"),
+        new(22, 2, "Redo"),
+        new(23, 2, "Cut"),
+        new(24, 2, "Copy"),
+        new(25, 2, "Paste"),
+
+        // View children
+        new(31, 3, "Zoom In"),
+        new(32, 3, "Zoom Out"),
+        new(33, 3, "Full Screen"),
+
+        // Help children
+        new(41, 10, "Documentation"),
+        new(42, 10, "About"),
+    };
+
+    void OnItemClick(ToolbarItemClickEventArgs e) {
+        // e.ItemName corresponds to the Key field value as a string
+        lastClicked = e.ItemName ?? "unknown";
+    }
+}

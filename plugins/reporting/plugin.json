@@ -1,6 +1,6 @@
 {
   "name": "reporting",
-  "description": "DevExpress XtraReports skills for .NET and Angular: runtime report creation, WinForms/WPF preview, End-User Designer, ASP.NET Core/Blazor/Angular Document Viewer and Report Designer integration, export (PDF, XLSX, DOCX, and more).",
+  "description": "DevExpress XtraReports skills for .NET, ASP.NET Core, Blazor, and Visual Studio designer code patterns: runtime report creation, web viewer/designer integration, safe *.Designer.cs edits, report storage, customization, and export (PDF, XLSX, DOCX, and more).",
   "version": "0.1.0",
   "license": "MIT",
   "skills": "./skills/",
@@ -8,11 +8,10 @@
     "devexpress",
     "reporting",
     "xtrareports",
-    "angular",
     "aspnetcore",
     "blazor",
-    "winforms",
-    "wpf",
+    "visual-studio",
+    "report-designer",
     "skills"
   ]
 }

@@ -1,0 +1,95 @@
+@* DevExpress Blazor TreeList — Quick Start Example
+   Hierarchical CRUD with CustomizeEditModel, search box, summaries, and export.
+   Add to Pages/ directory. Requires @using DevExpress.Blazor in _Imports.razor. *@
+@page "/treelist-quickstart"
+@rendermode InteractiveServer
+
+<h3>Project Tasks</h3>
+
+<DxTreeList @ref="TreeList"
+            Data="@Tasks"
+            KeyFieldName="Id"
+            ParentKeyFieldName="ParentId"
+            RootValue="@((object)0)"
+            EditMode="TreeListEditMode.EditRow"
+            ShowSearchBox="true"
+            CustomizeEditModel="OnCustomizeEditModel"
+            EditModelSaving="OnEditModelSaving"
+            DataItemDeleting="OnDataItemDeleting">
+    <Columns>
+        <DxTreeListCommandColumn />
+        <DxTreeListDataColumn FieldName="Name" Caption="Task"
+                              SortOrder="TreeListColumnSortOrder.Ascending"
+                              SortIndex="0" />
+        <DxTreeListDataColumn FieldName="AssignedTo" Caption="Assignee" />
+        <DxTreeListDataColumn FieldName="DueDate" DisplayFormat="d" />
+        <DxTreeListDataColumn FieldName="Status" />
+    </Columns>
+    <TotalSummary>
+        <DxTreeListSummaryItem SummaryType="TreeListSummaryItemType.Count"
+                               FieldName="Name" />
+    </TotalSummary>
+    <ToolbarTemplate>
+        <DxToolbar>
+            <DxToolbarItem Text="Export to XLSX" Click="ExportXlsx" />
+        </DxToolbar>
+    </ToolbarTemplate>
+</DxTreeList>
+
+@code {
+    ITreeList TreeList;
+    List<TaskItem> Tasks { get; set; }
+
+    protected override void OnInitialized() {
+        Tasks = new List<TaskItem> {
+            new TaskItem { Id = 1, ParentId = 0, Name = "Project Alpha", AssignedTo = "Alice", DueDate = DateTime.Today.AddMonths(3), Status = "Active" },
+            new TaskItem { Id = 2, ParentId = 1, Name = "Design", AssignedTo = "Bob", DueDate = DateTime.Today.AddDays(30), Status = "In Progress" },
+            new TaskItem { Id = 3, ParentId = 1, Name = "Development", AssignedTo = "Carol", DueDate = DateTime.Today.AddDays(90), Status = "Pending" },
+            new TaskItem { Id = 4, ParentId = 3, Name = "Backend API", AssignedTo = "Dave", DueDate = DateTime.Today.AddDays(60), Status = "Pending" },
+            new TaskItem { Id = 5, ParentId = 3, Name = "Frontend UI", AssignedTo = "Eve", DueDate = DateTime.Today.AddDays(90), Status = "Pending" },
+        };
+    }
+
+    void OnCustomizeEditModel(TreeListCustomizeEditModelEventArgs e) {
+        if (e.IsNew) {
+            var model = (TaskItem)e.EditModel;
+            model.ParentId = e.ParentDataItem != null
+                ? ((TaskItem)e.ParentDataItem).Id
+                : 0;
+        }
+    }
+
+    Task OnEditModelSaving(TreeListEditModelSavingEventArgs e) {
+        var model = (TaskItem)e.EditModel;
+        if (e.IsNew) {
+            model.Id = Tasks.Max(t => t.Id) + 1;
+            Tasks.Add(model);
+        } else {
+            e.CopyChangesToDataItem();
+        }
+        return Task.CompletedTask;
+    }
+
+    Task OnDataItemDeleting(TreeListDataItemDeletingEventArgs e) {
+        var item = (TaskItem)e.DataItem;
+        RemoveWithDescendants(item.Id);
+        return Task.CompletedTask;
+    }
+
+    void RemoveWithDescendants(int id) {
+        foreach (var childId in Tasks.Where(t => t.ParentId == id).Select(t => t.Id).ToList())
+            RemoveWithDescendants(childId);
+        Tasks.RemoveAll(t => t.Id == id);
+    }
+
+    async Task ExportXlsx() => await TreeList.ExportToXlsxAsync("tasks.xlsx");
+
+    public class TaskItem {
+        public int Id { get; set; }
+        public int ParentId { get; set; }
+        public string Name { get; set; }
+        public string AssignedTo { get; set; }
+        public DateTime DueDate { get; set; }
+        public string Status { get; set; }
+    }
+}

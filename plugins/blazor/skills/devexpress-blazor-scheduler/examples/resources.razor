@@ -1,0 +1,110 @@
+@* DevExpress Blazor Scheduler — Resources Example
+   Multi-resource timeline view with ResourcesSource, ResourceMappings, and GroupType.Resource. *@
+@page "/scheduler-resources"
+@rendermode InteractiveServer
+
+<DxScheduler StartDate="@DateTime.Today"
+             DataStorage="@DataStorage"
+             GroupType="SchedulerGroupType.Resource"
+             AppointmentInserting="OnInsert"
+             AppointmentUpdating="OnUpdate"
+             AppointmentRemoving="OnRemove">
+    <DxSchedulerTimelineView DayCount="7"
+                             CellDuration="@TimeSpan.FromHours(1)" />
+    <DxSchedulerWorkWeekView ShowWorkTimeOnly="true" />
+</DxScheduler>
+
+@code {
+    DxSchedulerDataStorage DataStorage;
+    List<AppointmentData> Appointments;
+
+    protected override void OnInitialized() {
+        Appointments = new List<AppointmentData> {
+            new AppointmentData {
+                Id = 1, AppointmentType = 0, ResourceId = 1,
+                StartDate = DateTime.Today.AddHours(9),
+                EndDate   = DateTime.Today.AddHours(10),
+                Caption   = "Sprint Planning", Label = 2, Status = 1
+            },
+            new AppointmentData {
+                Id = 2, AppointmentType = 0, ResourceId = 2,
+                StartDate = DateTime.Today.AddHours(11),
+                EndDate   = DateTime.Today.AddHours(12),
+                Caption   = "Design Review", Label = 3, Status = 1
+            },
+            new AppointmentData {
+                Id = 3, AppointmentType = 0, ResourceId = 1,
+                StartDate = DateTime.Today.AddDays(1).AddHours(14),
+                EndDate   = DateTime.Today.AddDays(1).AddHours(15),
+                Caption   = "1:1 Meeting", Label = 1, Status = 1
+            },
+            new AppointmentData {
+                Id = 4, AppointmentType = 0, ResourceId = 3,
+                StartDate = DateTime.Today.AddHours(10),
+                EndDate   = DateTime.Today.AddHours(11),
+                Caption   = "Client Call", Label = 1, Status = 1
+            },
+        };
+
+        var resources = new List<Resource> {
+            new Resource { Id = 1, Name = "Alice (Dev)",   Color = System.Drawing.Color.SteelBlue },
+            new Resource { Id = 2, Name = "Bob (Design)",  Color = System.Drawing.Color.MediumSeaGreen },
+            new Resource { Id = 3, Name = "Carol (Sales)", Color = System.Drawing.Color.IndianRed },
+        };
+
+        DataStorage = new DxSchedulerDataStorage {
+            AppointmentsSource = Appointments,
+            AppointmentMappings = new DxSchedulerAppointmentMappings {
+                Id = nameof(AppointmentData.Id),
+                Type = nameof(AppointmentData.AppointmentType),
+                Start = nameof(AppointmentData.StartDate),
+                End = nameof(AppointmentData.EndDate),
+                Subject = nameof(AppointmentData.Caption),
+                AllDay = nameof(AppointmentData.AllDay),
+                LabelId = nameof(AppointmentData.Label),
+                StatusId = nameof(AppointmentData.Status),
+                RecurrenceInfo = nameof(AppointmentData.Recurrence),
+                ResourceId = nameof(AppointmentData.ResourceId)
+            },
+            ResourcesSource = resources,
+            ResourceMappings = new DxSchedulerResourceMappings {
+                Id = nameof(Resource.Id),
+                Caption = nameof(Resource.Name),
+                BackgroundColor = nameof(Resource.Color)
+            }
+        };
+    }
+
+    async Task OnInsert(SchedulerAppointmentOperationEventArgs e) {
+        var appt = (AppointmentData)e.Appointment.SourceObject;
+        appt.Id = Appointments.Count > 0 ? Appointments.Max(a => a.Id) + 1 : 1;
+        Appointments.Add(appt);
+    }
+
+    async Task OnUpdate(SchedulerAppointmentOperationEventArgs e) {
+        // Changes applied in-place to SourceObject. Persist here if using a database.
+    }
+
+    async Task OnRemove(SchedulerAppointmentOperationEventArgs e) {
+        Appointments.Remove((AppointmentData)e.Appointment.SourceObject);
+    }
+
+    public class AppointmentData {
+        public int Id { get; set; }
+        public int AppointmentType { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Caption { get; set; }
+        public bool AllDay { get; set; }
+        public int Label { get; set; }
+        public int Status { get; set; }
+        public string Recurrence { get; set; }
+        public int? ResourceId { get; set; }
+    }
+
+    public class Resource {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public System.Drawing.Color Color { get; set; }
+    }
+}

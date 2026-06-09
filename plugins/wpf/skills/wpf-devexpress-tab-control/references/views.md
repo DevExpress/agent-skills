@@ -55,7 +55,7 @@ All views inherit from `TabControlViewBase`. Common members:
 </dx:DXTabControl>
 ```
 
-Other view-wide features (Header Menu, Hide / New buttons) work in every view — they're documented in the `xref:7977` (Header Menu) and `xref:113904` (Adding and Removing Tab Items) topics.
+Other view-wide features (Header Menu, Hide / New buttons) work in every view — they're documented in the https://docs.devexpress.com/content/WPF/7977?md=true (Header Menu) and https://docs.devexpress.com/content/WPF/113904?md=true (Adding and Removing Tab Items) topics.
 
 ## `TabControlMultiLineView` — Wrap into Multiple Lines
 
@@ -275,10 +275,10 @@ Pinned tabs stay on the left, unaffected by scroll/shrink of other tabs.
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views.md` (`xref:7979`)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/views-overview.md` (`xref:113984`)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/multiline-view.md` (`xref:113875`)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/scroll-view.md` (`xref:113876`)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/stretch-view.md` (`xref:113877`)
-- `articles/controls-and-libraries/layout-management/tab-control/concepts/header-menu.md` (`xref:7977`)
-- `articles/controls-and-libraries/layout-management/tab-control/concepts/adding-and-removing-tab-items.md` (`xref:113904`)
+- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views.md` (https://docs.devexpress.com/content/WPF/7979?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/views-overview.md` (https://docs.devexpress.com/content/WPF/113984?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/multiline-view.md` (https://docs.devexpress.com/content/WPF/113875?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/scroll-view.md` (https://docs.devexpress.com/content/WPF/113876?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/stretch-view.md` (https://docs.devexpress.com/content/WPF/113877?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/concepts/header-menu.md` (https://docs.devexpress.com/content/WPF/7977?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/concepts/adding-and-removing-tab-items.md` (https://docs.devexpress.com/content/WPF/113904?md=true)

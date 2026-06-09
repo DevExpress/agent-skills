@@ -264,7 +264,7 @@ For MVVM scenarios, definitions can be generated from a view-model collection ra
         ShowProperties="WithPropertyDefinitions"/>
 ```
 
-This pattern is in the docs page "Binding to a collection of PropertyDefinitions" (`xref:115668`) — use the DevExpress MCP to fetch the full sample when needed.
+This pattern is in the docs page "Binding to a collection of PropertyDefinitions" (https://docs.devexpress.com/content/WPF/115668?md=true) — use the DevExpress MCP to fetch the full sample when needed.
 
 ## Common Issues
 
@@ -277,7 +277,7 @@ This pattern is in the docs page "Binding to a collection of PropertyDefinitions
 
 ## Source Material
 
-- `articles/controls-and-libraries/property-grid/property-definitions.md` (`xref:15521`)
-- `articles/controls-and-libraries/property-grid/getting-started/creating-property-definitions.md` (`xref:15610`)
-- `articles/controls-and-libraries/property-grid/property-definitions/binding-to-a-collection-of-propertydefinitions.md` (`xref:115668`)
-- `articles/controls-and-libraries/property-grid/property-definitions/displaying-multiple-properties-in-a-single-cell.md` (`xref:118197`)
+- `articles/controls-and-libraries/property-grid/property-definitions.md` (https://docs.devexpress.com/content/WPF/15521?md=true)
+- `articles/controls-and-libraries/property-grid/getting-started/creating-property-definitions.md` (https://docs.devexpress.com/content/WPF/15610?md=true)
+- `articles/controls-and-libraries/property-grid/property-definitions/binding-to-a-collection-of-propertydefinitions.md` (https://docs.devexpress.com/content/WPF/115668?md=true)
+- `articles/controls-and-libraries/property-grid/property-definitions/displaying-multiple-properties-in-a-single-cell.md` (https://docs.devexpress.com/content/WPF/118197?md=true)

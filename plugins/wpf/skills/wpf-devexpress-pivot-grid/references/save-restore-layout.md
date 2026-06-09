@@ -56,7 +56,7 @@ Without these calls, restored fields are always **fully expanded**, even if they
 - **Appearance** settings and **format conditions** (conditional formatting rules)
 - Field **data format** for exporting
 
-Narrower modes (e.g., visibility-only, sort-and-filter-only) are also available — see `xref:DevExpress.Xpf.PivotGrid.StoreLayoutMode`.
+Narrower modes (e.g., visibility-only, sort-and-filter-only) are also available — see https://docs.devexpress.com/content/WPF/DevExpress.Xpf.PivotGrid.StoreLayoutMode?md=true.
 
 ## Reconcile Layout Differences (`AddNewFields` / `RemoveOldFields`)
 
@@ -173,7 +173,7 @@ public class MainViewModel : ViewModelBase {
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/layout/save-and-restore-layout.md` (`xref:8023`)
-- `articles/common-concepts/save-and-restore-layouts.md` (`xref:7391`)
+- `articles/controls-and-libraries/pivot-grid/layout/save-and-restore-layout.md` (https://docs.devexpress.com/content/WPF/8023?md=true)
+- `articles/common-concepts/save-and-restore-layouts.md` (https://docs.devexpress.com/content/WPF/7391?md=true)
 - `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-save-and-restore-layout-to-from-xml.md`
 - `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-save-and-restore-layout-to-from-a-stream.md`

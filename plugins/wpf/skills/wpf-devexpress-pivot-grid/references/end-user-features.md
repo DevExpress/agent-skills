@@ -26,7 +26,7 @@ Restrict on specific fields:
 <dxpg:PivotGridField Caption="Country" Area="RowArea" AllowDrag="False"/>
 ```
 
-Both `PivotGridControl.AllowDrag` and `PivotGridField.AllowDrag` are real properties (type `bool`).
+Both `PivotGridControl.AllowDrag` (type `bool`) and `PivotGridField.AllowDrag` (type `bool?`) are real properties.
 
 Source: `articles/controls-and-libraries/pivot-grid/end-user-interaction.md` and `pivot-grid/end-user-capabilities.md`.
 
@@ -50,7 +50,7 @@ Each field's header has a filter glyph. Clicking it opens a checkbox list of uni
 
 ```xaml
 <dxpg:PivotGridControl AllowFilter="True"
-                       AllowDragOnRunTime="True"/>
+                       AllowDrag="True"/>
 ```
 
 The Excel-style demo is referenced from the root pivot-grid article:

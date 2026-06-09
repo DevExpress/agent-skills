@@ -1,7 +1,7 @@
 ---
 name: wpf-devexpress-loading-indicators
 description: Display loading indicators in WPF apps with the DevExpress utility controls — SplashScreenManager (a window-level splash screen shown during startup or long-running operations, runs on a separate UI thread), LoadingDecorator (a content container that wraps any UI and shows an indicator while it loads, with owner-lock modes), and WaitIndicator (a simple popup panel that runs on the main UI thread). Use when adding a startup splash screen via SplashScreenManager.CreateThemed / CreateFluent / CreateWaitIndicator + ShowOnStartup; wrapping content with dx:LoadingDecorator and configuring OwnerLock and SplashScreenTemplate; toggling dx:WaitIndicator visibility with DeferedVisibility; deciding which indicator to use for which scenario. Also use when someone mentions "DevExpress.Xpf.Core.SplashScreenManager", "DXSplashScreenViewModel", "LoadingDecorator", "WaitIndicator", "DXSplashScreen" (legacy). Covers .NET (6/7/8+) and .NET Framework 4.6.2+.
-compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). DevExpress NuGet packages are published on nuget.org and via the local Unified Component Installer feed. A valid DevExpress license is required.
+compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"

@@ -224,7 +224,7 @@ For runtime "close this bar" behavior on floating bars.
 
 ### Glyph Sizes
 
-Standalone bar controls and `BarManager` share the same `BarItem.Glyph` / `LargeGlyph` system. Toolbar buttons typically show small glyphs; sub-menus also show small glyphs unless explicitly enlarged. See `articles/.../common-concepts/displaying-glyphs.md` (`xref:117633`).
+Standalone bar controls and `BarManager` share the same `BarItem.Glyph` / `LargeGlyph` system. Toolbar buttons typically show small glyphs; sub-menus also show small glyphs unless explicitly enlarged. See `articles/.../common-concepts/displaying-glyphs.md` (https://docs.devexpress.com/content/WPF/117633?md=true).
 
 ## Choosing the Right Container — Decision Table
 
@@ -245,7 +245,7 @@ Standalone bar controls and `BarManager` share the same `BarItem.Glyph` / `Large
 
 ## Source Material
 
-- `articles/controls-and-libraries/ribbon-bars-and-menu/bars/bar-layout/standalone-bar-controls.md` (`xref:115355`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/bars/bar-layout/bar-manager.md` (`xref:115354`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/bars/bar-layout/bar-containers.md` (`xref:6556`)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/bars/bar-layout/standalone-bar-controls.md` (https://docs.devexpress.com/content/WPF/115355?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/bars/bar-layout/bar-manager.md` (https://docs.devexpress.com/content/WPF/115354?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/bars/bar-layout/bar-containers.md` (https://docs.devexpress.com/content/WPF/6556?md=true)
 - `articles/controls-and-libraries/ribbon-bars-and-menu/bars/bar-layout/bars.md`

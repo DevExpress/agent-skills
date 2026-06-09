@@ -1,0 +1,78 @@
+@* DevExpress Blazor Grid — Quick Start Example
+   In-memory CRUD with EditRow, grouping, search box, summaries, and export.
+   Add to Pages/ directory. Requires @using DevExpress.Blazor in _Imports.razor. *@
+@page "/grid-quickstart"
+@rendermode InteractiveServer
+
+<h3>Products</h3>
+
+<DxGrid @ref="Grid"
+        Data="@Products"
+        KeyFieldName="Id"
+        EditMode="GridEditMode.EditRow"
+        EditModelSaving="OnEditModelSaving"
+        DataItemDeleting="OnDataItemDeleting"
+        ShowGroupPanel="true"
+        ShowSearchBox="true"
+        PageSize="10">
+    <Columns>
+        <DxGridCommandColumn />
+        <DxGridSelectionColumn Width="50px" AllowSelectAll="true" />
+        <DxGridDataColumn FieldName="Name" SortOrder="GridColumnSortOrder.Ascending" SortIndex="0" />
+        <DxGridDataColumn FieldName="Category" GroupIndex="0" />
+        <DxGridDataColumn FieldName="Price" DisplayFormat="C2" />
+        <DxGridDataColumn FieldName="InStock" Caption="In Stock" />
+    </Columns>
+    <TotalSummary>
+        <DxGridSummaryItem SummaryType="GridSummaryItemType.Count" FieldName="Name" />
+        <DxGridSummaryItem SummaryType="GridSummaryItemType.Sum" FieldName="Price" />
+    </TotalSummary>
+    <ToolbarTemplate>
+        <DxToolbar>
+            <DxToolbarItem Text="Export to PDF" Click="ExportPdf" />
+            <DxToolbarItem Text="Export to XLSX" Click="ExportXlsx" />
+        </DxToolbar>
+    </ToolbarTemplate>
+</DxGrid>
+
+@code {
+    IGrid Grid;
+    List<Product> Products { get; set; }
+
+    protected override void OnInitialized() {
+        Products = new List<Product> {
+            new Product { Id = 1, Name = "Widget A", Category = "Widgets", Price = 9.99m, InStock = true },
+            new Product { Id = 2, Name = "Widget B", Category = "Widgets", Price = 14.99m, InStock = false },
+            new Product { Id = 3, Name = "Gadget X", Category = "Gadgets", Price = 49.99m, InStock = true },
+            new Product { Id = 4, Name = "Gadget Y", Category = "Gadgets", Price = 29.99m, InStock = true },
+            new Product { Id = 5, Name = "Tool Z", Category = "Tools", Price = 79.99m, InStock = false },
+        };
+    }
+
+    void OnEditModelSaving(GridEditModelSavingEventArgs e) {
+        var model = (Product)e.EditModel;
+        if (e.IsNew) {
+            model.Id = Products.Count > 0 ? Products.Max(p => p.Id) + 1 : 1;
+            Products.Add(model);
+        } else {
+            e.CopyChangesToDataItem();
+        }
+        Grid.Reload();
+    }
+
+    void OnDataItemDeleting(GridDataItemDeletingEventArgs e) {
+        Products.Remove((Product)e.DataItem);
+        Grid.Reload();
+    }
+
+    async Task ExportPdf()  => await Grid.ExportToPdfAsync("products.pdf");
+    async Task ExportXlsx() => await Grid.ExportToXlsxAsync("products.xlsx");
+
+    public class Product {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public decimal Price { get; set; }
+        public bool InStock { get; set; }
+    }
+}

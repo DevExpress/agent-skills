@@ -1,6 +1,6 @@
 {
   "name": "office-file-api",
-  "description": "DevExpress Office File API skills: Spreadsheet, Word Processing, PDF, Presentation, Barcode, Unit Conversion, Excel Export, Zip, and AI-Powered Extensions for headless .NET document automation.",
+  "description": "DevExpress Office File API skills: Spreadsheet, Word Processing, legacy PDF, new PDF (CTP), Presentation, Barcode, Unit Conversion, Excel Export, Zip, and AI-Powered Extensions for headless .NET document automation.",
   "version": "0.1.0",
   "license": "MIT",
   "skills": "./skills/",
@@ -10,10 +10,12 @@
     "spreadsheet",
     "word",
     "pdf",
+    "pdf-new",
     "presentation",
     "barcode",
     "excel",
     "zip",
+    "automation",
     "skills"
   ]
 }

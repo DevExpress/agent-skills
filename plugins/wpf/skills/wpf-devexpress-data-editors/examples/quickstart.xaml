@@ -1,0 +1,80 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        Title="DevExpress Data Editors Quickstart" Height="500" Width="450">
+    <Window.DataContext>
+        <local:MainViewModel xmlns:local="clr-namespace:MyApp"/>
+    </Window.DataContext>
+
+    <!-- 1. Common editors bound to ViewModel properties -->
+    <StackPanel Margin="16" VerticalAlignment="Top">
+
+        <!-- Text editor -->
+        <Label Content="First Name:"/>
+        <dxe:TextEdit EditValue="{Binding Employee.FirstName}" Margin="0,0,0,8"/>
+
+        <!-- Date editor -->
+        <Label Content="Birth Date:"/>
+        <dxe:DateEdit EditValue="{Binding Employee.BirthDate}" Margin="0,0,0,8"/>
+
+        <!-- Numeric editor with currency mask -->
+        <Label Content="Salary:"/>
+        <dxe:SpinEdit EditValue="{Binding Employee.Salary}" MinValue="0"
+                      MaskType="Numeric" Mask="c2" MaskUseAsDisplayFormat="True"
+                      Margin="0,0,0,8"/>
+
+        <!-- Phone with RegEx mask -->
+        <Label Content="Phone:"/>
+        <dxe:TextEdit EditValue="{Binding Employee.Phone}"
+                      Validate="OnPhoneValidate"
+                      MaskType="Simple" Mask="+0 (000) 000-0000"
+                      Margin="0,0,0,8"/>
+
+        <!-- Combo box from collection -->
+        <Label Content="Department:"/>
+        <dxe:ComboBoxEdit EditValue="{Binding Employee.Department}"
+                          ItemsSource="{Binding Departments}" Margin="0,0,0,8"/>
+
+        <!-- Check box -->
+        <dxe:CheckEdit Content="Active" IsChecked="{Binding Employee.IsActive}"/>
+
+    </StackPanel>
+
+</Window>
+
+<!-- ============================================================
+     2. MemoEdit — multi-line text
+     ============================================================
+<dxe:MemoEdit EditValue="{Binding Notes}" Height="80"/>
+
+     ============================================================
+     3. TokenComboBoxEdit (tag-style multi-select)
+     ============================================================
+<dxe:ComboBoxEdit EditValue="{Binding SelectedTags}"
+                  ItemsSource="{Binding AvailableTags}">
+    <dxe:ComboBoxEdit.StyleSettings>
+        <dxe:TokenComboBoxStyleSettings/>
+    </dxe:ComboBoxEdit.StyleSettings>
+</dxe:ComboBoxEdit>
+
+     ============================================================
+     4. LookUpEdit with grid popup
+     ============================================================
+<dxg:LookUpEdit EditValue="{Binding SelectedEmployeeId}"
+                ItemsSource="{Binding Employees}"
+                ValueMember="Id"
+                DisplayMember="FullName">
+    <dxg:LookUpEdit.PopupContentTemplate>
+        <ControlTemplate>
+            <dxg:GridControl ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
+                             AutoGenerateColumns="AddNew">
+                <dxg:GridControl.View>
+                    <dxg:TableView/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </ControlTemplate>
+    </dxg:LookUpEdit.PopupContentTemplate>
+</dxg:LookUpEdit>
+-->

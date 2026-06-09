@@ -1,0 +1,55 @@
+<!--
+  Quickstart MainView for the DevExpress WPF Data Grid.
+  Drop this into a new WPF .NET 8 project after adding the
+  DevExpress.Wpf.Grid.Core NuGet package.
+
+  Verified APIs (apidoc / lesson articles):
+    - DevExpress.Xpf.Grid.GridControl
+    - DevExpress.Xpf.Grid.TableView (AutoWidth, BestFitModeOnSourceChange,
+      ShowGroupPanel, NewItemRowPosition)
+    - DevExpress.Xpf.Grid.GridColumn (FieldName, ReadOnly, EditSettings)
+    - DevExpress.Xpf.Editors.Settings.TextEditSettings (Mask, MaskType,
+      MaskUseAsDisplayFormat)
+    - DevExpress.Xpf.Grid.GridSummaryItem (FieldName, SummaryType, DisplayFormat)
+-->
+<Window x:Class="DevExpressGridQuickstart.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:vm="clr-namespace:DevExpressGridQuickstart.ViewModels"
+        Title="DevExpress WPF Data Grid Quickstart"
+        Height="500" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <dxg:GridControl ItemsSource="{Binding Orders}"
+                         EnableSmartColumnsGeneration="True">
+            <dxg:GridControl.View>
+                <dxg:TableView AutoWidth="True"
+                               BestFitModeOnSourceChange="VisibleRows"
+                               ShowGroupPanel="True"
+                               NewItemRowPosition="Top"/>
+            </dxg:GridControl.View>
+
+            <dxg:GridColumn FieldName="OrderId" Header="Order #" ReadOnly="True"/>
+            <dxg:GridColumn FieldName="OrderDate" Header="Date"/>
+            <dxg:GridColumn FieldName="ShipCity" Header="Ship to"/>
+            <dxg:GridColumn FieldName="Freight">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:TextEditSettings Mask="c"
+                                          MaskType="Numeric"
+                                          MaskUseAsDisplayFormat="True"/>
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem FieldName="Freight"
+                                     SummaryType="Sum"
+                                     DisplayFormat="Total=${0:N2}"/>
+            </dxg:GridControl.TotalSummary>
+        </dxg:GridControl>
+    </Grid>
+</Window>

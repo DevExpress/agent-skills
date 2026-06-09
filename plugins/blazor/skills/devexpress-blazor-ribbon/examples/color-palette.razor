@@ -1,0 +1,110 @@
+@* DevExpress Blazor Ribbon — Color Palette Item Example
+   File: Pages/RibbonColorPalette.razor
+
+   Demonstrates:
+   - DxRibbonColorGroup + DxRibbonColorPaletteItem for inline color picking
+   - Custom IconTemplate showing current color as a swatch
+   - ShowNoColorTile for "no color" / reset option
+   - Binding palette selection to component state and applying it as inline CSS
+
+   Program.cs setup:
+   builder.Services.AddDevExpressBlazor(); *@
+
+@page "/ribbon-color-palette"
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+<PageTitle>Ribbon — Color Palette</PageTitle>
+
+<DxRibbon>
+    <DxRibbonTab Text="Format">
+
+        <DxRibbonGroup Text="Text Color">
+            <DxRibbonColorGroup>
+                <!--
+                    @bind-Value  — two-way binding to the selected color string (CSS hex or name)
+                    Colors       — list of swatches shown in the palette grid
+                    ShowNoColorTile — prepends a "no color" tile that sets the value to null/"none"
+                    IconTemplate — customizes the button icon; shows current color as an underline swatch
+                -->
+                <DxRibbonColorPaletteItem @bind-Value="textColor"
+                                           Colors="@StandardColors"
+                                           ShowNoColorTile="true">
+                    <IconTemplate>
+                        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                            <span style="font-size:14px;font-weight:bold;font-family:serif">A</span>
+                            <span style="height:4px;width:18px;display:block;
+                                         background:@(string.IsNullOrEmpty(textColor) ? "transparent" : textColor);
+                                         border:1px solid #ccc;"></span>
+                        </div>
+                    </IconTemplate>
+                </DxRibbonColorPaletteItem>
+            </DxRibbonColorGroup>
+        </DxRibbonGroup>
+
+        <DxRibbonGroup Text="Highlight Color">
+            <DxRibbonColorGroup>
+                <DxRibbonColorPaletteItem @bind-Value="highlightColor"
+                                           Colors="@HighlightColors"
+                                           ShowNoColorTile="true">
+                    <IconTemplate>
+                        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                            <span class="oi oi-pencil" style="font-size:12px"></span>
+                            <span style="height:4px;width:18px;display:block;
+                                         background:@(string.IsNullOrEmpty(highlightColor) ? "transparent" : highlightColor);
+                                         border:1px solid #ccc;"></span>
+                        </div>
+                    </IconTemplate>
+                </DxRibbonColorPaletteItem>
+            </DxRibbonColorGroup>
+        </DxRibbonGroup>
+
+        <DxRibbonGroup Text="Background">
+            <DxRibbonColorGroup>
+                <DxRibbonColorPaletteItem @bind-Value="backgroundColor"
+                                           Colors="@StandardColors"
+                                           ShowNoColorTile="true"
+                                           PaletteCssClass="my-palette" />
+            </DxRibbonColorGroup>
+        </DxRibbonGroup>
+
+    </DxRibbonTab>
+</DxRibbon>
+
+<!-- Live preview of selected colors -->
+<div class="mt-4 p-4 rounded border" style="@PreviewStyle">
+    <p style="color:@(textColor ?? "inherit"); margin:0;">
+        Sample text — see the effect of your color selections here.
+    </p>
+</div>
+
+<div class="mt-3 small text-muted">
+    <p>Text color: <code>@(textColor ?? "none")</code></p>
+    <p>Highlight:  <code>@(highlightColor ?? "none")</code></p>
+    <p>Background: <code>@(backgroundColor ?? "none")</code></p>
+</div>
+
+@code {
+    string? textColor      = "#1a1aff";
+    string? highlightColor = "#ffff00";
+    string? backgroundColor;
+
+    string PreviewStyle =>
+        $"background:{(string.IsNullOrEmpty(backgroundColor) ? "#ffffff" : backgroundColor)};" +
+        (string.IsNullOrEmpty(highlightColor)
+            ? ""
+            : $"box-shadow: inset 0 -6px 0 {highlightColor};");
+
+    // Standard color grid — 4×3 swatches
+    List<string> StandardColors = new() {
+        "#FF0000", "#FF6600", "#FFCC00", "#FFFF00",
+        "#00CC00", "#00CCCC", "#0066FF", "#6600CC",
+        "#FF00CC", "#FFFFFF", "#AAAAAA", "#000000"
+    };
+
+    // Highlighter-style semi-transparent colors
+    List<string> HighlightColors = new() {
+        "#FFFF00", "#00FF00", "#00FFFF",
+        "#FF69B4", "#FFA500", "#FF6347"
+    };
+}

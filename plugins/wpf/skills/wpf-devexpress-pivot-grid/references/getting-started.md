@@ -10,13 +10,9 @@ This guide walks you through adding `DevExpress.Xpf.PivotGrid.PivotGridControl` 
 - (For MDB binding) [Microsoft Access Database Engine 2016 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=54920)
 - A valid DevExpress license
 
-## Step 1: Pick a NuGet Source
+## Step 1: NuGet Source
 
-DevExpress packages are published in three places:
-
-- **`nuget.org`** (recommended) — public feed, configured by default. If disabled: `dotnet nuget enable source nuget.org`.
-- **Local feed from the Unified Component Installer** — `C:\Program Files\DevExpress {version}\Components\System\Components\Packages`.
-- **Private feed** at `https://nuget.devexpress.com/api` — only for non-DE/ES/JA satellite assemblies or specific alpha scenarios.
+Install the DevExpress packages from nuget.org — it's registered by default in Visual Studio and the .NET SDK.
 
 ## Step 2: Configure the Project
 

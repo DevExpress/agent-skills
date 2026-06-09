@@ -1,0 +1,59 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:local="clr-namespace:MyApp"
+        Title="DevExpress MVVM Quickstart" Height="400" Width="500">
+
+    <!-- 1. MainViewModel is a compile-time [GenerateViewModel] class — instantiate it directly.
+         (For a runtime POCO instead, use DataContext="{dxmvvm:ViewModelSource Type=local:SomePocoVM}".) -->
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+
+    <StackPanel Margin="12" VerticalAlignment="Top">
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8"/>
+        <Button Content="Save" Command="{Binding SaveCommand}" HorizontalAlignment="Left"/>
+
+        <!-- Services declared here are resolved by the ViewModel via GetService<T>() -->
+        <dxmvvm:Interaction.Behaviors>
+            <dx:DXMessageBoxService/>
+            <dx:DialogService/>
+        </dxmvvm:Interaction.Behaviors>
+    </StackPanel>
+
+</Window>
+
+<!-- ============================================================
+     2. EventToCommand behavior — invoke command from UI event
+     ============================================================
+<Button Content="Load">
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="Click"
+                               Command="{Binding LoadCommand}"/>
+    </dxmvvm:Interaction.Behaviors>
+</Button>
+
+     ============================================================
+     3. FocusBehavior — set focus when a property changes
+     ============================================================
+<TextBox>
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:FocusBehavior SourceName="searchBox"
+                              EventName="GotFocus"/>
+    </dxmvvm:Interaction.Behaviors>
+</TextBox>
+
+     ============================================================
+     4. ConfirmationBehavior — confirm navigation away
+     ============================================================
+<dxmvvm:Interaction.Behaviors>
+    <dxmvvm:ConfirmationBehavior MessageTitle="Unsaved changes"
+                                 MessageText="Discard unsaved changes?"
+                                 MessageButton="YesNo"
+                                 MessageIcon="Warning"
+                                 MessageDefaultResult="Yes"
+                                 Command="{Binding SaveCommand}"/>
+</dxmvvm:Interaction.Behaviors>
+-->

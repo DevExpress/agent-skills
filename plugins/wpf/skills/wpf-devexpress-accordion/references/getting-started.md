@@ -16,7 +16,7 @@ dotnet add package DevExpress.Wpf.Accordion
 
 This brings `DevExpress.Wpf.Core` transitively.
 
-DevExpress publishes on **nuget.org** (recommended) and via the local Unified Component Installer feed. All DevExpress packages in a project must share the same version.
+All DevExpress packages in a project must share the same version.
 
 ## Step 2: Configure the Project
 
@@ -141,5 +141,5 @@ Required assembly references (when not using NuGet):
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/getting-started.md` (`xref:119805`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control.md` (`xref:118347`)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/getting-started.md` (https://docs.devexpress.com/content/WPF/119805?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control.md` (https://docs.devexpress.com/content/WPF/118347?md=true)

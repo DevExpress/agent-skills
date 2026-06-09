@@ -1,0 +1,78 @@
+@* DevExpress Blazor AI Chat — Quick Start Example
+   File: Pages/AIChatPage.razor
+
+   Prerequisites:
+   1. Install NuGet packages:
+      dotnet add package DevExpress.AIIntegration.Blazor.Chat
+      dotnet add package DevExpress.Blazor
+      dotnet add package Azure.AI.OpenAI  (or your provider's package)
+
+   2. Register the AI provider in Program.cs:
+
+      using Azure.AI.OpenAI;
+      using System.ClientModel;
+      using Microsoft.Extensions.AI;
+
+      var azureClient = new AzureOpenAIClient(
+          new Uri(Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!),
+          new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!));
+
+      IChatClient chatClient = azureClient
+          .GetChatClient(Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT")!)
+          .AsIChatClient();
+
+      // AddChatClient registers the IChatClient.
+      // AddDevExpressAI() automatically creates the default IChatResponseProvider from it.
+      builder.Services.AddChatClient(chatClient);
+      builder.Services.AddDevExpressBlazor();
+      builder.Services.AddDevExpressAI();
+
+   3. NEVER hardcode API keys — use environment variables or user secrets. *@
+
+@page "/ai-chat"
+@rendermode InteractiveServer
+@using DevExpress.AIIntegration.Blazor.Chat
+@using Microsoft.Extensions.AI
+
+<PageTitle>AI Chat</PageTitle>
+<h1>AI Chat</h1>
+
+<DxAIChat Initialized="ChatInitialized"
+          ResponseContentFormat="ResponseContentFormat.Markdown"
+          FileUploadEnabled="true">
+    <AIChatSettings>
+        <DxAIChatFileUploadSettings MaxFileCount="2"
+                                    MaxFileSize="20000"
+                                    AllowedFileExtensions="@(new List<string> { ".jpg", ".png", ".pdf" })"
+                                    FileTypeFilter="@(new List<string> { "image/*", "application/pdf" })" />
+    </AIChatSettings>
+    <PromptSuggestions>
+        <DxAIChatPromptSuggestion Title="Summarize text"
+                                  Text="Extract a quick summary (main ideas)"
+                                  PromptMessage="Summarize the following text:" />
+        <DxAIChatPromptSuggestion Title="Tell me a joke"
+                                  Text="Take a break and enjoy a quick laugh"
+                                  PromptMessage="Tell me a joke." />
+        <DxAIChatPromptSuggestion Title="Write an email"
+                                  Text="Make your text look and sound professional"
+                                  PromptMessage="Format text as a formal email to a client:" />
+        <DxAIChatPromptSuggestion Title="Brainstorm ideas"
+                                  Text="Get creative input for your tasks"
+                                  PromptMessage="Help me brainstorm ideas for:" />
+        <DxAIChatPromptSuggestion Title="Fix my writing"
+                                  Text="Avoid spelling, grammar, and style errors"
+                                  PromptMessage="Proofread the following text:" />
+    </PromptSuggestions>
+</DxAIChat>
+
+@code {
+    Task ChatInitialized(IAIChat chat) {
+        // Set a system prompt to give the AI a persona and initial instructions.
+        // System messages are hidden from the user — they guide the AI model's behavior.
+        chat.LoadMessages(new[] {
+            new BlazorChatMessage(ChatRole.System,
+                "You are a helpful assistant. Be concise and clear in your responses.")
+        });
+        return Task.CompletedTask;
+    }
+}

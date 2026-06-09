@@ -1,0 +1,33 @@
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+@* Quick Start: DxBarGauge with labels and legend *@
+
+<DxBarGauge Width="100%"
+            Height="500px"
+            StartValue="0"
+            EndValue="100"
+            Values="@Values">
+    <DxBarGaugeLabelSettings Indent="30">
+        <DxTextFormatSettings LdmlString="##.#'%' " />
+    </DxBarGaugeLabelSettings>
+    <DxBarGaugeLegendSettings Visible="true"
+                              ItemCaptions="@LegendItemCaptions"
+                              VerticalAlignment="VerticalEdge.Bottom"
+                              HorizontalAlignment="HorizontalAlignment.Center">
+        <DxLegendTitleSettings Text="Review Sources" />
+    </DxBarGaugeLegendSettings>
+    <DxTitleSettings Text="Review Scores" />
+    <DxSubtitleSettings Text="(out of 100)" />
+</DxBarGauge>
+
+@code {
+    double[] Values = new double[] { 47.27, 65.32, 84.59, 81.86, 99 };
+    string[] LegendItemCaptions = new string[] {
+        "Metacritic",
+        "Ratingraph.com",
+        "Rotten Tomatoes",
+        "IMDb",
+        "TV.com"
+    };
+}

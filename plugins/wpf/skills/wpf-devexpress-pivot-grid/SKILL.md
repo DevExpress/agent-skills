@@ -1,7 +1,7 @@
 ---
 name: wpf-devexpress-pivot-grid
 description: Build WPF applications with the DevExpress Pivot Grid (PivotGridControl) — a control for multi-dimensional data analysis displaying data in a cross-tabular pivot table. Use when adding PivotGridControl to a WPF project, binding to DataSet/DataTable, Entity Framework, OLAP cubes, server-mode sources, or in-memory data; creating PivotGridField objects and positioning them in Row/Column/Data/Filter areas; configuring aggregation, grouping intervals, filtering, sorting, drill-down, KPI, conditional formatting, chart integration, printing, and exporting. Also use when someone mentions "DevExpress WPF pivot", "PivotGridControl", "dxpg:PivotGridControl", "DevExpress.Xpf.PivotGrid", "OLAP", "cube", "FieldArea RowArea ColumnArea DataArea", "PivotGridField", "DataSourceColumnBinding", or asks about cross-tab reports, drill-down analytics, multi-dimensional data, or pivot tables in WPF. Covers both .NET (6/7/8+) and .NET Framework 4.6.2+.
-compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). DevExpress NuGet packages are published on nuget.org (public) and also available via the local feed registered by the Unified Component Installer. OLAP connectivity requires the appropriate provider (e.g., Microsoft OLE DB Provider for Analysis Services); MDB data sources require the Microsoft Access Database Engine Redistributable. A valid DevExpress license is required.
+compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). OLAP connectivity requires the appropriate provider (e.g., Microsoft OLE DB Provider for Analysis Services); MDB data sources require the Microsoft Access Database Engine Redistributable. A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -43,7 +43,7 @@ Use this skill when you need to:
 | `DevExpress.Wpf.Printing` | Required for Print Preview and export |
 | `DevExpress.Wpf.Charts` | Optional, for Chart integration |
 
-DevExpress publishes packages on **nuget.org** (public, recommended). The Unified Component Installer also registers a local feed at `C:\Program Files\DevExpress {version}\Components\System\Components\Packages`.
+All DevExpress packages in a project must share the same version.
 
 ### .NET (6/7/8+)
 
@@ -93,7 +93,7 @@ The Pivot Grid is composed of:
 - **`DevExpress.Xpf.PivotGrid.PivotGridField`** — defines a field. Bound to a data column via `DataBinding`; positioned in an area via `Area` / `AreaIndex`; aggregated via `SummaryType`.
 - **`DevExpress.Xpf.PivotGrid.FieldArea`** — enum: `RowArea`, `ColumnArea`, `DataArea`, `FilterArea`.
 - **`DevExpress.Xpf.PivotGrid.DataSourceColumnBinding`** — binds a field to a data source column with optional grouping (`GroupInterval`).
-- **`DevExpress.Xpf.PivotGrid.FieldGroupInterval`** — enum: `Default`, `Alphabetical`, `DateYear`, `DateMonth`, `DateDay`, `DateQuarter`, `NumericRange`, etc.
+- **`DevExpress.Xpf.PivotGrid.FieldGroupInterval`** — enum: `Default`, `Alphabetical`, `DateYear`, `DateMonth`, `DateDay`, `DateQuarter`, `Numeric`, etc.
 - Inherited / related: `PivotGridControl.DataSource`, `Fields`, `BeginUpdate()` / `EndUpdate()`.
 
 ### XAML Namespace
@@ -233,13 +233,30 @@ When you need to:
 - Use a `DataTemplateSelector` for conditional field shapes
 - Persist layout from / restore layout to the ViewModel
 
+### Conditional Formatting
+Refer to [references/conditional-formatting.md](references/conditional-formatting.md)
+
+When you need to:
+- Add data bars, color scales, icon sets, or top/bottom rules to data cells
+- Apply value- or expression-based formats (`FormatCondition`)
+- Scope a rule to all cells vs. a specific row × column intersection
+- Let end users add and manage rules at runtime
+
+### Appearance & Templates
+Refer to [references/appearance.md](references/appearance.md)
+
+When you need to:
+- Override theme colors for cells / values / totals
+- Apply a `Style` to cells, field headers, or field values
+- Replace a cell's or field value's visual tree with a `DataTemplate`
+- Color cells by role or value via the `CustomCellAppearance` event
+
 ### Advanced Features
 Refer to [references/advanced-features.md](references/advanced-features.md)
 
 When you need to:
-- Apply conditional formatting (color scales, data bars, icon sets)
 - Print, preview, or export to PDF / XLSX / HTML / CSV / RTF / MHT / TXT
-- Customize Pivot Grid colors (cell / value / total properties)
+- A condensed overview of conditional formatting, KPI, chart integration, color customization, and MVVM — see the dedicated references above ([conditional-formatting.md](references/conditional-formatting.md), [appearance.md](references/appearance.md), [kpi.md](references/kpi.md), [chart-integration.md](references/chart-integration.md), [mvvm.md](references/mvvm.md)) for in-depth coverage
 
 ## Quick Start Example
 
@@ -321,8 +338,8 @@ Builds a pivot table where each row is a country, each column is a year, and eac
 | Property | Type | Description |
 |---|---|---|
 | `ColumnName` | `string` | Name of the data source column. |
-| `GroupInterval` | `FieldGroupInterval` | `Default`, `Alphabetical`, `DateYear`, `DateMonth`, `DateDay`, `DateQuarter`, `DateWeekOfYear`, `NumericRange`, etc. |
-| `GroupIntervalNumericRange` | `double` | When `GroupInterval = NumericRange`, the bucket width. |
+| `GroupInterval` | `FieldGroupInterval` | `Default`, `Alphabetical`, `DateYear`, `DateMonth`, `DateDay`, `DateQuarter`, `DateWeekOfYear`, `Numeric`, etc. |
+| `GroupIntervalNumericRange` | `double` | When `GroupInterval = Numeric`, the bucket width. |
 
 ### `FieldArea` Enum
 
@@ -407,7 +424,7 @@ CRITICAL — follow these rules in every interaction:
 
 1. **Build verification**: After any changes, run `dotnet build` and report errors before claiming success.
 2. **Target framework**: PivotGrid is Windows-only. The `.csproj` must target `net{X}-windows` with `<UseWPF>true</UseWPF>`.
-3. **NuGet packages**: Use only packages from Prerequisites. Default source is nuget.org; the local installer feed works equally well for environments with the Unified Component Installer.
+3. **NuGet packages**: Use only packages from Prerequisites. Do not invent package names.
 4. **Version consistency**: All DevExpress packages must share the same version (e.g., all 26.1.x).
 5. **Namespace imports**: XAML needs `xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"` — **`dxpg:`, not `dxg:`**. C# needs `using DevExpress.Xpf.PivotGrid;`.
 6. **License**: DevExpress requires a valid license. Remind the developer on license-related errors.

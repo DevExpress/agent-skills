@@ -299,7 +299,7 @@ Assign to `ItemTemplateSelector`.
 
 ## Source Material
 
-- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/items-and-links.md` (`xref:118282`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/the-list-of-bar-items-and-links.md` (`xref:6646`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/displaying-glyphs.md` (`xref:117633`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/mvvm-support.md` (`xref:10434`)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/items-and-links.md` (https://docs.devexpress.com/content/WPF/118282?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/the-list-of-bar-items-and-links.md` (https://docs.devexpress.com/content/WPF/6646?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/displaying-glyphs.md` (https://docs.devexpress.com/content/WPF/117633?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/mvvm-support.md` (https://docs.devexpress.com/content/WPF/10434?md=true)

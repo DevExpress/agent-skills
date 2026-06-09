@@ -1,0 +1,45 @@
+@rendermode InteractiveServer
+@using DevExpress.Blazor
+
+@* DxSparkline embedded in a DxGrid column.
+   Each row shows a compact trend chart for its monthly data.
+   Key: set explicit Width and Height on DxSparkline — it won't render otherwise. *@
+
+<DxGrid Data="@Products">
+    <Columns>
+        <DxGridDataColumn FieldName="Name" Caption="Product" />
+        <DxGridDataColumn FieldName="Total" Caption="Total Sales" DisplayFormat="N0" />
+        <DxGridDataColumn FieldName="Trend" Caption="Monthly Trend" Width="220px">
+            <CellDisplayTemplate>
+                @{
+                    var product = (ProductRow)context.DataItem;
+                }
+                <DxSparkline Data="@product.MonthlySales"
+                             Type="SparklineType.Line"
+                             ArgumentFieldName="Month"
+                             ValueFieldName="Amount"
+                             Width="180px"
+                             Height="40px" />
+            </CellDisplayTemplate>
+        </DxGridDataColumn>
+    </Columns>
+</DxGrid>
+
+@code {
+    IEnumerable<ProductRow> Products;
+
+    protected override void OnInitialized() {
+        var rng = new Random(42);
+        Products = new[] { "Widget A", "Widget B", "Gadget X", "Gadget Y", "Doohickey" }
+            .Select(name => {
+                var sales = Enumerable.Range(1, 12)
+                    .Select(m => new MonthlySale(m, rng.Next(500, 5000)))
+                    .ToList();
+                return new ProductRow(name, sales.Sum(s => s.Amount), sales);
+            })
+            .ToList();
+    }
+
+    record ProductRow(string Name, int Total, List<MonthlySale> MonthlySales);
+    record MonthlySale(int Month, int Amount);
+}

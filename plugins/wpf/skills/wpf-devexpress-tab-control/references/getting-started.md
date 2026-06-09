@@ -168,6 +168,6 @@ Adding to / removing from `Documents` automatically adds / removes tabs. See [de
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/tab-control.md` (`xref:7975`)
+- `articles/controls-and-libraries/layout-management/tab-control.md` (https://docs.devexpress.com/content/WPF/7975?md=true)
 - `DevExpress.Xpf.Core.DXTabControl` class reference
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views.md` (`xref:7979`)
+- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views.md` (https://docs.devexpress.com/content/WPF/7979?md=true)

@@ -134,10 +134,10 @@ Combine with cell selection events to update a side-panel chart based on what th
 
 ## See Also
 
-For an even richer dashboard experience (combining Pivot Grid + Chart + Map + KPI cards in one canvas), see DevExpress Dashboard (`xref:116677`).
+For an even richer dashboard experience (combining Pivot Grid + Chart + Map + KPI cards in one canvas), see DevExpress Dashboard (https://docs.devexpress.com/content/Dashboard/116677?md=true).
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/data-analysis/integration-with-the-chart-control.md` (`xref:8016`)
+- `articles/controls-and-libraries/pivot-grid/data-analysis/integration-with-the-chart-control.md` (https://docs.devexpress.com/content/WPF/8016?md=true)
 - `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-visualize-data-from-a-pivot-grid-control-using-the-chart-control.md`
 - `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-customize-a-pivotgrid-controls-data-before-displaying-it-in-a-chart-control.md`

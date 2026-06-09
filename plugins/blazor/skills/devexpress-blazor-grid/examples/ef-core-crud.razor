@@ -1,0 +1,107 @@
+@* DevExpress Blazor Grid — EF Core CRUD Example
+   IDbContextFactory pattern, async save/delete, data reload after mutations.
+   Prerequisites:
+     1. NuGet: Microsoft.EntityFrameworkCore.SqlServer (or Sqlite/Npgsql)
+     2. AppDbContext defined in a separate AppDbContext.cs (see comments in @code)
+     3. Connection string in appsettings.json
+     4. Program.cs registration (see comments in @code)
+     5. dotnet ef migrations add Init && dotnet ef database update *@
+@page "/products"
+@rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.EntityFrameworkCore
+@inject IDbContextFactory<AppDbContext> DbFactory
+@implements IDisposable
+
+<DxGrid Data="@Products"
+        KeyFieldName="Id"
+        EditMode="GridEditMode.EditForm"
+        CustomizeEditModel="OnCustomizeEditModel"
+        EditModelSaving="OnEditModelSaving"
+        DataItemDeleting="OnDataItemDeleting"
+        ShowSearchBox="true"
+        ShowFilterRow="true"
+        PageSize="20">
+    <Columns>
+        <DxGridCommandColumn Width="120px" />
+        <DxGridDataColumn FieldName="Name" />
+        <DxGridDataColumn FieldName="Category" />
+        <DxGridDataColumn FieldName="Price" DisplayFormat="C2" />
+        <DxGridDataColumn FieldName="Stock" Caption="In Stock" />
+        <DxGridDataColumn FieldName="CreatedAt" Caption="Created" DisplayFormat="d" />
+    </Columns>
+    <TotalSummary>
+        <DxGridSummaryItem SummaryType="GridSummaryItemType.Count" FieldName="Name" />
+        <DxGridSummaryItem SummaryType="GridSummaryItemType.Sum" FieldName="Price" />
+    </TotalSummary>
+</DxGrid>
+
+@code {
+    AppDbContext Db;
+    IEnumerable<Product> Products;
+
+    protected override async Task OnInitializedAsync() {
+        Db = DbFactory.CreateDbContext();
+        await LoadDataAsync();
+    }
+
+    async Task LoadDataAsync() {
+        Products = await Db.Products.OrderBy(p => p.Name).ToListAsync();
+    }
+
+    void OnCustomizeEditModel(GridCustomizeEditModelEventArgs e) {
+        if (e.IsNew) {
+            var model = (Product)e.EditModel;
+            model.CreatedAt = DateTime.UtcNow;
+            model.Stock = true;
+        }
+    }
+
+    async Task OnEditModelSaving(GridEditModelSavingEventArgs e) {
+        var model = (Product)e.EditModel;
+        if (e.IsNew) {
+            await Db.Products.AddAsync(model);
+        } else {
+            e.CopyChangesToDataItem();
+            Db.Products.Update((Product)e.DataItem);
+        }
+        await Db.SaveChangesAsync();
+        await LoadDataAsync();
+    }
+
+    async Task OnDataItemDeleting(GridDataItemDeletingEventArgs e) {
+        Db.Products.Remove((Product)e.DataItem);
+        await Db.SaveChangesAsync();
+        await LoadDataAsync();
+    }
+
+    public void Dispose() => Db?.Dispose();
+
+    // Data model — move to a separate Product.cs in production
+    public class Product {
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(200)]
+        public string Name { get; set; }
+
+        [Required]
+        public string Category { get; set; }
+
+        [Range(0.01, 999999, ErrorMessage = "Price must be greater than 0")]
+        public decimal Price { get; set; }
+
+        public bool Stock { get; set; }
+        public DateTime CreatedAt { get; set; }
+    }
+
+    // Create a separate AppDbContext.cs:
+    // public class AppDbContext : DbContext {
+    //     public DbSet<Product> Products { get; set; }
+    //     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+    // }
+
+    // Program.cs registration:
+    // builder.Services.AddDbContextFactory<AppDbContext>(opt =>
+    //     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+}

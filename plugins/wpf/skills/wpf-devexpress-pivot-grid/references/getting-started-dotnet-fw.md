@@ -6,13 +6,13 @@ This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-sta
 
 - .NET Framework 4.6.2 or newer
 - Visual Studio 2022+ (2019 also supported)
-- DevExpress WPF subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/) or DevExpress packages from nuget.org (see [getting-started.md § Step 1](getting-started.md) for the full source comparison)
+- DevExpress WPF subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/) for the designer-first workflow, or DevExpress NuGet packages from nuget.org
 - A valid DevExpress license
 
 ## Two Installation Paths
 
 1. **Unified Component Installer** (designer-first workflow). Run the installer, then drag `PivotGridControl` from the toolbox onto your XAML form. The toolbox lives under **DX.{version}: Data & Analytics**.
-2. **NuGet packages** (recommended for source control and CI builds). Install `DevExpress.Wpf.PivotGrid` from nuget.org or the local installer feed.
+2. **NuGet packages** (recommended for source control and CI builds). Install `DevExpress.Wpf.PivotGrid` from nuget.org.
 
 ## Path 1: Toolbox + Reset All
 

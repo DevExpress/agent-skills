@@ -1,0 +1,48 @@
+<Window x:Class="MyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        Title="DevExpress TreeList Quickstart" Height="500" Width="700">
+
+    <!-- 1. Self-referential tree — flat data with ID/ParentID -->
+    <dxg:TreeListControl x:Name="treeList" ItemsSource="{Binding Employees}">
+        <dxg:TreeListControl.View>
+            <dxg:TreeListView KeyFieldName="ID"
+                              ParentFieldName="ParentID"
+                              AutoWidth="True"
+                              AutoExpandAllNodes="True"
+                              AllowEditing="True"
+                              ValidateRow="OnValidateRow"/>
+        </dxg:TreeListControl.View>
+        <dxg:TreeListColumn FieldName="Name"       Header="Name"/>
+        <dxg:TreeListColumn FieldName="Department" Header="Department"/>
+        <dxg:TreeListColumn FieldName="Position"   Header="Position"/>
+    </dxg:TreeListControl>
+
+</Window>
+
+<!-- ============================================================
+     2. Hierarchical tree — children collection on each item
+     ============================================================
+<dxg:TreeListControl ItemsSource="{Binding Departments}">
+    <dxg:TreeListControl.View>
+        <dxg:TreeListView ChildNodesPath="SubDepartments"
+                          TreeDerivationMode="ChildNodesSelector"
+                          AutoWidth="True"
+                          AutoExpandAllNodes="True"/>
+    </dxg:TreeListControl.View>
+    <dxg:TreeListColumn FieldName="Name" Header="Department"/>
+</dxg:TreeListControl>
+
+     ============================================================
+     3. Drag-and-drop reordering
+     ============================================================
+<dxg:TreeListControl ItemsSource="{Binding Employees}">
+    <dxg:TreeListControl.View>
+        <dxg:TreeListView KeyFieldName="ID"
+                          ParentFieldName="ParentID"
+                          AllowDragDrop="True"/>
+    </dxg:TreeListControl.View>
+    <dxg:TreeListColumn FieldName="Name"/>
+</dxg:TreeListControl>
+-->

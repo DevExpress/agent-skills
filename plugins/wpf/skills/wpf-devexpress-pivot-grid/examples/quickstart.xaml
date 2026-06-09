@@ -29,17 +29,26 @@
                        Loaded="Window_Loaded"/>
 
      ============================================================
-     3. Chart integration — bound to pivot data
+     3. Chart integration — a ChartControl reads the pivot's
+        read-only ChartDataSource (requires
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts").
+        See references/chart-integration.md for the full pattern.
      ============================================================
 <dxpg:PivotGridControl x:Name="pivot" DataSource="{Binding Sales}"
-                       DataProcessingEngine="Optimized">
+                       DataProcessingEngine="Optimized"
+                       ChartProvideDataByColumns="True">
     <dxpg:PivotGridControl.Fields>
         <dxpg:PivotGridField Caption="Country"  FieldName="Country"   Area="RowArea"/>
         <dxpg:PivotGridField Caption="Year"     FieldName="OrderDate" Area="ColumnArea" GroupInterval="DateYear"/>
         <dxpg:PivotGridField Caption="Sales"    FieldName="Amount"    Area="DataArea"   SummaryType="Sum"/>
     </dxpg:PivotGridControl.Fields>
-    <dxpg:PivotGridControl.ChartDataSource>
-        <dxpg:PivotChartDataSource PivotGrid="{Binding ElementName=pivot}"/>
-    </dxpg:PivotGridControl.ChartDataSource>
 </dxpg:PivotGridControl>
+
+<dxc:ChartControl DataSource="{Binding ElementName=pivot, Path=ChartDataSource}">
+    <dxc:XYDiagram2D SeriesDataMember="Series">
+        <dxc:XYDiagram2D.SeriesTemplate>
+            <dxc:LineSeries2D ArgumentDataMember="Arguments" ValueDataMember="Values"/>
+        </dxc:XYDiagram2D.SeriesTemplate>
+    </dxc:XYDiagram2D>
+</dxc:ChartControl>
 -->

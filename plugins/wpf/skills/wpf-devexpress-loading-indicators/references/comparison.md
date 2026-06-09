@@ -204,7 +204,7 @@ public class MainViewModel : ViewModelBase {
 }
 ```
 
-See `xref:401692` in DxDocs for the full service API.
+See https://docs.devexpress.com/content/WPF/401692?md=true in DxDocs for the full service API.
 
 ## LoadingDecorator — In Depth
 
@@ -554,8 +554,8 @@ Status text updates while the indicator is visible.
 
 ## Source Material
 
-- `articles/controls-and-libraries/windows-and-utility-controls/splash-screen-manager.md` (`xref:401685`)
-- `articles/controls-and-libraries/windows-and-utility-controls/wait-indicator.md` (`xref:114373`)
-- `articles/mvvm-framework/services/predefined-set/splashscreenmanagerservice.md` (`xref:401692`)
+- `articles/controls-and-libraries/windows-and-utility-controls/splash-screen-manager.md` (https://docs.devexpress.com/content/WPF/401685?md=true)
+- `articles/controls-and-libraries/windows-and-utility-controls/wait-indicator.md` (https://docs.devexpress.com/content/WPF/114373?md=true)
+- `articles/mvvm-framework/services/predefined-set/splashscreenmanagerservice.md` (https://docs.devexpress.com/content/WPF/401692?md=true)
 - DxDocs API: `DevExpress.Xpf.Core.LoadingDecorator` — `OwnerLock`, `IsSplashScreenShown`, `UseSplashScreen`, `SplashScreenTemplate`, `SplashScreenDataContext`, `SplashScreenLocation`, `BorderEffect`, `UseFadeEffect`
 - DxDocs API: `DevExpress.Xpf.Core.SplashScreenLock` enum — `Full`, `InputOnly`, `LoadingContent`, `None`

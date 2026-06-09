@@ -16,7 +16,7 @@ dotnet add package DevExpress.Wpf.Core
 
 This brings `SplashScreenManager`, `LoadingDecorator`, and `WaitIndicator` plus `ThemedWindow` and MVVM helpers — no extra dependency needed.
 
-All DevExpress packages in a project must share the same version. DevExpress publishes on **nuget.org** (recommended) and via the local Unified Component Installer feed.
+All DevExpress packages in a project must share the same version.
 
 ## Step 2: Configure the Project
 
@@ -90,7 +90,7 @@ Variants (replace `CreateThemed` in Step 3 with one of these):
 | `CreateThemed(DXSplashScreenViewModel?)` | Themed: colors derive from the application theme. |
 | `CreateFluent(DXSplashScreenViewModel?)` | Fluent Design acrylic background. |
 | `CreateWaitIndicator(DXSplashScreenViewModel?)` | Compact circular spinner + status text. |
-| `Create(...)` | Custom splash window — see `xref:401690`. |
+| `Create(...)` | Custom splash window — see https://docs.devexpress.com/content/WPF/401690?md=true. |
 
 Show on demand instead of at startup:
 
@@ -213,7 +213,7 @@ Required assemblies (when not using NuGet):
 |---|---|
 | `DXSplashScreen.Show<SplashScreenView>()` | `SplashScreenManager.CreateThemed(...).ShowOnStartup()` (or `.Show()`) |
 | `DXSplashScreen.Close()` | `SplashScreenManager.CloseAll()` or per-instance `.Close()` |
-| Custom splash via project template | `SplashScreenManager.Create(typeof(CustomSplashWindow))` — see `xref:401690` |
+| Custom splash via project template | `SplashScreenManager.Create(typeof(CustomSplashWindow))` — see https://docs.devexpress.com/content/WPF/401690?md=true |
 | Auto-invoke via `[STAThread]` and `DXSplashScreen.Show...` | `SplashScreenManager.Create*().ShowOnStartup()` in `App` constructor |
 
 Both run on a separate UI thread; the migration is mostly an API rename + restructuring the call site to the `Create*().Show*()` chain.
@@ -224,8 +224,8 @@ Both run on a separate UI thread; the migration is mostly an API rename + restru
 
 ## Source Material
 
-- `articles/controls-and-libraries/windows-and-utility-controls/splash-screen-manager.md` (`xref:401685`)
-- `articles/controls-and-libraries/windows-and-utility-controls/wait-indicator.md` (`xref:114373`)
-- `articles/controls-and-libraries/windows-and-utility-controls.md` (`xref:115521`)
-- `articles/controls-and-libraries/windows-and-utility-controls/dxsplashscreen.md` (`xref:9949`) — legacy
+- `articles/controls-and-libraries/windows-and-utility-controls/splash-screen-manager.md` (https://docs.devexpress.com/content/WPF/401685?md=true)
+- `articles/controls-and-libraries/windows-and-utility-controls/wait-indicator.md` (https://docs.devexpress.com/content/WPF/114373?md=true)
+- `articles/controls-and-libraries/windows-and-utility-controls.md` (https://docs.devexpress.com/content/WPF/115521?md=true)
+- `articles/controls-and-libraries/windows-and-utility-controls/dxsplashscreen.md` (https://docs.devexpress.com/content/WPF/9949?md=true) — legacy
 - DxDocs API: `DevExpress.Xpf.Core.LoadingDecorator` (verified)

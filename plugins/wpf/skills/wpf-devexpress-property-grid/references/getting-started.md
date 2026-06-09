@@ -20,7 +20,7 @@ dotnet add package DevExpress.Wpf.PropertyGrid
 
 `DevExpress.Wpf.PropertyGrid` transitively brings `DevExpress.Wpf.Core` and `DevExpress.Wpf.Grid.Core` (the grid engine that renders rows).
 
-DevExpress publishes on **nuget.org** (recommended) and via the local feed from the Unified Component Installer. All DevExpress packages in a project must share the same version.
+All DevExpress packages in a project must share the same version.
 
 ## Step 2: Configure the Project
 
@@ -142,6 +142,6 @@ For .NET Framework projects, install the same NuGet package (or add an assembly 
 
 ## Source Material
 
-- `articles/controls-and-libraries/property-grid/overview.md` (`xref:15641`)
-- `articles/controls-and-libraries/property-grid/getting-started/creating-property-definitions.md` (`xref:15610`)
-- `articles/controls-and-libraries/property-grid/getting-started/managing-collection-properties.md` (`xref:15718`)
+- `articles/controls-and-libraries/property-grid/overview.md` (https://docs.devexpress.com/content/WPF/15641?md=true)
+- `articles/controls-and-libraries/property-grid/getting-started/creating-property-definitions.md` (https://docs.devexpress.com/content/WPF/15610?md=true)
+- `articles/controls-and-libraries/property-grid/getting-started/managing-collection-properties.md` (https://docs.devexpress.com/content/WPF/15718?md=true)

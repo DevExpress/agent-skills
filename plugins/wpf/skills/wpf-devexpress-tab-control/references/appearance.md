@@ -211,7 +211,7 @@ Adds a thin separator line that runs the entire width of the tab panel.
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/tab-control/concepts/appearance-customization.md` (`xref:113899`)
-- `articles/controls-and-libraries/layout-management/tab-control/examples/how-to-change-tab-background-in-dxtabcontrol-and-keep-the-default-gradient-and-highlight-effects.md` (`xref:115323`)
-- `articles/controls-and-libraries/layout-management/tab-control/examples/how-to-change-the-tab-background-in-dxtabcontrol-when-a-tab-is-selected-focused-or-hovered.md` (`xref:115324`)
+- `articles/controls-and-libraries/layout-management/tab-control/concepts/appearance-customization.md` (https://docs.devexpress.com/content/WPF/113899?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/examples/how-to-change-tab-background-in-dxtabcontrol-and-keep-the-default-gradient-and-highlight-effects.md` (https://docs.devexpress.com/content/WPF/115323?md=true)
+- `articles/controls-and-libraries/layout-management/tab-control/examples/how-to-change-the-tab-background-in-dxtabcontrol-when-a-tab-is-selected-focused-or-hovered.md` (https://docs.devexpress.com/content/WPF/115324?md=true)
 - GitHub: *wpf-dxtabcontrol-customize-header-footer-and-control-box-areas*

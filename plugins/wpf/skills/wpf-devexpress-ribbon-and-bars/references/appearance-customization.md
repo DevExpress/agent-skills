@@ -156,4 +156,4 @@ When the agent receives "customize this bar item's look":
 
 ## Source Material
 
-- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/appearance-customization.md` (`xref:401859`)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/appearance-customization.md` (https://docs.devexpress.com/content/WPF/401859?md=true)

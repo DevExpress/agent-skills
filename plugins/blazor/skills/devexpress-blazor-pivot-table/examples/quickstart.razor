@@ -1,0 +1,66 @@
+@* DevExpress Blazor Pivot Table — Quick Start Example
+   In-memory pivot with multi-level rows/columns, date grouping, multiple data fields, and a filter.
+   Add to Pages/ directory. Requires @using DevExpress.Blazor.PivotTable in _Imports.razor. *@
+@page "/pivot-quickstart"
+@rendermode InteractiveServer
+@using DevExpress.Blazor.PivotTable
+
+<h3>Sales Analysis</h3>
+
+<DxPivotTable Data="@Sales" ShowFieldList="true">
+    <Fields>
+        <DxPivotTableField Field="@nameof(Sale.Country)"
+                           Area="PivotTableArea.Row"
+                           AreaIndex="0"
+                           Caption="Country" />
+        <DxPivotTableField Field="@nameof(Sale.Category)"
+                           Area="PivotTableArea.Row"
+                           AreaIndex="1"
+                           Caption="Category" />
+        <DxPivotTableField Field="@nameof(Sale.OrderDate)"
+                           Area="PivotTableArea.Column"
+                           AreaIndex="0"
+                           GroupInterval="PivotTableGroupInterval.DateYear"
+                           Caption="Year" />
+        <DxPivotTableField Field="@nameof(Sale.OrderDate)"
+                           Area="PivotTableArea.Column"
+                           AreaIndex="1"
+                           GroupInterval="PivotTableGroupInterval.DateQuarter"
+                           Caption="Quarter" />
+        <DxPivotTableField Field="@nameof(Sale.Amount)"
+                           Area="PivotTableArea.Data"
+                           SummaryType="PivotTableSummaryType.Sum"
+                           Caption="Total Sales ($)" />
+        <DxPivotTableField Field="@nameof(Sale.Amount)"
+                           Area="PivotTableArea.Data"
+                           SummaryType="PivotTableSummaryType.Count"
+                           Caption="Order Count" />
+        <DxPivotTableField Field="@nameof(Sale.Region)"
+                           Area="PivotTableArea.Filter"
+                           Caption="Region" />
+    </Fields>
+</DxPivotTable>
+
+@code {
+    List<Sale> Sales { get; set; }
+
+    protected override void OnInitialized() {
+        Sales = new List<Sale> {
+            new Sale { Country = "USA",     Region = "West",    Category = "Electronics", OrderDate = new DateTime(2023, 1, 10), Amount = 1500 },
+            new Sale { Country = "USA",     Region = "East",    Category = "Clothing",    OrderDate = new DateTime(2023, 3, 15), Amount = 800 },
+            new Sale { Country = "USA",     Region = "West",    Category = "Electronics", OrderDate = new DateTime(2024, 2, 20), Amount = 2100 },
+            new Sale { Country = "UK",      Region = "North",   Category = "Electronics", OrderDate = new DateTime(2023, 6, 5),  Amount = 1200 },
+            new Sale { Country = "UK",      Region = "South",   Category = "Clothing",    OrderDate = new DateTime(2024, 4, 12), Amount = 600 },
+            new Sale { Country = "Germany", Region = "Central", Category = "Electronics", OrderDate = new DateTime(2023, 9, 18), Amount = 1800 },
+            new Sale { Country = "Germany", Region = "Central", Category = "Clothing",    OrderDate = new DateTime(2024, 1, 25), Amount = 950 },
+        };
+    }
+
+    public class Sale {
+        public string Country { get; set; }
+        public string Region { get; set; }
+        public string Category { get; set; }
+        public DateTime OrderDate { get; set; }
+        public decimal Amount { get; set; }
+    }
+}

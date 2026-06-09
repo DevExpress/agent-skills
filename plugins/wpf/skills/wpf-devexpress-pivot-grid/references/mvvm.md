@@ -161,19 +161,19 @@ Beyond `DataSource` (TwoWay) and `FieldsSource`, the Pivot Grid exposes bindable
   - `Selection` (`System.Drawing.Rectangle`, TwoWay) when `SelectMode = SolidSelection` — `Left`/`Top` are the top-left cell's column/row indices, `Width`/`Height` are the spans.
   - `MultiSelection` (`IMultipleSelection`, read-only) when `SelectMode = MultiSelection` (default) — provides the coordinates of all selected blocks.
   - `CellSelectionChanged` event to react to selection changes from a ViewModel.
-- **Drill-down arguments** via the `DrillDownDataSource` / `DrillDownCommand` pattern
+- **Drill-down** via `PivotGridControl.CreateDrillDownDataSource(...)` (or `CellInfo.DrillDownDataSource` for the cell behind a click)
 
 For drill-down from a ViewModel:
 
 ```csharp
 [Command]
 public void OnCellClick(object args) {
-    // Cast args to the appropriate event arg type; use pivot.GetDrillDownDataSource(cellInfo)
+    // Cast args to the appropriate event arg type; use pivot.CreateDrillDownDataSource(columnIndex, rowIndex)
     // to retrieve raw rows behind the clicked cell.
 }
 ```
 
-> Verify exact event-args type and bindable property names against your version via DxDocs MCP. The pattern is consistent with `GridControl` MVVM enhancements (`xref:115335`).
+> Verify exact event-args type and bindable property names against your version via DxDocs MCP. The pattern is consistent with `GridControl` MVVM enhancements (https://docs.devexpress.com/content/WPF/115335?md=true).
 
 ## Persist Layout from the ViewModel
 
@@ -194,6 +194,6 @@ The Pivot Grid extends those patterns with `FieldsSource` / `GroupsSource` and t
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/binding-to-a-collection-of-fields.md` (`xref:115438`)
+- `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/binding-to-a-collection-of-fields.md` (https://docs.devexpress.com/content/WPF/115438?md=true)
 - `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/binding-to-a-collection-of-groups.md`
-- `articles/controls-and-libraries/pivot-grid/examples/binding-to-data/how-to-bind-the-pivot-grid-to-fields-and-groups-specified-in-viewmodel.md` (`xref:118813`)
+- `articles/controls-and-libraries/pivot-grid/examples/binding-to-data/how-to-bind-the-pivot-grid-to-fields-and-groups-specified-in-viewmodel.md` (https://docs.devexpress.com/content/WPF/118813?md=true)

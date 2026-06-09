@@ -39,7 +39,7 @@ pivotGridControl1.DataProcessingEngine = DataProcessingEngine.Optimized;
 pivotGridControl1.DataSource = sales;   // List<Sale>
 ```
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data.md` (root) and `xref:404337` (In-Memory Mode).
+Source: `articles/controls-and-libraries/pivot-grid/binding-to-data.md` (root) and https://docs.devexpress.com/content/WPF/404337?md=true (In-Memory Mode).
 
 ## ADO.NET — DataTable from OLE DB / SQL
 
@@ -96,7 +96,7 @@ pivotGridControl1.DataSource = source;
 
 The control queries the server for aggregated cell values — only the cells visible in the pivot are computed.
 
-Source: `articles/controls-and-libraries/pivot-grid.md` § Binding to Data → Server Mode (`xref:18010`).
+Source: `articles/controls-and-libraries/pivot-grid.md` § Binding to Data → Server Mode (https://docs.devexpress.com/content/WPF/18010?md=true).
 
 ## OLAP (Microsoft Analysis Services Cube)
 
@@ -150,7 +150,7 @@ pivotGridControl1.RetrieveFields();                  // Auto-create PivotGridFie
 
 > **You cannot bind the Pivot Grid to data at design time in .NET 5+ projects.** Use code-only setup (above) on modern .NET. Design-time wizards work only on .NET Framework. See `articles/controls-and-libraries/pivot-grid/getting-started/NET-Framework/lesson-2-bind-a-pivot-grid-to-an-olap-cube.md` for .NET Framework design-time path.
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/olap-data-source/binding-to-olap-data-sources.md` (`xref:8015`).
+Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/olap-data-source/binding-to-olap-data-sources.md` (https://docs.devexpress.com/content/WPF/8015?md=true).
 
 ## Asynchronous Mode
 
@@ -202,7 +202,7 @@ pivotGridControl1.AsyncOperationCompleted += (s, e) => statusBar.Text = "Ready";
 
 In async mode, summary-calculation events (`CustomCellValue`, `CustomSummary`, etc.) fire on the **background thread**, not the UI thread. Do NOT touch UI elements from these handlers — use `Dispatcher.Invoke` if you must.
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/asynchronous-mode.md` (`xref:9776`).
+Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/asynchronous-mode.md` (https://docs.devexpress.com/content/WPF/9776?md=true).
 
 ## Items Source Configuration Wizard (Design Time)
 
@@ -218,7 +218,7 @@ The Quick Actions smart tag on `PivotGridControl` opens the **Items Source Confi
 
 The wizard generates the connection plumbing + field setup. Use this path when you prefer designer-driven scaffolding.
 
-Source: `articles/controls-and-libraries/pivot-grid.md` references the wizard at `xref:115629`.
+Source: `articles/controls-and-libraries/pivot-grid.md` references the wizard at https://docs.devexpress.com/content/WPF/115629?md=true.
 
 ## Calculated Expression Fields
 
@@ -233,11 +233,11 @@ profitField.DataBinding = new ExpressionDataBinding { Expression = "[Revenue] - 
 
 The expression uses [Criteria Language Syntax](https://docs.microsoft.com/) — same as `GridControl` filters. Field names go in square brackets.
 
-Source: `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md` § Bind Pivot Grid Fields to Data → Calculated Expressions (`xref:8025`).
+Source: `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md` § Bind Pivot Grid Fields to Data → Calculated Expressions (https://docs.devexpress.com/content/WPF/8025?md=true).
 
 ## Window Calculations
 
-Window calculations (running totals, percent-of-parent, rank, moving averages, arbitrary window expressions) use one of the window-calculation binding classes — `RunningTotalBinding`, `DifferenceBinding`, `RankBinding`, `PercentOfTotalBinding`, `MovingCalculationBinding`, `WindowExpressionBinding`. All inherit from `DirectedCalculationBinding`. See [data-shaping.md](data-shaping.md) § Window Calculations and `xref:403913` in the docs.
+Window calculations (running totals, percent-of-parent, rank, moving averages, arbitrary window expressions) use one of the window-calculation binding classes — `RunningTotalBinding`, `DifferenceBinding`, `RankBinding`, `PercentOfTotalBinding`, `MovingCalculationBinding`, `WindowExpressionBinding`. All inherit from `DirectedCalculationBinding`. See [data-shaping.md](data-shaping.md) § Window Calculations and https://docs.devexpress.com/content/WPF/403913?md=true in the docs.
 
 ## Choosing the Right Mode
 

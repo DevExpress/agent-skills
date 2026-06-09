@@ -1,7 +1,7 @@
 ---
 name: wpf-devexpress-property-grid
 description: Build WPF property editors with the DevExpress PropertyGridControl — bind any object via SelectedObject (or multiple via SelectedObjects), define which properties show via PropertyDefinition, edit collections inline via CollectionDefinition (with NewItemInitializer for add/remove), group properties via [Category] attribute and CategoryDefinition (flat / Visible / Tabbed modes), and control expandability of nested objects via TypeConverter / ExpandableObjectConverter / AllowExpanding. Use when building visual designers, settings dialogs, diagram property panels, report designers, or any view that lets a user inspect and edit an arbitrary object's properties at runtime. Also use when someone mentions "PropertyGridControl", "PropertyDefinition", "CollectionDefinition", "CategoryDefinition", "ShowCategories", "ShowProperties", "ExpandableObjectConverter", "AllowExpanding", or "dxprg:". Covers .NET (6/7/8+) and .NET Framework 4.6.2+.
-compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows. NuGet package `DevExpress.Wpf.PropertyGrid` (or assembly reference `DevExpress.Xpf.PropertyGrid.v26.1.dll`). DevExpress NuGet packages are published on nuget.org and via the local Unified Component Installer feed. A valid DevExpress license is required.
+compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows. NuGet package `DevExpress.Wpf.PropertyGrid` (or assembly reference `DevExpress.Xpf.PropertyGrid.v26.1.dll`). A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"

@@ -1,0 +1,84 @@
+@* DevExpress Blazor AI Chat — Save and Restore Conversation History Example
+   File: Pages/AIChatHistory.razor
+
+   Demonstrates:
+   - Saving conversation history via DxAIChat.SaveMessages()
+   - Restoring history on the next visit via IAIChat.LoadMessages()
+   - Keeping history in component state (in-memory across navigations when using a scoped service)
+
+   Program.cs setup: see quickstart.razor
+
+   To persist history across page navigations, register a scoped service in Program.cs:
+
+   builder.Services.AddScoped<ChatHistoryService>();
+
+   Then inject it: @inject ChatHistoryService HistoryService
+   and replace the savedHistory field with HistoryService.Messages.
+   For cross-session persistence, serialize to localStorage or a database instead. *@
+
+@page "/ai-chat-history"
+@rendermode InteractiveServer
+@using DevExpress.AIIntegration.Blazor.Chat
+@using Microsoft.Extensions.AI
+
+<PageTitle>AI Chat — Conversation History</PageTitle>
+<h1>AI Chat — Conversation History</h1>
+
+<div class="mb-3 d-flex gap-2">
+    <button class="btn btn-outline-primary" @onclick="SaveHistory">
+        Save conversation
+    </button>
+    <button class="btn btn-outline-secondary" @onclick="ClearHistory">
+        Clear saved history
+    </button>
+    @if (saveMessage is not null) {
+        <span class="text-success align-self-center">@saveMessage</span>
+    }
+</div>
+
+<DxAIChat @ref="chatRef"
+          Initialized="ChatInitialized"
+          ResponseContentFormat="ResponseContentFormat.Markdown" />
+
+@code {
+    DxAIChat? chatRef;
+    string? saveMessage;
+
+    // In-component history store.
+    // Replace with an injected scoped service or localStorage to survive navigation.
+    List<BlazorChatMessage> savedHistory = new();
+
+    async Task ChatInitialized(IAIChat chat) {
+        // Always inject the system prompt first, then restore saved messages.
+        var messages = new List<BlazorChatMessage> {
+            new BlazorChatMessage(ChatRole.System,
+                "You are a helpful assistant. Be concise and clear.")
+        };
+
+        // Append any previously saved conversation messages
+        if (savedHistory.Count > 0) {
+            messages.AddRange(savedHistory);
+        }
+
+        chat.LoadMessages(messages);
+    }
+
+    void SaveHistory() {
+        if (chatRef is null) return;
+
+        // SaveMessages() snapshots all visible messages (user + assistant).
+        // Filter out system messages — they are re-injected in ChatInitialized.
+        savedHistory = chatRef.SaveMessages()
+                              .Where(m => m.Role != ChatRole.System)
+                              .ToList();
+
+        saveMessage = $"Saved {savedHistory.Count} message(s) at {DateTime.Now:HH:mm:ss}";
+        StateHasChanged();
+    }
+
+    void ClearHistory() {
+        savedHistory.Clear();
+        saveMessage = "History cleared.";
+        StateHasChanged();
+    }
+}

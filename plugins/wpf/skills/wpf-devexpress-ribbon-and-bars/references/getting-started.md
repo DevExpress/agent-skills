@@ -22,7 +22,7 @@ If you're building a **bars-only UI** (no Ribbon, just `MainMenuControl` / `Tool
 dotnet add package DevExpress.Wpf.Bars
 ```
 
-DevExpress publishes on **nuget.org** (recommended) and via the local feed from the Unified Component Installer. All DevExpress packages in a project must share the same version.
+All DevExpress packages in a project must share the same version.
 
 ## Step 2: Configure the Project
 
@@ -195,6 +195,6 @@ dotnet run
 
 ## Source Material
 
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/overview/getting-started.md` (`xref:11443`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-control.md` (`xref:7954`)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/dxribbonwindow.md` (`xref:7980`)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/overview/getting-started.md` (https://docs.devexpress.com/content/WPF/11443?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-control.md` (https://docs.devexpress.com/content/WPF/7954?md=true)
+- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/dxribbonwindow.md` (https://docs.devexpress.com/content/WPF/7980?md=true)

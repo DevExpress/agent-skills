@@ -247,6 +247,6 @@ Bind `IsExpanded` to a ViewModel boolean to programmatically expand / collapse (
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/view-mode.md` (`xref:120285`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/collapse-mode.md` (`xref:119732`)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/expanding-and-collapsing.md` (`xref:119808`)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/view-mode.md` (https://docs.devexpress.com/content/WPF/120285?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/collapse-mode.md` (https://docs.devexpress.com/content/WPF/119732?md=true)
+- `articles/controls-and-libraries/navigation-controls/accordion-control/expanding-and-collapsing.md` (https://docs.devexpress.com/content/WPF/119808?md=true)

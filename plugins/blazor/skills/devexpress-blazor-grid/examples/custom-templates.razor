@@ -1,0 +1,119 @@
+@* DevExpress Blazor Grid — Custom Templates Example
+   CellDisplayTemplate (badge rendering), EditFormTemplate with DxFormLayout,
+   HeaderCaptionTemplate, and ToolbarTemplate with export button. *@
+@page "/grid-templates"
+@rendermode InteractiveServer
+@using System.ComponentModel.DataAnnotations
+
+<DxGrid @ref="Grid"
+        Data="@Orders"
+        KeyFieldName="Id"
+        EditMode="GridEditMode.EditForm"
+        EditModelSaving="OnEditModelSaving"
+        DataItemDeleting="OnDataItemDeleting">
+
+    <ToolbarTemplate>
+        <DxToolbar>
+            <DxToolbarItem Text="Export to PDF" Click="@(() => Grid.ExportToPdfAsync("orders.pdf"))" />
+        </DxToolbar>
+    </ToolbarTemplate>
+
+    <Columns>
+        <DxGridCommandColumn Width="120px" />
+
+        <DxGridDataColumn FieldName="OrderNumber" Caption="Order #" />
+
+        <DxGridDataColumn FieldName="Status">
+            <HeaderCaptionTemplate>
+                <strong>Status</strong>
+            </HeaderCaptionTemplate>
+            <CellDisplayTemplate>
+                @{
+                    var status = context.Value?.ToString() ?? "";
+                    var css = status switch {
+                        "Shipped"   => "bg-success",
+                        "Pending"   => "bg-warning text-dark",
+                        "Cancelled" => "bg-danger",
+                        _           => "bg-secondary"
+                    };
+                }
+                <span class="badge @css">@status</span>
+            </CellDisplayTemplate>
+        </DxGridDataColumn>
+
+        <DxGridDataColumn FieldName="Amount" DisplayFormat="C2" />
+
+        <DxGridDataColumn FieldName="OrderDate" DisplayFormat="d">
+            <CellDisplayTemplate>
+                @{
+                    var date = (DateTime)context.Value;
+                    var isOverdue = date < DateTime.Today;
+                }
+                <span style="color: @(isOverdue ? "red" : "inherit")">
+                    @context.DisplayText
+                </span>
+            </CellDisplayTemplate>
+        </DxGridDataColumn>
+    </Columns>
+
+    <EditFormTemplate Context="editFormContext">
+        <DxFormLayout>
+            <DxFormLayoutItem Caption="Order #:" ColSpanMd="6">
+                @editFormContext.GetEditor("OrderNumber")
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Status:" ColSpanMd="6">
+                @editFormContext.GetEditor("Status")
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Amount:" ColSpanMd="6">
+                @editFormContext.GetEditor("Amount")
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Order Date:" ColSpanMd="6">
+                @editFormContext.GetEditor("OrderDate")
+            </DxFormLayoutItem>
+        </DxFormLayout>
+    </EditFormTemplate>
+
+</DxGrid>
+
+@code {
+    IGrid Grid;
+    List<Order> Orders { get; set; }
+
+    protected override void OnInitialized() {
+        Orders = new List<Order> {
+            new Order { Id = 1, OrderNumber = "ORD-001", Status = "Shipped",   Amount = 250.00m, OrderDate = DateTime.Today.AddDays(-10) },
+            new Order { Id = 2, OrderNumber = "ORD-002", Status = "Pending",   Amount = 89.50m,  OrderDate = DateTime.Today.AddDays(-2) },
+            new Order { Id = 3, OrderNumber = "ORD-003", Status = "Cancelled", Amount = 410.00m, OrderDate = DateTime.Today.AddDays(-30) },
+            new Order { Id = 4, OrderNumber = "ORD-004", Status = "Shipped",   Amount = 175.25m, OrderDate = DateTime.Today.AddDays(-5) },
+        };
+    }
+
+    async Task OnEditModelSaving(GridEditModelSavingEventArgs e) {
+        var model = (Order)e.EditModel;
+        if (e.IsNew) {
+            model.Id = Orders.Max(o => o.Id) + 1;
+            Orders.Add(model);
+        } else {
+            e.CopyChangesToDataItem();
+        }
+    }
+
+    async Task OnDataItemDeleting(GridDataItemDeletingEventArgs e) {
+        Orders.Remove((Order)e.DataItem);
+    }
+
+    public class Order {
+        public int Id { get; set; }
+
+        [Required]
+        public string OrderNumber { get; set; }
+
+        [Required]
+        public string Status { get; set; }
+
+        [Range(0.01, double.MaxValue)]
+        public decimal Amount { get; set; }
+
+        public DateTime OrderDate { get; set; }
+    }
+}

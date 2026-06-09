@@ -151,5 +151,5 @@ statusField.KpiGraphic = PivotKpiGraphic.TrafficLights;   // NOT ServerDefined f
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/data-analysis/key-performance-indicators-kpis.md` (`xref:11641`)
+- `articles/controls-and-libraries/pivot-grid/data-analysis/key-performance-indicators-kpis.md` (https://docs.devexpress.com/content/WPF/11641?md=true)
 - [Analysis Services KPI documentation](https://docs.microsoft.com/en-us/sql/analysis-services/multidimensional-models/key-performance-indicators-kpis-in-multidimensional-models)

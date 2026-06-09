@@ -216,6 +216,6 @@ Three tabs across the top, each with an icon. Users edit each section independen
 
 ## Source Material
 
-- `articles/controls-and-libraries/property-grid/property-categories.md` (`xref:117082`)
-- `articles/controls-and-libraries/property-grid/visual-elements/category.md` (`xref:116320`)
-- `articles/controls-and-libraries/property-grid/visual-elements/tool-panel.md` (`xref:15624`)
+- `articles/controls-and-libraries/property-grid/property-categories.md` (https://docs.devexpress.com/content/WPF/117082?md=true)
+- `articles/controls-and-libraries/property-grid/visual-elements/category.md` (https://docs.devexpress.com/content/WPF/116320?md=true)
+- `articles/controls-and-libraries/property-grid/visual-elements/tool-panel.md` (https://docs.devexpress.com/content/WPF/15624?md=true)

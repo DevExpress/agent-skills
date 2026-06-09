@@ -262,7 +262,7 @@ See the GitHub sample referenced above for the full pattern.
 
 ## Source Material
 
-- `articles/controls-and-libraries/property-grid/property-definitions/collection-definitions.md` (`xref:15719`)
-- `articles/controls-and-libraries/property-grid/getting-started/managing-collection-properties.md` (`xref:15718`)
+- `articles/controls-and-libraries/property-grid/property-definitions/collection-definitions.md` (https://docs.devexpress.com/content/WPF/15719?md=true)
+- `articles/controls-and-libraries/property-grid/getting-started/managing-collection-properties.md` (https://docs.devexpress.com/content/WPF/15718?md=true)
 - GitHub: *wpf-propertygrid-add-an-item-to-a-collection-or-a-dictionary*
 - GitHub: *wpf-property-grid-specify-custom-collection-edit-actions*
