@@ -105,7 +105,7 @@ Use Copilot Chat in agent mode. Skills are activated automatically based on your
 
 #### **Visual Studio 2022 / 2026**
 
-Visual Studio reads skills from the same .github/skills/ folder. After copying the files, open Copilot Chat (View ? GitHub Copilot Chat) and switch to agent mode. No additional configuration is needed.
+Visual Studio reads skills from the same .github/skills/ folder. After copying the files, open Copilot Chat (View > GitHub Copilot Chat) and switch to agent mode. No additional configuration is needed.
 
 #### **JetBrains Rider / WebStorm**
 
