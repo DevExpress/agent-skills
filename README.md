@@ -98,7 +98,7 @@ To reference a skill manually, use /:
 After placing skill files in .github/skills/:
 
 1. Open Settings (Ctrl+, / Cmd+,).
-2. Search for `сhat.agent.skills`.
+2. Search for `chat.agent.skills`.
 3. Select **Chat: Use Agent Skills.**
 
 Use Copilot Chat in agent mode. Skills are activated automatically based on your question.
