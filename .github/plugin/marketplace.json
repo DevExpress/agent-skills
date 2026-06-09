@@ -9,32 +9,32 @@
   },
   "plugins": [
     {
-      "name": "blazor",
+      "name": "dx-blazor",
       "source": "./plugins/blazor",
       "description": "DevExpress Blazor skills: AI Chat, charts, gauges, Grid, Treelist, Pivot Table, Scheduler, Combo Box, Ribbon, and Toolbar."
     },
     {
-      "name": "devextreme",
+      "name": "dx-devextreme",
       "source": "./plugins/devextreme",
       "description": "DevExtreme JavaScript UI skills: DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, and Theming for Angular, React, Vue, and jQuery."
     },
     {
-      "name": "office-file-api",
+      "name": "dx-office-file-api",
       "source": "./plugins/office-file-api",
       "description": "DevExpress Office File API skills: Spreadsheet, Word Processing, legacy PDF, new PDF (CTP), Presentation, Barcode, Unit Conversion, Excel Export, Zip, and AI-Powered Extensions for headless .NET document automation."
     },
     {
-      "name": "reporting",
+      "name": "dx-reporting",
       "source": "./plugins/reporting",
       "description": "DevExpress XtraReports skills for .NET, ASP.NET Core, Blazor, and Visual Studio designer code patterns: runtime report creation, web viewer/designer integration, safe *.Designer.cs edits, report storage, customization, and export (PDF, XLSX, DOCX, and more)."
     },
     {
-      "name": "wpf",
+      "name": "dx-wpf",
       "source": "./plugins/wpf",
       "description": "DevExpress WPF skills: Data Grid, Tree List, Pivot Grid, Scheduler, Charts, Tab Control, Ribbon and Bars, MVVM Framework, Property Grid, Data Editors, Layout Management, Loading Indicators, Accordion, AI Chat Control."
     },
     {
-      "name": "xaf",
+      "name": "dx-xaf",
       "source": "./plugins/xaf",
       "description": "DevExpress XAF (eXpressApp Framework) skills: business model, business logic, controllers, views, editors, filtering, appearance, validation, security, reports, and performance for EF Core and XPO."
     }
