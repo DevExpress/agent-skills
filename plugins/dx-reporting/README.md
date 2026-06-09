@@ -17,6 +17,14 @@ All released skills target DevExpress Reports v26.1.
 
 ---
 
+## Agents
+
+| Agent | Description |
+|---|---|
+| [devexpress-report-designer-expert](agents/devexpress-report-designer-expert.agent.md) | The DevExpress Report Designer Expert is a custom GitHub Copilot agent that assists with report development in the Visual Studio Report Designer. The agent gives Copilot DevExpress Reports-specific context, including API patterns, expression syntax, designer rules, and best practices. This helps you create and edit reports with fewer errors in `*.Designer.cs` files. |
+
+---
+
 ## Skill Layout
 
 Each skill is self-contained and follows the same structure:

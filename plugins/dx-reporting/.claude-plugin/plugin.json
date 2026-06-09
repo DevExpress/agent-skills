@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "skills": "./skills/",
+  "agents": "./agents/",
   "keywords": [
     "devexpress",
     "reporting",

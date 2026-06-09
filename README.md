@@ -6,15 +6,22 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 
 ## **Available Skills**
 
-|  |  |  |
-| --- | --- | --- |
-| **Product** | **Skills** | **Docs** |
-| [JavaScript & ASP.NET Core - DevExtreme](plugins/dx-devextreme/README.md) | DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, Theming | [Overview](https://js.devexpress.com/Documentation/) |
-| [WinForms Controls](plugins/dx-winforms/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
-| [WPF Controls](plugins/dx-wpf/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/WPF/) |
-| [.NET Reports](plugins/dx-reporting/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/XtraReports/) |
-| [Office & PDF File API](plugins/dx-office-file-api/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
-| [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | *(coming soon)* | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
+| **Product**                                                           | **Skills** | **Docs** |
+|-----------------------------------------------------------------------| --- | --- |
+| [DevExtreme JavaScript](plugins/dx-devextreme/README.md)              | DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, Theming | [Overview](https://js.devexpress.com/Documentation/) |
+| [Blazor Components](plugins/dx-blazor/README.md)                      | AI Chat, Charts, ComboBox, Gauges, Grid, Pivot Table, Ribbon, Scheduler, Toolbar, TreeList | [Overview](https://docs.devexpress.com/Blazor/) |
+| [WPF Controls](plugins/dx-wpf/README.md)                              | Data Grid, Tree List, Pivot Grid, Property Grid, Data Editors, Layout Management, Ribbon & Bars, Accordion, Tab Control, Charts, Scheduler, Loading Indicators, AI Chat, MVVM | [Overview](https://docs.devexpress.com/WPF/) |
+| [DevExpress Reports](plugins/dx-reporting/README.md)                  | Core API, ASP.NET Core, Blazor, Visual Studio Designer | [Overview](https://docs.devexpress.com/XtraReports/) |
+| [Office & PDF File API](plugins/dx-office-file-api/README.md)         | Spreadsheet, Word Processing, PDF, PDF New (CTP), Presentation, Barcode, Unit Conversion, Excel Export, ZIP, AI-powered Extensions | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
+| [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | Business Model, Business Logic, Business Logic XPO, Controllers, Views, Editors, Filtering, Filtering XPO, Appearance, Validation, Security, Reports, Performance | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
+| ASP.NET Core Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/AspNetCore/) |
+
+| WinForms Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
+
+| VCL Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/VCL/) |
+
+| BI Dashboard | *(coming soon)* | [Overview](https://docs.devexpress.com/Dashboard/) |
+
 
 ## **Installation**
 
@@ -47,9 +54,8 @@ cp -r plugins/dx-devextreme/skills/* /your-project/.github/skills/
 
 Copy to the following folders for a global installation (active in all projects):
 
-|  |  |
-| --- | --- |
 | **Platform** | **Path** |
+| --- | --- |
 | Windows | %USERPROFILE%\.copilot\skills\ |
 | macOS / Linux | ~/.copilot/skills/ |
 
@@ -61,7 +67,7 @@ Skills in .github/skills/ are discovered automatically when Copilot runs in agen
 
 To reference a skill manually in Copilot Chat, use #:
 
-#devextreme-datagrid How do I activate inline row editing?
+> #devextreme-datagrid How do I activate inline row editing?
 
 [GitHub Copilot skills documentation](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line/using-agent-skills-with-copilot-in-the-cli)
 
@@ -84,7 +90,7 @@ Skills activate automatically. No additional configuration is needed once the fi
 
 To reference a skill manually, use /:
 
-/devextreme-datagrid How do I activate inline row editing?
+> /devextreme-datagrid How do I activate inline row editing?
 
 [Claude Code skills documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
 
@@ -116,40 +122,27 @@ Skills are activated automatically based on your question.
 
 #### **Cursor**
 
-This repository can be installed from the Cursor plugin marketplace:
+Cursor reads skills from `.cursor/skills/` in your project root, or `~/.cursor/skills/` globally.
 
-1. Open the marketplace panel in Cursor.
-2. Search for `DevExpress`
+```bash
+# Project-level
+mkdir -p .cursor/skills
+cp -r plugins/dx-devextreme/skills/* .cursor/skills/
 
-For a local installation, copy skill folders to ~/.cursor/plugins/local/devexpress-agent-skills.
+# Global
+mkdir -p ~/.cursor/skills
+cp -r plugins/dx-devextreme/skills/* ~/.cursor/skills/
+```
 
-## **License TODO!!!!!**
+Skills activate automatically in agent mode. No additional configuration is needed once the files are in place.
+
+- [Cursor plugins documentation](https://cursor.com/docs/plugins)
+
+> /devextreme-datagrid How do I activate inline row editing?
+
+- [Cursor plugins documentation](https://cursor.com/docs/plugins) 
+- [Cursor skills documentation](https://cursor.com/docs/skills)
+
+## **License**
 
 [MIT](LICENSE)
-
-# **DevExtreme Skills**
-
-AI agent skills for [DevExtreme](https://js.devexpress.com/) - the DevExpress UI component library for Angular, React, Vue, and jQuery.
-
-All skills target DevExtreme v25.2+.
-
-## **Skills**
-
-|  |  |  |
-| --- | --- | --- |
-| **Skill** | **Covers** | **Docs** |
-| [devextreme-datagrid](plugins/dx-devextreme/skills/devextreme-datagrid/) | DataGrid: columns, editing, filtering, sorting, grouping, selection, paging, scrolling, summaries, export, toolbar, master-detail, remote operations, AI columns | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Overview/) |
-| [devextreme-scheduler](plugins/dx-devextreme/skills/devextreme-scheduler/) | Scheduler: views, appointments, recurrence, resources, grouping, remote data, toolbar customization | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Scheduler/Overview/) |
-| [devextreme-form](plugins/dx-devextreme/skills/devextreme-form/) | Form: simple items, groups, tabs, columns, validation rules, editor options, Smart Paste, AI form filling | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Form/Overview/) |
-| [devextreme-chat](plugins/dx-devextreme/skills/devextreme-chat/) | Chat: messages, typing indicators, alerts, suggestion buttons, AI service integration, streaming responses | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Chat/Overview/) |
-| [devextreme-button](plugins/dx-devextreme/skills/devextreme-button/) | Button: types, styling modes, icons, form submission, validation, custom templates | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Button/Overview/) |
-| [devextreme-selectbox](plugins/dx-devextreme/skills/devextreme-selectbox/) | SelectBox: data binding, valueExpr/displayExpr, search, custom items, grouping, value change events | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/SelectBox/Overview/) |
-| [devextreme-datebox](plugins/dx-devextreme/skills/devextreme-datebox/) | DateBox: date/time/datetime types, formatting, range limits, disabled dates, value change events | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/DateBox/Overview/) |
-| [devextreme-checkbox](plugins/dx-devextreme/skills/devextreme-checkbox/) | CheckBox: value states, three-state (indeterminate) behavior, labels, value change events | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/CheckBox/Getting_Started_with_CheckBox/) |
-| [devextreme-numberbox](plugins/dx-devextreme/skills/devextreme-numberbox/) | NumberBox: min/max, format, spin buttons, invalid value handling | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/NumberBox/Getting_Started_with_NumberBox/) |
-| [devextreme-textbox](plugins/dx-devextreme/skills/devextreme-textbox/) | TextBox: input modes, labels, placeholders, masking, clear button, password field | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/TextBox/Getting_Started_with_TextBox/) |
-| [devextreme-textarea](plugins/dx-devextreme/skills/devextreme-textarea/) | TextArea: auto-resize, min/max height, value binding, value change events | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/TextArea/Getting_Started_with_TextArea/) |
-| [devextreme-datasource](plugins/dx-devextreme/skills/devextreme-datasource/) | DataSource, ArrayStore, ODataStore, CustomStore, LocalStore: load functions, remote operations, paging, filtering | [Overview](https://js.devexpress.com/Documentation/Guide/Data_Binding/Data_Layer/) |
-| [devextreme-theming](plugins/dx-devextreme/skills/devextreme-theming/) | Themes: Generic, Material, Fluent; ThemeBuilder UI and CLI; SCSS variables; color swatches; runtime switching | [Overview](https://js.devexpress.com/Documentation/Guide/Themes_and_Styles/Predefined_Themes/) |
-
-See the [repository README](README.md) for agent-specific and IDE-specific setup instructions.
