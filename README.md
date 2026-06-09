@@ -14,10 +14,10 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 | [DevExpress Reports](plugins/dx-reporting/README.md)                  | Core API, ASP.NET Core, Blazor, Visual Studio Designer | [Overview](https://docs.devexpress.com/XtraReports/) |
 | [Office & PDF File API](plugins/dx-office-file-api/README.md)         | Spreadsheet, Word Processing, PDF, PDF New (CTP), Presentation, Barcode, Unit Conversion, Excel Export, ZIP, AI-powered Extensions | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
 | [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | Business Model, Business Logic, Business Logic XPO, Controllers, Views, Editors, Filtering, Filtering XPO, Appearance, Validation, Security, Reports, Performance | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
-| [ASP.NET Core Controls](plugins/dx-aspnetcore/README.md)              | *(coming soon)* | [Overview](https://docs.devexpress.com/AspNetCore/) |
-| [WinForms Controls](plugins/dx-winforms/README.md)                    | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
-| [VCL Controls](plugins/dx-vcl/README.md)                              | *(coming soon)* | [Overview](https://docs.devexpress.com/VCL/) |
-| [BI Dashboard](plugins/dx-dashboard/README.md)                        | *(coming soon)* | [Overview](https://docs.devexpress.com/Dashboard/) |
+| ASP.NET Core Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/AspNetCore/) |
+| WinForms Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
+| VCL Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/VCL/) |
+| BI Dashboard | *(coming soon)* | [Overview](https://docs.devexpress.com/Dashboard/) |
 
 ## **Installation**
 
