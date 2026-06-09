@@ -112,7 +112,7 @@ Visual Studio reads skills from the same .github/skills/ folder. After copying t
 Skills are discovered by the [GitHub Copilot plugin](https://plugins.jetbrains.com/plugin/17718-github-copilot). After installing the plugin and signing in:
 
 1. Copy skill folders into .github/skills/ in your project root.
-2. Open the Copilot Chat panel (Tools ? GitHub Copilot ? Open GitHub Copilot Chat).
+2. Open the Copilot Chat panel (Tools > GitHub Copilot > Open GitHub Copilot Chat).
 3. Switch to agent mode.
 
 Skills are activated automatically based on your question.
