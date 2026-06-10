@@ -31,7 +31,7 @@ This plugin contains AI agent skills for [DevExpress Blazor Components](https://
 
 ---
 
-## Skill Folder Content
+## Skill Folder Contents
 
 Each skill folder contains the following files and sub-directories:
 
