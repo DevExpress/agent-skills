@@ -169,7 +169,7 @@ After placing skill files in `.github/skills/`:
 
 Use Copilot Chat in agent mode. Skills are activated automatically based on your question.
 
-[VS Code agent plugins documentation](https://code.visualstudio.com/docs/agent-customization/agent-plugins)
+[VS Code agent plugin documentation](https://code.visualstudio.com/docs/agent-customization/agent-plugins)
 
 #### **Visual Studio 2022 / 2026**
 
