@@ -12,10 +12,10 @@ All skills target DevExpress v26.1.
 
 | Skill | Covers | Docs |
 |---|---|---|
-| [devexpress-wpf-data-grid](devexpress-wpf-data-grid/)       | `GridControl` — TableView / CardView / TreeListView, data binding (EF Core, XPO, server mode), columns, sorting, filtering, grouping, summaries, master-detail, conditional formatting, printing & export | [DataGrid Documentation](https://docs.devexpress.com/WPF/6084/controls-and-libraries/data-grid)         |
-| [devexpress-wpf-tree-list](devexpress-wpf-tree-list/)       | `TreeListControl` — self-referential / hierarchical / unbound modes, drag-and-drop, multi-selection, edit forms, validation | [TreeList Documentation](https://docs.devexpress.com/WPF/9759/controls-and-libraries/tree-list)         |
-| [devexpress-wpf-pivot-grid](devexpress-wpf-pivot-grid/)     | `PivotGridControl` — Row / Column / Data / Filter areas, OLAP, server mode, aggregation, drill-down, KPI, conditional formatting | [PivotGrid Documentation](https://docs.devexpress.com/WPF/7228/controls-and-libraries/pivot-grid)       |
-| [devexpress-wpf-property-grid](devexpress-wpf-property-grid/) | `PropertyGridControl` — `SelectedObject(s)`, `PropertyDefinition`, `CollectionDefinition`, `CategoryDefinition`, expandable nested types | [PropertyGrid Documentation](https://docs.devexpress.com/WPF/15640/controls-and-libraries/property-grid) |
+| [devexpress-wpf-data-grid](skills/devexpress-wpf-data-grid/)       | `GridControl` — TableView / CardView / TreeListView, data binding (EF Core, XPO, server mode), columns, sorting, filtering, grouping, summaries, master-detail, conditional formatting, printing & export | [DataGrid Documentation](https://docs.devexpress.com/WPF/6084/controls-and-libraries/data-grid)         |
+| [devexpress-wpf-tree-list](skills/devexpress-wpf-tree-list/)       | `TreeListControl` — self-referential / hierarchical / unbound modes, drag-and-drop, multi-selection, edit forms, validation | [TreeList Documentation](https://docs.devexpress.com/WPF/9759/controls-and-libraries/tree-list)         |
+| [devexpress-wpf-pivot-grid](skills/devexpress-wpf-pivot-grid/)     | `PivotGridControl` — Row / Column / Data / Filter areas, OLAP, server mode, aggregation, drill-down, KPI, conditional formatting | [PivotGrid Documentation](https://docs.devexpress.com/WPF/7228/controls-and-libraries/pivot-grid)       |
+| [devexpress-wpf-property-grid](skills/devexpress-wpf-property-grid/) | `PropertyGridControl` — `SelectedObject(s)`, `PropertyDefinition`, `CollectionDefinition`, `CategoryDefinition`, expandable nested types | [PropertyGrid Documentation](https://docs.devexpress.com/WPF/15640/controls-and-libraries/property-grid) |
 
 ---
 
@@ -23,7 +23,7 @@ All skills target DevExpress v26.1.
 
 | Skill | Covers | Docs |
 |---|---|---|
-| [devexpress-wpf-data-editors](devexpress-wpf-data-editors/) | 30+ editors — `TextEdit`, `ButtonEdit`, `ComboBoxEdit`, `DateEdit`, `SpinEdit`, `LookUpEdit`, `PasswordBoxEdit`, `ColorEdit`, `RatingEdit`, `BarCodeEdit`, and more — plus simple controls (`SimpleButton`, `DropDownButton`, `FlyoutControl`, `RangeControl`, `Calculator`) | [Editors & Combo Box Documentation](https://docs.devexpress.com/WPF/6190/controls-and-libraries/data-editors) |
+| [devexpress-wpf-data-editors](skills/devexpress-wpf-data-editors/) | 30+ editors — `TextEdit`, `ButtonEdit`, `ComboBoxEdit`, `DateEdit`, `SpinEdit`, `LookUpEdit`, `PasswordBoxEdit`, `ColorEdit`, `RatingEdit`, `BarCodeEdit`, and more — plus simple controls (`SimpleButton`, `DropDownButton`, `FlyoutControl`, `RangeControl`, `Calculator`) | [Editors & Combo Box Documentation](https://docs.devexpress.com/WPF/6190/controls-and-libraries/data-editors) |
 
 ---
 
@@ -31,10 +31,10 @@ All skills target DevExpress v26.1.
 
 | Skill | Covers | Docs |
 |---|---|---|
-| [devexpress-wpf-layout-management](devexpress-wpf-layout-management/) | Six layout containers — `DockLayoutManager`, `LayoutControl`, `DataLayoutControl`, `TileLayoutControl`, `FlowLayoutControl`, `DockLayoutControl`; layout persistence | [Layout Management Documentation](https://docs.devexpress.com/WPF/115547/controls-and-libraries/layout-management) |
-| [devexpress-wpf-ribbon-and-bars](devexpress-wpf-ribbon-and-bars/) | `RibbonControl`, toolbars, menus — Office-style ribbon, `ToolBarControl` / `MainMenuControl` / `StatusBarControl`, `BarManager`, Quick Access Toolbar, BackstageView, MDI merging | [Ribbon and Bar Manager Documentation](https://docs.devexpress.com/WPF/115392/controls-and-libraries/ribbon-bars-and-menu) |
-| [devexpress-wpf-accordion](devexpress-wpf-accordion/) | `AccordionControl` — hierarchical sidebar, Navigation Pane mode, built-in search, collapsed glyph-only strip | [Accordion Documentation](https://docs.devexpress.com/WPF/118347/controls-and-libraries/navigation-controls/accordion-control?p=netframework) |
-| [devexpress-wpf-tab-control](devexpress-wpf-tab-control/) | `DXTabControl` — MultiLine / Scroll / Stretch views, drag-drop reordering, accent colors, close / pin | [Tab Control Documentation](https://docs.devexpress.com/WPF/7974/controls-and-libraries/layout-management/tab-control) |
+| [devexpress-wpf-layout-management](skills/devexpress-wpf-layout-management/) | Six layout containers — `DockLayoutManager`, `LayoutControl`, `DataLayoutControl`, `TileLayoutControl`, `FlowLayoutControl`, `DockLayoutControl`; layout persistence | [Layout Management Documentation](https://docs.devexpress.com/WPF/115547/controls-and-libraries/layout-management) |
+| [devexpress-wpf-ribbon-and-bars](skills/devexpress-wpf-ribbon-and-bars/) | `RibbonControl`, toolbars, menus — Office-style ribbon, `ToolBarControl` / `MainMenuControl` / `StatusBarControl`, `BarManager`, Quick Access Toolbar, BackstageView, MDI merging | [Ribbon and Bar Manager Documentation](https://docs.devexpress.com/WPF/115392/controls-and-libraries/ribbon-bars-and-menu) |
+| [devexpress-wpf-accordion](skills/devexpress-wpf-accordion/) | `AccordionControl` — hierarchical sidebar, Navigation Pane mode, built-in search, collapsed glyph-only strip | [Accordion Documentation](https://docs.devexpress.com/WPF/118347/controls-and-libraries/navigation-controls/accordion-control?p=netframework) |
+| [devexpress-wpf-tab-control](skills/devexpress-wpf-tab-control/) | `DXTabControl` — MultiLine / Scroll / Stretch views, drag-drop reordering, accent colors, close / pin | [Tab Control Documentation](https://docs.devexpress.com/WPF/7974/controls-and-libraries/layout-management/tab-control) |
 
 ---
 
@@ -42,10 +42,10 @@ All skills target DevExpress v26.1.
 
 | Skill | Covers | Docs |
 |---|---|---|
-| [devexpress-wpf-charts](devexpress-wpf-charts/) | `ChartControl` (2D) — XY / Polar / Radar / Simple diagrams, 15+ series types, primary/secondary axes, legend, tooltip, crosshair, aggregation | [Chart Documentation](https://docs.devexpress.com/WPF/115092/controls-and-libraries/charts-suite) |
-| [devexpress-wpf-scheduler](devexpress-wpf-scheduler/) | `SchedulerControl` — seven view types (Day / Work Week / Week / Month / Timeline / Agenda / List), appointments, resources, labels, statuses, time regions, recurrence, reminders, time zones | [Scheduler Documentation](https://docs.devexpress.com/WPF/114881/controls-and-libraries/scheduler) |
-| [devexpress-wpf-loading-indicators](devexpress-wpf-loading-indicators/) | `SplashScreenManager`, `LoadingDecorator`, `WaitIndicator` — decision guide for picking the right indicator; migration from legacy `DXSplashScreen` | [Loading Indicators Documentation](https://docs.devexpress.com/WPF/115521/controls-and-libraries/windows-and-utility-controls) |
-| [devexpress-wpf-ai-chat-control](devexpress-wpf-ai-chat-control/) | `AIChatControl` — Copilot-style chat UI; Azure OpenAI / OpenAI / Ollama / Semantic Kernel via `IChatClient`; streaming, Markdown, file upload, prompt suggestions, history | [AI Chat Control Documentation](https://docs.devexpress.com/WPF/405434/ai-powered-extensions/ai-chat-control) |
+| [devexpress-wpf-charts](skills/devexpress-wpf-charts/) | `ChartControl` (2D) — XY / Polar / Radar / Simple diagrams, 15+ series types, primary/secondary axes, legend, tooltip, crosshair, aggregation | [Chart Documentation](https://docs.devexpress.com/WPF/115092/controls-and-libraries/charts-suite) |
+| [devexpress-wpf-scheduler](skills/devexpress-wpf-scheduler/) | `SchedulerControl` — seven view types (Day / Work Week / Week / Month / Timeline / Agenda / List), appointments, resources, labels, statuses, time regions, recurrence, reminders, time zones | [Scheduler Documentation](https://docs.devexpress.com/WPF/114881/controls-and-libraries/scheduler) |
+| [devexpress-wpf-loading-indicators](skills/devexpress-wpf-loading-indicators/) | `SplashScreenManager`, `LoadingDecorator`, `WaitIndicator` — decision guide for picking the right indicator; migration from legacy `DXSplashScreen` | [Loading Indicators Documentation](https://docs.devexpress.com/WPF/115521/controls-and-libraries/windows-and-utility-controls) |
+| [devexpress-wpf-ai-chat-control](skills/devexpress-wpf-ai-chat-control/) | `AIChatControl` — Copilot-style chat UI; Azure OpenAI / OpenAI / Ollama / Semantic Kernel via `IChatClient`; streaming, Markdown, file upload, prompt suggestions, history | [AI Chat Control Documentation](https://docs.devexpress.com/WPF/405434/ai-powered-extensions/ai-chat-control) |
 
 ---
 
@@ -53,7 +53,7 @@ All skills target DevExpress v26.1.
 
 | Skill | Covers | Docs |
 |---|---|---|
-| [devexpress-wpf-mvvm](devexpress-wpf-mvvm/) | View-model strategies (`[GenerateViewModel]` source generator, `ViewModelSource`, `ViewModelBase`, `BindableBase`); `DelegateCommand` / `AsyncCommand`; 25+ predefined services (`IMessageBoxService`, `IDialogService`, `IDocumentManagerService`, `INotificationService`, …); behaviors (`EventToCommand`, `KeyToCommand`, `FocusBehavior`, …); `Messenger` | [Overview](https://docs.devexpress.com/WPF/15112/mvvm-framework) |
+| [devexpress-wpf-mvvm](skills/devexpress-wpf-mvvm/) | View-model strategies (`[GenerateViewModel]` source generator, `ViewModelSource`, `ViewModelBase`, `BindableBase`); `DelegateCommand` / `AsyncCommand`; 25+ predefined services (`IMessageBoxService`, `IDialogService`, `IDocumentManagerService`, `INotificationService`, …); behaviors (`EventToCommand`, `KeyToCommand`, `FocusBehavior`, …); `Messenger` | [Overview](https://docs.devexpress.com/WPF/15112/mvvm-framework) |
 
 ---
 

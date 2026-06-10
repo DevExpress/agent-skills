@@ -10,10 +10,10 @@ All released skills target DevExpress Reports v26.1.
 
 | Skill | Covers | Docs |
 |---|-----|---|
-| [devexpress-reports-core](devexpress-reports-core/) | Platform-neutral XtraReports runtime API — report creation in code, bands/controls, expressions, data binding, and export workflows | [Overview](https://docs.devexpress.com/XtraReports/119097/feature-guide-to-devexpress-reports/reporting-api) |
-| [devexpress-reports-aspnetcore](devexpress-reports-aspnetcore/) | ASP.NET Core integration — service registration, viewer/designer wiring, report storage, and export/print flows | [Overview](https://docs.devexpress.com/XtraReports/119717/web-reporting/aspnet-core-reporting) |
-| [devexpress-reports-blazor](devexpress-reports-blazor/) | Blazor integration — native and JS viewer/designer setup, backend services, report resolution, and customization hooks | [Overview](https://docs.devexpress.com/XtraReports/401676/web-reporting/blazor-reporting) |
-| [devexpress-visual-studio-report-design](devexpress-visual-studio-report-design/) | Visual Studio designer code-behind patterns — `*.Designer.cs` structure, `InitializeComponent` order, bands/controls, expressions, parameters, and serialization-safe edits | [Overview](https://docs.devexpress.com/XtraReports/4256/report-designer-ides/report-designer-for-visual-studio/report-designer-for-visual-studio) |
+| [devexpress-reports-core](skills/devexpress-reports-core/) | Platform-neutral XtraReports runtime API — report creation in code, bands/controls, expressions, data binding, and export workflows | [Overview](https://docs.devexpress.com/XtraReports/119097/feature-guide-to-devexpress-reports/reporting-api) |
+| [devexpress-reports-aspnetcore](skills/devexpress-reports-aspnetcore/) | ASP.NET Core integration — service registration, viewer/designer wiring, report storage, and export/print flows | [Overview](https://docs.devexpress.com/XtraReports/119717/web-reporting/aspnet-core-reporting) |
+| [devexpress-reports-blazor](skills/devexpress-reports-blazor/) | Blazor integration — native and JS viewer/designer setup, backend services, report resolution, and customization hooks | [Overview](https://docs.devexpress.com/XtraReports/401676/web-reporting/blazor-reporting) |
+| [devexpress-visual-studio-report-design](skills/devexpress-visual-studio-report-design/) | Visual Studio designer code-behind patterns — `*.Designer.cs` structure, `InitializeComponent` order, bands/controls, expressions, parameters, and serialization-safe edits | [Overview](https://docs.devexpress.com/XtraReports/4256/report-designer-ides/report-designer-for-visual-studio/report-designer-for-visual-studio) |
 
 ---
 
