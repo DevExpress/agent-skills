@@ -7,7 +7,7 @@ This plugin contains AI agent skills for  [DevExtreme](https://js.devexpress.com
 ## Prerequisites
 
 - DevExtreme v26.1+
-- A valid [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (DevExtreme Complete, ASP.NET and Blazor, DXperience, Universal)
+- Valid [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (DevExtreme Complete, ASP.NET and Blazor, DXperience, Universal)
 ---
 
 ## Skills
