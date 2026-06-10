@@ -1,8 +1,15 @@
-# DevExpress Office & PDF File API Skills
+# AI Agent Skills for DevExpress Office & PDF File API
 
-AI agent skills for [DevExpress Office File API](https://www.devexpress.com/products/net/office-file-api/) — AI-powered .NET document processing libraries for Spreadsheet, Word, PDF, Presentation, Barcode, ZIP, and document automation scenarios.
+This plugin contains AI agent skills for [DevExpress Office & PDF File API](https://www.devexpress.com/products/net/office-file-api/) (AI-powered .NET library that allows you to generate, edit, and convert spreadsheets, rich text documents, presentations, PDF files, Barcodes, and ZIP archives).
 
-All skills target DevExpress v26.1. The `devexpress-office-file-api-pdf-new` skill covers the new PDF API (CTP).
+---
+
+## Prerequisites
+
+- .NET 8+ or .NET Framework 4.6.2+ application
+- DevExpress v26.1+ NuGet packages: unified package with all APIs (`DevExpress.Document.Processor`) or individual API packages (such as `DevExpress.Docs.Pdf`, `DevExpress.Docs.Presentation`, `DevExpress.Docs.Barcode`)
+- Valid [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (Office File API Subscription or Universal Subscription)
+- AI provider credentials - Azure OpenAI, OpenAI, Ollama, Google Gemini, or another supported provider (if using AI-powered extensions skill `devexpress-office-file-api-ai-powered-extensions`)
 
 ---
 
@@ -31,11 +38,4 @@ Each skill folder contains:
 - `references/` - feature-specific implementation guides
 - `examples/quickstart.cs` - runnable quickstart sample
 
----
 
-## Prerequisites
-
-- **.NET 8+** or **.NET Framework 4.6.2+** application
-- **DevExpress Office & PDF File API NuGet packages** - `DevExpress.Document.Processor` (unified package for all APIs) or API-specific packages such as `DevExpress.Docs.Pdf`, `DevExpress.Docs.Presentation`, `DevExpress.Docs.Barcode`.
-- A valid **DevExpress license** (Office File API Subscription or Universal Subscription)
-- For `devexpress-office-file-api-ai-powered-extensions`: configured AI provider credentials (Azure OpenAI, OpenAI, Ollama, Google Gemini, or another supported provider)
