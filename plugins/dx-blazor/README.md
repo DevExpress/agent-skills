@@ -39,4 +39,7 @@ Each skill folder contains the following files and sub-directories:
 - `references/` - feature-specific implementation guides
 - `examples/*.razor` - getting-started and task-based samples
 
+---
+
+For agent-specific and IDE-specific setup instructions, see the [repository README](../../README.md).
 
