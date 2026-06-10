@@ -8,7 +8,7 @@ This plugin contains AI agent skills for [DevExpress Blazor Components](https://
 
 - .NET 8+ application (Blazor WebAssembly or Blazor Server)
 - DevExpress v26.1+ Blazor NuGet packages  (`DevExpress.Blazor`)
-- A valid [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (ASP.NET and Blazor, DXperience, Universal)
+- [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (ASP.NET and Blazor, DXperience, Universal)
 - Entity Framework Core, SQL Server, or a custom data service (for data binding tasks)
 - OpenAI API key or Azure OpenAI/Ollama endpoint configuration (for AI Chat component) 
 
