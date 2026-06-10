@@ -17,6 +17,14 @@ All released skills target DevExpress Reports v26.1.
 
 ---
 
+## Agents
+
+| Agent | Description |
+|---|---|
+| `devexpress-report-designer-expert` (`plugins/dx-reporting/agents/devexpress-report-designer-expert.agent.md`) | Expert agent for Visual Studio `XtraReport` designer workflows (`*.Designer.cs`): safe `InitializeComponent` edits, band/control composition, expressions, parameters, and serialization-safe patterns. |
+
+---
+
 ## Skill Layout
 
 Each skill is self-contained and follows the same structure:
