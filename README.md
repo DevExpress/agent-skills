@@ -244,7 +244,7 @@ To reference a skill manually, use `/`:
 
 > /devextreme-datagrid How do I activate inline row editing?
 
-- [Cursor plugins documentation](https://cursor.com/docs/plugins) 
+- [Cursor plugins documentation](https://cursor.com/docs/plugins)
 - [Cursor skills documentation](https://cursor.com/docs/skills)
 
 ## **License**
