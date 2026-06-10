@@ -8,7 +8,7 @@ This plugin contains AI agent skills for [DevExpress Office & PDF File API](http
 
 - .NET 8+ or .NET Framework 4.6.2+ application
 - DevExpress v26.1+ NuGet packages: unified package with all APIs (`DevExpress.Document.Processor`) or individual API packages (such as `DevExpress.Docs.Pdf`, `DevExpress.Docs.Presentation`, `DevExpress.Docs.Barcode`)
-- Valid [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (Office File API Subscription or Universal Subscription)
+- [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (Office File API Subscription or Universal Subscription)
 - AI provider credentials - Azure OpenAI, OpenAI, Ollama, Google Gemini, or another supported provider (if using AI-powered extensions skill `devexpress-office-file-api-ai-powered-extensions`)
 
 ---
