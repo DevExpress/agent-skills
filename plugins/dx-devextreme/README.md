@@ -1,9 +1,13 @@
-# DevExtreme Skills
+# AI Agent Skills for DevExtreme
 
-AI agent skills for [DevExtreme](https://js.devexpress.com/) - the DevExpress UI component library for Angular, React, Vue, and jQuery.
+This plugin contains AI agent skills for  [DevExtreme](https://js.devexpress.com/) (DevExpress UI component library for Angular, React, Vue, and jQuery).
 
-All skills target DevExtreme v26.1+.
+---
 
+## Prerequisites
+
+- DevExtreme v26.1+
+- A valid [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (DevExtreme Complete, ASP.NET and Blazor, DXperience, Universal)
 ---
 
 ## Skills
