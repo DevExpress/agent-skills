@@ -1,12 +1,20 @@
-# DevExpress Blazor Skills
+# AI Agent Skills for DevExpress Blazor Components
 
-AI agent skills for [DevExpress Blazor](https://www.devexpress.com/blazor/) — a UI component library for the Microsoft Blazor framework.
-
-All skills target DevExpress Blazor v26.1. Some APIs and examples require DevExpress Blazor 26.1 or later and will not work in earlier versions.
+This plugin contains AI agent skills for [DevExpress Blazor Components](https://www.devexpress.com/blazor/) — a UI component library for the Microsoft Blazor framework.
 
 ---
 
-## Skills
+## Prerequisites
+
+- .NET 8+ application (Blazor WebAssembly or Blazor Server)
+- DevExpress v26.1+ Blazor NuGet packages  (`DevExpress.Blazor`)
+- A valid [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (ASP.NET and Blazor, DXperience, Universal)
+- Entity Framework Core, SQL Server, or a custom data service (for data binding)
+- OpenAI API key or Azure OpenAI/Ollama endpoint configuration (for AI Chat component) 
+
+---
+
+## Included AI Agent Skills
 
 | Skill | Covers | Docs |
 | ----- | ------ | ---- |
@@ -31,13 +39,4 @@ Each skill folder contains:
 - `references/` - feature-specific implementation guides
 - `examples/*.razor` - runnable quickstart and scenario-specific samples
 
----
-
-## Prerequisites
-
-- **Blazor WebAssembly** or **Blazor Server** application with **.NET 8+**
-- **DevExpress Blazor NuGet packages** (`DevExpress.Blazor`)
-- A valid **DevExpress license** (Blazor Subscription, DXperience, or Universal Subscription)
-- For data binding scenarios: Entity Framework Core, SQL Server, or custom data services
-- For AI Chat component: OpenAI API key or Azure OpenAI/Ollama endpoint configuration
 
