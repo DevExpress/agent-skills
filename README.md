@@ -24,7 +24,9 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 
 ### **Install as a Plugin**
 
-This installation method is the fastest way to obtain DevExpress skills via plugins. You must use **GitHub Copilot CLI** or **Claude Code**. (Example below installs the DevExtreme plugin.)
+The fastest way to obtain DevExpress skills is via plugins. You must use **GitHub Copilot CLI** or **Claude Code**. 
+
+The example below installs the DevExtreme plugin.
 
 ```bash
 /plugin marketplace add DevExpress/agent-skills
