@@ -1,7 +1,7 @@
 {
   "name": "DevExpress-agent-skills",
   "metadata": {
-    "description": "AI agent skills for DevExpress products — DevExtreme (JavaScript/Angular/React/Vue/jQuery), Blazor Components, WPF Controls, DevExpress Reports, Office & PDF File API, and XAF. Each skill encodes correct APIs, import paths, and ready-to-run code examples to help GitHub Copilot, Claude Code, and other AI assistants generate accurate DevExpress code."
+    "description": "AI agent skills for DevExpress products — DevExtreme (JavaScript/Angular/React/Vue/jQuery), Blazor Components, WPF Controls, DevExpress Reports, Office & PDF File API, and XAF. Each skill encodes correct APIs, import paths, and ready-to-run code examples to help GitHub Copilot, Claude Code, and other AI assistants generate accurate DevExpress code."
   },
   "owner": {
     "name": "DevExpress",
