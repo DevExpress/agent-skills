@@ -24,54 +24,64 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 
 ### **Install as a Plugin**
 
-This installation method is the fastest way to obtain all DevExpress skills at once. You must use GitHub Copilot CLI v2.90.0+ or Claude Code.
-
-**GitHub Copilot CLI / Claude Code:**
+This installation method is the fastest way to obtain all DevExpress skills at once. You must use **GitHub Copilot CLI** or **Claude Code**.
 
 ```bash
 /plugin marketplace add DevExpress/agent-skills
 /plugin install dx-devextreme@DevExpress-agent-skills
 ```
 
-Restart your IDE after installing new skills. Run /skills to list active entries.
-
-### **Copy Skill Folders**
-
-Copy skills you need into your project, then configure your agent or IDE as described below.
-
-```bash
-# Project-level — active in this repo only
-mkdir -p .github/skills
-cp -r plugins/dx-devextreme/skills/devextreme-datagrid /your-project/.github/skills/
-cp -r plugins/dx-devextreme/skills/devextreme-form /your-project/.github/skills/
-
-# Or copy all DevExtreme skills at once
-cp -r plugins/dx-devextreme/skills/* /your-project/.github/skills/
-```
-
-Copy to the following folders for a global installation (active in all projects):
-
-| **Platform** | **Path** |
-| --- | --- |
-| Windows | %USERPROFILE%\.copilot\skills\ |
-| macOS / Linux | ~/.copilot/skills/ |
+Restart your IDE after installing new skills. Run `/skills` to list active entries.
 
 ### **Agent-Specific Setup**
 
 #### **GitHub Copilot**
 
-Skills in .github/skills/ are discovered automatically when Copilot runs in agent mode. No additional configuration is needed once the files are in place.
+Skills in `.github/skills/` are discovered automatically when Copilot runs in agent mode. No additional configuration is needed once the files are in place.
 
-To reference a skill manually in Copilot Chat, use #:
+To reference a skill manually in Copilot Chat, use `#`:
 
 > #devextreme-datagrid How do I activate inline row editing?
+
+Copy skill folders into your project:
+
+**macOS / Linux:**
+```bash
+# Project-level
+mkdir -p .github/skills
+cp -r plugins/dx-devextreme/skills/devextreme-datagrid .github/skills/
+cp -r plugins/dx-devextreme/skills/devextreme-form .github/skills/
+
+# Or copy all DevExtreme skills at once
+cp -r plugins/dx-devextreme/skills/* .github/skills/
+
+# Global (active in all projects)
+mkdir -p ~/.copilot/skills
+cp -r plugins/dx-devextreme/skills/* ~/.copilot/skills/
+```
+
+**Windows (PowerShell):**
+```powershell
+# Project-level
+New-Item -ItemType Directory -Force .github\skills
+Copy-Item -Recurse plugins\dx-devextreme\skills\devextreme-datagrid .github\skills\
+Copy-Item -Recurse plugins\dx-devextreme\skills\devextreme-form .github\skills\
+
+# Or copy all DevExtreme skills at once
+Copy-Item -Recurse plugins\dx-devextreme\skills\* .github\skills\
+
+# Global (active in all projects)
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.copilot\skills"
+Copy-Item -Recurse plugins\dx-devextreme\skills\* "$env:USERPROFILE\.copilot\skills\"
+```
 
 [GitHub Copilot skills documentation](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line/using-agent-skills-with-copilot-in-the-cli)
 
 #### **Claude Code**
 
-Claude Code reads skills from .claude/skills/ in your project, or ~/.claude/skills/ globally.
+Claude Code reads skills from `.claude/skills/` in your project, or `~/.claude/skills/` globally.
 
+**macOS / Linux:**
 ```bash
 # Project-level
 mkdir -p .claude/skills
@@ -83,44 +93,130 @@ mkdir -p ~/.claude/skills
 cp -r plugins/dx-devextreme/skills/* ~/.claude/skills/
 ```
 
+**Windows (PowerShell):**
+```powershell
+# Project-level
+New-Item -ItemType Directory -Force .claude\skills
+Copy-Item -Recurse plugins\dx-devextreme\skills\devextreme-datagrid .claude\skills\
+Copy-Item -Recurse plugins\dx-devextreme\skills\devextreme-form .claude\skills\
+
+# Global
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills"
+Copy-Item -Recurse plugins\dx-devextreme\skills\* "$env:USERPROFILE\.claude\skills\"
+```
+
 Skills activate automatically. No additional configuration is needed once the files are in place.
 
-To reference a skill manually, use /:
+To reference a skill manually, use `/`:
 
 > /devextreme-datagrid How do I activate inline row editing?
 
 [Claude Code skills documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
 
+#### **JetBrains Junie**
+
+Copy skill folders into `.junie/skills/` in your project root (project-level, version-controlled) or to the global Junie directory:
+
+**macOS / Linux:**
+```bash
+# Project-level
+mkdir -p .junie/skills
+cp -r plugins/dx-devextreme/skills/* .junie/skills/
+
+# Global
+mkdir -p ~/.junie/skills
+cp -r plugins/dx-devextreme/skills/* ~/.junie/skills/
+```
+
+**Windows (PowerShell):**
+```powershell
+# Project-level
+New-Item -ItemType Directory -Force .junie\skills
+Copy-Item -Recurse plugins\dx-devextreme\skills\* .junie\skills\
+
+# Global
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.junie\skills"
+Copy-Item -Recurse plugins\dx-devextreme\skills\* "$env:USERPROFILE\.junie\skills\"
+```
+
+Skills activate automatically. Junie scans skill directories and applies relevant skills based on task context.
+
+[Junie agent skills documentation](https://junie.jetbrains.com/docs/agent-skills.html)
+
 ### **IDE-Specific Setup**
 
 #### **VS Code**
 
-After placing skill files in .github/skills/:
+**Install as a plugin (recommended):**
 
-1. Open Settings (Ctrl+, / Cmd+,).
+Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`), run **Chat: Install Plugin From Source**, and enter the repository URL:
+
+```
+https://github.com/DevExpress/agent-skills
+```
+
+VS Code installs all available plugins. Restart when prompted, then use Copilot Chat in agent mode.
+
+**Or copy skill files manually:**
+
+After placing skill files in `.github/skills/`:
+
+1. Open Settings (`Ctrl+,` / `Cmd+,`).
 2. Search for `chat.agent.skills`.
 3. Select **Chat: Use Agent Skills.**
 
 Use Copilot Chat in agent mode. Skills are activated automatically based on your question.
 
+[VS Code agent plugins documentation](https://code.visualstudio.com/docs/agent-customization/agent-plugins)
+
 #### **Visual Studio 2022 / 2026**
 
-Visual Studio reads skills from the same .github/skills/ folder. After copying the files, open Copilot Chat (View > GitHub Copilot Chat) and switch to agent mode. No additional configuration is needed.
+Visual Studio reads skills from the same `.github/skills/` folder. After copying the files, open Copilot Chat (View > GitHub Copilot Chat) and switch to agent mode. No additional configuration is needed.
 
 #### **JetBrains Rider / WebStorm**
 
+##### **GitHub Copilot**
+
 Skills are discovered by the [GitHub Copilot plugin](https://plugins.jetbrains.com/plugin/17718-github-copilot). After installing the plugin and signing in:
 
-1. Copy skill folders into .github/skills/ in your project root.
+1. Copy skill folders into `.github/skills/` in your project root (see [GitHub Copilot](#github-copilot) above for copy commands).
 2. Open the Copilot Chat panel (Tools > GitHub Copilot > Open GitHub Copilot Chat).
 3. Switch to agent mode.
 
 Skills are activated automatically based on your question.
 
+##### **JetBrains AI Assistant**
+
+**Add as an external registry (recommended):**
+
+1. Open **Settings / Preferences** → **Tools** → **AI Assistant** → **Skills**.
+2. Click the Settings icon → **Manage External Registries**.
+3. Add the repository URL: `https://github.com/DevExpress/agent-skills`
+4. Enable the skills you need from the list.
+
+**Or copy skill files manually:**
+
+Copy skill folders to `.agents/skills/` in your project root for a project-level installation, or to the global IDE path:
+
+| **Platform** | **Path** |
+| --- | --- |
+| Windows | `%LOCALAPPDATA%\JetBrains\<product><version>\aia\agents\.agents\skills\` |
+| macOS | `~/Library/Caches/JetBrains/<product><version>/aia/agents/.agents/skills/` |
+| Linux | `~/.cache/JetBrains/<product><version>/aia/agents/.agents/skills/` |
+
+Skills activate automatically in agent mode. To invoke a skill manually, type `$` followed by the skill name.
+
+[JetBrains AI Assistant skills documentation](https://www.jetbrains.com/help/ai-assistant/agent-skills.html)
+
+##### **JetBrains Junie**
+
+See [JetBrains Junie](#jetbrains-junie) in Agent-Specific Setup above for copy commands and global paths.
+
 #### **Cursor**
 
 Cursor reads skills from `.cursor/skills/` in your project root, or `~/.cursor/skills/` globally.
 
+**macOS / Linux:**
 ```bash
 # Project-level
 mkdir -p .cursor/skills
@@ -131,11 +227,24 @@ mkdir -p ~/.cursor/skills
 cp -r plugins/dx-devextreme/skills/* ~/.cursor/skills/
 ```
 
+**Windows (PowerShell):**
+```powershell
+# Project-level
+New-Item -ItemType Directory -Force .cursor\skills
+Copy-Item -Recurse plugins\dx-devextreme\skills\* .cursor\skills\
+
+# Global
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\skills"
+Copy-Item -Recurse plugins\dx-devextreme\skills\* "$env:USERPROFILE\.cursor\skills\"
+```
+
 Skills activate automatically in agent mode. No additional configuration is needed once the files are in place.
+
+To reference a skill manually, use `/`:
 
 > /devextreme-datagrid How do I activate inline row editing?
 
-- [Cursor plugins documentation](https://cursor.com/docs/plugins)
+- [Cursor plugins documentation](https://cursor.com/docs/plugins) 
 - [Cursor skills documentation](https://cursor.com/docs/skills)
 
 ## **License**
