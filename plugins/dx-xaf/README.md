@@ -37,3 +37,7 @@ Some skills follow a composite pattern (base skill + ORM-specific skill):
 - **devexpress-xaf-filtering** (base, ORM-agnostic) + **devexpress-xaf-filtering-xpo** (XPO-specific)
 
 If your project uses XPO, load both the base skill and the corresponding XPO sub-skill.
+
+---
+
+For agent-specific and IDE-specific setup instructions, see the [repository README](../../README.md).
