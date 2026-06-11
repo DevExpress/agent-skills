@@ -8,11 +8,12 @@ This plugin contains AI agent skills for  [DevExtreme](https://js.devexpress.com
 
 - DevExtreme v26.1+
 - [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (DevExtreme Complete, ASP.NET and Blazor, DXperience, Universal)
+
 ---
 
 ## Skills
 
-| Skill | Description | Docs |
+| Skill | Capabilities | Docs |
 | --- | --- | --- |
 | [devextreme-datagrid](skills/devextreme-datagrid/) | DataGrid: columns, data editing, data shaping (filter, sort, and group rows), summaries, master-detail data presentation, selection, paging, scrolling, export, toolbar, remote operations, AI columns | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Overview/) |
 | [devextreme-scheduler](skills/devextreme-scheduler/) | Scheduler: views, appointments, recurrence, multi-resource display, remote data, toolbar customization | [Overview](https://js.devexpress.com/Documentation/Guide/UI_Components/Scheduler/Overview/) |
