@@ -8,12 +8,13 @@ This plugin contains AI agent skills for [DevExpress eXpressApp Framework](https
 
 - .NET 8+
 - DevExpress XAF v26.1+ 
+- [DevExpress Universal subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/)
 
 ---
 
 ## Included AI Agent Skills
 
-| Skill | Description | DevExpress Docs |
+| Skill | Capabilities | DevExpress Docs |
 | --- | --- |---|
 | [devexpress-xaf-business-model](skills/devexpress-xaf-business-model/) | Business model design: entity objects (BaseObject), entity relationships, DbContext registration, data annotations, XAF attributes, seed data in Updater, EF Core migrations | [Overview](https://docs.devexpress.com/eXpressAppFramework/113461/business-model-design-orm) |
 | [devexpress-xaf-business-logic](skills/devexpress-xaf-business-logic/) | CRUD operations & business logic: IObjectSpace, CreateObject, FindObject, CommitChanges, ObjectSpace events, IXafEntityObject lifecycle, NonPersistentObjectSpace | [Overview](https://docs.devexpress.com/eXpressAppFramework/113711/data-manipulation-and-business-logic) |
