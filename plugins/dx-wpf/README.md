@@ -53,7 +53,7 @@ This plugin contains AI agent skills for [DevExpress WPF Controls](https://www.d
 
 | Skill | Covers | Docs |
 |---|---|---|
-| [devexpress-wpf-mvvm](skills/devexpress-wpf-mvvm/) | View-model strategies (`[GenerateViewModel]` source generator, `ViewModelSource`, `ViewModelBase`, `BindableBase`), `DelegateCommand` and `AsyncCommand`, 25+ predefined services (`IMessageBoxService`, `IDialogService`, `IDocumentManagerService`, `INotificationService`, and more), behaviors (`EventToCommand`, `KeyToCommand`, `FocusBehavior`, and more), `Messenger` | [Overview](https://docs.devexpress.com/WPF/15112/mvvm-framework) |
+| [devexpress-wpf-mvvm](skills/devexpress-wpf-mvvm/) | View-model strategies (`GenerateViewModel` source generator, `ViewModelSource`, `ViewModelBase`, `BindableBase`), `DelegateCommand` and `AsyncCommand`, 25+ predefined services (`IMessageBoxService`, `IDialogService`, `IDocumentManagerService`, `INotificationService`, and more), behaviors (`EventToCommand`, `KeyToCommand`, `FocusBehavior`, and more), `Messenger` | [Overview](https://docs.devexpress.com/WPF/15112/mvvm-framework) |
 
 ---
 
@@ -68,5 +68,6 @@ Each skill is self-contained and follows the same structure:
 └── examples/      — getting-started samples (XAML + C# + App startup)
 ```
 
+---
 
-
+For agent-specific and IDE-specific setup instructions, see the [repository README](../../README.md).
