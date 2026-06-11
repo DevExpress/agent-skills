@@ -37,4 +37,7 @@ Each skill folder contains the following files and sub-directories:
 - `SKILL.md` - activators, rules, and navigation guidance
 - `references/` - feature-specific implementation guides
 - `examples/quickstart.cs` - getting-started samples
-- 
+
+---
+
+For agent-specific and IDE-specific setup instructions, see the [repository README](../../README.md).
