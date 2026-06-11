@@ -30,6 +30,8 @@ This plugin contains AI agent skills for [DevExpress eXpressApp Framework](https
 | [devexpress-xaf-reports](skills/devexpress-xaf-reports/) | Reports V2 & data export: AddReports, CollectionDataSource, predefined reports, in-place reports, report preview from code, export (CSV, XLS, XLSX, PDF), Report Designer/Viewer | [Overview](https://docs.devexpress.com/eXpressAppFramework/113591/shape-export-print-data/reports) |
 | [devexpress-xaf-performance](skills/devexpress-xaf-performance/) | Performance optimization: data access modes, EF Core eager loading, XPO delayed loading, N+1 detection, database indexing, model cache, Blazor tab management, SQL profiling | - |
 
+---
+
 ## Composite Skills
 
 Some skills follow a composite pattern (base skill + ORM-specific skill): 
