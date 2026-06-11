@@ -17,7 +17,7 @@ All released skills target DevExpress Reports v26.1.
 
 ## Included AI Agent Skills
 
-| Skill | Description | Docs |
+| Skill | Capabilities | Docs |
 |---|-----|---|
 | [devexpress-reports-core](skills/devexpress-reports-core/) | Cross-platform runtime API — reports, bands, controls, expressions, data binding, and export | [Overview](https://docs.devexpress.com/XtraReports/119097/feature-guide-to-devexpress-reports/reporting-api) |
 | [devexpress-reports-aspnetcore](skills/devexpress-reports-aspnetcore/) | ASP.NET Core Integration — service registration, viewer/designer wiring, report storage, and export/print flows | [Overview](https://docs.devexpress.com/XtraReports/119717/web-reporting/aspnet-core-reporting) |
