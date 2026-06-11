@@ -13,9 +13,9 @@ This plugin contains AI agent skills for [DevExpress Office & PDF File API](http
 
 ---
 
-## Skills
+## Included AI Agent Skills
 
-| Skill | Description | Docs |
+| Skill | Capabilities | Docs |
 | --- | --- | --- |
 | [devexpress-office-file-api-spreadsheet](skills/devexpress-office-file-api-spreadsheet/) | Spreadsheet Document API: worksheets, cells, formulas, formatting, charts, pivot tables, import/export, protection | [Overview](https://docs.devexpress.com/OfficeFileAPI/14912) |
 | [devexpress-office-file-api-word-processing](skills/devexpress-office-file-api-word-processing/) | Word Processing API: paragraphs, styles, tables, mail merge, export | [Overview](https://docs.devexpress.com/OfficeFileAPI/17488) |
