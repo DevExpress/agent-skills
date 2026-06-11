@@ -45,4 +45,6 @@ devexpress-reports-<name>/
 └── examples/     -- getting-started samples
 ```
 
+---
 
+For agent-specific and IDE-specific setup instructions, see the [repository README](../../README.md).
