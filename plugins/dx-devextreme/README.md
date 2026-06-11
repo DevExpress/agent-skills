@@ -11,7 +11,7 @@ This plugin contains AI agent skills for  [DevExtreme](https://js.devexpress.com
 
 ---
 
-## Skills
+## Included AI Agent Skills
 
 | Skill | Capabilities | Docs |
 | --- | --- | --- |
