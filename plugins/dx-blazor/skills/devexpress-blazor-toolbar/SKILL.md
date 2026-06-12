@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-toolbar
-description: Build and configure the DevExpress Blazor Toolbar (DxToolbar) — an adaptive button-based command bar for Blazor applications. Use when adding a toolbar, configuring toolbar items, drop-down menus, checked items, radio-group buttons, data binding, adaptivity, render styles, item templates, or submitting forms from toolbar buttons. Also use when someone mentions DxToolbar, DxToolbarItem, toolbar adaptivity, toolbar checked items, toolbar render style, or adaptive toolbar layout.
-compatibility: Requires .NET 8.0, 9.0, or 10.0. Interactive render mode required for interactivity (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto). NuGet package DevExpress.Blazor from the DevExpress feed. A valid DevExpress license is required.
+description: Build and configure the DevExpress Blazor Toolbar (DxToolbar) — an adaptive command bar for Blazor apps. Use when adding toolbars/command bars, configuring DxToolbarItem buttons, drop-down menus, overflow/adaptivity, icons/tooltips/links, checked and radio-group items, data binding, item templates (ChildContent/Template), and triggering actions like form submission. Also use for DxToolbar, DxToolbarItem, adaptive toolbar, overflow menu, command bar, and toolbar feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8.0, 9.0, or 10.0. Interactive render mode required for interactivity (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto). NuGet package DevExpress.Blazor is available on NuGet.org. A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -34,11 +35,7 @@ metadata:
 | `DevExpress.Blazor` | Toolbar component and all core Blazor UI controls |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor
 ```
 
@@ -50,6 +47,8 @@ dotnet add package DevExpress.Blazor
 ```csharp
 builder.Services.AddDevExpressBlazor();
 ```
+
+> **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 
 **Components/App.razor** — register theme and client scripts inside `<head>`:
 ```razor
@@ -117,7 +116,7 @@ When you need to:
 - Create checked items or radio-group buttons
 - Handle item click events
 - Add navigation links, tooltips, and icons to items
-- Use item templates for custom content
+- Use `ChildContent` for custom inner markup or `Template` to replace the entire item
 - Submit a form from a toolbar button
 
 ### Adaptivity and Appearance
@@ -236,7 +235,8 @@ Renders a toolbar with file action buttons, a radio-group alignment selector, a 
 | `AdaptiveText` | `string` | Alternative text shown in the overflow submenu |
 | `Tooltip` | `string` | Tooltip text shown on hover |
 | `Items` | `RenderFragment` | Child items (creates a drop-down menu) |
-| `Template` | `RenderFragment` | Custom content template for the item |
+| `ChildContent` | `RenderFragment<IToolbarItemInfo>` | Custom markup for the item's inner content area while preserving the default button chrome, border, icon, and drop-down button |
+| `Template` | `RenderFragment<IToolbarItemInfo>` | Replaces the entire item content, including the default text, icon area, border styling, and drop-down button |
 | `Name` | `string` | Unique item identifier — required when using `DxToolbar.ItemClick` to identify which item was clicked via `args.ItemName` |
 | `Enabled` | `bool` | Whether the item is interactive |
 | `Visible` | `bool` | Whether the item is visible |
@@ -343,6 +343,7 @@ Renders a toolbar with file action buttons, a radio-group alignment selector, a 
 | Static assets return 404 (`dx-blazor.css`, `dx-blazor.js`) | `UseStaticWebAssets()` not called | Add `app.UseStaticWebAssets();` in `Program.cs` before `app.UseStaticFiles()` |
 | `"Could not find 'X' in 'window.DxBlazor'"` JavaScript error | Stale browser-cached JS from an older DevExpress version | Hard-refresh the browser (Ctrl+Shift+R), clear site data, or verify all DevExpress NuGet packages are the same version |
 | `"Cannot pass the parameter 'X' to component 'Y' with rendermode"` | Non-serializable parameter passed across a render mode boundary | Move the component to a child `.razor` file with its own `@rendermode` directive; pass only serializable parameters |
+| Custom text markup removes the item's border or drop-down arrow | `Template` replaces the entire item surface | Use `ChildContent` to customize only the text/content area and keep the built-in button chrome; reserve `Template` for full item replacement |
 
 ## Constraints & Rules
 
@@ -355,6 +356,7 @@ Renders a toolbar with file action buttons, a radio-group alignment selector, a 
 6. **License**: A valid DevExpress license is required.
 7. **No destructive changes**: Preserve existing using statements and class structure.
 8. **App.razor styles**: When generating a new project or extending an existing one, always verify that `App.razor` contains both `@DxResourceManager.RegisterTheme(Themes.Fluent)` and `@DxResourceManager.RegisterScripts()` inside `<head>`. Without them the component renders without styles.
+9. **Template vs. ChildContent**: `DxToolbarItem.Template` replaces the entire item content, including built-in chrome such as the drop-down button. If the goal is to keep the default border, icon area, or drop-down arrow and only customize the inner text/content area, use `DxToolbarItem.ChildContent` instead.
 
 ## Using DevExpress Documentation MCP
 

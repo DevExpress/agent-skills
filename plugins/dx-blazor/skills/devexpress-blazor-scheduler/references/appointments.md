@@ -1,6 +1,6 @@
 # Appointments — Blazor Scheduler
 
-When you need to: handle appointment creation, editing, and deletion events; configure recurring appointments; customize labels and statuses.
+Use this reference for appointment CRUD, recurring appointments, labels, and statuses.
 
 ## Appointment CRUD Events
 
@@ -78,9 +78,94 @@ The Scheduler supports recurrence rules stored as XML in your data model's `Recu
 | `0` | Regular (non-recurring) appointment |
 | `1` | Recurring appointment pattern |
 | `2` | Occurrence of a recurring pattern |
-| `3` | Exception to a recurring pattern |
+| `3` | Changed occurrence |
+| `4` | Deleted occurrence |
 
-> When creating appointments programmatically, set `AppointmentType = 0` for regular appointments. The scheduler manages types 1–3 automatically when users define recurrence via the UI.
+When creating recurring appointments programmatically, set `AppointmentType = 1` and populate the field mapped to `RecurrenceInfo`.
+
+```csharp
+var start = DateTime.Today.AddDays(1).AddHours(14);
+var end = DateTime.Today.AddDays(1).AddHours(15);
+
+var recurringAppointment = new AppointmentData {
+    Id = 3,
+    AppointmentType = 1,
+    StartDate = start,
+    EndDate = end,
+    Caption = "Planning Session",
+    Description = "Sprint planning",
+    Label = 5,
+    Status = 1,
+    Recurrence = string.Format(
+        System.Globalization.CultureInfo.InvariantCulture,
+        "<RecurrenceInfo Start=\"{0}\" End=\"{1}\" WeekDays=\"{2}\" Frequency=\"1\" Range=\"0\" Type=\"1\" Id=\"{3}\" />",
+        start,
+        end,
+        1 << (int)start.DayOfWeek,
+        Guid.NewGuid())
+};
+```
+
+This recurrence rule creates a weekly series on the same day of the week as `start`. Use `Range="0"` for a series with no end date.
+
+Use the following recurrence rule shapes for other common patterns:
+
+| Pattern | Rule Body Example |
+|---|---|
+| Daily | `Type="0" Frequency="3"` |
+| Weekly | `Type="1" Frequency="2" WeekDays="16"` |
+| Monthly by day number | `Type="2" Frequency="1" WeekOfMonth="0" DayNumber="30"` |
+| Monthly by weekday | `Type="2" Frequency="1" WeekOfMonth="1" WeekDays="2"` |
+| Yearly by date | `Type="3" Frequency="1" Month="3" WeekOfMonth="0" DayNumber="5"` |
+| Yearly by weekday | `Type="3" Frequency="1" Month="3" WeekOfMonth="1" WeekDays="2"` |
+
+Use the following range shapes to define when a series ends:
+
+| Range | Effect |
+|---|---|
+| `Range="0"` | No end date |
+| `Range="1" OccurrenceCount="N"` | End after `N` occurrences |
+| `Range="2" End="..."` | End on a specific date |
+
+Changed and deleted occurrences use an exception rule that contains `Id` and `Index` only:
+
+```csharp
+"<RecurrenceInfo Id=\"6de79b21-6b16-4dea-9736-c500058ec858\" Index=\"25\"/>"
+```
+
+Use the following value mappings when a recurrence prompt requires exact weekday or week position
+control:
+
+| `WeekDays` value | Meaning |
+|---|---|
+| `1` | Sunday |
+| `2` | Monday |
+| `4` | Tuesday |
+| `8` | Wednesday |
+| `16` | Thursday |
+| `32` | Friday |
+| `64` | Saturday |
+| `62` | WorkDays |
+| `65` | WeekendDays |
+| `127` | EveryDay |
+
+| `WeekOfMonth` value | Meaning |
+|---|---|
+| `0` | None |
+| `1` | First |
+| `2` | Second |
+| `3` | Third |
+| `4` | Fourth |
+| `5` | Last |
+
+For monthly and yearly rules, `WeekOfMonth="0"` means the rule uses `DayNumber` instead of
+`WeekDays`. `DayNumber` accepts values from `1` through `31`. For yearly rules, `Month` accepts
+values from `1` through `12`.
+
+If a project uses recurrence objects instead of direct XML strings, use `FromXml(string)` to load
+an XML rule and `ToXml()` to serialize it back to the mapped `Recurrence` field.
+
+If recurring appointments use time zones, map the source field with `DxSchedulerAppointmentMappings.TimeZoneId`.
 
 ## Labels
 

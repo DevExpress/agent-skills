@@ -11,7 +11,7 @@
 - .NET 8.0, 9.0, or 10.0
 - Interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto)
 - An AI provider account (Azure OpenAI, OpenAI, Ollama, etc.)
-- DevExpress license and NuGet feed access
+- DevExpress license and access to NuGet.org
 
 ## Step 0: Obtain Provider Credentials (BYOK)
 
@@ -75,13 +75,7 @@ dotnet user-secrets set "OPENAI_KEY" "sk-..."
 
 ## Step 1: Install NuGet Packages
 
-First, ensure the DevExpress NuGet feed is registered as a package source (one-time setup per machine):
-
-```bash
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
-```
-
-Then install the core packages:
+Install the core packages from NuGet.org:
 
 ```bash
 dotnet add package DevExpress.AIIntegration.Blazor.Chat

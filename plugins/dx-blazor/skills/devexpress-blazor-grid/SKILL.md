@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-grid
-description: Build and configure the DevExpress Blazor Grid (DxGrid) — a full-featured data grid for Blazor Server, WebAssembly, and Hybrid apps. Use when adding a data grid, table, or data list to a Blazor app; binding a grid to a collection, EF Core DbSet, or IQueryable; enabling sorting, filtering, grouping, or paging; implementing CRUD editing (edit row, edit form, popup, batch cell editing); exporting grid data to CSV, XLS/XLSX, or PDF; managing row selection or focused rows; customizing column templates, summaries, or toolbars. Also use when someone mentions DxGrid, DevExpress Grid, blazor data grid, GridDevExtremeDataSource, GridCustomDataSource, DxGridDataColumn, DxGridCommandColumn, GridEditMode, GridSelectionMode, or asks about server mode data sources, virtual scrolling, or drag-and-drop rows in Blazor.
-compatibility: Requires .NET 8, 9, or 10. NuGet package DevExpress.Blazor from the DevExpress feed (https://nuget.devexpress.com/free/api). A valid DevExpress license is required. Most features require an interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto).
+description: Build and configure the DevExpress Blazor Grid (DxGrid) — a full-featured data grid for Blazor Server, WebAssembly, and Hybrid apps. Use when binding tabular data (IEnumerable/IQueryable/EF Core/server-mode/custom sources), enabling sorting/filtering/grouping/search, implementing CRUD editing (row/edit form/popup/cell), handling selection and focused rows, exporting to CSV/XLSX/PDF, customizing templates and summaries, and supporting large datasets with virtualization. Also use for DxGrid, DevExpress grid, Blazor data grid, virtual scrolling, server mode, and grid feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8, 9, or 10. NuGet package DevExpress.Blazor is available on NuGet.org. A valid DevExpress license is required. Most features require an interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto).
 metadata:
   author: DevExpress
   version: "26.1"
@@ -34,11 +35,7 @@ metadata:
 | `DevExpress.Blazor` | Grid + all standard Blazor UI components |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor
 ```
 
@@ -48,6 +45,7 @@ dotnet add package DevExpress.Blazor
    ```csharp
    builder.Services.AddDevExpressBlazor();
    ```
+    > **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 2. Apply a theme and add client scripts in `App.razor` inside `<head>`:
    ```razor
    @using DevExpress.Blazor
@@ -77,7 +75,7 @@ Before generating code, ask:
 
 - **Data Binding** (`Data`, `KeyFieldName`): Binds to `IEnumerable<T>`, `IListSource`, `IQueryable<T>`, `GridDevExtremeDataSource<T>`, or `GridCustomDataSource`
 - **Column Types** (`DxGridDataColumn`, `DxGridCommandColumn`, `DxGridSelectionColumn`, `DxGridBandColumn`): Bound, unbound, command, selection, and band columns
-- **Data Shaping** (`AllowSort`, `ShowGroupPanel`, `ShowSearchBox`): Sort, group, filter row, filter panel, search box
+- **Data Shaping** (`AllowSort`, `ShowGroupPanel`, `ShowSearchBox`, `FilterPanelDisplayMode`): Sort, group, filter row, filter panel, search box
 - **Editing** (`EditMode`, `EditModelSaving`, `DataItemDeleting`): EditRow, EditForm, PopupEditForm, EditCell modes
 - **Selection** (`SelectionMode`, `SelectedDataItems`): Single and multiple row selection
 - **Export** (`ExportToCsvAsync`, `ExportToXlsxAsync`, `ExportToPdfAsync`): CSV, XLS/XLSX, and PDF export
@@ -147,6 +145,7 @@ When you need to:
 - Sort by one or multiple columns programmatically or in the UI
 - Group rows and configure group summaries
 - Add filter row, filter panel, search box, or column filter menu
+- Show the filter panel or customize filter-builder operators for a specific field
 - Create total and group summary items
 
 ### Export
@@ -179,6 +178,7 @@ When you need to:
 ### Examples
 💻 [examples/quickstart.razor](examples/quickstart.razor) — In-memory CRUD with EditRow, grouping, search box, summaries, and export  
 💻 [examples/ef-core-crud.razor](examples/ef-core-crud.razor) — Full EF Core CRUD with `IDbContextFactory`, async save/delete, and data reload  
+💻 [examples/filter-panel-custom-date-operators.razor](examples/filter-panel-custom-date-operators.razor) — `FilterPanelDisplayMode` with a custom Filter Builder that removes month operators for `DueDate`  
 💻 [examples/custom-templates.razor](examples/custom-templates.razor) — `CellDisplayTemplate` (badge rendering), `EditFormTemplate` with `DxFormLayout`, `HeaderCaptionTemplate`  
 💻 [examples/drag-and-drop.razor](examples/drag-and-drop.razor) — Row reordering within one grid and moving rows between two grids using `ObservableCollection<T>`
 
@@ -630,14 +630,16 @@ The source grid sets `AllowDragRows="true"` + `AllowedDropTarget="GridAllowedDro
 **Follow these rules in every interaction:**
 
 0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`) or the local `apidoc/` folder. Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxGrid` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
-1. **Build verification**: After making changes, run `dotnet build` before reporting success.
-2. **NuGet packages**: Use `DevExpress.Blazor` only. Do not mix DevExpress package versions in one project.
-3. **Render mode is mandatory**: `DxGrid` requires an interactive render mode for all interactive features (sorting, filtering, editing, paging). Always include `@rendermode InteractiveServer` (or equivalent) on the page or in a parent component.
-4. **Namespace imports**: Always include `@using DevExpress.Blazor` in `_Imports.razor` or the Razor file.
-5. **KeyFieldName for editing/selection**: Always specify `KeyFieldName` when enabling editing or selection. Without it, the Grid cannot track data item identity reliably.
-6. **No destructive changes**: Preserve existing code outside the Grid component. Only add or modify what is necessary.
-7. **Version consistency**: All `DevExpress.*` NuGet packages must use the same version.
-8. **License**: A valid DevExpress license is required. If the user reports license errors, direct them to https://go.devexpress.com/Licensing_Documentation.aspx.
+1. **Filter panel API**: Use `FilterPanelDisplayMode`, not `ShowFilterPanel`. Set it to `Always` or `Auto` depending on whether the panel should always be visible.
+2. **Filter builder operators**: To change date operators such as `IsJanuary` for a specific field, customize `DxFilterBuilder` inside `FilterBuilderTemplate`. `DxGrid.CustomizeFilterMenu` only affects the column filter menu and `DxGridDataColumn.CustomizeFilterMenu` does not exist.
+3. **Build verification**: After making changes, run `dotnet build` before reporting success.
+4. **NuGet packages**: Use `DevExpress.Blazor` only. Do not mix DevExpress package versions in one project.
+5. **Render mode is mandatory**: `DxGrid` requires an interactive render mode for all interactive features (sorting, filtering, editing, paging). Always include `@rendermode InteractiveServer` (or equivalent) on the page or in a parent component.
+6. **Namespace imports**: Always include `@using DevExpress.Blazor` in `_Imports.razor` or the Razor file.
+7. **KeyFieldName for editing/selection**: Always specify `KeyFieldName` when enabling editing or selection. Without it, the Grid cannot track data item identity reliably.
+8. **No destructive changes**: Preserve existing code outside the Grid component. Only add or modify what is necessary.
+9. **Version consistency**: All `DevExpress.*` NuGet packages must use the same version.
+10. **License**: A valid DevExpress license is required. If the user reports license errors, direct them to https://go.devexpress.com/Licensing_Documentation.aspx.
 
 ## Using DevExpress Documentation MCP
 

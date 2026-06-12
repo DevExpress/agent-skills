@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-scheduler
-description: Build and configure the DevExpress Blazor Scheduler (DxScheduler) — an appointment calendar component for Blazor Server, WebAssembly, and Hybrid apps. Use when displaying appointments in Day, Week, Work Week, Month, or Timeline views; binding calendar data with DxSchedulerDataStorage and AppointmentMappings; implementing appointment creation, editing, and deletion; configuring recurring appointments with DxSchedulerRecurrenceInfo; managing resources; setting appointment labels and statuses. Also use when someone mentions DxScheduler, DevExpress Scheduler, Blazor calendar, appointment calendar, DxSchedulerDataStorage, DxSchedulerAppointmentMappings, DxSchedulerWeekView, DxSchedulerDayView, or recurring appointments in Blazor.
-compatibility: Requires .NET 8, 9, or 10. NuGet package DevExpress.Blazor from the DevExpress feed (https://nuget.devexpress.com/free/api). A valid DevExpress license is required. Requires interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto).
+description: Build and configure the DevExpress Blazor Scheduler (DxScheduler) — a calendar/appointment scheduling component for Blazor Server, WebAssembly, and Hybrid apps. Use for day/week/work-week/month/timeline views; data binding via DxSchedulerDataStorage and AppointmentMappings; appointment creation, editing, deletion, drag-and-drop and resize; recurring appointments (RecurrenceInfo / recurrence rules); resources (rooms/people); labels/statuses; and time/work-time configuration. Also use for DxScheduler, scheduler, calendar, appointment calendar, recurring appointments, and scheduling feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8, 9, or 10. NuGet package DevExpress.Blazor is available on NuGet.org. A valid DevExpress license is required. Requires interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto).
 metadata:
   author: DevExpress
   version: "26.1"
@@ -31,11 +32,7 @@ metadata:
 | `DevExpress.Blazor` | Scheduler + all standard Blazor UI components |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor
 ```
 
@@ -45,6 +42,7 @@ dotnet add package DevExpress.Blazor
    ```csharp
    builder.Services.AddDevExpressBlazor();
    ```
+    > **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 2. Apply a theme and add client scripts in `App.razor` inside `<head>`:
    ```razor
    @using DevExpress.Blazor
@@ -66,7 +64,7 @@ dotnet add package DevExpress.Blazor
 
 ## Component Overview
 
-`DxScheduler` provides:
+`DxScheduler` includes:
 
 - **Data Storage** (`DxSchedulerDataStorage`): Connects the component to appointment data via `AppointmentsSource` and `AppointmentMappings`
 - **Appointment Mappings** (`DxSchedulerAppointmentMappings`): Maps your data model fields to scheduler concepts (Id, Start, End, Subject, Type, RecurrenceInfo, etc.)
@@ -244,7 +242,7 @@ When you need to:
 | Property | Maps To |
 |---|---|
 | `Id` | Appointment unique identifier |
-| `Type` | Appointment type (0=regular, 1=pattern, 3=all-day pattern) |
+| `Type` | Appointment type (`0` = one-time, `1` = pattern, `2` = occurrence, `3` = changed occurrence, `4` = deleted occurrence) |
 | `Start` | Start date/time |
 | `End` | End date/time |
 | `Subject` | Appointment title |
@@ -255,13 +253,136 @@ When you need to:
 | `StatusId` | Status ID (int) |
 | `RecurrenceInfo` | Recurrence XML string |
 
+### Programmatic Recurrence Patterns
+
+When a user asks to make an appointment recurring, create a recurring pattern in the data
+source. Set `AppointmentType = 1` and assign a recurrence rule string to the mapped
+`Recurrence` field. Do not invent helpers like `WeeklyRecurrence(...)` unless the project
+already defines them.
+
+```csharp
+var start = DateTime.Today.AddDays(1).AddHours(14);
+var end = DateTime.Today.AddDays(1).AddHours(15);
+
+var appointment = new AppointmentData {
+    Id = 3,
+    AppointmentType = 1,
+    StartDate = start,
+    EndDate = end,
+    Caption = "Planning Session",
+    Description = "Sprint planning",
+    Label = 5,
+    Status = 1,
+    Recurrence = string.Format(
+        System.Globalization.CultureInfo.InvariantCulture,
+        "<RecurrenceInfo Start=\"{0}\" End=\"{1}\" WeekDays=\"{2}\" Frequency=\"1\" Range=\"0\" Type=\"1\" Id=\"{3}\" />",
+        start,
+        end,
+        1 << (int)start.DayOfWeek,
+        Guid.NewGuid())
+};
+```
+
+Use the following recurrence rule shapes for common prompts:
+
+| Prompt Shape | Required Rule Fields | Example Rule Body |
+|---|---|---|
+| Every `N` days | `Type="0"`, `Frequency` | `Type="0" Frequency="3"` |
+| Every `N` weeks on specific weekdays | `Type="1"`, `Frequency`, `WeekDays` | `Type="1" Frequency="2" WeekDays="16"` |
+| Every month on a day number | `Type="2"`, `Frequency`, `WeekOfMonth="0"`, `DayNumber` | `Type="2" Frequency="1" WeekOfMonth="0" DayNumber="30"` |
+| Every month on a weekday pattern | `Type="2"`, `Frequency`, `WeekOfMonth`, `WeekDays` | `Type="2" Frequency="1" WeekOfMonth="1" WeekDays="2"` |
+| Every year on a fixed date | `Type="3"`, `Frequency`, `Month`, `WeekOfMonth="0"`, `DayNumber` | `Type="3" Frequency="1" Month="3" WeekOfMonth="0" DayNumber="5"` |
+| Every year on a weekday pattern | `Type="3"`, `Frequency`, `Month`, `WeekOfMonth`, `WeekDays` | `Type="3" Frequency="1" Month="3" WeekOfMonth="1" WeekDays="2"` |
+
+Range values control when the series ends:
+
+| Range Shape | Meaning |
+|---|---|
+| `Range="0"` | No end date |
+| `Range="1" OccurrenceCount="N"` | End after `N` occurrences |
+| `Range="2" End="..."` | End on a specific date |
+
+For changed or deleted occurrences, use an exception rule instead of a pattern rule:
+
+```csharp
+"<RecurrenceInfo Id=\"6de79b21-6b16-4dea-9736-c500058ec858\" Index=\"25\"/>"
+```
+
+Use this exception rule only for changed or deleted occurrences, not for the base recurring
+pattern.
+
+### Advanced Recurrence Details
+
+Use these value mappings when a prompt requires exact recurrence control:
+
+| `WeekDays` value | Meaning |
+|---|---|
+| `1` | Sunday |
+| `2` | Monday |
+| `4` | Tuesday |
+| `8` | Wednesday |
+| `16` | Thursday |
+| `32` | Friday |
+| `64` | Saturday |
+| `62` | WorkDays (Monday through Friday) |
+| `65` | WeekendDays (Saturday and Sunday) |
+| `127` | EveryDay |
+
+`WeekDays` is a flags enum. Combine values with bitwise OR in C# when building recurrence data in
+code. In XML, the combined numeric value is stored in the `WeekDays` attribute.
+
+| `WeekOfMonth` value | Meaning |
+|---|---|
+| `0` | None |
+| `1` | First |
+| `2` | Second |
+| `3` | Third |
+| `4` | Fourth |
+| `5` | Last |
+
+When `WeekOfMonth = "0"`, the week position does not affect the rule and `WeekDays` is ignored
+for monthly and yearly day-number rules. In those cases, use `DayNumber` instead.
+
+| Property | Constraint |
+|---|---|
+| `DayNumber` | Valid values are `1` through `31`. Lower values are normalized to `1`; higher values are normalized to `31`. |
+| `Month` | Valid values are `1` through `12`. Lower values are normalized to `1`; higher values are normalized to `12`. |
+
+If a project works with recurrence objects instead of raw XML strings, use the documented XML
+conversion methods on `ISchedulerRecurrenceInfo`:
+
+| Method | Use |
+|---|---|
+| `FromXml(string)` | Reconstruct recurrence information from an XML rule string |
+| `ToXml()` | Convert recurrence information to an XML rule string |
+| `Reset(SchedulerRecurrenceType)` | Reset recurrence fields for a specific recurrence type |
+| `Assign(...)` | Copy recurrence settings from another recurrence object |
+
+If a prompt mentions time zones for recurring appointments, map the appointment time zone field
+with `DxSchedulerAppointmentMappings.TimeZoneId`. Recurrence time zone information is obtained
+from the appointment item and is used to calculate recurring series start and end times.
+
+For prompt interpretation, use the following rules:
+
+| Prompt Intent | Recommended Output |
+|---|---|
+| "every work day" | Weekly rule with `WeekDays="62"` |
+| "every day" | Daily rule or `WeekDays="127"` only when the project specifically models recurrence that way |
+| "first Monday of each month" | Monthly rule with `Type="2" WeekOfMonth="1" WeekDays="2"` |
+| "last Monday of April every year" | Yearly rule with `Type="3" Month="4" WeekOfMonth="5" WeekDays="2"` |
+| "skip this occurrence" | Create or preserve a deleted-occurrence exception with an `Id`/`Index` rule |
+| "edit only this occurrence" | Create or preserve a changed-occurrence exception with an `Id`/`Index` rule |
+
+Do not generate changed-occurrence or deleted-occurrence records unless the prompt explicitly
+targets a single occurrence or the surrounding code already manages recurrence exceptions.
+
 ## Troubleshooting
 
 | Symptom | Cause | Fix |
 |---|---|---|
 | No appointments shown | `AppointmentMappings` fields not matching model | Use `nameof()` for all mapping properties |
 | Appointments show wrong time | Time zone mismatch | Ensure `StartDate`/`EndDate` are stored in local or UTC consistently |
-| Scheduler doesn't respond to clicks | Static render mode | Add `@rendermode InteractiveServer` to the page |
+| Scheduler does not respond to clicks | Static render mode | Add `@rendermode InteractiveServer` to the page |
 | Recurring appointments broken | `RecurrenceInfo` mapping missing | Set `RecurrenceInfo = nameof(AppointmentData.Recurrence)` in mappings |
 | `MissingMethodException: Constructor on type 'Int32Converter' not found` (WASM) | Blazor linker removes required types during WebAssembly compilation | Set `<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>` in the project file, or add a `LinkerConfig.xml` to preserve required types |
 | `"Unhandled exception on the current circuit"` with no detail | `CircuitOptions.DetailedErrors` not set | Add `builder.Services.Configure<CircuitOptions>(o => o.DetailedErrors = true);` in `Program.cs` (development only) |
@@ -276,7 +397,7 @@ When you need to:
 0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`) or the local `apidoc/` folder. Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxScheduler` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
 1. **Render mode**: `DxScheduler` requires interactive render mode for appointment creation, editing, and navigation.
 2. **AppointmentMappings**: All mapping properties must exactly match your data model field names. Use `nameof()` to avoid spelling errors.
-3. **AppointmentType**: Required for recurring appointments. Regular non-recurring = `0`.
+3. **AppointmentType**: Recurring appointments created in code require `AppointmentType = 1` and a valid `RecurrenceInfo` mapping. Regular non-recurring appointments use `0`.
 4. **NuGet packages**: Use `DevExpress.Blazor`. Match versions across all DevExpress packages.
 5. **Build verification**: Run `dotnet build` after changes.
 

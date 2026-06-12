@@ -10,17 +10,11 @@
 
 - .NET 8.0, 9.0, or 10.0
 - Interactive render mode for click handling (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto)
-- DevExpress NuGet feed access and a valid license
+- Access to NuGet.org and a valid DevExpress license
 
 ## Step 1: Install NuGet Package
 
-First, ensure the DevExpress NuGet feed is registered as a package source (one-time setup per machine):
-
-```bash
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
-```
-
-Then install the package:
+Install the package from NuGet.org:
 
 ```bash
 dotnet add package DevExpress.Blazor

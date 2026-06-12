@@ -1,0 +1,64 @@
+@* DevExpress Blazor Grid - Filter panel with a customized Filter Builder for a date field. *@
+@page "/grid-filter-panel-custom-date-operators"
+@rendermode InteractiveServer
+
+<DxGrid Data="@Tasks"
+        KeyFieldName="Id"
+        FilterPanelDisplayMode="GridFilterPanelDisplayMode.Always">
+    <Columns>
+        <DxGridDataColumn FieldName="Name" Caption="Task" />
+        <DxGridDataColumn FieldName="AssignedTo" Caption="Assignee" />
+        <DxGridDataColumn FieldName="DueDate" DisplayFormat="d" />
+    </Columns>
+    <FilterBuilderTemplate Context="filterBuilderContext">
+        <DxFilterBuilder @bind-FilterCriteria="filterBuilderContext.FilterCriteria"
+                         CustomizeOperators="CustomizeOperators">
+            <Fields>
+                @filterBuilderContext.RenderDefaultFields()
+            </Fields>
+        </DxFilterBuilder>
+    </FilterBuilderTemplate>
+</DxGrid>
+
+@code {
+    static readonly FilterBuilderOperatorType[] DueDateMonthOperators = new[] {
+        FilterBuilderOperatorType.IsJanuary,
+        FilterBuilderOperatorType.IsFebruary,
+        FilterBuilderOperatorType.IsMarch,
+        FilterBuilderOperatorType.IsApril,
+        FilterBuilderOperatorType.IsMay,
+        FilterBuilderOperatorType.IsJune,
+        FilterBuilderOperatorType.IsJuly,
+        FilterBuilderOperatorType.IsAugust,
+        FilterBuilderOperatorType.IsSeptember,
+        FilterBuilderOperatorType.IsOctober,
+        FilterBuilderOperatorType.IsNovember,
+        FilterBuilderOperatorType.IsDecember
+    };
+
+    List<TaskItem> Tasks { get; set; }
+
+    protected override void OnInitialized() {
+        Tasks = new List<TaskItem> {
+            new TaskItem { Id = 1, Name = "Project Alpha", AssignedTo = "Alice", DueDate = DateTime.Today.AddDays(7) },
+            new TaskItem { Id = 2, Name = "Design", AssignedTo = "Bob", DueDate = DateTime.Today.AddDays(14) },
+            new TaskItem { Id = 3, Name = "Implementation", AssignedTo = "Carol", DueDate = DateTime.Today.AddDays(30) },
+            new TaskItem { Id = 4, Name = "Validation", AssignedTo = "Dave", DueDate = DateTime.Today.AddDays(45) }
+        };
+    }
+
+    void CustomizeOperators(FilterBuilderCustomizeOperatorsEventArgs args) {
+        if (args.FieldName != "DueDate")
+            return;
+
+        foreach (var operatorType in DueDateMonthOperators)
+            args.Operators.Remove(operatorType);
+    }
+
+    public class TaskItem {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string AssignedTo { get; set; }
+        public DateTime DueDate { get; set; }
+    }
+}

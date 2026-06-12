@@ -90,6 +90,25 @@ When a user adds a new node from within a row's context, set the `ParentId` auto
 
 > `TreeListCustomizeEditModelEventArgs.ParentDataItem` contains the parent node when creating a child row.
 
+## Typed Edit Models in EditFormTemplate
+
+When you use `EditFormTemplate` or handle `EditModelSaving`, cast `EditModel` to your model type
+before you access custom properties:
+
+```razor
+<EditFormTemplate Context="editFormContext">
+    @{
+        var editModel = (TaskItem)editFormContext.EditModel;
+    }
+
+    <p>Editing @editModel.Name</p>
+    @editFormContext.GetEditor("Name")
+</EditFormTemplate>
+```
+
+The TreeList exposes `EditModel` as `object`. Accessing `Name`, `AssignedTo`, or other model
+members without a cast causes compilation errors.
+
 ## Event Args Members
 
 ### TreeListEditModelSavingEventArgs
@@ -141,15 +160,22 @@ The TreeList reads DataAnnotation attributes automatically and highlights invali
 ## Programmatic Editing
 
 ```csharp
-// Start editing an existing item
-await TreeList.StartEditDataItemAsync(dataItem);
+// Start editing the focused row
+await TreeList.StartEditRowAsync(TreeList.GetFocusedRowIndex());
 
 // Add a new root node
 await TreeList.StartEditNewRowAsync();
 
-// Add a new child of a specific parent
-await TreeList.StartEditNewRowAsync(parentDataItem);
+// Add a child for the focused row
+await TreeList.StartEditNewRowAsync(TreeList.GetFocusedRowIndex());
+
+// Save the current edit
+await TreeList.SaveChangesAsync();
 
 // Cancel editing
 await TreeList.CancelEditAsync();
 ```
+
+For toolbar or external edit buttons, enable `FocusedRowEnabled="true"` and call
+`StartEditRowAsync(TreeList.GetFocusedRowIndex())`. If you also need a visible selected row state,
+combine focused row behavior with single selection.

@@ -1,0 +1,94 @@
+@* DevExpress Blazor TreeList - Edit selected item with a custom EditFormTemplate.
+   Uses the focused row API because DxTreeList edits existing rows by visible row index. *@
+@page "/treelist-edit-form-selected-item"
+@rendermode InteractiveServer
+
+<DxButton Text="Edit Selected Item"
+          Click="EditSelectedItemAsync"
+          Enabled="CanEditSelectedItem"
+          CssClass="mb-3" />
+
+<DxTreeList @ref="TreeList"
+            Data="@Tasks"
+            KeyFieldName="Id"
+            ParentKeyFieldName="ParentId"
+            RootValue="@((object)0)"
+            EditMode="TreeListEditMode.EditForm"
+            FocusedRowEnabled="true"
+            SelectionMode="TreeListSelectionMode.Single"
+            AllowSelectRowByClick="true"
+            SelectedDataItems="@SelectedDataItems"
+            SelectedDataItemsChanged="OnSelectedDataItemsChanged"
+            EditModelSaving="OnEditModelSaving">
+    <Columns>
+        <DxTreeListCommandColumn EditButtonVisible="false"
+                                 NewButtonVisible="false"
+                                 DeleteButtonVisible="false" />
+        <DxTreeListDataColumn FieldName="Name" Caption="Task" />
+        <DxTreeListDataColumn FieldName="AssignedTo" Caption="Assignee" />
+        <DxTreeListDataColumn FieldName="DueDate" DisplayFormat="d" />
+    </Columns>
+    <EditFormTemplate Context="editFormContext">
+        @{
+            var editModel = (TaskItem)editFormContext.EditModel;
+        }
+
+        <p>Editing @editModel.Name</p>
+
+        <DxFormLayout CssClass="w-100">
+            <DxFormLayoutItem Caption="Task" ColSpanMd="6">
+                @editFormContext.GetEditor("Name")
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Assignee" ColSpanMd="6">
+                @editFormContext.GetEditor("AssignedTo")
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Due Date" ColSpanMd="6">
+                @editFormContext.GetEditor("DueDate")
+            </DxFormLayoutItem>
+        </DxFormLayout>
+    </EditFormTemplate>
+</DxTreeList>
+
+@code {
+    ITreeList TreeList;
+    IReadOnlyList<object> SelectedDataItems = Array.Empty<object>();
+    List<TaskItem> Tasks { get; set; }
+
+    bool CanEditSelectedItem => TreeList != null
+        && SelectedDataItems.Count == 1
+        && TreeList.GetFocusedRowIndex() >= 0
+        && !TreeList.IsEditing();
+
+    protected override void OnInitialized() {
+        Tasks = new List<TaskItem> {
+            new TaskItem { Id = 1, ParentId = 0, Name = "Project Alpha", AssignedTo = "Alice", DueDate = DateTime.Today.AddDays(30) },
+            new TaskItem { Id = 2, ParentId = 1, Name = "Design", AssignedTo = "Bob", DueDate = DateTime.Today.AddDays(14) },
+            new TaskItem { Id = 3, ParentId = 1, Name = "Implementation", AssignedTo = "Carol", DueDate = DateTime.Today.AddDays(45) },
+            new TaskItem { Id = 4, ParentId = 3, Name = "Validation", AssignedTo = "Dave", DueDate = DateTime.Today.AddDays(60) }
+        };
+    }
+
+    Task EditSelectedItemAsync() {
+        if (!CanEditSelectedItem)
+            return Task.CompletedTask;
+
+        return TreeList.StartEditRowAsync(TreeList.GetFocusedRowIndex());
+    }
+
+    void OnSelectedDataItemsChanged(IReadOnlyList<object> newSelection) {
+        SelectedDataItems = newSelection;
+    }
+
+    Task OnEditModelSaving(TreeListEditModelSavingEventArgs e) {
+        e.CopyChangesToDataItem();
+        return Task.CompletedTask;
+    }
+
+    public class TaskItem {
+        public int Id { get; set; }
+        public int ParentId { get; set; }
+        public string Name { get; set; }
+        public string AssignedTo { get; set; }
+        public DateTime DueDate { get; set; }
+    }
+}

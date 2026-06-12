@@ -5,7 +5,7 @@ When you need to: install the package; configure data storage; display your firs
 ## Prerequisites
 
 - .NET 8, 9, or 10
-- `DevExpress.Blazor` NuGet package installed from the DevExpress feed
+- `DevExpress.Blazor` NuGet package from NuGet.org
 - A valid DevExpress license
 - Interactive render mode (`InteractiveServer`, `InteractiveWebAssembly`, or `InteractiveAuto`)
 
@@ -14,7 +14,7 @@ When you need to: install the package; configure data storage; display your firs
 ## Step 1 — Install NuGet Package
 
 ```bash
-dotnet add package DevExpress.Blazor --source https://nuget.devexpress.com/free/api
+dotnet add package DevExpress.Blazor
 ```
 
 ## Step 2 — Register Services

@@ -5,7 +5,7 @@ When you need to: set up the ComboBox from scratch, create your first drop-down 
 ## Prerequisites
 
 - .NET 8, 9, or 10
-- `DevExpress.Blazor` NuGet package installed from the DevExpress feed
+- `DevExpress.Blazor` NuGet package from NuGet.org
 - A valid DevExpress license
 - Interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto) — `DxComboBox` does not work in Static SSR
 
@@ -15,7 +15,7 @@ When you need to: set up the ComboBox from scratch, create your first drop-down 
 dotnet add package DevExpress.Blazor
 ```
 
-DevExpress package source: `https://nuget.devexpress.com/free/api`
+DevExpress packages are available on NuGet.org.
 
 ## Step 2 — Register Resources in `Program.cs`
 

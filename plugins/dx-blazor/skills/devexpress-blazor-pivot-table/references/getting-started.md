@@ -5,7 +5,7 @@ When you need to: install the required packages; configure namespaces; display y
 ## Prerequisites
 
 - .NET 8, 9, or 10
-- Two NuGet packages: `DevExpress.Blazor.PivotTable` and `DevExpress.PivotGrid.Core` from the DevExpress feed
+- Two NuGet packages: `DevExpress.Blazor.PivotTable` and `DevExpress.PivotGrid.Core` from NuGet.org
 - A valid DevExpress license
 - Interactive render mode (`InteractiveServer`, `InteractiveWebAssembly`, or `InteractiveAuto`)
 
@@ -16,8 +16,8 @@ When you need to: install the required packages; configure namespaces; display y
 The Pivot Table requires **two** NuGet packages:
 
 ```bash
-dotnet add package DevExpress.Blazor.PivotTable --source https://nuget.devexpress.com/free/api
-dotnet add package DevExpress.PivotGrid.Core --source https://nuget.devexpress.com/free/api
+dotnet add package DevExpress.Blazor.PivotTable
+dotnet add package DevExpress.PivotGrid.Core
 ```
 
 > **Warning**: Installing only `DevExpress.Blazor.PivotTable` without `DevExpress.PivotGrid.Core` will result in runtime errors.

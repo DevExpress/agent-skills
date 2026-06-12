@@ -7,7 +7,7 @@ Complete setup for integrating DevExpress Document Viewer and/or End-User Report
 - .NET 8.0 or later
 - Visual Studio 2022 (v17.0+) or JetBrains Rider
 - Node.js LTS (for npm bundling)
-- DevExpress NuGet feed: `https://nuget.devexpress.com/api`
+- Access to nuget.org for DevExpress NuGet packages
 - Valid DevExpress license
 
 ## Step 1: NuGet Packages

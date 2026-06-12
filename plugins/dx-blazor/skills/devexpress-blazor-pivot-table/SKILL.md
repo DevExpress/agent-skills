@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-pivot-table
-description: Build and configure the DevExpress Blazor Pivot Table (DxPivotTable) — an interactive cross-tab analysis component for Blazor Server, WebAssembly, and Hybrid apps. Use when building data analysis interfaces with pivot-style row/column cross-tabulation; adding sum, count, average, min, or max aggregation over grouped data; grouping date fields by year, quarter, or month; filtering data in pivot form; configuring fields via DxPivotTableField with Area and AreaIndex properties. Also use when someone mentions DxPivotTable, DevExpress PivotTable, pivot grid, cross-tabulation, PivotTableArea, DxPivotTableField, DevExpress.Blazor.PivotTable namespace, or pivot data binding in Blazor.
-compatibility: Requires .NET 8, 9, or 10. NuGet packages DevExpress.Blazor.PivotTable and DevExpress.PivotGrid.Core from the DevExpress feed (https://nuget.devexpress.com/free/api). @using DevExpress.Blazor.PivotTable required in _Imports.razor. A valid DevExpress license is required. Requires interactive render mode.
+description: Build and configure the DevExpress Blazor Pivot Table (DxPivotTable) — an interactive pivot grid / cross-tab analysis component for Blazor. Use for pivot-style row/column aggregation (sum/count/avg/min/max), field layout (area/area index), date grouping (year/quarter/month), interactive filtering, and building analytical dashboards. Also use for DxPivotTable, pivot grid, pivot table, cross-tab, OLAP-style analysis, and pivot feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8, 9, or 10. NuGet packages DevExpress.Blazor.PivotTable and DevExpress.PivotGrid.Core are available on NuGet.org. @using DevExpress.Blazor.PivotTable required in _Imports.razor. A valid DevExpress license is required. Requires interactive render mode.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -30,12 +31,7 @@ metadata:
 | `DevExpress.PivotGrid.Core` | Core pivot engine (required dependency) |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor.PivotTable --source <local-feed-name>
-dotnet add package DevExpress.PivotGrid.Core --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor.PivotTable
 dotnet add package DevExpress.PivotGrid.Core
 ```
@@ -46,6 +42,7 @@ dotnet add package DevExpress.PivotGrid.Core
    ```csharp
    builder.Services.AddDevExpressBlazor();
    ```
+    > **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 2. Apply a theme and add client scripts in `App.razor` inside `<head>`:
    ```razor
    @using DevExpress.Blazor

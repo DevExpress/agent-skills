@@ -1,6 +1,6 @@
 # Data Shaping — Blazor TreeList
 
-When you need to: sort tree columns; add a filter row, filter panel, or search box; create total summaries.
+When you need to: sort columns, add filtering UI, or create total summaries.
 
 ## Sorting
 
@@ -45,10 +45,67 @@ Users type filter values below column headers.
 ### Filter Panel
 
 ```razor
-<DxTreeList ShowFilterPanel="true" ...>
+<DxTreeList FilterPanelDisplayMode="TreeListFilterPanelDisplayMode.Always" ...>
 ```
 
-Shows the active filter summary; users can click to open the filter builder.
+Displays the active filter summary.
+
+Users can click the summary to open the filter builder.
+
+Use `TreeListFilterPanelDisplayMode.Auto` to show the panel only when a filter is active.
+
+### Filter Builder Operator Customization
+
+To customize operators that appear when users edit filter criteria from the filter panel, define a
+`FilterBuilderTemplate` and handle `DxFilterBuilder.CustomizeOperators`.
+
+`DxTreeList.CustomizeFilterMenu` affects the column filter menu only. It does not customize the
+filter panel or filter builder operators.
+
+```razor
+<DxTreeList Data="@Tasks"
+            KeyFieldName="Id"
+            ParentKeyFieldName="ParentId"
+            FilterPanelDisplayMode="TreeListFilterPanelDisplayMode.Always">
+    <Columns>
+        <DxTreeListDataColumn FieldName="Name" />
+        <DxTreeListDataColumn FieldName="DueDate" DisplayFormat="d" />
+    </Columns>
+    <FilterBuilderTemplate Context="filterBuilderContext">
+        <DxFilterBuilder @bind-FilterCriteria="filterBuilderContext.FilterCriteria"
+                         CustomizeOperators="CustomizeOperators">
+            <Fields>
+                @filterBuilderContext.RenderDefaultFields()
+            </Fields>
+        </DxFilterBuilder>
+    </FilterBuilderTemplate>
+</DxTreeList>
+
+@code {
+    static readonly FilterBuilderOperatorType[] DueDateMonthOperators = new[] {
+        FilterBuilderOperatorType.IsJanuary,
+        FilterBuilderOperatorType.IsFebruary,
+        FilterBuilderOperatorType.IsMarch,
+        FilterBuilderOperatorType.IsApril,
+        FilterBuilderOperatorType.IsMay,
+        FilterBuilderOperatorType.IsJune,
+        FilterBuilderOperatorType.IsJuly,
+        FilterBuilderOperatorType.IsAugust,
+        FilterBuilderOperatorType.IsSeptember,
+        FilterBuilderOperatorType.IsOctober,
+        FilterBuilderOperatorType.IsNovember,
+        FilterBuilderOperatorType.IsDecember
+    };
+
+    void CustomizeOperators(FilterBuilderCustomizeOperatorsEventArgs args) {
+        if (args.FieldName != "DueDate")
+            return;
+
+        foreach (var operatorType in DueDateMonthOperators)
+            args.Operators.Remove(operatorType);
+    }
+}
+```
 
 ### Tree Filter Mode
 

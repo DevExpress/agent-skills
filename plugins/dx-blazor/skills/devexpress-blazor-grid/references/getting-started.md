@@ -5,7 +5,7 @@ When you need to: set up the Grid from scratch, create your first grid with colu
 ## Prerequisites
 
 - .NET 8, 9, or 10
-- `DevExpress.Blazor` NuGet package installed from the DevExpress feed
+- `DevExpress.Blazor` NuGet package from NuGet.org
 - A valid DevExpress license
 
 ## Step 1 — Install the Package
@@ -14,7 +14,7 @@ When you need to: set up the Grid from scratch, create your first grid with colu
 dotnet add package DevExpress.Blazor
 ```
 
-DevExpress package source: `https://nuget.devexpress.com/free/api`
+DevExpress packages are available on NuGet.org.
 
 ## Step 2 — Register Resources in `Program.cs`
 

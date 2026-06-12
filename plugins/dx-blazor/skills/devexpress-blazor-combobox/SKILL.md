@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-combobox
-description: Build and configure the DevExpress Blazor ComboBox (DxComboBox) — a drop-down list editor for Blazor Server, WebAssembly, and Hybrid apps. Use when adding a ComboBox, dropdown selector, or item picker to a Blazor page; binding a ComboBox to a list, IEnumerable, or async data source; enabling search/filter, group data, virtual scrolling, or multiple columns; implementing cascading ComboBoxes where one list depends on another; customizing item display, edit box, or cell templates; adding Clear button, custom command buttons, or placeholder text; validating ComboBox input in EditForm; configuring DataLoadMode (Auto or OnDemand). Also use when someone mentions DxComboBox, DevExpress ComboBox, Blazor drop-down list, Blazor select editor, AllowUserInput, TextFieldName, GroupFieldName, SearchMode, EditBoxDisplayTemplate, ItemDisplayTemplate, or cascading dropdowns in Blazor.
-compatibility: Requires .NET 8, 9, or 10. NuGet package DevExpress.Blazor from the DevExpress NuGet feed (https://nuget.devexpress.com/free/api). A valid DevExpress license is required. DxComboBox requires an interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto) — it does not work in Static SSR.
+description: Build and configure the DevExpress Blazor ComboBox (DxComboBox) — a drop-down/select editor for Blazor Server, WebAssembly, and Hybrid apps. Use for data binding (sync/async), searching/filtering, grouping, virtualization, multi-column item lists, templates (item/edit box), validation in EditForm, Clear button and custom buttons, and cascading combo boxes. Also use for DxComboBox, combo box, dropdown, select, item picker, AllowUserInput, SearchMode, and editor feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8, 9, or 10. NuGet package DevExpress.Blazor is available on NuGet.org. A valid DevExpress license is required. DxComboBox requires an interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto) — it does not work in Static SSR.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -34,11 +35,7 @@ metadata:
 | `DevExpress.Blazor` | ComboBox + all standard Blazor UI components |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor
 ```
 
@@ -48,6 +45,7 @@ dotnet add package DevExpress.Blazor
    ```csharp
    builder.Services.AddDevExpressBlazor();
    ```
+    > **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 2. Apply a theme and add client scripts in `App.razor`:
    ```razor
    @DxResourceManager.RegisterTheme(Themes.Fluent)
