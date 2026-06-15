@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-ai-chat
-description: Generate and configure DevExpress Blazor AI Chat (DxAIChat) — an AI-powered conversational UI for Blazor, MAUI, WPF, and WinForms. Use when adding an AI chat interface, integrating OpenAI, Azure OpenAI, or Ollama, setting up prompt suggestions, file attachments, system prompts, streaming responses, tool calling, or Markdown-formatted replies. Also use when someone asks about DxAIChat, AI chat component, DevExpress.AIIntegration.Blazor.Chat, BlazorChatMessage, IChatResponseProvider, or AI assistant integration.
-compatibility: Requires .NET 8.0, 9.0, or 10.0. Interactive render mode required (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto). DevExpress NuGet packages from the DevExpress feed. An AI provider (OpenAI, Azure OpenAI, Ollama, or custom) must be configured separately — BYOK model.
+description: Generate and configure DevExpress Blazor AI Chat (DxAIChat) — an AI-powered chat UI for Blazor apps. Use for building conversational assistants, integrating providers (OpenAI, Azure OpenAI, Ollama, or custom), configuring system prompts and suggestions, streaming responses, attachments, Markdown rendering, and tool/function calling via custom IChatResponseProvider implementations. Also use for DxAIChat, AI chat component, LLM chat UI, OpenAI setup, and chat architecture comparisons or migration scenarios.
+
+compatibility: Requires .NET 8.0, 9.0, or 10.0. Interactive render mode required (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto). DevExpress NuGet packages are available on NuGet.org. An AI provider (OpenAI, Azure OpenAI, Ollama, or custom) must be configured separately — BYOK model.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -43,12 +44,7 @@ metadata:
 | `OllamaSharp` | — | Ollama self-hosted provider |
 
 ```bash
-# If a local NuGet feed with DevExpress 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.AIIntegration.Blazor.Chat --source <local-feed-name>
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.AIIntegration.Blazor.Chat
 dotnet add package DevExpress.Blazor
 ```
@@ -80,6 +76,8 @@ builder.Services.AddChatClient(chatClient);
 builder.Services.AddDevExpressBlazor();
 builder.Services.AddDevExpressAI();
 ```
+
+> **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 
 > **Keyed providers only**: For multi-provider (runtime-switching) setups, skip `AddChatClient` and register each provider explicitly: `builder.Services.AddKeyedScoped<IChatResponseProvider>("key", (_, _) => client.AsIChatResponseProvider())`.
 

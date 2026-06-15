@@ -164,9 +164,23 @@ Use `@bind-Checked` and `GroupName` to create checkable items. Items with a uniq
                Click="SaveToCloud" />
 ```
 
-## Custom Item Template
+## Custom Item Content
 
-Use `Template` for fully custom item content:
+Use `ChildContent` when you want to replace only the inner content area and keep the default item border, icon layout, and drop-down button:
+
+```razor
+<DxToolbarItem Text="Docs">
+    <ChildContent>
+        <span class="text-decoration-underline text-primary">Docs</span>
+    </ChildContent>
+    <Items>
+        <DxToolbarItem Text="API Reference" />
+        <DxToolbarItem Text="Examples" />
+    </Items>
+</DxToolbarItem>
+```
+
+Use `Template` only when you need to replace the entire item surface with fully custom markup:
 
 ```razor
 <DxToolbarItem>
@@ -178,6 +192,8 @@ Use `Template` for fully custom item content:
     </Template>
 </DxToolbarItem>
 ```
+
+`Template` replaces the whole item content, so built-in visuals such as the default border and the drop-down button are not preserved.
 
 ## Form Submission
 

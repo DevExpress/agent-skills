@@ -1,17 +1,7 @@
 ---
 name: devexpress-reports-core
 description: >
-  AI skill for the DevExpress XtraReports runtime API (.NET and .NET Framework). Use when creating
-  reports in code, binding reports to data sources, adding bands and controls programmatically,
-  defining parameters and expressions, exporting reports (ExportToPdf, ExportToXlsx, ExportToDocx,
-  etc.), and configuring ExportOptions. Covers XtraReport, bands (DetailBand, GroupHeaderBand, etc.),
-  controls (XRLabel, XRTable, XRChart, etc.), data binding, calculated fields, expressions,
-  parameters, and all ExportTo*** methods. Platform-neutral: applies to WinForms, WPF, ASP.NET Core,
-  and Blazor. Trigger phrases: "create report in code", "XtraReport", "add band", "XRLabel",
-  "export report to PDF", "ExportToPdf", "ExportOptions", "bind report to data", "report parameters",
-  "XtraReports runtime", "generate XtraReport", "group report by field", "grouped by category",
-  "bind report to collection", "programmatically build report", "dynamic report creation",
-  "runtime report generation", "DevExpress report from code", "add control to report".
+  Create reports programmatically with DevExpress XtraReports runtime API (.NET and .NET Framework). Build XtraReport in code, add bands (DetailBand, GroupHeaderBand), controls (XRLabel, XRTable, XRChart), parameters, expressions. Bind to data sources, calculated fields, group reports. Export to PDF, Excel, Word, CSV, HTML, Images with ExportOptions. Master-detail, subreports, cross-tabs. Works cross-platform WinForms, WPF, ASP.NET Core, Blazor.
 version: "26.1"
 compatibility: >
   Requires DevExpress.Win.Reporting (WinForms), DevExpress.Wpf.Reporting (WPF), or
@@ -29,7 +19,6 @@ metadata:
 ## When to Use This Skill
 
 > **CRITICAL — Do not bypass this skill.** Whenever this skill is active, follow the patterns and constraints here. Do not substitute your own general knowledge of DevExpress APIs. If a scenario is not covered in the main skill body, read the relevant reference file or use MCP servers before writing code — do not guess API signatures.
-<!-- Addresses: 2026-05-20-missed-skill.md -->
 
 Use for any task involving:
 - Creating `XtraReport` instances and building report structure in code
@@ -120,10 +109,8 @@ report.ExportToPdf("output.pdf");
 See `examples/quickstart.cs` for a full working example with grouping, a page header, and PDF export.
 
 > **Single-field display only**: The pattern above uses `XRLabel` for one field. For reports with multiple side-by-side columns, group subtotals, images, or charts — read `references/report-controls.md` (control types) and `references/report-bands.md` (band types) before writing code.
-<!-- Addresses: 2026-05-19-xrtable-layout-labels.md -->
 
 > For designer-backed reports (with `InitializeComponent()`): do not add a second `DetailBand`. See **Antipatterns** (AP7) and Constraint 9.
-<!-- Addresses: 2026-05-19-duplicate-detailband.md -->
 
 ## Export API
 
@@ -178,7 +165,6 @@ label.ExpressionBindings.Add(new ExpressionBinding("PrintOnPage", "Text", "'Prin
 ```
 
 > Expression function names are NOT .NET method names — see **Antipatterns** (AP2) and `references/expressions.md` for the complete catalogue.
-<!-- Addresses: 2025-07-16-format-expression-function.md -->
 
 **Pattern 3 — Report parameter:**
 ```csharp
@@ -220,7 +206,6 @@ report.ExportToPdf(outputStream);
 **Pattern 6 — Tabular column layout with XRTable:**
 
 > Use `XRTable` / `XRTableRow` / `XRTableCell` for every multi-column layout — data rows, header rows, and summary rows. See **Antipatterns** (AP3).
-<!-- Addresses: 2025-07-16-xrtable-column-headers.md -->
 
 ```csharp
 var table = new XRTable();
@@ -238,12 +223,10 @@ table.SizeF = new SizeF(650, 25);  // total width = sum of cell WidthF values
 table.EndInit();
 // See references/report-controls.md for the full XRTable reference.
 ```
-<!-- Addresses: 2026-05-19-xrtable-layout-labels.md -->
 
 **Pattern 7 — Group or report summary using XRSummary:**
 
 > Summary labels require `XRSummary`. See **Antipatterns** (AP5, AP6).
-<!-- Addresses: 2025-07-16-xrsummary-vs-expression.md -->
 
 ```csharp
 // Pattern A — XRSummary.Func + FormatString (simplest for standard aggregates):
@@ -265,7 +248,6 @@ totalLabel.ExpressionBindings.Add(new ExpressionBinding("BeforePrint", "Text", "
 // Other sum*() functions: sumAvg([Field]), sumCount(), sumSum([Field]), sumMin([Field])
 // See references/expressions.md for the full Summary Functions reference.
 ```
-<!-- Addresses: 2026-05-19-summary-expression-function.md, 2025-07-16-xrsummary-vs-expression.md -->
 
 **Pattern 8 — Calculate available control width from page dimensions:**
 ```csharp
@@ -284,7 +266,6 @@ cell2.WidthF = availableWidth * 0.33f;
 ```
 
 > Set full-band controls to `availableWidth`. See **Antipatterns** (AP9).
-<!-- Addresses: 2025-07-16-hardcoded-control-widths.md -->
 
 ## Key Properties — XtraReport
 
@@ -316,13 +297,9 @@ cell2.WidthF = availableWidth * 0.33f;
 | Build error: namespace not found | Missing `using` directive | Add `using DevExpress.XtraReports.UI;` and `using DevExpress.XtraReports.Parameters;` |
 | `CreateDocument()` hangs in web app | Blocking call on async context | Use `await report.CreateDocumentAsync()` in web/API |
 | Code uses `DataBindings.Add("Text", null, "Field")` | Legacy binding API | Replace with `ExpressionBindings.Add(new ExpressionBinding("BeforePrint", "Text", "[Field]"))`. See Constraint 13. |
-<!-- Addresses: 2026-05-15-data-binding-expression.md -->
 | Group footer label shows last value, or error XRE093 "no summary functions" | Expression uses `Sum([Field])` — not a valid DevExpress reporting function | Replace with `sumSum([Field])`; ensure `label.Summary.Running` is set. See Pattern 7 and `references/expressions.md` |
-<!-- Addresses: 2026-05-19-summary-expression-function.md -->
 | Summary label displays expression literally or shows 0 / nothing | `XRSummary` not set on the label — `sumCount()`, `sumSum()` etc. were used in `ExpressionBinding` without `label.Summary` | Assign `label.Summary = new XRSummary { Running = SummaryRunning.Group }` (Pattern A or B). `XRSummary` is always required. See Pattern 7. |
-<!-- Addresses: 2025-07-16-xrsummary-vs-expression.md -->
 | Expression binding silently ignored or runtime error with unrecognized function | Expression function name guessed from C# knowledge (e.g., `Format()`, `String.Format()`, `ToString()`) — no such function in DevExpress expression language | Use `FormatString(format, value)` for formatting; check `references/expressions.md` for the full function list. See Pattern 2. |
-<!-- Addresses: 2025-07-16-format-expression-function.md -->
 | `System.Exception: Incorrect band type` at report constructor | A second instance of a singleton band (`DetailBand`, `TopMarginBand`, `BottomMarginBand`) was added via `Bands.Add()` after the singleton band was already created previously | Remove the `Bands.Add()` call; get the existing band from the designer field (e.g., `detailBand1`) and configure it directly. See Constraint 9. |
 
 ## Constraints & Rules
@@ -336,15 +313,10 @@ cell2.WidthF = availableWidth * 0.33f;
 7. **No destructive changes**: When modifying existing report classes, preserve existing band/control structure; only add or modify what is required.
 8. **Verify build**: Always run `dotnet build` and confirm 0 errors before reporting task complete.
 9. **Singleton bands in designer-backed reports**: `XtraReport` enforces exactly one `DetailBand`, one `TopMarginBand`, and one `BottomMarginBand`. In a designer-backed partial class (one with `InitializeComponent()`), these bands **already exist**. Calling `Bands.Add(new DetailBand())` will throw `System.Exception: Incorrect band type` at runtime. **Rule**: Reuse the existing singleton bands declared in the designer file (e.g., `detailBand1`). Only call `Bands.Add(...)` for band types that may appear multiple times (e.g., `GroupHeaderBand`, `PageFooterBand`) **and** that `InitializeComponent()` did not already add.
-<!-- Addresses: 2026-05-19-duplicate-detailband.md -->
 10. **Project structure — designer file class ordering**: When adding helper or model classes alongside a report class, **never place them before the `XtraReport` subclass** in the same `.cs` file. Visual Studio requires the designed class to be the first class in its file. Place model/helper classes in a dedicated separate file (e.g., `Model/Product.cs`).
-<!-- Addresses: 2026-05-19-product-class-placement.md -->
 11. **Project structure — respect existing folders**: Before creating a new folder for model or helper classes, inspect the existing project structure. If a folder already exists for models (e.g., `Model`, `Models`, `Data`) or reports (e.g., `Reports`, `PredefinedReports`), place new files inside it and match its name and namespace exactly. Never create a parallel folder with a similar name.
-<!-- Addresses: 2026-05-19-wrong-model-folder.md -->
 12. **Tabular layout must use XRTable**: **Any multi-column layout** — data rows in `DetailBand`, static column header rows in `GroupHeaderBand` or `PageHeaderBand`, summary rows in `GroupFooterBand` — must use `XRTable` / `XRTableRow` / `XRTableCell`. Never build a helper that positions `XRLabel` controls at calculated `x` offsets. Never simulate a table with multiple `XRLabel` controls at absolute X positions. This constraint applies to header rows and static text rows equally, not only to data-bound rows. See Pattern 6.
-<!-- Addresses: 2026-05-19-xlabel-instead-of-xrtable.md, 2025-07-16-xrtable-column-headers.md -->
 13. **Never use `DataBindings`**: `DataBindings` is the legacy binding mode. For new reports, always use `ExpressionBindings` with `new ExpressionBinding(eventName, propertyName, expression)`. Generating `DataBindings.Add(...)` is not recommended unless maintaining legacy reports.
-<!-- Addresses: 2026-05-15-data-binding-expression.md -->
 14. **Set size/position properties AFTER adding to parent — never in object initializers**: Always call `Bands.Add(band)` before setting `band.HeightF`, and always call `Controls.Add(control)` before setting `control.BoundsF`, `control.LocationF`, or `control.SizeF`. Report objects inherit the parent's measure unit when added to a parent; sizes assigned before this point will be silently recalculated and produce incorrect layout. **Other properties** (Text, Font, TextAlignment, ForeColor, ExpressionBindings, GroupFields, etc.) may be set at any time, including in object initializers. ✅ Correct: `var label = new XRLabel { Text = "X", Font = … }; band.Controls.Add(label); label.BoundsF = …;` ❌ Wrong: `var label = new XRLabel { BoundsF = …, Text = "X" }; band.Controls.Add(label);`
 15. **Content properties are mandatory — never omit them**: Some controls have one or more essential content properties that hold the actual data to be displayed. `XRLabel` requires `Text`, `XRPictureBox` requires `ImageSource` or `ImageUrl`, `XRBarCode` requires `Text` or `BinaryData`, `XRCheckBox` requires `CheckBoxState`, `XRGauge` requires `ActualValue`, `XRRichText` requires `Rtf` or `Html`, etc. **These are not optional styling tweaks** — without them the control will be invisible or non-functional. Always bind content properties via `ExpressionBindings` or assign values directly. See `references/report-controls.md` for each control's content property requirements.
 

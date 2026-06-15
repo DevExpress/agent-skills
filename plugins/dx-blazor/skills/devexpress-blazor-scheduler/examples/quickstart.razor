@@ -42,7 +42,22 @@
                 Label = 3, Status = 1
             },
             new AppointmentData {
-                Id = 3, AppointmentType = 0,
+                Id = 3, AppointmentType = 1,
+                StartDate = DateTime.Today.AddDays(1).AddHours(14),
+                EndDate = DateTime.Today.AddDays(1).AddHours(15),
+                Caption = "Planning Session",
+                Description = "Sprint planning",
+                Label = 2, Status = 1,
+                Recurrence = string.Format(
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    "<RecurrenceInfo Start=\"{0}\" End=\"{1}\" WeekDays=\"{2}\" Frequency=\"1\" Range=\"0\" Type=\"1\" Id=\"{3}\" />",
+                    DateTime.Today.AddDays(1).AddHours(14),
+                    DateTime.Today.AddDays(1).AddHours(15),
+                    1 << (int)DateTime.Today.AddDays(1).DayOfWeek,
+                    Guid.NewGuid())
+            },
+            new AppointmentData {
+                Id = 4, AppointmentType = 0,
                 StartDate = DateTime.Today.AddDays(2),
                 EndDate = DateTime.Today.AddDays(3),
                 Caption = "Conference",

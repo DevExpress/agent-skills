@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-gauges
-description: Generate and configure DevExpress Blazor visualization components — Bar Gauge, Range Selector, Sankey, Sparkline, and Map. Use when adding gauge charts, linear range selectors, flow diagrams, compact trend lines, or geo maps to a Blazor application. Also use when someone mentions DxBarGauge, DxRangeSelector, DxSankey, DxSparkline, DxMap, SparklineType, SankeyLinkColorMode, SourceFieldName, TargetFieldName, WeightFieldName, SelectedRangeStartValue, StartValue, EndValue, Values property for gauge, bar gauge labels, range selector scale, Sankey nodes and links, sparkline series, or asks about Blazor data visualization beyond standard chart types.
-compatibility: Requires .NET 8+. NuGet package DevExpress.Blazor from the DevExpress feed (https://nuget.devexpress.com/free/api). Interactive render mode required for Range Selector selection, Sankey/Map hover and click events. DxMap requires an API key from Azure, Google, or GoogleStatic GIS services.
+description: Generate and configure DevExpress Blazor visualization components such as DxBarGauge, DxRangeSelector, DxSankey, DxSparkline, and DxMap. Use when building dashboards with gauges and range selection, Sankey flow diagrams, sparklines/mini charts, and interactive maps (data binding, labels, palettes, selection/hover/click events). Also use for bar gauge, range selector, Sankey, sparkline, map, and visualization feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8+. NuGet package DevExpress.Blazor is available on NuGet.org. Interactive render mode required for Range Selector selection, Sankey/Map hover and click events. DxMap requires an API key from Azure, Google, or GoogleStatic GIS services.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -36,11 +37,7 @@ A collection of specialized visualization components for Blazor:
 | `DevExpress.Blazor` | All components in this skill |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor
 ```
 
@@ -48,6 +45,8 @@ Register in `Program.cs`:
 ```csharp
 builder.Services.AddDevExpressBlazor();
 ```
+
+> **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 
 Add to `_Imports.razor`:
 ```razor

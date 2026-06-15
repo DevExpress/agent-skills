@@ -19,5 +19,11 @@
     "ui-components",
     "theming",
     "skills"
-  ]
+  ],
+  "mcpServers": {
+    "dxdocs": {
+      "url": "https://api.devexpress.com/mcp/docs",
+      "type": "http"
+    }
+  }
 }

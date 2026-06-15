@@ -4,15 +4,11 @@
 
 - .NET 8.0+ (NuGet package targets .NET 8+)
 - Visual Studio 2022+ or JetBrains Rider
-- DevExpress NuGet feed: `https://nuget.devexpress.com/free/api`
+- DevExpress packages available on NuGet.org
 
 ## Installation
 
-### Step 1: Add the DevExpress NuGet Feed
-
-In Visual Studio: **Tools → NuGet Package Manager → Package Manager Settings → Package Sources** → add `https://nuget.devexpress.com/free/api`.
-
-### Step 2: Install the Package
+### Step 1: Install the Package
 
 ```bash
 dotnet add package DevExpress.Blazor
@@ -23,7 +19,7 @@ Or in Package Manager Console:
 Install-Package DevExpress.Blazor
 ```
 
-### Step 3: Register Services
+### Step 2: Register Services
 
 In `Program.cs`:
 ```csharp
@@ -32,14 +28,14 @@ using DevExpress.Blazor;
 builder.Services.AddDevExpressBlazor();
 ```
 
-### Step 4: Add Imports
+### Step 3: Add Imports
 
 In `_Imports.razor`:
 ```razor
 @using DevExpress.Blazor
 ```
 
-### Step 5: Apply Theme and Scripts
+### Step 4: Apply Theme and Scripts
 
 In `App.razor`, inside `<head>`:
 ```razor
@@ -48,7 +44,7 @@ In `App.razor`, inside `<head>`:
 @DxResourceManager.RegisterScripts()
 ```
 
-### Step 6: Enable Interactivity
+### Step 5: Enable Interactivity
 
 Blazor Charts support static render mode to display data as static images. To use zoom/pan, selection, tooltips, and other interactive features, enable interactivity on the Razor page:
 

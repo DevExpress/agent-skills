@@ -1,7 +1,7 @@
 ---
 name: devexpress-xaf-editors
 description: >-
-  XAF Property Editors, List Editors, and View Items. Covers PropertyEditor class hierarchy (PropertyEditor, BlazorPropertyEditorBase, WinPropertyEditor, DXPropertyEditor), built-in editors for all data types (string, numeric, date, boolean, enum, lookup, file, image, collection, criteria), CustomizeViewItemControl to configure editors in controllers, implementing custom Property Editors with ComponentModel (Blazor) or CreateControlCore (WinForms), PropertyEditorAttribute registration, DxEditorButtonModel for custom buttons, IInplaceEditSupport for grid editing, List Editors (DxGridListEditor, GridListEditor, DxTreeListEditor, TreeListEditor, SchedulerListEditor, ChartListEditor), ListEditorAttribute, DxGridModel/GridView access in OnViewControlsCreated, ColumnWrapper customization, implementing custom List Editors with IComponentContentHolder (Blazor), custom ViewItem with ViewItemAttribute, IComplexViewItem for ObjectSpace/Application access, BlazorControlViewItem for Razor components in Dashboard Views, and data-type-to-editor mappings.
+  XAF editors covering Property Editors, List Editors, and View Items; data-type-to-editor mappings; accessing and customizing editor controls with CustomizeViewItemControl and OnViewControlsCreated; and implementing custom Property Editors, List Editors, and View Items for Blazor and WinForms.
 compatibility: Requires .NET 8+ (XAF v26.1). NuGet packages DevExpress.ExpressApp, DevExpress.ExpressApp.Blazor, DevExpress.ExpressApp.Win. Platform-specific editors belong in the Blazor.Server or Win project.
 metadata:
   author: DevExpress

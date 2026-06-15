@@ -16,7 +16,7 @@ Alternatively, add to your `.csproj`:
 <PackageReference Include="DevExpress.Blazor" Version="26.1.*" />
 ```
 
-The package is available from the DevExpress NuGet feed: `https://nuget.devexpress.com/free/api`.
+The package is available on NuGet.org.
 
 ## 2. Register Services
 

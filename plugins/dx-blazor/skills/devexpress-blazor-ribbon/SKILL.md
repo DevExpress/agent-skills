@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-ribbon
-description: Build and configure the DevExpress Blazor Ribbon (DxRibbon) — a tabbed command bar for Blazor applications. Use when creating ribbon tabs, groups, items, application menus, contextual tabs, toggle items, color palette pickers, combo boxes, or spin editors in a ribbon. Also use when someone asks about DxRibbon, DxRibbonTab, DxRibbonGroup, DxRibbonItem, DxRibbonApplicationTab, contextual tabs, DxRibbonComboBoxItem, DxRibbonColorPaletteItem, or Office-style ribbon UI in Blazor.
-compatibility: Requires .NET 8.0, 9.0, or 10.0. Interactive render mode required for interactivity (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto). NuGet package DevExpress.Blazor from the DevExpress feed. A valid DevExpress license is required.
+description: Build and configure the DevExpress Blazor Ribbon (DxRibbon) — an Office-style tabbed command UI for Blazor. Use when creating ribbon tabs, groups, and items; application menu (File); contextual tabs; toggle/check items and radio groups; and embedding editors like combo boxes, spin edits, and color palettes. Also use for DxRibbon, ribbon UI, Office ribbon, command bar, and ribbon feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8.0, 9.0, or 10.0. Interactive render mode required for interactivity (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto). NuGet package DevExpress.Blazor is available on NuGet.org. A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -32,11 +33,7 @@ metadata:
 | `DevExpress.Blazor` | Ribbon component and all core Blazor UI controls |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor
 ```
 
@@ -48,6 +45,8 @@ dotnet add package DevExpress.Blazor
 ```csharp
 builder.Services.AddDevExpressBlazor();
 ```
+
+> **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 
 **Components/App.razor** — register theme and client scripts inside `<head>`:
 ```razor

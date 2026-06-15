@@ -74,10 +74,66 @@ Users type values into filter cells below column headers.
 ### Filter Panel & Filter Builder
 
 ```razor
-<DxGrid ShowFilterPanel="true" ...>
+<DxGrid FilterPanelDisplayMode="GridFilterPanelDisplayMode.Always" ...>
 ```
 
-Displays an active filter summary; users can click to open the visual filter builder.
+Displays an active filter summary.
+
+Users can click the summary to open the visual filter builder.
+
+Use `GridFilterPanelDisplayMode.Auto` to show the panel only when a filter is active.
+
+### Filter Builder Operator Customization
+
+To customize operators that appear when users edit filter criteria from the filter panel, define a
+`FilterBuilderTemplate` and handle `DxFilterBuilder.CustomizeOperators`.
+
+`DxGrid.CustomizeFilterMenu` affects the column filter menu only. It does not customize the filter
+panel or filter builder operators.
+
+```razor
+<DxGrid Data="@Items"
+        KeyFieldName="Id"
+        FilterPanelDisplayMode="GridFilterPanelDisplayMode.Always">
+    <Columns>
+        <DxGridDataColumn FieldName="Name" />
+        <DxGridDataColumn FieldName="DueDate" DisplayFormat="d" />
+    </Columns>
+    <FilterBuilderTemplate Context="filterBuilderContext">
+        <DxFilterBuilder @bind-FilterCriteria="filterBuilderContext.FilterCriteria"
+                         CustomizeOperators="CustomizeOperators">
+            <Fields>
+                @filterBuilderContext.RenderDefaultFields()
+            </Fields>
+        </DxFilterBuilder>
+    </FilterBuilderTemplate>
+</DxGrid>
+
+@code {
+    static readonly FilterBuilderOperatorType[] DueDateMonthOperators = new[] {
+        FilterBuilderOperatorType.IsJanuary,
+        FilterBuilderOperatorType.IsFebruary,
+        FilterBuilderOperatorType.IsMarch,
+        FilterBuilderOperatorType.IsApril,
+        FilterBuilderOperatorType.IsMay,
+        FilterBuilderOperatorType.IsJune,
+        FilterBuilderOperatorType.IsJuly,
+        FilterBuilderOperatorType.IsAugust,
+        FilterBuilderOperatorType.IsSeptember,
+        FilterBuilderOperatorType.IsOctober,
+        FilterBuilderOperatorType.IsNovember,
+        FilterBuilderOperatorType.IsDecember
+    };
+
+    void CustomizeOperators(FilterBuilderCustomizeOperatorsEventArgs args) {
+        if (args.FieldName != "DueDate")
+            return;
+
+        foreach (var operatorType in DueDateMonthOperators)
+            args.Operators.Remove(operatorType);
+    }
+}
+```
 
 ### Set Filter Programmatically
 

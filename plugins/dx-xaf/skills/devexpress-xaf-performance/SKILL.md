@@ -1,7 +1,7 @@
 ---
 name: devexpress-xaf-performance
 description: >-
-  XAF performance optimization across database, ORM, and application layers. Covers List View Data Access Modes (Client, Queryable, Server, ServerView, DataView, InstantFeedback, InstantFeedbackView) with platform/ORM/editor support matrix and trade-offs, EF Core eager loading via PreFetchReferenceProperties, query splitting behavior (single vs split), change-tracking proxies and virtual properties, XPO delayed loading (DelayedAttribute) and ExplicitLoadingAttribute, PersistentAlias for server-side calculated properties, N+1 query detection, database indexing (IndexedAttribute), connection pooling, CollectionSourceDataAccessMode, application startup optimization (EnableModelCache, ModelCacheManager, GetDeclaredExportedTypes/GetDeclaredControllerTypes overrides), ObjectMethodActionsViewController.Enabled, NonPersistentProperty limitations in server modes, SQL profiling with XPO Profiler and EF Core logging, .NET code profiling, Blazor tab management (MaxTabLimit, TabOverflowStrategy), and denormalization with database views.
+  XAF performance optimization across database, ORM, and application layers. Covers server-mode data sources and data access modes, EF Core eager loading, query splitting, and change-tracking proxies, XPO delayed and explicit loading, PersistentAlias for calculated properties, N+1 Select Problem, database indexing and connection pooling, startup optimization, SQL and .NET profiling, Blazor tab management, and database views.
 compatibility: Requires .NET 8+ (XAF v26.1). EF Core is the recommended ORM. Applies to EF Core and XPO ORMs, ASP.NET Core Blazor and WinForms platforms. Database engine tools needed for SQL profiling.
 metadata:
   author: DevExpress

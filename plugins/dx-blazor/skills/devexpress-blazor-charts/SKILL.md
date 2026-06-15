@@ -1,7 +1,8 @@
 ---
 name: devexpress-blazor-charts
-description: Generate and configure DevExpress Blazor Charts — line, bar, area, pie, donut, polar, scatter, bubble, candlestick, and financial charts. Use when adding a chart to a Blazor page, binding chart data, configuring axes, adding series labels, tooltips, legends, annotations, zoom/pan, palette, or export. Also use when someone mentions DxChart, DxPieChart, DxPolarChart, DxChartLineSeries, DxChartBarSeries, DxChartAreaSeries, DxChartSeriesLabel, DxChartLegend, DxChartTitle, DxChartArgumentAxis, DxChartValueAxis, DxChartZoomAndPanSettings, ChartSelectionMode, ArgumentField, ValueField, DevExpress.Blazor chart, or asks about Blazor data visualization, chart customization, pie chart sectors, or polar coordinate charts.
-compatibility: Requires .NET 8+. NuGet package DevExpress.Blazor from the DevExpress feed (https://nuget.devexpress.com/free/api). Chart components require an interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto) except for static image display.
+description: Generate and configure DevExpress Blazor Charts (DxChart, DxPieChart, DxPolarChart) for common chart types (line/bar/area/pie/donut/scatter/bubble/financial), data binding, axes, series, labels, tooltips, legends, annotations, zoom/pan, palettes, selection, and export/print. Also use for Blazor charts, data visualization, dashboards, and chart feature comparisons or migration scenarios.
+
+compatibility: Requires .NET 8+. NuGet package DevExpress.Blazor is available on NuGet.org. Chart components require an interactive render mode (InteractiveServer, InteractiveWebAssembly, or InteractiveAuto) except for static image display.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -34,11 +35,7 @@ DevExpress Blazor Charts (`DxChart`, `DxPieChart`, `DxPolarChart`) transform dat
 | `DevExpress.Blazor` | All chart components (`DxChart`, `DxPieChart`, `DxPolarChart`) |
 
 ```bash
-# If a local NuGet feed with DevExpress 25.2+ or 26.1+ packages is configured (check: dotnet nuget list source):
-dotnet add package DevExpress.Blazor --source <local-feed-name>
-
-# No local feed — add the online DevExpress feed, then install:
-dotnet nuget add source https://nuget.devexpress.com/free/api -n DevExpress
+# Install from NuGet.org:
 dotnet add package DevExpress.Blazor
 ```
 
@@ -46,6 +43,8 @@ Register in `Program.cs`:
 ```csharp
 builder.Services.AddDevExpressBlazor();
 ```
+
+> **v26.1 note**: `DevExpress.Blazor` no longer includes `options.BootstrapVersion` or `DevExpress.Blazor.BootstrapVersion`. Do not generate either API.
 
 Add to `_Imports.razor`:
 ```razor
