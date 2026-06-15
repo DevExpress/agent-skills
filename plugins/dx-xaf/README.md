@@ -2,7 +2,7 @@
 
 This plugin contains AI agent skills for [DevExpress eXpressApp Framework](https://docs.devexpress.com/eXpressAppFramework/) (.NET business application framework that integrates DevExpress UI Controls with ORM libraries such as EF Core or DevExpress XPO).
 
---- 
+---
 
 ## Prerequisites
 

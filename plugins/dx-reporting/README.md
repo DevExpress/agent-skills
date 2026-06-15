@@ -41,7 +41,7 @@ Each skill is self-contained and follows the same structure:
 ```
 devexpress-reports-<name>/
 ├── SKILL.md      -- YAML frontmatter (activators, prerequisites), navigation guide
-├── references/   -- scenario-focused deep dives 
+├── references/   -- scenario-focused deep dives
 └── examples/     -- getting-started samples
 ```
 
