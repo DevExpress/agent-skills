@@ -14,5 +14,11 @@
     "visual-studio",
     "report-designer",
     "skills"
-  ]
+  ],
+  "mcpServers": {
+    "dxdocs": {
+      "url": "https://api.devexpress.com/mcp/docs",
+      "type": "http"
+    }
+  }
 }
