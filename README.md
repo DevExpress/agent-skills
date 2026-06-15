@@ -6,13 +6,13 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 
 ## **Available Skills**
 
-| **Product**                                                           | **Skills** | **Docs** |
-|-----------------------------------------------------------------------| --- | --- |
-| [DevExtreme JavaScript](plugins/dx-devextreme/README.md)              | DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, Theming | [Overview](https://js.devexpress.com/Documentation/) |
-| [Blazor Components](plugins/dx-blazor/README.md)                      | AI Chat, Charts, ComboBox, Gauges, Grid, Pivot Table, Ribbon, Scheduler, Toolbar, TreeList | [Overview](https://docs.devexpress.com/Blazor/) |
-| [WPF Controls](plugins/dx-wpf/README.md)                              | Data Grid, Tree List, Pivot Grid, Property Grid, Data Editors, Layout Management, Ribbon & Bars, Accordion, Tab Control, Charts, Scheduler, Loading Indicators, AI Chat, MVVM | [Overview](https://docs.devexpress.com/WPF/) |
-| [DevExpress Reports](plugins/dx-reporting/README.md)                  | Core API, ASP.NET Core, Blazor, Visual Studio Designer | [Overview](https://docs.devexpress.com/XtraReports/) |
-| [Office & PDF File API](plugins/dx-office-file-api/README.md)         | Spreadsheet, Word Processing, PDF, PDF New (CTP), Presentation, Barcode, Unit Conversion, Excel Export, ZIP, AI-powered Extensions | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
+| **Product/Skills Readme** | **Skills** | **Docs** |
+|---|---|---|
+| [DevExtreme JavaScript](plugins/dx-devextreme/README.md) | DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, Theming | [Overview](https://js.devexpress.com/Documentation/) |
+| [Blazor Components](plugins/dx-blazor/README.md) | AI Chat, Charts, ComboBox, Gauges, Grid, Pivot Table, Ribbon, Scheduler, Toolbar, TreeList | [Overview](https://docs.devexpress.com/Blazor/) |
+| [WPF Controls](plugins/dx-wpf/README.md) | Data Grid, Tree List, Pivot Grid, Property Grid, Data Editors, Layout Management, Ribbon & Bars, Accordion, Tab Control, Charts, Scheduler, Loading Indicators, AI Chat, MVVM | [Overview](https://docs.devexpress.com/WPF/) |
+| [DevExpress Reports](plugins/dx-reporting/README.md) | Core API, ASP.NET Core, Blazor, Visual Studio Designer | [Overview](https://docs.devexpress.com/XtraReports/) |
+| [Office & PDF File API](plugins/dx-office-file-api/README.md) | Spreadsheet, Word Processing, PDF, PDF New (CTP), Presentation, Barcode, Unit Conversion, Excel Export, ZIP, AI-powered Extensions | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
 | [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | Business Model, Business Logic, Business Logic XPO, Controllers, Views, Editors, Filtering, Filtering XPO, Appearance, Validation, Security, Reports, Performance | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
 | ASP.NET Core Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/AspNetCore/) |
 | WinForms Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/WindowsForms/) |
@@ -20,7 +20,27 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 | BI Dashboard | *(coming soon)* | [Overview](https://docs.devexpress.com/Dashboard/) |
 
 
+
+
 ## **Installation**
+
+### Table Of Contents
+
+**CLI agents:**
+
+- [Copilot CLI / Claude Code — Plugin Install](#install-as-a-plugin)
+- [GitHub Copilot](#github-copilot)
+- [Claude Code](#claude-code)
+- [JetBrains Junie](#jetbrains-junie)
+- [Codex CLI](#codex-cli)
+ 
+**IDEs:**
+
+- [VS Code](#vs-code)
+- [Visual Studio 2022 / 2026](#visual-studio-2022--2026)
+- [JetBrains Rider / WebStorm](#jetbrains-rider--webstorm)
+- [Cursor](#cursor)
+
 
 ### **Install as a Plugin**
 
@@ -62,6 +82,27 @@ Copy DevExpress skill folders to one of these locations:
 
 The global location makes skills available in all projects and is read by Visual Studio, VS Code, and GitHub Copilot CLI.
 
+**Which folders to copy:** Each plugin contains multiple skill subdirectories. Copy individual skill folders:
+
+```text
+plugins/
+└── dx-devextreme/  ← plugin (do not copy this directly)
+    └── skills/
+        ├── devextreme-datagrid/    ← copy individual skill folders like this
+        │   ├── SKILL.md
+        │   └── references/
+        ├── devextreme-form/
+        └── ...
+```
+
+Paste the folders you need into the destination, for example:
+
+```text
+.github/skills/
+├── devextreme-datagrid/
+└── devextreme-form/
+```
+
 [GitHub Copilot skills documentation](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line/using-agent-skills-with-copilot-in-the-cli)
 
 #### **Claude Code**
@@ -75,6 +116,8 @@ Copy DevExpress skill folders to one of these locations:
 | **Global** — Windows | `%USERPROFILE%\.claude\skills\` |
 
 Skills activate automatically. No additional configuration is needed once the files are in place.
+
+> **Note:** When the [DevExpress Documentation MCP Server](https://docs.devexpress.com/GeneralInformation/405551) is installed globally, or when multiple DevExpress plugins are active (each plugin includes an MCP config), Claude Code may show: *"MCP server "dxdocs" skipped — same command/URL as the already-configured "dxdocs"."* This is not an error. Ignore it, or remove the `dxdocs` entry from your global MCP config to suppress it.
 
 To reference a skill manually, use `/`:
 
@@ -95,6 +138,27 @@ Copy DevExpress skill folders to one of these locations:
 Skills activate automatically. Junie scans skill directories and applies relevant skills based on task context.
 
 [Junie agent skills documentation](https://junie.jetbrains.com/docs/agent-skills.html)
+
+#### **Codex CLI**
+
+Copy DevExpress skill folders to `.agents/skills/` in your project root:
+
+| Location | Path |
+|---|---|
+| **Project-level** (this project only) | `.agents/skills/` in your project root |
+
+```text
+.agents/
+└── skills/
+    ├── devextreme-datagrid/
+    └── devextreme-form/
+```
+
+See [Which folders to copy](#github-copilot) in the GitHub Copilot section above for the source layout in this repository.
+
+Skills activate automatically when Codex runs in agent mode.
+
+> **Note:** Codex CLI plugin marketplace support for DevExpress skills is planned for a future release.
 
 ### **IDE-Specific Setup**
 
@@ -126,6 +190,8 @@ Use Copilot Chat in agent mode. Skills are activated automatically based on your
 
 Visual Studio reads skills from `.github/skills/` in your project (project-level) and from `%USERPROFILE%\.copilot\skills\` (global, active in all projects). Copy skill folders to one of those locations (see [GitHub Copilot section](#github-copilot) above), then open Copilot Chat (View > GitHub Copilot Chat) and switch to agent mode.
 
+[Visual Studio Copilot agent skills documentation](https://learn.microsoft.com/en-us/visualstudio/ide/copilot-agent-skills?view=visualstudio)
+
 #### **JetBrains Rider / WebStorm**
 
 ##### **GitHub Copilot**
@@ -152,7 +218,7 @@ Skills are activated automatically based on your question.
 Copy skill folders to `.agents/skills/` in your project root for a project-level installation, or to the global IDE path:
 
 | **Platform** | **Path** |
-| --- | --- |
+|---|---|
 | Windows | `%LOCALAPPDATA%\JetBrains\<product><version>\aia\agents\.agents\skills\` |
 | macOS | `~/Library/Caches/JetBrains/<product><version>/aia/agents/.agents/skills/` |
 | Linux | `~/.cache/JetBrains/<product><version>/aia/agents/.agents/skills/` |
