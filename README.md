@@ -37,7 +37,7 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 **IDEs:**
 
 - [VS Code](#vs-code)
-- [Visual Studio 2022 / 2026](#visual-studio-2022--2026)
+- [Visual Studio 2026](#visual-studio-2026)
 - [JetBrains Rider / WebStorm](#jetbrains-rider--webstorm)
 - [Cursor](#cursor)
 
@@ -186,7 +186,7 @@ Use Copilot Chat in agent mode. Skills are activated automatically based on your
 
 [VS Code agent plugin documentation](https://code.visualstudio.com/docs/agent-customization/agent-plugins)
 
-#### **Visual Studio 2022 / 2026**
+#### **Visual Studio 2026**
 
 Visual Studio reads skills from `.github/skills/` in your project (project-level) and from `%USERPROFILE%\.copilot\skills\` (global, active in all projects). Copy skill folders to one of those locations (see [GitHub Copilot section](#github-copilot) above), then open Copilot Chat (View > GitHub Copilot Chat) and switch to agent mode.
 
