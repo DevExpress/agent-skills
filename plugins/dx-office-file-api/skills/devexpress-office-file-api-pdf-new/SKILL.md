@@ -9,7 +9,7 @@ description: >-
 metadata:
   author: DevExpress
   version: "26.1"
-  source-commit: ed145afcf2b6422fb9b2dd475324ed80ed62ee4d
+  source-commit: d4a70c0b5f39f3c991dd5ee8fa51f2d413ef26b6
   status: CTP
 ---
 

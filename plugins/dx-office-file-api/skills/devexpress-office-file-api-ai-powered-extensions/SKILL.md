@@ -4,7 +4,7 @@ description: Build .NET applications with the DevExpress AI-Powered Extensions f
 metadata:
   author: DevExpress
   version: 26.1
-  source-commit: ed145afcf2b6422fb9b2dd475324ed80ed62ee4d
+  source-commit: d4a70c0b5f39f3c991dd5ee8fa51f2d413ef26b6
 ---
 
 # DevExpress AI-Powered Extensions for Office File API
@@ -289,6 +289,14 @@ builder.Services.AddDevExpressAIConsole((config) => {
 | `AskAIAsync` gives inaccurate counts | RAG limitation | The Ask AI extension may be inaccurate for questions requiring exact counts of elements |
 
 ## Constraints & Rules
+
+## Security — Prompt Injection Protection
+
+DevExpress AI-powered extensions include **automatic prompt-injection protection** (enabled by default). When extensions process user-provided content (documents, messages, clipboard data), malicious instructions embedded in that content could attempt to override system behavior, extract sensitive information, or manipulate model output — this is an indirect prompt injection attack.
+
+The protection adds system-level instructions to every AI request so the LLM can identify and disregard injected instructions. This is transparent to the calling code — no configuration is required. See also: `AskAIAsync` uses the same protection when processing document content in RAG scenarios.
+
+---
 
 CRITICAL — follow these rules in every interaction:
 

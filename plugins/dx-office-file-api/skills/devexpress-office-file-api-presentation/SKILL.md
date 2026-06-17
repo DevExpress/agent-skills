@@ -4,7 +4,7 @@ description: Build .NET applications with the DevExpress Presentation API for cr
 metadata:
   author: DevExpress
   version: 26.1
-  source-commit: ed145afcf2b6422fb9b2dd475324ed80ed62ee4d
+  source-commit: d4a70c0b5f39f3c991dd5ee8fa51f2d413ef26b6
 ---
 
 # DevExpress Presentation API
@@ -132,6 +132,8 @@ When you need to:
 - Add an Office 2016+ chart type (waterfall, funnel, treemap, sunburst, etc.)
 - Configure chart data series with `ChartStringData` and `ChartNumericData`
 - Choose between `Chart` (standard types) and `ChartEx` (Office 2016+ types)
+- Customize individual data points (`CustomDataPoints`, `DataPoint`, `Marker`, `MarkerStyle`)
+- Configure the chart legend (position, appearance, custom entries)
 
 ### Export
 Refer to [references/export.md](references/export.md)

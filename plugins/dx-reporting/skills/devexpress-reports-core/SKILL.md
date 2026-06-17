@@ -157,6 +157,9 @@ report.DataMember = "Orders";     // Table name (for DataSet) or empty for simpl
 ```
 
 **Pattern 2 — Expression binding:**
+
+> Do not use `DataBindings.Add` — this is the legacy binding mode. See **Antipatterns** (AP1).
+
 ```csharp
 // Specify an expression that calculates total value from UnitPrice and UnitsInStock fields.
 label.ExpressionBindings.Add(new ExpressionBinding("BeforePrint", "Text", "[UnitPrice]*[UnitsInStock]"));

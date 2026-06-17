@@ -15,6 +15,8 @@ Each form field is a non-visual data container. To display it on a page, bind it
 
 **Pattern**: `Create field → Add to pdfDocument.Fields → Create widget(field) → Add widget to page.Annotations`
 
+Set `field.ReadOnly = true` to make a field non-editable (users can view but not change its value).
+
 ## Text Box Field
 
 ```csharp

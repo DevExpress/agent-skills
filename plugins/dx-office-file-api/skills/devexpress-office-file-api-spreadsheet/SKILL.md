@@ -4,7 +4,7 @@ description: Build .NET applications with the DevExpress Spreadsheet Document AP
 metadata:
   author: DevExpress
   version: 26.1
-  source-commit: ed145afcf2b6422fb9b2dd475324ed80ed62ee4d
+  source-commit: 12dab7a5b121db6eefabc59e4e6982bb5d1c35da
 ---
 
 # DevExpress Spreadsheet Document API
@@ -89,7 +89,7 @@ using (Workbook workbook = new Workbook())
 {
     Worksheet sheet = workbook.Worksheets[0];
     sheet.Cells["A1"].Value = "Hello, DevExpress!";
-    workbook.SaveDocument("output.xlsx");
+    workbook.SaveDocument("output.xlsx", DocumentFormat.Xlsx);
 }
 ```
 
@@ -279,7 +279,7 @@ using (Workbook workbook = new Workbook())
         workbook.EndUpdate();
     }
 
-    workbook.SaveDocument("SalesReport.xlsx");
+    workbook.SaveDocument("SalesReport.xlsx", DocumentFormat.Xlsx);
 
     workbook.ExportToPdf("SalesReport.pdf");
 }
@@ -349,7 +349,7 @@ using (Workbook workbook = new Workbook())
     workbook.LoadDocument("input.xlsx");
     Worksheet sheet = workbook.Worksheets["Sheet1"];
     sheet["A1"].Value = "Updated";
-    workbook.SaveDocument("output.xlsx");
+    workbook.SaveDocument("output.xlsx", DocumentFormat.Xlsx);
 }
 ```
 
@@ -362,7 +362,7 @@ using (Workbook workbook = new Workbook())
     // Import with header row starting at row 0, column 0
     sheet.Import(myDataTable, addHeader: true, firstRowIndex: 0, firstColumnIndex: 0);
     sheet.Columns.AutoFit(0, sheet.GetUsedRange().ColumnCount - 1);
-    workbook.SaveDocument("imported.xlsx");
+    workbook.SaveDocument("imported.xlsx", DocumentFormat.Xlsx);
 }
 ```
 

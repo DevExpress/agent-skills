@@ -1,4 +1,4 @@
-﻿namespace DxWinFormsReportingApp.Reports
+namespace DxWinFormsReportingApp.Reports
 {
     partial class Invoice
     {

@@ -4,7 +4,7 @@ description: Build .NET applications with the DevExpress Word Processing Documen
 metadata:
   author: DevExpress
   version: 26.1
-  source-commit: ed145afcf2b6422fb9b2dd475324ed80ed62ee4d
+  source-commit: 12dab7a5b121db6eefabc59e4e6982bb5d1c35da
 ---
 
 # DevExpress Word Processing Document API
@@ -338,6 +338,28 @@ foreach (DocumentRange range in found)
     doc.InsertText(range.Start, "NewText");
     // or: doc.Delete(range); doc.InsertText(range.Start, "NewText");
 ```
+
+### Mail Merge
+
+```csharp
+using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.API.Native;
+
+using (var server = new RichEditDocumentServer())
+{
+    server.LoadDocument("template.docx", DocumentFormat.Docx);
+
+    // Assign data source (DataTable, DataSet, or object collection)
+    server.Document.MailMergeDataSource = myDataTable;
+
+    // Configure and execute
+    MailMergeOptions options = server.CreateMailMergeOptions();
+    options.MergeMode = MergeMode.NewSection;
+    server.MailMerge(options, "output.docx", DocumentFormat.Docx);
+}
+```
+
+> See [references/mail-merge.md](references/mail-merge.md) for master-detail reports, DataSet sources, image fields, and DOCVARIABLE fields.
 
 ### Export to PDF
 
