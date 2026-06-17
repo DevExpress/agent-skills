@@ -1,27 +1,27 @@
 ---
-name: devexpress-visual-studio-report-design
-description: Expert skill for creating and modifying DevExpress XtraReport layout code in Visual Studio — writing and editing *.Designer.cs files, InitializeComponent structure, bands, controls, expression bindings, styles, parameters, and data source wiring. Use this skill whenever someone asks to create a DevExpress report, add controls to a report, modify a *.Designer.cs file, fix designer-generated code, work with XRTable/XRLabel/XRPictureBox/bands, set up data binding expressions, define report parameters, or troubleshoot why a report won't open in the Visual Studio designer. Also use when someone asks about XtraReports InitializeComponent patterns, report band hierarchy, Criteria Language expressions, or summary functions.
+name: devexpress-visual-studio-rider-report-design
+description: Expert skill for creating and modifying DevExpress XtraReport layout code in Visual Studio and JetBrains Rider — writing and editing *.Designer.cs files, InitializeComponent structure, bands, controls, expression bindings, styles, parameters, and data source wiring. Use this skill whenever someone asks to create a DevExpress report, add controls to a report, modify a *.Designer.cs file, fix designer-generated code, work with XRTable/XRLabel/XRPictureBox/bands, set up data binding expressions, define report parameters, or troubleshoot why a report won't open in the Visual Studio or JetBrains Rider designer. Also use when someone asks about XtraReports InitializeComponent patterns, report band hierarchy, Criteria Language expressions, summary functions, or JetBrains Rider report designer limitations.
 metadata:
   version: 26.1
   category: reporting
 ---
 
-You are an expert in DevExpress XtraReports layout code. You write and modify `*.Designer.cs` files for `XtraReport` subclasses, following the exact serialization patterns the Visual Studio Report Designer produces and requires.
+You are an expert in DevExpress XtraReports layout code. You write and modify `*.Designer.cs` files for `XtraReport` subclasses, following the exact serialization patterns the Visual Studio and JetBrains Rider Report Designers produce and require.
 
 DevExpress Reports (`DevExpress.XtraReports.UI`) is a cross-platform .NET reporting library. The same `XtraReport` class runs on WinForms, WPF, ASP.NET Core, and Blazor — platform differences only affect the viewer layer.
 
 ## Before You Start
 
-This skill helps you **create new reports or modify existing report layouts** in the Visual Studio Report Designer. Whether you're working with an existing `.Designer.cs` file or building a report from scratch, start by understanding your layout requirements:
+This skill helps you **create new reports or modify existing report layouts** in the Visual Studio or JetBrains Rider Report Designer. Whether you're working with an existing `.Designer.cs` file or building a report from scratch, start by understanding your layout requirements:
 
 1. **Report layout style**: Tabular (invoice/list), grouped (subtotals by category), master-detail (parent-child records), or label-based?
 2. **Data source type**: `SqlDataSource`, `ObjectDataSource`, collection, `DataTable`, or LINQ entity?
 3. **Data binding**: Which fields bind to which controls, and do you need parameters for filtering or display values?
 4. **Visual arrangement**: How are controls positioned? Do they form a table, free-form layout, or grouped sections?
 
-### Visual Studio Report Designer Troubleshooting
+### Designer Troubleshooting
 
-If your report won't open in the Visual Studio designer or displays incorrectly, fetch the following reference: https://docs.devexpress.com/content/XtraReports/403089/report-designer-ides/report-designer-for-visual-studio/report-designer-errors?v=26.1&md=true
+If your report won't open or displays incorrectly, see `references/ide-differences.md` for IDE-specific troubleshooting links and limitations.
 
 ## Using DevExpress Documentation MCP
 
@@ -44,11 +44,11 @@ Every `XtraReport` subclass has two files — never mix their concerns:
 | `ReportName.Designer.cs` | All layout: bands, controls, positions, styles, bindings, data sources |
 | `ReportName.cs` | Business logic only: event handlers, runtime data wiring, constructors |
 
-Never add layout code to the main `.cs` file. Adding controls, setting `LocationFloat`, assigning `ExpressionBindings`, or calling `Controls.Add()` outside `InitializeComponent()` in `*.Designer.cs` breaks the Visual Studio Report Designer — the report won't open visually. After every edit, verify the report still opens in the designer.
+Never add layout code to the main `.cs` file. Adding controls, setting `LocationFloat`, assigning `ExpressionBindings`, or calling `Controls.Add()` outside `InitializeComponent()` in `*.Designer.cs` breaks the Report Designer — the report won't open visually. After every edit, verify the report still opens in the designer. In JetBrains Rider, you must close and reopen the report to reflect code changes.
 
 See `references/designer-file-patterns.md` for the complete `InitializeComponent()` structure, field declarations, and annotated code examples from real reports.
 
-Fetch the following help topic to examine possible report design inaccuracies that lead to layout corruption or designer errors: https://docs.devexpress.com/content/XtraReports/403060/report-designer-ides/report-designer-for-visual-studio/dock-panels/error-list/errors-warnings-and-information-messages?v=26.1&md=true
+See `references/ide-differences.md` for IDE-specific notes, including the Visual Studio Report Design Analyzer and Rider limitations.
 
 ## ⚙️ InitializeComponent Order
 
@@ -208,6 +208,7 @@ For Excel export: align all control borders on vertical grid lines — gaps prod
 
 ## 📁 Reference Files
 
+- `references/ide-differences.md` — IDE support matrix, JetBrains Rider limitations (Windows-only, no custom controls, no Analyzer panel, reopen requirement), Visual Studio troubleshooting links
 - `references/designer-file-patterns.md` — complete `InitializeComponent()` skeleton, `BeginInit`/`EndInit` ordering, field declarations
 - `references/expressions-and-summaries.md` — full Criteria Language syntax, summary scopes, `XRSummary` object, aggregate vs. summary
 - `references/data-sources-and-parameters.md` — `SqlDataSource` setup, master-detail relations, range parameters, query `FilterString`

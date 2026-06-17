@@ -22,7 +22,7 @@ All released skills target DevExpress Reports v26.1.
 | [devexpress-reports-core](skills/devexpress-reports-core/) | Cross-platform runtime API — reports, bands, controls, expressions, data binding, and export | [Overview](https://docs.devexpress.com/XtraReports/119097/feature-guide-to-devexpress-reports/reporting-api) |
 | [devexpress-reports-aspnetcore](skills/devexpress-reports-aspnetcore/) | ASP.NET Core Integration — service registration, viewer/designer wiring, report storage, and export/print flows | [Overview](https://docs.devexpress.com/XtraReports/119717/web-reporting/aspnet-core-reporting) |
 | [devexpress-reports-blazor](skills/devexpress-reports-blazor/) | Blazor Integration — viewer/designer setup (native or JavaScript), backend service management, report resolution, and customization hooks | [Overview](https://docs.devexpress.com/XtraReports/401676/web-reporting/blazor-reporting) |
-| [devexpress-visual-studio-report-design](skills/devexpress-visual-studio-report-design/) | Visual Studio Designer code-behind patterns (`*.Designer.cs`) — safe `InitializeComponent` edits, band/control composition, expressions, parameters, and serialization-safe patterns. | [Overview](https://docs.devexpress.com/XtraReports/4256/report-designer-ides/report-designer-for-visual-studio/report-designer-for-visual-studio) |
+| [devexpress-visual-studio-rider-report-design](skills/devexpress-visual-studio-rider-report-design/) | Visual Studio and JetBrains Rider Designer code-behind patterns (`*.Designer.cs`) — safe `InitializeComponent` edits, band/control composition, expressions, parameters, and serialization-safe patterns. | [Overview](https://docs.devexpress.com/XtraReports/4256/report-designer-ides/report-designer-for-visual-studio/report-designer-for-visual-studio) |
 
 ---
 
@@ -30,7 +30,7 @@ All released skills target DevExpress Reports v26.1.
 
 | Agent | Description |
 |---|---|
-| [devexpress-report-designer-expert](agents/devexpress-report-designer-expert.agent.md) | Expert agent for Visual Studio Report Designer workflows (`*.Designer.cs`) — safe `InitializeComponent` edits, band/control composition, expressions, parameters, and serialization-safe patterns. |
+| [devexpress-report-designer-expert](agents/devexpress-report-designer-expert.agent.md) | Expert agent for Visual Studio and JetBrains Rider Report Designer workflows (`*.Designer.cs`) — safe `InitializeComponent` edits, band/control composition, expressions, parameters, and serialization-safe patterns. |
 
 ---
 
