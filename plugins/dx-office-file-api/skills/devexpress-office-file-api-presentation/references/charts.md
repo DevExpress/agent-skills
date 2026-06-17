@@ -334,6 +334,87 @@ chart.Series.Add(areaSeries);
 
 Series types can be combined only if they share compatible axes. 3D series cannot be combined with 2D series (throws `InvalidOperationException`).
 
+## Customize Individual Series Points
+
+Use the series `CustomDataPoints` property to customize individual data points. It is a dictionary mapping zero-based point indices to `DataPoint` objects:
+
+```csharp
+using DevExpress.Docs.Office;
+using DevExpress.Docs.Presentation;
+using System.Drawing;
+
+// Customize markers on a line series
+lineSeries.Marker.Symbol = MarkerStyle.Circle;
+lineSeries.Marker.Size = 20;
+
+// Override the first data point with a red fill
+lineSeries.CustomDataPoints = new DataPointDictionary {
+    { 0, new DataPoint { Marker = new Marker { Fill = new SolidFill(Color.Red) } } }
+};
+```
+
+```vb
+Imports DevExpress.Docs.Office
+Imports DevExpress.Docs.Presentation
+Imports System.Drawing
+
+lineSeries.Marker.Symbol = MarkerStyle.Circle
+lineSeries.Marker.Size = 20
+
+lineSeries.CustomDataPoints = New DataPointDictionary() From {
+    {0, New DataPoint() With {
+        .Marker = New Marker() With {.Fill = New SolidFill(Color.Red)}
+    }}
+}
+```
+
+## Legend
+
+`Chart.Legend` (or `ChartEx.Legend`) returns a `Legend` (`LegendEx` for ChartEx) object. The legend is visible only when the chart has at least one series. Set `chart.Legend = null` to remove it.
+
+```csharp
+using DevExpress.Docs.Office;
+using DevExpress.Docs.Presentation;
+using System.Drawing;
+
+Legend legend = chart.Legend;
+
+// Position and appearance
+legend.Position = LegendPositionType.TopRight;
+legend.AllowOverlapChart = true;
+legend.TextProperties = new TextProperties { FontSize = 16, Bold = true };
+legend.Fill = new SolidFill(Color.AliceBlue);
+legend.OutlineStyle = new OutlineStyle {
+    Fill = new SolidFill(Color.SlateGray),
+    Width = 2
+};
+
+// Customize an individual entry (index = series index)
+legend.CustomEntries.Add(0, new LegendEntry {
+    TextProperties = new TextProperties { Fill = new SolidFill(Color.Red) }
+});
+```
+
+```vb
+Imports DevExpress.Docs.Office
+Imports DevExpress.Docs.Presentation
+Imports System.Drawing
+
+Dim legend As Legend = chart.Legend
+
+legend.Position = LegendPositionType.TopRight
+legend.AllowOverlapChart = True
+legend.TextProperties = New TextProperties() With {.FontSize = 16, .Bold = True}
+legend.Fill = New SolidFill(Color.AliceBlue)
+
+legend.CustomEntries.Add(0, New LegendEntry() With {
+    .TextProperties = New TextProperties() With {.Fill = New SolidFill(Color.Red)}
+})
+```
+
+`LegendPositionType` values: `Bottom`, `Top`, `Left`, `Right`, `TopRight`.  
+`LegendEntry.Hidden = true` hides an individual legend entry.
+
 ## Error Bars and Trend Lines
 
 Supported on `LineSeries`, `BarSeries`, `AreaSeries`, `BubbleSeries`, `ScatterSeries`.

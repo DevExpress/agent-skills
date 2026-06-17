@@ -4,7 +4,7 @@ description: Build .NET applications with the DevExpress Unit Conversion API for
 metadata:
   author: DevExpress
   version: 26.1
-  source-commit: ed145afcf2b6422fb9b2dd475324ed80ed62ee4d
+  source-commit: 12dab7a5b121db6eefabc59e4e6982bb5d1c35da
 ---
 
 # DevExpress Unit Conversion API
@@ -134,9 +134,13 @@ Console.WriteLine($"Weight: {weight.ToKilograms().Value:F2} kg");
 QuantityValue<Temperature> bodyTemp = (98.6).Fahrenheit();
 Console.WriteLine($"Body temp: {bodyTemp.ToCelsius().Value:F1}°C / {bodyTemp.ToKelvin().Value:F2} K");
 
-// Speed: km/h to mph
-double mph = Units.Speed.Convert(100.0, Speed.MetersPerHour, Speed.MilesPerHour);
-Console.WriteLine($"100 km/h = {mph:F2} mph");
+// Area: 25 m² to square feet
+QuantityValue<Area> room = (25.0).SquareMeters();
+Console.WriteLine($"25 m² = {room.ToSquareFeet().Value:F2} ft²");
+
+// Speed: m/s to mph
+double mph = Units.Speed.Convert(30.0, Speed.MetersPerSecond, Speed.MilesPerHour);
+Console.WriteLine($"30 m/s = {mph:F2} mph");
 
 // Metric prefix: 5 kilo → mega
 double mega = Units.Metric.Convert(5.0, MetricPrefix.Kilo, MetricPrefix.Mega);

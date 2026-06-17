@@ -31,22 +31,103 @@ using (PdfDocument document = new PdfDocument(File.OpenRead("input.pdf"))) {
 
 ## XMP Metadata
 
-XMP metadata provides richer, schema-based metadata stored as XML in the PDF:
+XMP metadata provides richer, schema-based metadata stored as XML in the PDF. Access it via `DocumentMetadata.Xmp`:
+
+```csharp
+using DevExpress.Docs.Pdf;
+using System.IO;
+
+// Load XMP from a file and embed it
+using (PdfDocument document = new PdfDocument(File.OpenRead("input.pdf"))) {
+    using (FileStream xmlStream = new FileStream("metadata.xml", FileMode.Open, FileAccess.Read)) {
+        document.Metadata.Xmp = XmpMetadata.FromStream(xmlStream);
+    }
+    document.Save(File.Create("output.pdf"));
+}
+```
+
+Load methods: `XmpMetadata.FromByteArray(byte[])`, `XmpMetadata.FromStream(Stream)`, `XmpMetadata.FromString(string)`.
+
+### Predefined XMP Schemas
+
+| Namespace | Prefix | Class |
+|-----------|--------|-------|
+| Basic XMP | `xmp` | `XmpBasicSchema` |
+| Adobe PDF | `pdf` | `XmpPdfSchema` |
+| PDF/A | `pdfaid` | `XmpPdfASchema` |
+| PDF/UA | `pdfua` | `XmpPdfUASchema` |
+| Dublin Core | `dc` | `XmpDublinCoreSchema` |
+| Rights Management | `xmpRights` | `XmpRightsManagementSchema` |
 
 ```csharp
 using DevExpress.Docs.Pdf;
 using System.IO;
 
 using (PdfDocument document = new PdfDocument(File.OpenRead("input.pdf"))) {
-
-    // Access XMP metadata
-    XmpMetadata xmp = document.Metadata.Xmp;
-
-    // Synchronize standard info into XMP (InfoToXmp direction)
-    document.Metadata.Synchronize(MetadataSyncMode.InfoToXmp);
-
+    XmpMetadata metadata = new XmpMetadata();
+    XmpRightsManagementSchema rights = metadata.XmpRightsManagementSchema;
+    rights.Marked = true;
+    rights.Owner.Add(new XmpString("DevExpress"));
+    rights.WebStatement = new XmpString("https://www.devexpress.com/support/eulas/");
+    rights.UsageTerms.Add("EN-US", "Copyright (C) 2026 DevExpress. All Rights Reserved.");
+    document.Metadata.Xmp = metadata;
     document.Save(File.Create("output.pdf"));
 }
+```
+
+### Custom XMP Schemas
+
+```csharp
+XmpMetadata metadata = new XmpMetadata();
+XmpCustomSchema customSchema = metadata.CustomSchema;
+metadata.RegisterNamespace("http://www.example.com/custom/1.0/", "dx");
+customSchema["Team"] = "Office";
+customSchema["Project"] = "PDF API";
+document.Metadata.Xmp = metadata;
+```
+
+### Manage Metadata Nodes (Raw Access)
+
+Use `DocumentMetadata.Xmp.RawData` (`XmpRawAccess`) to get/set/remove individual properties via `"prefix:name"` or `"URI:name"` identifiers:
+
+```csharp
+// Read properties
+string identifier = document.Metadata.Xmp.RawData.GetString("xmp:Identifier");
+
+// Write properties
+document.Metadata.Xmp.RawData.SetString("xmp:Label", "Final");
+document.Metadata.Xmp.RawData.SetString("xmp:CreatorTool", "MyApp");
+
+// Remove properties
+document.Metadata.Xmp.RawData.Remove("xmp:Label");
+```
+
+## Synchronize Basic and XMP Metadata
+
+Three sync modes: `InfoToXmp`, `XmpToInfo`, `Auto`.
+
+**On load** — pass `LoadOptions` to the `PdfDocument` constructor:
+
+```csharp
+using (PdfDocument document = new PdfDocument(
+    File.OpenRead("input.pdf"),
+    new LoadOptions { MetadataSyncMode = MetadataSyncMode.XmpToInfo })) {
+    // metadata is synchronized on open
+}
+```
+
+**On save** — pass `SaveOptions` to `PdfDocument.Save`:
+
+```csharp
+SaveOptions saveOptions = new SaveOptions { MetadataSyncMode = MetadataSyncMode.InfoToXmp };
+document.Save(File.Create("output.pdf"), saveOptions);
+```
+
+**On demand** — call `DocumentMetadata.Synchronize`:
+
+```csharp
+document.AppendDocument(File.OpenRead("part2.pdf"));
+document.Metadata.Synchronize(MetadataSyncMode.InfoToXmp);
 ```
 
 ### Migration Note
@@ -142,6 +223,14 @@ using (PdfDocument document = new PdfDocument(File.OpenRead("invoice.pdf"))) {
 | `DocumentMetadata.DocumentInfo` | `DocumentInfo` — standard PDF doc properties (Title, Author, Subject, Keywords) |
 | `DocumentMetadata.Xmp` | `XmpMetadata` — XMP metadata object |
 | `DocumentMetadata.Synchronize(MetadataSyncMode)` | Synchronize between DocumentInfo and XMP (`InfoToXmp`, `XmpToInfo`, `Auto`) |
+| `XmpMetadata.FromStream(Stream)` / `FromByteArray(byte[])` / `FromString(string)` | Load XMP from external source |
+| `XmpMetadata.RawData` | `XmpRawAccess` — get/set/remove properties via `"prefix:name"` |
+| `XmpRawAccess.GetString(string)` | Read a property value |
+| `XmpRawAccess.SetString(string, string)` | Write a property value |
+| `XmpRawAccess.Remove(string)` | Delete a property |
+| `XmpRightsManagementSchema` / `XmpDublinCoreSchema` / `XmpBasicSchema` | Predefined XMP schema objects |
+| `XmpCustomSchema` | Custom namespace schema; use `RegisterNamespace` first |
+| `LoadOptions.MetadataSyncMode` / `SaveOptions.MetadataSyncMode` | Auto-sync on load or save |
 | `PdfDocument.Attachments` | `AttachmentCollection` — add/remove file attachments |
 | `Attachment(string fileName, byte[] data)` | Constructor |
 | `Attachment.Description` | Human-readable description |
