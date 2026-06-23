@@ -1,7 +1,7 @@
 {
   "name": "dx-devextreme",
   "description": "DevExtreme JavaScript UI skills: DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, and Theming for Angular, React, Vue, and jQuery.",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "license": "MIT",
   "skills": "./skills/",
   "keywords": [

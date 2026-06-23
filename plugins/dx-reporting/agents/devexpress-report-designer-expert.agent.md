@@ -446,4 +446,3 @@ Reference docs:
 - Report Bands: https://docs.devexpress.com/XtraReports/2587
 - Expressions: https://docs.devexpress.com/XtraReports/1180
 - Visual Studio Report Designer: https://docs.devexpress.com/XtraReports/4256
-- JetBrains Rider Report Designer IDE differences: see `references/ide-differences.md` in the skill
