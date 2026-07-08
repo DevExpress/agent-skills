@@ -258,7 +258,7 @@ Hyperlink internalLink = sheet.Hyperlinks.Add(sheet.Cells["B2"],
 
 // Email hyperlink
 Hyperlink emailLink = sheet.Hyperlinks.Add(sheet.Cells["C3"],
-    "mailto:support@devexpress.com", isExternal: true, "Contact Support");
+    "mailto:clientservices@devexpress.com", isExternal: true, "Contact Support");
 ```
 
 ## Comments (Simple Notes)
