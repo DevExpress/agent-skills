@@ -1,6 +1,6 @@
 # Getting Started with the DevExpress WinForms PivotGrid (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md). Once the project is configured, every other reference in this skill applies identically to both target frameworks.
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md). Once the project is configured, every other reference in this skill applies identically to both target frameworks.
 
 ## System Requirements
 

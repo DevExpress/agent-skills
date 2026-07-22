@@ -1,10 +1,10 @@
 # Getting Started — DevExpress WPF Chart Control
 
-This guide walks through setting up a `ChartControl` in a .NET (6/7/8+) WPF project and binding it to a simple data collection. For .NET Framework 4.6.2+, the same NuGet packages work; `App.xaml.cs` differs slightly (see end of this guide).
+This guide walks through setting up a `ChartControl` in a .NET 8+ WPF project and binding it to a simple data collection. For .NET Framework 4.6.2+, the same NuGet packages work; `App.xaml.cs` differs slightly (see end of this guide).
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows
+- .NET 8.0+ targeting Windows
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

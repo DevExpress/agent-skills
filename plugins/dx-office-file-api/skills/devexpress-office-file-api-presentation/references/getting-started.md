@@ -14,7 +14,7 @@ Use this when you need to:
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ or .NET Framework 4.6.2+
+- .NET 8.0 / 9.0 / 10.0+ or .NET Framework 4.6.2+
 - Visual Studio 2022+ (recommended) or JetBrains Rider
 - A valid DevExpress license
 
@@ -51,6 +51,28 @@ If you installed DevExpress via the Unified Component Installer and prefer assem
 // DevExpress license is validated automatically when installed via the DevExpress installer.
 // See: https://docs.devexpress.com/GeneralInformation/116042
 ```
+
+## Non-Windows Platform Support (Linux, macOS, Docker, Cloud)
+
+The library uses a platform-specific drawing engine: GDI+ on Windows, SkiaSharp elsewhere. **The SkiaSharp-based engine is enabled automatically on non-Windows platforms.** Enable `Settings.DrawingEngine` at app startup only to force Skia *on Windows* (e.g., to work around the 10K GDI-handle limit).
+
+Add the Skia-based drawing engine package:
+
+```bash
+dotnet add package DevExpress.Drawing.Skia
+```
+
+### Non-Windows Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| `System.DllNotFoundException` referencing `DevExpress.Drawing.*.Skia` or a SkiaSharp/HarfBuzz assembly | `DevExpress.Drawing.Skia` package missing, or (if referencing DevExpress.Drawing assemblies directly instead of via NuGet) the SkiaSharp native asset packages for your OS aren't referenced | Add the `DevExpress.Drawing.Skia` NuGet package — normal NuGet restores handle native assets automatically. If the exception persists, explicitly add `SkiaSharp`, `SkiaSharp.HarfBuzz`, and the native asset package matching your target platform: `SkiaSharp.NativeAssets.Linux` (also add `HarfBuzzSharp.NativeAssets.Linux` on Linux), `SkiaSharp.NativeAssets.macOS`, or `SkiaSharp.NativeAssets.WebAssembly`. See the [DevExpress.Drawing troubleshooting guide](https://docs.devexpress.com/CoreLibraries/404254/devexpress-drawing-library/troubleshooting). |
+| `System.TypeInitializationException` on Linux/Docker | Missing native libraries | Install required libraries: `apt-get install -y libc6 libicu-dev libfontconfig1` (Debian/Ubuntu) or `yum install -y glibc-devel libicu fontconfig` (RHEL/CentOS). On .NET 8+, the `Microsoft.ICU.ICU4C.Runtime` package can supply ICU instead (not available for .NET Framework). |
+
+Platform-specific guides:
+- macOS: https://docs.devexpress.com/OfficeFileAPI/401532
+- Linux: https://docs.devexpress.com/OfficeFileAPI/401441
+- Docker: https://docs.devexpress.com/OfficeFileAPI/401528
 
 ## Your First Presentation
 

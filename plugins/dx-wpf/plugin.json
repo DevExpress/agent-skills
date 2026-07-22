@@ -1,7 +1,7 @@
 {
   "name": "dx-wpf",
   "description": "DevExpress WPF skills: Data Grid, Tree List, Pivot Grid, Scheduler, Charts, Tab Control, Ribbon and Bars, MVVM Framework, Property Grid, Data Editors, Layout Management, Loading Indicators, Accordion, AI Chat Control.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "license": "MIT",
   "author": {
     "name": "DevExpress",

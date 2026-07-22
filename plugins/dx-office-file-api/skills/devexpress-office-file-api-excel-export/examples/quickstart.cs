@@ -1,6 +1,6 @@
 // DevExpress Excel Export Library — Quickstart Example
 // NuGet: DevExpress.Document.Processor
-// Target: .NET 6+ or .NET Framework 4.6.2+
+// Target: .NET 8+ or .NET Framework 4.6.2+
 //
 // This console application creates "QuickStart.xlsx" containing:
 //   - Three bold, styled header cells (Product, Units Sold, Revenue)

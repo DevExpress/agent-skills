@@ -1,10 +1,10 @@
 # Getting Started — Tab Control
 
-This guide walks through adding the DevExpress `DXTabControl` to a .NET (6/7/8+) WPF project. The critical step is hosting the control inside `dx:ThemedWindow` — not a plain `Window`. Without `ThemedWindow`, you'll get visual artifacts (double title bar, mismatched colors between the title bar and the tab strip, broken hit-testing for left/right control box areas).
+This guide walks through adding the DevExpress `DXTabControl` to a .NET 8+ WPF project. The critical step is hosting the control inside `dx:ThemedWindow` — not a plain `Window`. Without `ThemedWindow`, you'll get visual artifacts (double title bar, mismatched colors between the title bar and the tab strip, broken hit-testing for left/right control box areas).
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows (or .NET Framework 4.6.2+)
+- .NET 8.0+ targeting Windows (or .NET Framework 4.6.2+)
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

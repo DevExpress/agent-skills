@@ -146,3 +146,8 @@ Current repository status for the WPF data-grid family from the perspective of t
 | **PivotGrid** | **`devexpress-wpf-pivot-grid`** | **✅ Generated, not yet tested in real project** |
 
 Family completion should be evaluated only after the other data-grid family skills are added to this repository. Next family from the original 11-family plan: **editors** (data-editors + property-grid), **charts-and-gauges**, or **scheduling**. Or pause to test PivotGrid in a real project first.
+
+## Post-Generation Updates
+
+- Fixed the "Using DevExpress Documentation MCP" section in SKILL.md: corrected the tool signature to `devexpress_docs_search(technologies=["WPF"], question=...)` / `devexpress_docs_get_content(url=...)`, removed the "if available" availability hedge, added the cross-agent tool-naming note (host-specific prefixes), and added/verified the untrusted-content security note.
+- Bumped the minimum supported modern-.NET floor in SKILL.md's `compatibility:` frontmatter from `.NET 6+` to `.NET 8+` (v26.1 policy; `.NET Framework 4.6.2+` alternative unchanged).

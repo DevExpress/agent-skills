@@ -1,6 +1,6 @@
 # Getting Started — DevExpress WPF MVVM Framework (.NET Framework)
 
-This guide covers setting up the DevExpress MVVM Framework in a **.NET Framework 4.6.2+** WPF project. The MVVM API itself is identical to the .NET 6/7/8+ build — only project setup (assembly references vs. NuGet) and the compile-time source generator installation differ. For .NET 6/7/8+, see [getting-started.md](getting-started.md).
+This guide covers setting up the DevExpress MVVM Framework in a **.NET Framework 4.6.2+** WPF project. The MVVM API itself is identical to the .NET 8+ build — only project setup (assembly references vs. NuGet) and the compile-time source generator installation differ. For .NET 8+, see [getting-started.md](getting-started.md).
 
 ## When to Use This Reference
 
@@ -129,7 +129,7 @@ For the runtime-POCO and `ViewModelBase` variants (which work without the genera
 
 ## What to Learn Next
 
-- [getting-started.md](getting-started.md) — the .NET 6/7/8+ setup
+- [getting-started.md](getting-started.md) — the .NET 8+ setup
 - [viewmodels.md](viewmodels.md) — strategies, properties, commands, migration
 - [services.md](services.md) — predefined services and how to call them
 - [behaviors.md](behaviors.md) — `EventToCommand` and friends

@@ -1,11 +1,11 @@
-# Getting Started with DevExpress PDF Document API (.NET 6+)
+# Getting Started with DevExpress PDF Document API (.NET 8+)
 
-This guide walks you through setting up and using the PDF Document API for the first time in a .NET 6/7/8+ application.
+This guide walks you through setting up and using the PDF Document API for the first time in a .NET 8/9/10+ application.
 
 ## When to Use This Reference
 
 Use this when you need to:
-- Set up the PDF Document API in a new or existing .NET 6+ project
+- Set up the PDF Document API in a new or existing .NET 8+ project
 - Install and configure required NuGet packages
 - Create your first PDF document from scratch
 - Load and modify an existing PDF file
@@ -13,7 +13,7 @@ Use this when you need to:
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+
+- .NET 8.0 / 9.0 / 10.0+
 - Visual Studio 2022+ (recommended) or JetBrains Rider 2022+
 - A valid DevExpress license
 
@@ -33,7 +33,31 @@ Install-Package DevExpress.Document.Processor
 Install-Package DevExpress.Pdf.SkiaRenderer
 ```
 
-`DevExpress.Pdf.SkiaRenderer` provides cross-platform PDF rendering (used internally for image export and cross-platform printing). It is required on .NET 6+ for most rendering operations.
+`DevExpress.Pdf.SkiaRenderer` provides cross-platform PDF rendering (used internally for image export and cross-platform printing). It is required on .NET 8+ for most rendering operations.
+
+## Non-Windows Platform Support (Linux, macOS, Docker, Cloud)
+
+The library uses a platform-specific drawing engine: GDI+ on Windows, SkiaSharp elsewhere. **The SkiaSharp-based engine is enabled automatically on non-Windows platforms.** Enable `Settings.DrawingEngine` at app startup only to force Skia *on Windows* (e.g., to work around the 10K GDI-handle limit).
+
+Beyond `DevExpress.Pdf.SkiaRenderer` (Step 1), also add the Skia-based drawing engine package:
+
+```bash
+dotnet add package DevExpress.Drawing.Skia
+```
+
+### Non-Windows Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| `System.DllNotFoundException` referencing `DevExpress.Drawing.*.Skia`, `DevExpress.Pdf.*.Skia`, or a SkiaSharp/HarfBuzz assembly | `DevExpress.Drawing.Skia` or `DevExpress.Pdf.SkiaRenderer` package missing, or (if referencing DevExpress assemblies directly instead of via NuGet) the SkiaSharp native asset packages for your OS aren't referenced | Add the `DevExpress.Drawing.Skia` and `DevExpress.Pdf.SkiaRenderer` NuGet packages — normal NuGet restores handle native assets automatically. If the exception persists, explicitly add `SkiaSharp`, `SkiaSharp.HarfBuzz`, and the native asset package matching your target platform: `SkiaSharp.NativeAssets.Linux` (also add `HarfBuzzSharp.NativeAssets.Linux` on Linux), `SkiaSharp.NativeAssets.macOS`, or `SkiaSharp.NativeAssets.WebAssembly`. See the [DevExpress.Drawing troubleshooting guide](https://docs.devexpress.com/CoreLibraries/404254/devexpress-drawing-library/troubleshooting). |
+| `System.TypeInitializationException` on Linux/Docker | Missing native libraries | Install required libraries: `apt-get install -y libc6 libicu-dev libfontconfig1` (Debian/Ubuntu) or `yum install -y glibc-devel libicu fontconfig` (RHEL/CentOS). On .NET 8+, the `Microsoft.ICU.ICU4C.Runtime` package can supply ICU instead (not available for .NET Framework). |
+| Fonts missing or rendered incorrectly on non-Windows | System fonts unavailable | Register fonts explicitly at runtime via [DXFontRepository](https://docs.devexpress.com/CoreLibraries/404255/devexpress-drawing-library/use-font-repository-to-add-custom-fonts): `DXFontRepository.Instance.AddFont(...)`. |
+| Printing on Linux/macOS | GDI/XPS printing pipeline is Windows-only | Use `PdfPrinterSettings.DXSettings` with [CUPS](https://en.wikipedia.org/wiki/Common_UNIX_Printing_System) (install `libcups2` separately) — see [Printing in PDF Document API](https://docs.devexpress.com/OfficeFileAPI/404300). |
+
+Platform-specific guides:
+- macOS: https://docs.devexpress.com/OfficeFileAPI/401532
+- Linux: https://docs.devexpress.com/OfficeFileAPI/401441
+- Docker: https://docs.devexpress.com/OfficeFileAPI/401528
 
 ### Step 2: Add Namespace Imports
 

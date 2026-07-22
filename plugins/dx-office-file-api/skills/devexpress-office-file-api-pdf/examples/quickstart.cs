@@ -3,7 +3,7 @@
 //
 // NuGet packages required:
 //   dotnet add package DevExpress.Document.Processor
-//   dotnet add package DevExpress.Pdf.SkiaRenderer   (.NET 6+ only)
+//   dotnet add package DevExpress.Pdf.SkiaRenderer   (.NET 8+ only)
 //
 // Namespaces: DevExpress.Pdf, DevExpress.Drawing
 

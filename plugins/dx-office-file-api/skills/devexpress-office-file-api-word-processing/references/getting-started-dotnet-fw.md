@@ -77,7 +77,7 @@ static void Main(string[] args)
 }
 ```
 
-> **Note**: On .NET Framework, `Process.Start(fileName)` opens the file directly. On .NET 6+, use `Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true })`.
+> **Note**: On .NET Framework, `Process.Start(fileName)` opens the file directly. On .NET 8+, use `Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true })`.
 
 ## Load and Save (.NET Framework)
 
@@ -96,9 +96,9 @@ using (var server = new RichEditDocumentServer())
 }
 ```
 
-## Key Differences: .NET Framework vs. .NET 6+
+## Key Differences: .NET Framework vs. .NET 8+
 
-| Topic | .NET Framework 4.6.2+ | .NET 6/7/8+ |
+| Topic | .NET Framework 4.6.2+ | .NET 8/9/10+ |
 |-------|----------------------|-------------|
 | PDF renderer package | Included in `DevExpress.Document.Processor` | Included in `DevExpress.Document.Processor` |
 | `Process.Start()` | `Process.Start("file.docx")` works directly | Must set `UseShellExecute = true` |

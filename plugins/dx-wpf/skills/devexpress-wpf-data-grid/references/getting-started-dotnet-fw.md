@@ -1,6 +1,6 @@
 # Getting Started with the DevExpress WPF Data Grid (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md).
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md).
 
 ## System Requirements
 
@@ -53,7 +53,7 @@ Source: `articles/controls-and-libraries/data-grid/getting-started/code/lesson-1
 
 ## Minimal XAML Example
 
-Once the project is set up, the XAML for the grid is identical to the .NET 6+ version:
+Once the project is set up, the XAML for the grid is identical to the .NET 8+ version:
 
 ```xaml
 <Window x:Class="MyApp.MainWindow"

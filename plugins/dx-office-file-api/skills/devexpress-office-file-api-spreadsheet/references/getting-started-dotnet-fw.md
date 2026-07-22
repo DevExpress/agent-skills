@@ -10,7 +10,7 @@ Use this when you need to:
 - Configure PDF export on .NET Framework (uses Windows GDI)
 - Understand differences between .NET and .NET Framework setup
 
-For .NET 6/7/8+ projects, see [getting-started.md](getting-started.md).
+For .NET 8/9/10+ projects, see [getting-started.md](getting-started.md).
 
 ## System Requirements
 
@@ -158,9 +158,9 @@ Module Module1
 End Module
 ```
 
-## Key Differences from .NET (6/7/8+)
+## Key Differences from .NET (8/9/10+)
 
-| Aspect | .NET Framework | .NET (6/7/8+) |
+| Aspect | .NET Framework | .NET (8/9/10+) |
 |--------|---------------|----------------|
 | PDF rendering | Windows GDI (built-in) | Cross-platform (built-in) |
 | Cross-platform | No (Windows only) | Yes (Linux/macOS/Windows) |

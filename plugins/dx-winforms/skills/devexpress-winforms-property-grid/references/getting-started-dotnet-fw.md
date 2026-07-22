@@ -1,6 +1,6 @@
 # Getting Started with PropertyGridControl (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md). Once the project is configured, all `PropertyGridControl` code (rows, editors, categories, complex properties, collections) is identical on both platforms.
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md). Once the project is configured, all `PropertyGridControl` code (rows, editors, categories, complex properties, collections) is identical on both platforms.
 
 ## System Requirements
 
@@ -60,7 +60,7 @@ propertyGridControl1.SelectedObject = myObject;
 
 ## Minimal Working Example
 
-The control API is identical to the .NET 6+ guide:
+The control API is identical to the .NET 8+ guide:
 
 ```csharp
 public partial class SettingsForm : XtraForm {

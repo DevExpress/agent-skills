@@ -48,6 +48,8 @@ Always use `XtraForm` or `RibbonForm` — never a plain `Form`. This ensures ski
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. **When does the indicator appear** — at app startup, or during a runtime operation triggered by a button/event?
 2. **What should be blocked** — the entire form, one panel/control, or nothing (just visual feedback)?
 3. **Does the user need to see progress text** that updates during the operation (e.g., "Row 42 of 1000")?
@@ -191,10 +193,11 @@ var h = SplashScreenManager.ShowOverlayForm(
 - **Overlay Form requires an initialized control handle** — `ShowOverlayForm` before `Form.Load` throws `InvalidOperationException`.
 - **Never generate skin / look-and-feel code for a loading indicator** — do **not** add `BonusSkins.Register()`, `UserLookAndFeel.Default.SetSkinStyle(...)`, `WindowsFormsSettings.LoadApplicationSettings()`, or `SkinManager` calls. The indicators inherit the application's existing skin; skin setup is the application's responsibility and is out of scope here.
 - **Never wait with `Application.DoEvents()`** — do not write a `while (!done) Application.DoEvents();` busy-loop to keep an indicator responsive. Use `async`/`await` (and `Task.Run` for CPU-bound work) so the UI message loop keeps running; the indicator animates on its own.
+- **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

@@ -1,7 +1,7 @@
 ---
 name: devexpress-winforms-charts
 description: "DevExpress WinForms Chart Control (DevExpress.XtraCharts.ChartControl) for 2D and 3D data visualization. Covers the element hierarchy (ChartControl, Diagram, Series, SeriesView); data binding (DataSource, SeriesDataMember, ArgumentDataMember, ValueDataMembers, SeriesTemplate, FinancialDataMembers, RefreshData); the series-view catalog and parent diagrams (XYDiagram hosts Bar/Line/Area/Point/Bubble/Financial/BoxPlot; SimpleDiagram hosts Pie/Doughnut/Funnel; Radar, Polar, Gantt, SwiftPlot, 3D); axes (AxisX/AxisY, SecondaryAxes, scale types Numerical/DateTime/Qualitative, ranges, aggregation); titles and labels (TextPattern, CustomAxisLabel); legends (Legend/Legends, alignment, markers); tooltips vs the crosshair cursor (ToolTipController, CrosshairOptions); and selection (SelectionMode, SeriesSelectionMode, ObjectSelected). Use for any WinForms charting scenario including financial/stock charts and real-time updates."
-compatibility: Requires .NET Framework 4.6.2+ or .NET 6+/7+/8+/9+ targeting Windows. Primary NuGet package — `DevExpress.Win.Charts` (ships `DevExpress.XtraCharts.v*.UI.dll`, `DevExpress.XtraCharts.v*.dll`, `ChartControl`, `Series`, all diagrams and series views, repository items, the Chart Designer). For print/export of charts, also reference `DevExpress.Win.Printing`. DevExpress NuGet packages are published on nuget.org and via the local Unified Component Installer feed. A valid DevExpress license is required.
+compatibility: Requires .NET Framework 4.6.2+ or .NET 8+ targeting Windows. Primary NuGet package — `DevExpress.Win.Charts` (ships `DevExpress.XtraCharts.v*.UI.dll`, `DevExpress.XtraCharts.v*.dll`, `ChartControl`, `Series`, all diagrams and series views, repository items, the Chart Designer). For print/export of charts, also reference `DevExpress.Win.Printing`. DevExpress NuGet packages are published on nuget.org and via the local Unified Component Installer feed. A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -51,6 +51,8 @@ For chart-specific repository items used in grids, also `using DevExpress.XtraEd
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. **What shape of data**, conceptually — comparison (`Bar`), trend over time (`Line`/`Area`), composition (`Pie`/`Doughnut`/`Funnel`), distribution (`Histogram`/`BoxPlot`), correlation (`Scatter`/`Bubble`), OHLC (`CandleStick`/`Stock`), schedule (`Gantt`), profile (`Radar`)?
 2. **2D or 3D**? 3D charts do not support tooltips, crosshair cursor, or runtime selection.
 3. **One series or several**? Multiple series with different ranges → use **secondary axes** (`XYDiagram` only).
@@ -61,7 +63,7 @@ For chart-specific repository items used in grids, also `using DevExpress.XtraEd
 ## Documentation & Navigation Guide
 
 ### Getting Started
-Refer to [references/getting-started.md](references/getting-started.md) (.NET 6/7/8+) or [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md) (.NET Framework 4.x)
+Refer to [references/getting-started.md](references/getting-started.md) (.NET 8+) or [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md) (.NET Framework 4.x)
 When you need to: install NuGet, drop a `ChartControl` on a form, add a first series, run the Chart Designer, understand the element hierarchy.
 
 ### Data Binding
@@ -240,10 +242,11 @@ CRITICAL — follow these rules in every interaction:
 8. **3D charts have no selection / tooltip / crosshair**: those features are 2D-only.
 9. **Aggregation requires `ScaleMode = Automatic`**: setting `AggregateFunction` alone with `ScaleMode = Continuous` does nothing.
 10. **Use SVG images for legends and titles**: raster images do not adapt to skin/DPI changes.
+11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

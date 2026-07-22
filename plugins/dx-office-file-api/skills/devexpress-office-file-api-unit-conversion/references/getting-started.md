@@ -1,10 +1,10 @@
 # Getting Started with DevExpress Unit Conversion API
 
-This guide walks you through installing and using the DevExpress Unit Conversion API for the first time. The same code works on .NET 6+ and .NET Framework 4.6.2+ without modification.
+This guide walks you through installing and using the DevExpress Unit Conversion API for the first time. The same code works on .NET 8+ and .NET Framework 4.6.2+ without modification.
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ or .NET Framework 4.6.2+
+- .NET 8.0 / 9.0 / 10.0+ or .NET Framework 4.6.2+
 - Visual Studio 2022+ (recommended) or JetBrains Rider
 - A valid DevExpress license
 

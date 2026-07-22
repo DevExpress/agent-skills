@@ -25,6 +25,31 @@ dotnet add package Microsoft.Web.LibraryManager.Build
 dotnet add package DevExpress.Drawing.Skia
 ```
 
+## Non-Windows Platform Support (Linux, macOS, Docker, Cloud)
+
+DevExpress Reporting uses a platform-specific drawing engine: GDI+ on Windows, SkiaSharp elsewhere. **The SkiaSharp-based engine is enabled automatically on non-Windows platforms.** Enable `Settings.DrawingEngine` at app startup only to force Skia *on Windows* (e.g., to work around the 10K GDI-handle limit).
+
+If reports include PDF content (`XRPdfContent`) or you export/preview to PDF, also install:
+
+```bash
+dotnet add package DevExpress.Pdf.SkiaRenderer
+```
+
+On **Linux**, ensure the required font libraries are installed on the target host/container image (these are commands for the developer/operator to run):
+
+- Debian/Ubuntu: `apt-get install -y libc6 libicu-dev libfontconfig1`
+- RHEL/CentOS/Fedora: `yum install -y glibc-devel libicu fontconfig`
+
+### Non-Windows Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| `System.DllNotFoundException` for Skia at runtime | `DevExpress.Drawing.Skia` (or `DevExpress.Pdf.SkiaRenderer` for PDF content) not installed on Linux/macOS | `dotnet add package DevExpress.Drawing.Skia` — see the [DevExpress.Drawing troubleshooting guide](https://docs.devexpress.com/CoreLibraries/404254/devexpress-drawing-library/troubleshooting) if the exception persists after installing |
+| `System.TypeInitializationException` on Linux/Docker | Missing native font libraries | Install `libc6 libicu-dev libfontconfig1` (Debian/Ubuntu) or `glibc-devel libicu fontconfig` (RHEL/CentOS) |
+| On Windows Azure, rendering fails or falls back unexpectedly | Azure has limited GDI API support | Set [PdfPrintingOptions.RenderingEngine](https://docs.devexpress.com/CoreLibraries/DevExpress.XtraPrinting.PdfPrintingOptions.RenderingEngine) to `Skia` explicitly |
+
+See [Use Reporting on Linux and macOS](https://docs.devexpress.com/XtraReports/404221/common-information/dot-net-and-net-core-support/use-reporting-on-linux) for the full platform guide.
+
 ## Step 2: npm Packages (package.json)
 
 Add `package.json` to the project root:

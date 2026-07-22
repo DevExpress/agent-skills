@@ -1,6 +1,6 @@
 # Getting Started (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md). Once the project is configured, all editor code (`BaseEdit` descendants, masks, buttons, repository items) is identical on both platforms.
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md). Once the project is configured, all editor code (`BaseEdit` descendants, masks, buttons, repository items) is identical on both platforms.
 
 ## System Requirements
 
@@ -55,7 +55,7 @@ Use `DevExpress.XtraEditors.XtraForm` (or `RibbonForm`) for correct skin integra
 
 ## Minimal Setup in Code
 
-The editor API is identical to the .NET 6+ guide:
+The editor API is identical to the .NET 8+ guide:
 
 ```csharp
 public partial class MainForm : DevExpress.XtraEditors.XtraForm {

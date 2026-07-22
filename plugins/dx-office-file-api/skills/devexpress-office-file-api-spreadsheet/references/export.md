@@ -267,7 +267,7 @@ workbook.ExportToPdf("accessible.pdf");
 
 ## Platform Notes
 
-| Feature | .NET (6/7/8+) | .NET Framework |
+| Feature | .NET (8/9/10+) | .NET Framework |
 |---------|--------------|----------------|
 | `ExportToPdf` | Supported | Built-in (Windows GDI) |
 | `ExportToImage` | Supported | Built-in |

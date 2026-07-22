@@ -65,3 +65,7 @@ None found (0 `// TODO: Verify API` markers across SKILL.md, references, and exa
 
 - `articles/controls-and-libraries/data-grid/` (Data Grid feature tree) and `articles/controls-and-libraries/tree-list/`
 - [DevExpress.XtraGrid](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraGrid?md=true), [DevExpress.XtraGrid.Views.Grid](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraGrid.Views.Grid?md=true), [DevExpress.XtraGrid.Columns](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraGrid.Columns?md=true), [DevExpress.XtraTreeList](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList?md=true)
+
+## Post-Generation Updates
+
+- Fixed the "Using DevExpress Documentation MCP" section in SKILL.md as part of a repo-wide MCP signature/hedge fix: corrected the tool signature to `devexpress_docs_search(technologies=["WindowsForms"], question="...")` (was the broken singular `technology=`/`query=` form), added the cross-agent tool-naming note (host-specific prefixes), and added the untrusted-content security note (none of these three were previously present).

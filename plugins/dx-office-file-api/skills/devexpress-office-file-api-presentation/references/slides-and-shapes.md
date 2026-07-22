@@ -208,6 +208,31 @@ presentation.Slides.Add(slide);
 
 Available `PlaceholderType` values: `CenteredTitle`, `Title`, `Subtitle`, `Body`, `Object`, `Picture`, `DateAndTime`, `Footer`, `SlideNumber`.
 
+### Remove Unused Placeholders
+
+A layout's placeholder shapes (e.g., Title + Subtitle for the Title layout) are all added to a new slide, whether or not you populate them. If you don't assign a `TextArea` to a placeholder, it stays on the slide empty — PowerPoint's editing view then shows a "Click to add title"/"Click to add text" frame that overlaps your custom content. This is mostly a PowerPoint-authoring concern: slide show mode and PDF/image export are largely unaffected.
+
+To avoid this, remove any placeholder shape you don't use. Iterate a materialized copy of `slide.Shapes` (`.ToList()`) since you're removing from the same collection you're enumerating:
+
+```csharp
+Slide slide = new Slide(master.Layouts.GetOrCreate(SlideLayoutType.Object));
+foreach (Shape shape in slide.Shapes.ToList()) {
+    if (shape.PlaceholderSettings.Type is PlaceholderType.Title) {
+        shape.TextArea = new TextArea("Build Status");
+    }
+    if (shape.PlaceholderSettings.Type is PlaceholderType.Body) {
+        // Replace the Body placeholder with a table instead of populating it
+        RectangleF rect = presentation.GetActualShapeBounds(slide, shape);
+        slide.Shapes.Remove(shape);
+
+        Table table = new Table(5, 5, rect.X, rect.Y, rect.Width, rect.Height);
+        slide.Shapes.Add(table);
+    }
+}
+```
+
+Use `Presentation.GetActualShapeBounds(Slide, Shape)` to read a placeholder's effective bounds before removing it, so replacement content (a table, a custom shape) lines up with where the placeholder was.
+
 ## Shapes
 
 ### Add a Preset Shape

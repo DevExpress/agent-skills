@@ -1,6 +1,6 @@
 # Getting Started (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md). Once the project is configured, all loading-indicator code (Splash Screen, Wait Form, Overlay Form, ProgressPanel) is identical on both platforms.
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md). Once the project is configured, all loading-indicator code (Splash Screen, Wait Form, Overlay Form, ProgressPanel) is identical on both platforms.
 
 ## System Requirements
 
@@ -50,7 +50,7 @@ using DevExpress.XtraWaitForm;        // WaitForm base class, ProgressPanel
 
 ## Splash Screen — Minimum Code
 
-The API is identical to the .NET 6+ guide. Show the splash before `Application.Run`, and **always** close it once the main form is ready (a missing `CloseForm()` can keep the app alive on exit):
+The API is identical to the .NET 8+ guide. Show the splash before `Application.Run`, and **always** close it once the main form is ready (a missing `CloseForm()` can keep the app alive on exit):
 
 ```csharp
 // Program.cs — before Application.Run(new MainForm())

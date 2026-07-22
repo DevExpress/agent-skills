@@ -1,6 +1,6 @@
 # Getting Started with DevExpress Word Processing Document API (.NET)
 
-This guide walks you through setting up and using the Word Processing Document API in a .NET 6/7/8+ project.
+This guide walks you through setting up and using the Word Processing Document API in a .NET 8/9/10+ project.
 
 ## When to Use This Reference
 
@@ -13,7 +13,7 @@ Use this when you need to:
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+
+- .NET 8.0 / 9.0 / 10.0+
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license (Office File API Subscription or Universal Subscription)
 
@@ -34,6 +34,35 @@ Install-Package DevExpress.Document.Processor
 ### Step 2: Register Your License
 
 DevExpress validates the license automatically when the package is installed via the DevExpress installer. For NuGet-only installations, follow the license key registration guide in the DevExpress documentation.
+
+## Non-Windows Platform Support (Linux, macOS, Docker, Cloud)
+
+The library uses a platform-specific drawing engine: GDI+ on Windows, SkiaSharp elsewhere. **The SkiaSharp-based engine is enabled automatically on non-Windows platforms.** Enable `Settings.DrawingEngine` at app startup only to force Skia *on Windows* (e.g., to work around the 10K GDI-handle limit).
+
+Add the Skia-based drawing engine package:
+
+```bash
+dotnet add package DevExpress.Drawing.Skia
+```
+
+If your application renders PDF page content (for example, exports PDF pages to images), also add:
+
+```bash
+dotnet add package DevExpress.Pdf.SkiaRenderer
+```
+
+### Non-Windows Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| `System.DllNotFoundException` referencing `DevExpress.Drawing.*.Skia` or a SkiaSharp/HarfBuzz assembly | `DevExpress.Drawing.Skia` package missing, or (if referencing DevExpress.Drawing assemblies directly instead of via NuGet) the SkiaSharp native asset packages for your OS aren't referenced | Add the `DevExpress.Drawing.Skia` NuGet package — normal NuGet restores handle native assets automatically. If the exception persists, explicitly add `SkiaSharp`, `SkiaSharp.HarfBuzz`, and the native asset package matching your target platform: `SkiaSharp.NativeAssets.Linux` (also add `HarfBuzzSharp.NativeAssets.Linux` on Linux), `SkiaSharp.NativeAssets.macOS`, or `SkiaSharp.NativeAssets.WebAssembly`. See the [DevExpress.Drawing troubleshooting guide](https://docs.devexpress.com/CoreLibraries/404254/devexpress-drawing-library/troubleshooting). |
+| `System.TypeInitializationException` on Linux/Docker | Missing native libraries | Install required libraries: `apt-get install -y libc6 libicu-dev libfontconfig1` (Debian/Ubuntu) or `yum install -y glibc-devel libicu fontconfig` (RHEL/CentOS). On .NET 8+, the `Microsoft.ICU.ICU4C.Runtime` package can supply ICU instead (not available for .NET Framework). |
+| Fonts missing or rendered incorrectly on non-Windows | System fonts unavailable | Register fonts explicitly at runtime — see [Register Custom Fonts (DXFontRepository)](#register-custom-fonts-dxfontrepository) below. |
+
+Platform-specific guides:
+- macOS: https://docs.devexpress.com/OfficeFileAPI/401532
+- Linux: https://docs.devexpress.com/OfficeFileAPI/401441
+- Docker: https://docs.devexpress.com/OfficeFileAPI/401528
 
 ## Key Namespaces
 

@@ -1,4 +1,4 @@
-# Getting Started — XtraReports Core (.NET 6+)
+# Getting Started — XtraReports Core (.NET 8+)
 
 ## When to Use This Reference
 

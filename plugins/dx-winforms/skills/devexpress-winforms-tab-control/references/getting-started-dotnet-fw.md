@@ -1,6 +1,6 @@
 # Getting Started with XtraTabControl (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md). Once the project is configured, all `XtraTabControl` code (pages, headers, events, appearance) is identical on both platforms.
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md). Once the project is configured, all `XtraTabControl` code (pages, headers, events, appearance) is identical on both platforms.
 
 ## System Requirements
 
@@ -65,7 +65,7 @@ static class Program {
 
 ## Minimal Setup in Code
 
-The control API is identical to the .NET 6+ guide:
+The control API is identical to the .NET 8+ guide:
 
 ```csharp
 using DevExpress.XtraTab;

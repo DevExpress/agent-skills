@@ -63,10 +63,10 @@ In .NET Framework, use the older `Process.Start` overload (no `ProcessStartInfo`
 System.Diagnostics.Process.Start("Document.xlsx");
 ```
 
-In .NET 6+, use `ProcessStartInfo` with `UseShellExecute = true`:
+In .NET 8+, use `ProcessStartInfo` with `UseShellExecute = true`:
 
 ```csharp
-// .NET 6+ — required overload
+// .NET 8+ — required overload
 Process.Start(new ProcessStartInfo("Document.xlsx") { UseShellExecute = true });
 ```
 
@@ -174,6 +174,6 @@ cell.SetFormula("=SUM(B2:B10)");
 
 ## What to Learn Next
 
-- [getting-started.md](getting-started.md): .NET 6/7/8+ setup with NuGet
+- [getting-started.md](getting-started.md): .NET 8/9/10+ setup with NuGet
 - [cells-and-formatting.md](cells-and-formatting.md): Cell values, fonts, colors, borders, number formats
 - [advanced-features.md](advanced-features.md): Tables, formulas, sparklines, printing, data validation

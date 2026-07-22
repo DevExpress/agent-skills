@@ -1,10 +1,10 @@
-﻿# Getting Started — DevExpress WPF Scheduler
+# Getting Started — DevExpress WPF Scheduler
 
-This guide walks through setting up `SchedulerControl` in a .NET (6/7/8+) WPF project. The end result: a calendar that shows medical appointments grouped by doctor, bound to a ViewModel.
+This guide walks through setting up `SchedulerControl` in a .NET 8+ WPF project. The end result: a calendar that shows medical appointments grouped by doctor, bound to a ViewModel.
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows (or .NET Framework 4.6.2+)
+- .NET 8.0+ targeting Windows (or .NET Framework 4.6.2+)
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

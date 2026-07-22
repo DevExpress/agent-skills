@@ -27,6 +27,8 @@ metadata:
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. **Target framework?** `AIChatControl` requires **.NET 8+** with the `Microsoft.NET.Sdk.Razor` SDK. On .NET Framework it is unsupported — see [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md).
 2. **Which AI provider?** OpenAI, Azure OpenAI, or a local model via Ollama? This decides the provider NuGet package and the `IChatClient` registration.
 3. **One provider or several?** A single `RegisterChatClient`, or multiple keyed providers selected via `ChatResponseProviderServiceKey`?
@@ -221,7 +223,7 @@ CRITICAL — follow these rules in every interaction:
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

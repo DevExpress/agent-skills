@@ -1,6 +1,6 @@
 # Getting Started with the DevExpress Excel Export Library (.NET)
 
-This guide walks you through setting up and using the Excel Export Library in a .NET 6/7/8+ project.
+This guide walks you through setting up and using the Excel Export Library in a .NET 8/9/10+ project.
 
 ## When to Use This Reference
 
@@ -13,7 +13,7 @@ Use this when you need to:
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+
+- .NET 8.0 / 9.0 / 10.0+
 - Visual Studio 2022+ (recommended) or JetBrains Rider
 - Valid DevExpress license (Office File API or Universal Subscription)
 

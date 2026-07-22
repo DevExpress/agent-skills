@@ -24,9 +24,9 @@ Minimum assemblies for export-only (no viewer):
 - `DevExpress.Pdf.v<XX.X>.Core.dll` (PDF export)
 - `DevExpress.Pdf.v<XX.X>.Drawing.dll` (PDF rendering)
 
-## Differences from .NET 6+
+## Differences from .NET 8+
 
-| Aspect | .NET Framework | .NET 6+ |
+| Aspect | .NET Framework | .NET 8+ |
 |--------|---------------|---------|
 | Async export | Available (`ExportToPdfAsync`) | Available |
 | `ExpressionBinding` | Same API | Same API |

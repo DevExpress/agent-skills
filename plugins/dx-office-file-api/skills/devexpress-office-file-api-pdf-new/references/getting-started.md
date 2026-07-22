@@ -4,7 +4,7 @@
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ or .NET Framework 4.7.2+
+- .NET 8.0 / 9.0 / 10.0+ or .NET Framework 4.7.2+
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

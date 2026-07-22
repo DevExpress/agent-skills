@@ -1,10 +1,10 @@
-# Getting Started with the DevExpress WPF Pivot Grid (.NET 6/7/8+)
+# Getting Started with the DevExpress WPF Pivot Grid (.NET 8+)
 
-This guide walks you through adding `DevExpress.Xpf.PivotGrid.PivotGridControl` to a .NET (6/7/8+) WPF project and binding it to a data source. For .NET Framework 4.x, see [getting-started-dotnet-fw.md](getting-started-dotnet-fw.md).
+This guide walks you through adding `DevExpress.Xpf.PivotGrid.PivotGridControl` to a .NET 8+ WPF project and binding it to a data source. For .NET Framework 4.x, see [getting-started-dotnet-fw.md](getting-started-dotnet-fw.md).
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows
+- .NET 8.0+ targeting Windows
 - Visual Studio 2022+ or JetBrains Rider
 - A NuGet source providing DevExpress packages
 - (For MDB binding) [Microsoft Access Database Engine 2016 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=54920)

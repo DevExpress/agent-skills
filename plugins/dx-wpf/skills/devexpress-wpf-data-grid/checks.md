@@ -146,3 +146,8 @@ This pilot validated the structure, elicitation, theming integration, and refere
 - `skills/data-grid/devexpress-wpf-pivot-grid/` — different feature set (data shaping, OLAP binding, 203 source articles)
 
 Each will take less time because the WPF infrastructure (theming, MVVM patterns, `.NET` vs `.NET Framework` split, designer-vs-code paths) is already documented and reusable.
+
+## Post-Generation Updates
+
+- Fixed the "Using DevExpress Documentation MCP" section in SKILL.md: corrected the tool signature to `devexpress_docs_search(technologies=["WPF"], question=...)` / `devexpress_docs_get_content(url=...)`, removed the "if available" availability hedge, added the cross-agent tool-naming note (host-specific prefixes), and added/verified the untrusted-content security note.
+- Bumped the minimum supported modern-.NET floor in SKILL.md's `compatibility:` frontmatter from `.NET 6+` to `.NET 8+` (v26.1 policy; `.NET Framework 4.6.2+` alternative unchanged).

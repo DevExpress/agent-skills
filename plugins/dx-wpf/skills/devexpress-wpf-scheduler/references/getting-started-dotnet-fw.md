@@ -2,7 +2,7 @@
 
 ## When to Use This Reference
 
-Use when targeting .NET Framework 4.6.2 or later with the DevExpress WPF `SchedulerControl`. For .NET 6/7/8+ (SDK-style projects), use [getting-started.md](getting-started.md) instead — the Scheduler API is identical; only the project plumbing differs.
+Use when targeting .NET Framework 4.6.2 or later with the DevExpress WPF `SchedulerControl`. For .NET 8+ (SDK-style projects), use [getting-started.md](getting-started.md) instead — the Scheduler API is identical; only the project plumbing differs.
 
 ## NuGet Setup
 
@@ -85,9 +85,9 @@ namespace MyApp {
 
 `Start` and `End` are the only required mappings for non-recurring appointments. See [data-binding.md](data-binding.md) for the full mapping reference and recurrence (`Type` + `RecurrenceInfo`).
 
-## Differences from .NET 6+
+## Differences from .NET 8+
 
-| Aspect | .NET Framework 4.x | .NET 6+ |
+| Aspect | .NET Framework 4.x | .NET 8+ |
 |---|---|---|
 | Project file | Standard (non-SDK) `.csproj` | SDK-style `.csproj` |
 | `UseWPF` | Not used (WPF is implicit) | Required in `.csproj` |

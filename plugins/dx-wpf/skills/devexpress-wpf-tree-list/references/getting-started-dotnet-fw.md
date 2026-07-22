@@ -1,6 +1,6 @@
 # Getting Started with the DevExpress WPF TreeList (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md).
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md).
 
 ## System Requirements
 

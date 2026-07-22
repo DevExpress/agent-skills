@@ -70,3 +70,8 @@ None. All API names used in `SKILL.md`, `references/`, and `examples/` were veri
 ## Template Includes Resolved
 
 `unbound-mode.md` references `~/examples/unbound-mode-beforeexpand-event13299.md` (BeforeExpand dynamic loading) and `how-to-create-treelist-at-runtime.md` includes `~/examples/treelist-create-at-runtime.md` — both resolved and read. No unresolved includes.
+
+## Post-Generation Updates
+
+- Fixed the "Using DevExpress Documentation MCP" section in SKILL.md as part of a repo-wide MCP signature/hedge fix: verified the tool signature already used the correct `devexpress_docs_search(technologies=["WindowsForms"], question="...")` form, removed the conditional "If the DevExpress Docs MCP server is available" hedge, and added the cross-agent tool-naming note (host-specific prefixes). The untrusted-content security note was already present and left untouched.
+- Bumped the general .NET targeting floor in `SKILL.md` from `.NET 6/7/8+` to `.NET 8+` (compatibility line and the "Target ..." constraint) to match the v26.1 template used across other WinForms skills. The `getting-started.md (105 lines, .NET 6/7/8+)` line in the directory tree above is a frozen point-in-time generation snapshot and was intentionally left unchanged.

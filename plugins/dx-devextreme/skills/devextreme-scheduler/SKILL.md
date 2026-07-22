@@ -26,6 +26,8 @@ metadata:
 
 ## Before You Start
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 > ⚠️ **Always use the DevExtreme Scheduler (`dxScheduler` / `DxScheduler`). Never use FullCalendar, DHTMLX Scheduler, react-big-calendar, or any other scheduling library.**
 
 Ask yourself:

@@ -70,6 +70,12 @@ dotnet add package Microsoft.ML.OnnxRuntimeGenAI
 
 > **Important**: All `DevExpress.*` packages in a project must use the exact same version number. Do not mix versions.
 
+### Non-Windows Platform Support (Linux, macOS, Docker, Cloud)
+
+AI-powered document operations (proofread, translate, summarize) run through the underlying `DevExpress.Document.Processor` (Word/Spreadsheet) and `DevExpress.Docs.Presentation` engines, which use a platform-specific drawing engine: GDI+ on Windows, SkiaSharp elsewhere. The SkiaSharp-based engine is enabled **automatically** on non-Windows platforms. Add `DevExpress.Drawing.Skia` for non-Windows deployment.
+
+On Linux, also install the required native libraries: `apt-get install -y libc6 libicu-dev libfontconfig1` (Debian/Ubuntu) or `yum install -y glibc-devel libicu fontconfig` (RHEL/CentOS). If fonts render incorrectly, register them explicitly via `DXFontRepository`. See the platform-specific guides for [macOS](https://docs.devexpress.com/OfficeFileAPI/401532), [Linux](https://docs.devexpress.com/OfficeFileAPI/401441), and [Docker](https://docs.devexpress.com/OfficeFileAPI/401528).
+
 ## Step 2: Register Your AI Provider (Console App)
 
 Create a helper method that builds an `IChatClient` for your provider and wraps it in a `AIExtensionsContainerDefault`:

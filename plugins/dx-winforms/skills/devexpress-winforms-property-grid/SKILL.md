@@ -49,6 +49,8 @@ Namespace:  DevExpress.XtraVerticalGrid
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. **Which object(s) are shown?** One object (`SelectedObject`) or multiple (`SelectedObjects`)? Multiple objects show only shared properties.
 2. **Auto or manual rows?** Empty `Rows` collection → auto-generated from reflection. Pre-populated → uses defined rows only.
 3. **View style?** Classic (default) supports `MultiEditorRow`; Office supports tabs and track bars. Office mode does **not** support `MultiEditorRow`.
@@ -197,10 +199,11 @@ CRITICAL — follow these rules in every interaction:
 5. **Office view limits**: the Office view does not support `MultiEditorRow`; use the Classic view for side-by-side editors.
 6. **Expandable nested objects**: a nested object property is only expandable when its **type** is decorated with `[TypeConverter(typeof(ExpandableObjectConverter))]`.
 7. **Refresh after model changes**: call `RefreshAllProperties()` when the bound object changes outside the grid — the control does not observe arbitrary property changes automatically.
+8. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

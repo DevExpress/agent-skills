@@ -1,10 +1,10 @@
 # Getting Started — Property Grid
 
-This guide walks through adding the DevExpress `PropertyGridControl` to a .NET (6/7/8+) WPF project. Property Grid is a data-bound control: set `SelectedObject` to any CLR object, and the control automatically renders an appropriate editor for each public property.
+This guide walks through adding the DevExpress `PropertyGridControl` to a .NET 8+ WPF project. Property Grid is a data-bound control: set `SelectedObject` to any CLR object, and the control automatically renders an appropriate editor for each public property.
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows (or .NET Framework 4.6.2+)
+- .NET 8.0+ targeting Windows (or .NET Framework 4.6.2+)
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

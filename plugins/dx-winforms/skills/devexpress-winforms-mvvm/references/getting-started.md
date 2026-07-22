@@ -10,7 +10,7 @@ DevExpress WinForms supports two MVVM approaches — choose one based on your pr
 | Approach | Package(s) | .NET Requirement | Priority |
 |---|---|---|---|
 | **DevExpress Compile-Time (Code Generator)** | `DevExpress.Mvvm.CodeGenerators` + `DevExpress.Mvvm` | .NET 6+ (C# source generators) | **Recommended for new projects** |
-| DevExpress Runtime POCO | `DevExpress.Utils` (included in all DevExpress WinForms packages) | .NET Framework 4.6.2+ or .NET 6+ | Legacy / design-time-first |
+| DevExpress Runtime POCO | `DevExpress.Utils` (included in all DevExpress WinForms packages) | .NET Framework 4.6.2+ or .NET 8+ | Legacy / design-time-first |
 | Microsoft CommunityToolkit.Mvvm | `CommunityToolkit.Mvvm` | .NET 6+ | Alternative; no DevExpress Services/Behaviors |
 
 All approaches use the `MVVMContext` component (`DevExpress.Utils.MVVM` namespace, in `DevExpress.Utils.v26.1.dll`) for binding ViewModel to View.

@@ -4,7 +4,7 @@ All three loading indicators (`SplashScreenManager`, `LoadingDecorator`, `WaitIn
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows (or .NET Framework 4.6.2+)
+- .NET 8.0+ targeting Windows (or .NET Framework 4.6.2+)
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

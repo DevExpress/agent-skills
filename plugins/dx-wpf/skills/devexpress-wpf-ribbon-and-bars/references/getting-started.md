@@ -1,10 +1,10 @@
 # Getting Started — Ribbon and Bars
 
-This guide walks through adding the DevExpress Ribbon control (and/or toolbars) to a .NET (6/7/8+) WPF project. The critical step is converting the main window from `System.Windows.Window` to `DevExpress.Xpf.Core.ThemedWindow` — without this, Ribbon integration won't render correctly (you'll see two title bars, broken hit-testing in the header, and no support for `WindowKind="Ribbon"`).
+This guide walks through adding the DevExpress Ribbon control (and/or toolbars) to a .NET 8+ WPF project. The critical step is converting the main window from `System.Windows.Window` to `DevExpress.Xpf.Core.ThemedWindow` — without this, Ribbon integration won't render correctly (you'll see two title bars, broken hit-testing in the header, and no support for `WindowKind="Ribbon"`).
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows (or .NET Framework 4.6.2+)
+- .NET 8.0+ targeting Windows (or .NET Framework 4.6.2+)
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

@@ -4,7 +4,7 @@ The DevExpress MVVM Framework lives in `DevExpress.Mvvm` and is bundled into `De
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows (or .NET Framework 4.6.2+)
+- .NET 8.0+ targeting Windows (or .NET Framework 4.6.2+)
 - Visual Studio 2022+ or JetBrains Rider
 - For compile-time generation: **C# 9+**, .NET Framework 4.6.1+ or .NET Core 3.0+ (.NET 5+ recommended), Visual Studio 16.9.0+
 - A valid DevExpress license

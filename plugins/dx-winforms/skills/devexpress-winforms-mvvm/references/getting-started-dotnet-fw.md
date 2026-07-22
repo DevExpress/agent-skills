@@ -1,6 +1,6 @@
 # Getting Started with DevExpress WinForms MVVM (.NET Framework 4.6.2+)
 
-This guide is for **.NET Framework** projects. For .NET 6/7/8+, see [getting-started.md](getting-started.md). Most of this skill applies to both frameworks — the one important difference is the ViewModel approach (below).
+This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started.md](getting-started.md). Most of this skill applies to both frameworks — the one important difference is the ViewModel approach (below).
 
 ## System Requirements
 

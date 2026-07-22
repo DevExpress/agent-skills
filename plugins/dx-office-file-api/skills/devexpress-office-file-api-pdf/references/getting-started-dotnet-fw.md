@@ -1,6 +1,6 @@
 # Getting Started with DevExpress PDF Document API (.NET Framework)
 
-This guide covers setting up the PDF Document API in .NET Framework 4.6.2+ projects. Key differences from .NET 6+ include the rendering engine (GDI+ instead of Skia) and assembly reference requirements.
+This guide covers setting up the PDF Document API in .NET Framework 4.6.2+ projects. Key differences from .NET 8+ include the rendering engine (GDI+ instead of Skia) and assembly reference requirements.
 
 ## When to Use This Reference
 
@@ -44,7 +44,7 @@ Default install path: `%ProgramFiles%\DevExpress 25.2\Components\Bin\Framework\`
 
 ## Code Example — Create a New PDF
 
-The API surface is identical to .NET 6+. The difference is in rendering internals.
+The API surface is identical to .NET 8+. The difference is in rendering internals.
 
 ```csharp
 using DevExpress.Drawing;
@@ -94,9 +94,9 @@ using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
 }
 ```
 
-## .NET Framework vs. .NET 6+ Differences
+## .NET Framework vs. .NET 8+ Differences
 
-| Feature | .NET Framework | .NET 6+ |
+| Feature | .NET Framework | .NET 8+ |
 |---------|---------------|---------|
 | Rendering engine | GDI+ (Windows only) | Skia (cross-platform) |
 | Required renderer package | None | `DevExpress.Pdf.SkiaRenderer` |

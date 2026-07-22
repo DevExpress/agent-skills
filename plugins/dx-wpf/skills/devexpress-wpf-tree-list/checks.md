@@ -121,3 +121,8 @@ No unresolved includes.
 ## Ready to Apply Pattern to PivotGrid?
 
 This skill validates that the data-grid pilot pattern scales to a smaller member of the family. PivotGrid (`devexpress-wpf-pivot-grid`) is next — different feature set (data shaping, OLAP binding, field areas) but the same shape: SKILL.md + references + examples + checks.md.
+
+## Post-Generation Updates
+
+- Fixed the "Using DevExpress Documentation MCP" section in SKILL.md: corrected the tool signature to `devexpress_docs_search(technologies=["WPF"], question=...)` / `devexpress_docs_get_content(url=...)`, removed the "if available" availability hedge, added the cross-agent tool-naming note (host-specific prefixes), and added/verified the untrusted-content security note.
+- Bumped the minimum supported modern-.NET floor in SKILL.md's `compatibility:` frontmatter from `.NET 6+` to `.NET 8+` (v26.1 policy; `.NET Framework 4.6.2+` alternative unchanged).

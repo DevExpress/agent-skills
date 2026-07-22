@@ -1,7 +1,7 @@
 ---
 name: devexpress-winforms-mvvm
 description: "DevExpress WinForms MVVM Framework with the MVVMContext component. Covers ViewModel types and priority order (compile-time DevExpress.Mvvm.CodeGenerators with [GenerateViewModel]/[GenerateProperty]/[GenerateCommand] preferred; runtime POCO with public virtual properties for legacy projects; ViewModelBase with SetProperty/DelegateCommand/AsyncCommand; CommunityToolkit.Mvvm as an alternative), property bindings (RaisePropertyChanged, INPC), DelegateCommand and AsyncCommand with CanExecute, the Fluent API (SetBinding, BindCommand, BindCancelCommand, WithEvent, EventToCommand), DevExpress services (IMessageBoxService, IDialogService, IDocumentManagerService, INavigationService, IDispatcherService, ISplashScreenService, file-dialog services), behaviors (ConfirmationBehavior, EventToCommandBehavior), and ViewModel communication (Messenger, parent-child chains, ISupportParameter). Use for any DevExpress WinForms MVVM scenario — MVVMContext, ViewModels, bindings, commands, services, behaviors."
-compatibility: Requires .NET 6+ for compile-time source generators (DevExpress.Mvvm.CodeGenerators). Runtime POCO and ViewModelBase work on .NET Framework 4.6.2+ and .NET 6+. Primary NuGet packages — `DevExpress.Mvvm.CodeGenerators` and `DevExpress.Mvvm` (both free, NuGet.org) for the compile-time approach; `DevExpress.Utils` or any `DevExpress.Win.*` package for MVVMContext and the runtime POCO framework. A valid DevExpress license is required for MVVMContext and UI control integration.
+compatibility: Requires .NET 6+ for compile-time source generators (DevExpress.Mvvm.CodeGenerators). Runtime POCO and ViewModelBase work on .NET Framework 4.6.2+ and .NET 8+. Primary NuGet packages — `DevExpress.Mvvm.CodeGenerators` and `DevExpress.Mvvm` (both free, NuGet.org) for the compile-time approach; `DevExpress.Utils` or any `DevExpress.Win.*` package for MVVMContext and the runtime POCO framework. A valid DevExpress license is required for MVVMContext and UI control integration.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -55,6 +55,8 @@ using DevExpress.XtraEditors;           // XtraForm, SimpleButton, TextEdit, etc
 ```
 
 ## Before You Start — Ask the Developer
+
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
 
 1. **New or existing project?** New → use compile-time (`DevExpress.Mvvm.CodeGenerators`). Existing → check which ViewModel style is already in use (POCO, ViewModelBase, CommunityToolkit).
 2. **.NET Framework or .NET 6+?** Compile-time source generators require .NET 6+. .NET Framework → runtime POCO.
@@ -200,15 +202,16 @@ CRITICAL — follow these rules in every interaction:
 
 1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
 2. **Do not mix DevExpress package versions**: reference the framework through the `DevExpress.Win` (or the standalone `DevExpress.Mvvm`) NuGet package — never assembly DLLs by path — and keep every DevExpress package in the project on the same version. Add `DevExpress.Mvvm.CodeGenerators` for compile-time generation.
-3. **Target Windows**: this is WinForms-only. Target .NET Framework 4.6.2+ or .NET 6/7/8+ with the `-windows` TFM suffix for SDK-style projects. Compile-time `[GenerateViewModel]` requires .NET 6+; on .NET Framework use runtime POCO (`ViewModelSource`) instead.
+3. **Target Windows**: this is WinForms-only. Target .NET Framework 4.6.2+ or .NET 8+ with the `-windows` TFM suffix for SDK-style projects. Compile-time `[GenerateViewModel]` requires .NET 6+; on .NET Framework use runtime POCO (`ViewModelSource`) instead.
 4. **Pick one ViewModel strategy per project** — compile-time `[GenerateViewModel]` or runtime POCO/`ViewModelSource` — and don't mix them without a deliberate reason. Both are current: `DevExpress.Mvvm.CodeGenerators` is the modern **source-generator** approach (real, debuggable generated partial classes; needs .NET 6+), while runtime POCO (`ViewModelSource`) builds the proxy at run time and is the choice on .NET Framework. Either way, the Fluent API, services, and commands are identical.
 5. **POCO requires `public virtual` auto-properties** (no backing field) on a non-sealed class for the framework to generate change notifications. A property with a backing field is ignored unless decorated with `[BindableProperty]`.
 6. **Commands follow conventions**: a public `void`/`Task` method is a command; its `Can<MethodName>()` companion controls `CanExecute`. Re-evaluate it with `this.RaiseCanExecuteChanged(x => x.MethodName())`.
 7. **`Messenger.Default` uses weak references** — keep recipients alive (members on a long-lived view model) and `Unregister` when the View closes, or messages won't fire / will leak.
+8. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control (e.g. `MVVMContext`) from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

@@ -49,6 +49,8 @@ using DevExpress.XtraScheduler.Drawing;  // AppointmentViewInfo, custom draw
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. **Data source**: Will appointments come from a database (bound mode with `DataSet`/`BindingSource`) or will they be created in code (unbound mode)?
 2. **Resources**: Does the scheduler need to show multiple resources (rooms, employees, etc.) side-by-side? If yes, the `Resources` collection and `GroupType = SchedulerGroupType.Resource` are required.
 3. **Views needed**: Which views should be available to the end user? Day, Work Week, Month, Timeline, Gantt, Agenda, Year — or a subset?
@@ -232,10 +234,11 @@ CRITICAL — follow these rules in every interaction:
 10. **Mappings are bound-mode only** — `Start`, `End`, and `Subject` are the minimum required mappings in **bound** mode; for recurring appointments add `Id`, `Type`, and `RecurrenceInfo`, and for reminders add `ReminderInfo`. In **unbound** mode, do not set mappings — create appointments in code.
 11. **Keep the time ruler visible** — Day and Work Week views show a vertical time ruler by default (`TimeRulers[0]`). Do not clear a view's `TimeRulers`; without a ruler users cannot tell which time slot a cell represents.
 12. **Do not set themes/skins** — Do not generate code that sets `UserLookAndFeel.Default.SkinName` or calls `DevExpress.Skins.SkinManager`. Skin management is the application's responsibility, not the scheduler's.
+13. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

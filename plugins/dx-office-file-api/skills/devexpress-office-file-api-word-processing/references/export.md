@@ -242,6 +242,8 @@ using (var server = new RichEditDocumentServer())
 
 > For image series export, use `RichEditDocumentServer` with the layout engine. Consult the DevExpress documentation (`devexpress_docs_search` with "export to images Word Processing") for the exact `ExportToImages` overload available in your version.
 
+> **Non-Windows**: image export renders PDF/document page content, so on Linux, macOS, Docker, or cloud hosts it requires the `DevExpress.Pdf.SkiaRenderer` package in addition to `DevExpress.Drawing.Skia`. The Skia drawing engine is enabled automatically on non-Windows platforms. See [Non-Windows Platform Support](getting-started.md#non-windows-platform-support-linux-macos-docker-cloud) in Getting Started.
+
 ## Printing
 
 ### Print with Default Printer

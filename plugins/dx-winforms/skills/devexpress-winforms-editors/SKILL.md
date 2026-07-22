@@ -1,7 +1,7 @@
 ---
 name: devexpress-winforms-editors
 description: "DevExpress WinForms Editors suite — every editor under DevExpress.XtraEditors: the BaseEdit hierarchy (TextEdit, ButtonEdit, MemoEdit, ComboBoxEdit, ImageComboBoxEdit, CheckedComboBoxEdit, LookUpEdit, GridLookUpEdit, SearchLookUpEdit, TreeListLookUpEdit, SpinEdit, DateEdit, TimeEdit, TimeSpanEdit, CalcEdit, ColorEdit, ColorPickEdit, CheckEdit, ToggleSwitch, PictureEdit, ProgressBarControl, RadioGroup, RatingControl, TokenEdit, TrackBarControl) plus non-BaseEdit controls (LabelControl, SimpleButton, DropDownButton, ListBoxControl, CheckedListBoxControl). Covers EditValue binding, the RepositoryItem and live-editor pattern, input masks (DateTime, Numeric, RegEx, Simple, TimeSpan, MaskSettings.Configure, EditMask attributes, UseMaskAsDisplayFormat), and editor buttons (EditorButton, ButtonPredefines, Properties.Buttons, ButtonClick, SVG/raster glyphs, TextEditStyle). Use for any standalone WinForms editor, value formatting, mask validation, or ButtonEdit customization."
-compatibility: Requires .NET Framework 4.6.2+ or .NET 6+/7+/8+/9+ targeting Windows. Primary NuGet package — `DevExpress.Win.Navigation` (ships `DevExpress.XtraEditors.v*.dll`, `DevExpress.Utils.v*.dll`, all editor classes and repository items). Lookup-with-grid editors additionally require `DevExpress.Win.Grid`; tree-list lookups require `DevExpress.Win.TreeList`. Path-picker / browse dialogs require `DevExpress.Win.Dialogs`. DevExpress NuGet packages are published on nuget.org and via the local Unified Component Installer feed. A valid DevExpress license is required.
+compatibility: Requires .NET Framework 4.6.2+ or .NET 8+ targeting Windows. Primary NuGet package — `DevExpress.Win.Navigation` (ships `DevExpress.XtraEditors.v*.dll`, `DevExpress.Utils.v*.dll`, all editor classes and repository items). Lookup-with-grid editors additionally require `DevExpress.Win.Grid`; tree-list lookups require `DevExpress.Win.TreeList`. Path-picker / browse dialogs require `DevExpress.Win.Dialogs`. DevExpress NuGet packages are published on nuget.org and via the local Unified Component Installer feed. A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -57,6 +57,8 @@ using DevExpress.Utils;                      // ImageCollection helpers, Default
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. What **type of value** does the editor edit — string / number / date / time / bool / collection / hierarchical lookup / color / image / file path?
 2. Does it need an embedded **dropdown panel** (list, calendar, color palette, image gallery, custom UI), or a **calculator** popup, or a button to invoke an external dialog?
 3. Does it need a **mask** (e.g., phone, ZIP code, currency, ISO 8601 date), and which culture should drive separators?
@@ -67,7 +69,7 @@ using DevExpress.Utils;                      // ImageCollection helpers, Default
 ## Documentation & Navigation Guide
 
 ### Getting Started
-Refer to [references/getting-started.md](references/getting-started.md) (.NET 6/7/8+) or [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md) (.NET Framework 4.x)
+Refer to [references/getting-started.md](references/getting-started.md) (.NET 8+) or [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md) (.NET Framework 4.x)
 When you need to: install the right NuGet package, understand the `BaseEdit` / `BaseControl` hierarchy at a glance, choose between standalone vs embedded use, and set the focused/leaving behavior (`EnterMoveNextControl`).
 
 ### Editor Variants (BaseEdit Descendants)
@@ -241,10 +243,11 @@ CRITICAL — follow these rules in every interaction:
 8. **Custom images**: set `Kind = ButtonPredefines.Glyph` *and* assign `ImageOptions.SvgImage` (preferred) or `ImageOptions.Image`. Without `Glyph` the predefined icon overrides the custom one.
 9. **Host form**: use `XtraForm` (or `RibbonForm`) for correct skin integration.
 10. **Code-first mask attributes** (`[EditMask]`, `[NumericEditMask]`, `[RegExEditMask]`, …) require the editor to be data-bound for the attribute to take effect.
+11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

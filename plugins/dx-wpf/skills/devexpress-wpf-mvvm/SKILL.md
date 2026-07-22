@@ -1,7 +1,7 @@
 ---
 name: devexpress-wpf-mvvm
 description: Build WPF applications with the DevExpress MVVM Framework — view-model strategies (compile-time GenerateViewModel source generator, runtime POCO ViewModelSource, ViewModelBase, BindableBase), DelegateCommand/AsyncCommand, predefined services (IMessageBoxService, IDialogService, IDocumentManagerService, INotificationService, INavigationService, IDispatcherService), behaviors (EventToCommand, KeyToCommand, FocusBehavior, ConfirmationBehavior), and view-model communication (ISupportParameter, ISupportParentViewModel, Messenger). Use when choosing a view-model strategy (recommend compile-time GenerateViewModel for new projects); wiring commands via [GenerateCommand]/[Command]; calling services via GetService<T>(); adding behaviors via dxmvvm:Interaction.Behaviors; or passing data between view models. Also use when someone mentions "ViewModelSource", "DXMessageBoxService", "DialogService", "EventToCommand", "Messenger.Default", "DevExpress.Mvvm", or "dxmvvm:".
-compatibility: Requires .NET 6+ or .NET Framework 4.6.2+ targeting Windows (compile-time generation requires C# 9+; .NET Framework 4.6.1+ or .NET Core 3.0+). A valid DevExpress license is required.
+compatibility: Requires .NET 8+ or .NET Framework 4.6.2+ targeting Windows (compile-time generation requires C# 9+; .NET Framework 4.6.1+ or .NET Core 3.0+). A valid DevExpress license is required.
 metadata:
   author: DevExpress
   version: "26.1"
@@ -87,7 +87,9 @@ Detailed comparison: [references/viewmodels.md](references/viewmodels.md).
 
 ## Before You Start — Ask the Developer
 
-1. **Target framework**: .NET 8+, .NET 6/7, or .NET Framework 4.x? (Compile-time generation requires .NET Framework 4.6.1+ or .NET Core 3.0+.)
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
+1. **Target framework**: .NET 8+ or .NET Framework 4.x? (Compile-time generation requires .NET Framework 4.6.1+ or .NET Core 3.0+.)
 2. **Existing view-model style**: Does the project already use `ViewModelBase`, POCO, or compile-time generation? If yes, match it. If no, default to compile-time `[GenerateViewModel]`.
 3. **Language**: C# only or also VB.NET? VB requires runtime POCO or `ViewModelBase` — compile-time gen is C#-only.
 4. **Service usage**: Which services will be called from view models — message box / dialog / file picker / dispatcher? See [services.md](references/services.md).
@@ -97,7 +99,7 @@ Detailed comparison: [references/viewmodels.md](references/viewmodels.md).
 ## Documentation & Navigation Guide
 
 ### Getting Started
-Refer to [references/getting-started.md](references/getting-started.md) (.NET 6/7/8+) or [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md) (.NET Framework 4.x).
+Refer to [references/getting-started.md](references/getting-started.md) (.NET 8+) or [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md) (.NET Framework 4.x).
 
 When you need to:
 - Set up a new WPF project with the MVVM Framework
@@ -384,10 +386,13 @@ CRITICAL — follow these rules in every interaction:
 6. **XAML namespaces**: `dxmvvm:` (MVVM framework primitives). Some services use `dx:` — check the docs per service.
 7. **POCO requires `virtual`** on properties and a `public` non-sealed class. Don't try `ViewModelSource.Create` on sealed classes.
 8. **`Messenger.Default` uses weak references** — keep recipients alive (typically members on a long-lived view model) or messages won't fire.
+9. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-- **Search**: `devexpress_docs_search(technology="WPF", query="MVVM view model service behavior")`
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
+
+- **Search**: `devexpress_docs_search(technologies=["WPF"], question="MVVM view model service behavior")`
 - **Fetch**: `devexpress_docs_get_content(url="https://docs.devexpress.com/WPF/17414")`
 
 Use MCP for: specific service APIs (each predefined service has its own configuration), advanced compile-time generation scenarios (Prism, MVVM Light), Dependency Injection patterns, custom service creation.

@@ -1,10 +1,10 @@
 # Getting Started — DevExpress WPF Data Editors
 
-This guide walks you through adding DevExpress Data Editors (`TextEdit`, `DateEdit`, `ComboBoxEdit`, etc.) to a .NET (6/7/8+) WPF project. The same NuGet packages also work on .NET Framework 4.6.2+.
+This guide walks you through adding DevExpress Data Editors (`TextEdit`, `DateEdit`, `ComboBoxEdit`, etc.) to a .NET 8+ WPF project. The same NuGet packages also work on .NET Framework 4.6.2+.
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows
+- .NET 8.0+ targeting Windows
 - Visual Studio 2022+ or JetBrains Rider
 - A NuGet source providing DevExpress packages
 - A valid DevExpress license

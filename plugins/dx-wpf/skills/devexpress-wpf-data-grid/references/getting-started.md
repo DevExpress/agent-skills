@@ -1,10 +1,10 @@
-# Getting Started with the DevExpress WPF Data Grid (.NET 6/7/8+)
+# Getting Started with the DevExpress WPF Data Grid (.NET 8+)
 
-This guide walks you through adding the `DevExpress.Xpf.Grid.GridControl` to a .NET (6/7/8+) WPF project and binding it to data. For .NET Framework 4.x, see [getting-started-dotnet-fw.md](getting-started-dotnet-fw.md).
+This guide walks you through adding the `DevExpress.Xpf.Grid.GridControl` to a .NET 8+ WPF project and binding it to data. For .NET Framework 4.x, see [getting-started-dotnet-fw.md](getting-started-dotnet-fw.md).
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows
+- .NET 8.0+ targeting Windows
 - Visual Studio 2022+ (recommended) or JetBrains Rider
 - Access to a NuGet source that has DevExpress packages — see Step 1
 - A valid DevExpress license (TRIAL is OK for evaluation builds; production needs a valid subscription key matching the package version)

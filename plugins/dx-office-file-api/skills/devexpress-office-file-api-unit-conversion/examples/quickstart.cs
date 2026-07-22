@@ -9,7 +9,7 @@
 // Namespace:
 //   using DevExpress.UnitConversion;
 //
-// Works on .NET 6+ and .NET Framework 4.6.2+ without modification.
+// Works on .NET 8+ and .NET Framework 4.6.2+ without modification.
 
 using DevExpress.UnitConversion;
 

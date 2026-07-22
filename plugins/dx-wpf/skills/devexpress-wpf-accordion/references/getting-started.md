@@ -1,10 +1,10 @@
 # Getting Started — DevExpress WPF Accordion Control
 
-This guide walks through setting up `AccordionControl` in a .NET (6/7/8+) WPF project. The end result: a sidebar that's bound to a hierarchical ViewModel collection with department → employee structure.
+This guide walks through setting up `AccordionControl` in a .NET 8+ WPF project. The end result: a sidebar that's bound to a hierarchical ViewModel collection with department → employee structure.
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows (or .NET Framework 4.6.2+)
+- .NET 8.0+ targeting Windows (or .NET Framework 4.6.2+)
 - Visual Studio 2022+ or JetBrains Rider
 - A valid DevExpress license
 

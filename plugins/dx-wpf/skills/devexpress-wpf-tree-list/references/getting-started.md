@@ -1,10 +1,10 @@
-# Getting Started with the DevExpress WPF TreeList (.NET 6/7/8+)
+# Getting Started with the DevExpress WPF TreeList (.NET 8+)
 
-This guide walks you through adding `DevExpress.Xpf.Grid.TreeListControl` to a .NET (6/7/8+) WPF project and binding it to a self-referential employee tree. For .NET Framework 4.x, see [getting-started-dotnet-fw.md](getting-started-dotnet-fw.md).
+This guide walks you through adding `DevExpress.Xpf.Grid.TreeListControl` to a .NET 8+ WPF project and binding it to a self-referential employee tree. For .NET Framework 4.x, see [getting-started-dotnet-fw.md](getting-started-dotnet-fw.md).
 
 ## System Requirements
 
-- .NET 6.0 / 7.0 / 8.0+ targeting Windows
+- .NET 8.0+ targeting Windows
 - Visual Studio 2022+ or JetBrains Rider
 - A NuGet source providing DevExpress packages — see Step 1
 - A valid DevExpress license

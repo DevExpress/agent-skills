@@ -1,4 +1,4 @@
-# Safe Document Processing — Word Processing Document API
+# Safer Document Processing — Word Processing Document API
 
 **v26.1+** — Available in `DevExpress.XtraRichEdit` namespace.
 

@@ -65,6 +65,8 @@ using DevExpress.Utils.Svg;           // SvgImage.FromFile, SvgImageCollection
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. **Ribbon or Bars?** Office-style modern app → Ribbon. Classic Visual-Studio-style toolbars/menus → Bars. (Do not mix the two in the same form — they conflict.)
 2. **Does the form need to be a `RibbonForm`?** Yes if hosting a `RibbonControl`. No if only `BarManager` + bars.
 3. **MDI?** If yes, decide merge style up front (`RibbonControl.MdiMergeStyle` or `BarManager.MdiMenuMergeStyle`).
@@ -283,10 +285,11 @@ CRITICAL — follow these rules in every interaction:
 9. **There is no native WinForms MVVM**: use `DevExpress.Mvvm` (`BindableBase`, `DelegateCommand`) + `BindingSource` + `BarItem.DataBindings` for property binding. Wire `ItemClick` to `command.Execute`.
 10. **Merging**: ribbon pages, groups, page-header items, and QAT merge automatically when `MdiMergeStyle` triggers; status bars and arbitrary toolbars do **not** — merge them manually in the `Merge`/`UnMerge` event handlers.
 11. **Use SVG images**: assign `ImageOptions.SvgImage` from an `SvgImageCollection` (the most reliable approach) — it scales for High-DPI and respects skin recoloring. For a built-in DevExpress icon use `ImageOptions.ImageUri.Uri` with the exact gallery format `"<ImageName>;Size<W>x<H>"` (e.g., `"Print;Size32x32"`); do not guess the string. Raster `Image` is the fallback for legacy assets.
+12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`

@@ -52,6 +52,8 @@ using DevExpress.Utils.Layout;       // StackPanel, TablePanel
 
 ## Before You Start — Ask the Developer
 
+If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
+
 1. **Control type**: Which layout control is needed — `LayoutControl` (manual, labeled form), `DataLayoutControl` (data-driven auto-generated form — the default when the form is built **from a table or class**), `DockManager` (VS-style panels), or `StackPanel`/`TablePanel` (lightweight containers)?
 2. **Layout structure**: How many groups? Do groups need tabs (`TabbedControlGroup`)? Is a flat list of editors sufficient?
 3. **Layout mode** (for `LayoutControl`): Free (default), Flow (items wrap in rows), or Table (grid with row/column indexes)?
@@ -204,10 +206,11 @@ CRITICAL — follow these rules in every interaction:
 9. **Create panels before restoring `DockManager` layout** — `RestoreLayoutFromXml` repositions existing panels; it does not create missing ones.
 10. **There is no `FlowLayoutControl`/`TableLayoutControl` class** — use `LayoutControl` with `group.LayoutMode = LayoutMode.Flow` (or `LayoutMode.Table`).
 11. **Do not generate skin/theme code** — do not write code that calls `UserLookAndFeel.Default.SkinName` or `DevExpress.Skins.SkinManager`. Skin management is the application's responsibility.
+12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 
-If the DevExpress Docs MCP server is available (check for DxDocs tools), use it to supplement this skill:
+Check your available tools for `devexpress_docs_search` / `devexpress_docs_get_content` — installing this skill as a full plugin registers the `dxdocs` MCP server automatically, but skills copied in directly may not have it connected, and the tool name may carry a host-specific prefix. If present (match on any tool whose name contains `devexpress_docs_search`/`devexpress_docs_get_content`), use it to verify API details before writing code; if not, rely on this skill's own reference files.
 
 - **Search**: `devexpress_docs_search(technologies=["WindowsForms"], question="<keywords>")`
 - **Fetch**: `devexpress_docs_get_content(url="<url-from-search>")`
