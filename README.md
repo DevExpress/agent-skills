@@ -103,7 +103,7 @@ Paste the folders you need into the destination, for example:
 └── devextreme-form/
 ```
 
-[GitHub Copilot skills documentation](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line/using-agent-skills-with-copilot-in-the-cli)
+[GitHub Copilot skills documentation](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills)
 
 #### **Claude Code**
 
