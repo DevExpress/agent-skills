@@ -4,7 +4,7 @@ This reference covers the data model of the WinForms Scheduler: what an `Appoint
 
 ## When to Use This Reference
 
-- Understanding appointment types (`Normal`, `Pattern`, `Occurrence`, `Exception`)
+- Understanding appointment types (`Normal`, `Pattern`, `Occurrence`, `ChangedOccurrence`)
 - Configuring recurrence patterns in code
 - Working with reminders
 - Using labels and statuses to categorize appointments
@@ -17,7 +17,7 @@ This reference covers the data model of the WinForms Scheduler: what an `Appoint
 | `Normal` | A single, non-recurring appointment. Most common. |
 | `Pattern` | The master record for a recurring series. Its `RecurrenceInfo` defines the pattern. Not displayed directly — generates `Occurrence` instances. |
 | `Occurrence` | One instance of a recurring series. Generated automatically from `Pattern`. |
-| `Exception` | An `Occurrence` that has been individually edited (different time, subject, etc.). |
+| `ChangedOccurrence` | An `Occurrence` that has been individually edited (different time, subject, etc.) — conceptually an *exception*. |
 | `DeletedOccurrence` | An `Occurrence` deleted from a series — retained as a placeholder so the series skips that date. |
 
 ## Appointment Properties
@@ -113,7 +113,7 @@ apt.RecurrenceInfo.Range        = RecurrenceRange.NoEndDate;
 
 ### Editing a Single Occurrence (Exception)
 
-End-users can edit one occurrence via the UI (Edit → "This appointment only"). In code, get the occurrence and modify it — the scheduler automatically creates an `Exception`:
+End-users can edit one occurrence via the UI (Edit → "This appointment only"). In code, get the occurrence and modify it — the scheduler automatically converts it to a `ChangedOccurrence` (conceptually, an *exception*):
 
 ```csharp
 // Get occurrences visible in the current view
@@ -140,7 +140,19 @@ apt.Reminders.Add(reminder);
 storage.Appointments.Add(apt);
 ```
 
-`SchedulerDataStorage.ReminderAlert` fires when a reminder is due. `SchedulerControl.RemindersFormShowing` lets you replace the built-in alert dialog.
+`SchedulerDataStorage.ReminderAlert` fires when a reminder is due. Reach the appointment through `e.AlertNotifications[i].ActualAppointment` — there is no direct `e.Appointment`:
+
+```csharp
+storage.ReminderAlert += (s, e) => {
+    // AlertNotifications is a non-generic collection — index it (foreach var infers object).
+    for (int i = 0; i < e.AlertNotifications.Count; i++) {
+        Appointment apt = e.AlertNotifications[i].ActualAppointment;
+        Console.WriteLine($"Reminder due: {apt.Subject} at {apt.Start}");
+    }
+};
+```
+
+`SchedulerControl.RemindersFormShowing` lets you replace the built-in alert dialog.
 
 ## Labels
 
@@ -194,8 +206,8 @@ AppointmentBaseCollection week = schedulerDataStorage1.GetAppointments(range);
 // All resources
 ResourceBaseCollection resources = schedulerDataStorage1.Resources.Items;
 
-// Resource by ID
-Resource res = schedulerDataStorage1.Resources[resourceId];
+// Resource by ID (the Resources indexer is positional, so use GetResourceById for lookups by ID)
+Resource res = schedulerDataStorage1.Resources.GetResourceById(resourceId);
 string caption = res.Caption;
 ```
 

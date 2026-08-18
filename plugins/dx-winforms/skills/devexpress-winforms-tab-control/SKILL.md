@@ -1,6 +1,6 @@
 ---
 name: devexpress-winforms-tab-control
-description: Expert skill for the DevExpress WinForms XtraTabControl (DevExpress.XtraTab, DevExpress.Win.Navigation NuGet). Build tabbed UIs that organize controls into pages — add/remove XtraTabPage pages via the TabPages collection or designer, populate pages, position and orient headers (HeaderLocation, HeaderOrientation), wrap headers into rows (MultiLine), show Prev/Next/Close header buttons (HeaderButtons) and per-page Close buttons (ClosePageButtonShowMode), respond to selection (SelectedPageChanged/SelectedPageChanging) and close (CloseButtonClick) events, hide headers for wizard-style navigation (ShowTabHeader), add header icons (XtraTabPage.ImageOptions), and add custom header buttons (CustomHeaderButtons). Use when a user asks about WinForms tab control, tabbed pages, XtraTabControl, XtraTabPage, tab headers, closable tabs, tab navigation, or organizing controls into pages on a form. For MDI/document interfaces use DocumentManager or XtraTabbedMdiManager instead.
+description: Expert skill for the DevExpress WinForms XtraTabControl (DevExpress.XtraTab, DevExpress.Win.Navigation NuGet). Build tabbed UIs that organize controls into pages — add/remove XtraTabPage pages via the TabPages collection, populate pages, position and orient headers (HeaderLocation, HeaderOrientation), wrap headers into rows (MultiLine), show Prev/Next/Close header buttons (HeaderButtons) and per-page Close buttons (ClosePageButtonShowMode), respond to selection (SelectedPageChanged/SelectedPageChanging) and close (CloseButtonClick) events, hide headers for wizard-style navigation (ShowTabHeader), add header icons (XtraTabPage.ImageOptions), and add custom header buttons (CustomHeaderButtons). Use when a user asks about WinForms tab control, tabbed pages, XtraTabControl, XtraTabPage, tab headers, closable tabs, tab navigation, or organizing controls into pages on a form. For MDI/document interfaces use DocumentManager or XtraTabbedMdiManager instead.
 compatibility: Requires .NET Framework 4.6.2+ or .NET 8+ targeting Windows. NuGet package `DevExpress.Win.Navigation` (XtraTabControl ships in `DevExpress.XtraEditors.v26.1.dll`). DevExpress NuGet packages are published on nuget.org and via the local Unified Component Installer feed. A valid DevExpress license is required.
 metadata:
   author: DevExpress
@@ -53,13 +53,13 @@ using DevExpress.XtraEditors;        // XtraForm, SimpleButton
 
 ### Host Form
 
-Host `XtraTabControl` on `XtraForm` (or `RibbonForm` / `FluentDesignForm`) — not a plain `Form` — so the control and its pages render with the correct skin. Enable skinning at startup (`WindowsFormsSettings.LoadApplicationSettings()` / `SkinManager.EnableFormSkins()` in `Program.Main`).
+Host `XtraTabControl` on `XtraForm` (or `RibbonForm` / `FluentDesignForm`) — not a plain `Form` — so the control and its pages render with the correct skin. Enable skinning at startup in `Program.Main`: `WindowsFormsSettings.LoadApplicationSettings()` plus `UserLookAndFeel.Default.SetSkinStyle("WXI")` (see [getting-started.md](references/getting-started.md)). `LoadApplicationSettings()` already turns on form skinning — if you call `SkinManager.EnableFormSkins()` instead, add `using DevExpress.Skins;`.
 
 ## Before You Start — Ask the Developer
 
 If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
 
-1. **Static or dynamic pages?** Fixed set authored in the designer, or built/added from data at runtime?
+1. **Static or dynamic pages?** Fixed set declared in the designer file, or built/added from data at runtime?
 2. **How many pages, and what if they don't fit?** Many headers → enable `MultiLine` (wrap) or header **Prev/Next** buttons (scroll).
 3. **Should users close pages?** If yes, decide between per-page Close buttons (`ClosePageButtonShowMode`) and a single header Close button (`HeaderButtons`), and what closing does (hide vs. remove).
 4. **Where should headers sit?** Top (default), bottom, or vertical along the left/right edge (`HeaderLocation` + `HeaderOrientation`).
@@ -272,7 +272,7 @@ CRITICAL — follow these rules in every interaction:
 8. `HeaderButtons` is a `[Flags]` enum — combine values with `|`.
 9. For MDI / document workspaces (floating, draggable docs), do not use `XtraTabControl` — use `DocumentManager` or `XtraTabbedMdiManager`.
 10. Never construct DevExpress documentation URLs from training data — use the MCP tool to search.
-11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

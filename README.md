@@ -28,7 +28,7 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 
 **CLI agents:**
 
-- [Copilot CLI / Claude Code — Plugin Install](#install-as-a-plugin)
+- [Copilot CLI / Claude Code / Codex CLI — Plugin Install](#install-as-a-plugin)
 - [GitHub Copilot](#github-copilot)
 - [Claude Code](#claude-code)
 - [JetBrains Junie](#jetbrains-junie)
@@ -44,9 +44,11 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 
 ### **Install as a Plugin**
 
-The fastest way to obtain DevExpress skills is via plugins. Plugin installation is available in **GitHub Copilot CLI** and **Claude Code**.
+The fastest way to obtain DevExpress skills is via plugins. Plugin installation is available in **GitHub Copilot CLI**, **Claude Code**, and **Codex CLI**.
 
 The example below installs the DevExtreme plugin.
+
+In GitHub Copilot CLI and Claude Code:
 
 ```bash
 /plugin marketplace add DevExpress/agent-skills
@@ -54,6 +56,14 @@ The example below installs the DevExtreme plugin.
 ```
 
 Run `/skills` to list active entries.
+
+In Codex CLI (or use `/plugins` inside the Codex TUI):
+
+```bash
+codex plugin marketplace add DevExpress/agent-skills
+codex plugin add dx-devextreme@DevExpress-agent-skills
+codex plugin list
+```
 
 > **Note for VS Code and Visual Studio users:** GitHub Copilot CLI plugin installation places skills in `~/.copilot/installed-plugins/` (Windows: `%USERPROFILE%\.copilot\installed-plugins\`), which **IDE agents do not read automatically**. To use skills in your IDE, copy the skill files to your project's `.github/skills/` folder or to the global `~/.copilot/skills/` directory — see [GitHub Copilot setup](#github-copilot) below.
 
@@ -141,7 +151,9 @@ Skills activate automatically. Junie scans skill directories and applies relevan
 
 #### **Codex CLI**
 
-Copy DevExpress skill folders to `.agents/skills/` in your project root:
+**Install as a plugin (recommended):** see [Install as a Plugin](#install-as-a-plugin) above for the `codex plugin marketplace add` / `codex plugin add` commands.
+
+**Or copy skill files manually:** copy DevExpress skill folders to `.agents/skills/` in your project root:
 
 | Location | Path |
 |---|---|
@@ -157,8 +169,6 @@ Copy DevExpress skill folders to `.agents/skills/` in your project root:
 See [Which folders to copy](#github-copilot) in the GitHub Copilot section above for the source layout in this repository.
 
 Skills activate automatically when Codex runs in agent mode.
-
-> **Note:** Codex CLI plugin marketplace support for DevExpress skills is planned for a future release.
 
 ### **IDE-Specific Setup**
 
@@ -233,7 +243,16 @@ See [JetBrains Junie](#jetbrains-junie) in Agent-Specific Setup above for destin
 
 #### **Cursor**
 
-Copy DevExpress skill folders to one of these locations:
+**Install as a plugin (recommended):** register this repository as a marketplace with the Cursor CLI, then install the plugins you need with `/plugins` in interactive mode:
+
+```bash
+cursor-agent plugin marketplace add https://github.com/DevExpress/agent-skills
+cursor-agent plugin marketplace list
+```
+
+Use `cursor-agent plugin marketplace update devexpress-agent-skills` to re-index later, and `... remove devexpress-agent-skills` to drop it. Teams and Enterprise admins can instead publish the marketplace for the whole team from the dashboard — **Dashboard → Plugins → Team Marketplaces → Add Marketplace → Import from Repo**, then enter `https://github.com/DevExpress/agent-skills`.
+
+**Or copy skill files manually:** copy DevExpress skill folders to one of these locations:
 
 | Location | Path |
 |---|---|

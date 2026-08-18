@@ -10,7 +10,7 @@ metadata:
 
 # DevExpress WinForms Property Grid
 
-`PropertyGridControl` shows and edits the public properties of any object, similar to Visual Studio's Properties window. Assign any object to `SelectedObject` — the control reflects on it, auto-creates rows, and groups them by `[Category]` attribute. Rows can also be defined manually in code or the VS designer.
+`PropertyGridControl` shows and edits the public properties of any object, similar to Visual Studio's Properties window. Assign any object to `SelectedObject` — the control reflects on it, auto-creates rows, and groups them by `[Category]` attribute. Rows can also be defined manually in code.
 
 Two visual styles are available: **Classic** (tabular, Visual Studio-like) and **Office** (tabbed, with track bars and property markers). Both can show expandable nested objects and editable collection properties via a dialog editor.
 
@@ -32,7 +32,7 @@ Two visual styles are available: **Classic** (tabular, Visual Studio-like) and *
 DevExpress.Win.VerticalGrid    (or DevExpress.Win.Navigation)
 ```
 
-Install via the DevExpress NuGet feed. A valid DevExpress license is required.
+Install it with `dotnet add package DevExpress.Win.VerticalGrid`. A valid DevExpress license is required.
 
 ### Assembly and Namespace
 
@@ -158,11 +158,11 @@ To satisfy a request like "allow users to search the property grid", use the bui
 propertyGridControl1.FindPanelVisible = true;
 
 // Keep it always visible (users cannot close it)
-propertyGridControl1.OptionsFind.AlwaysVisible = true;
+propertyGridControl1.OptionsFind.Visibility = FindPanelVisibility.Always;
 
 // Optional: highlight matches, or prevent the panel from being opened at all
 propertyGridControl1.OptionsFind.HighlightFindResults = true;
-// propertyGridControl1.OptionsFind.AllowFindPanel = false;   // disable the feature entirely
+// propertyGridControl1.OptionsFind.Visibility = FindPanelVisibility.Never;   // disable the feature entirely
 ```
 
 Run a search from code (or prefill the box):
@@ -192,14 +192,14 @@ propertyGridControl1.ApplyFindFilter("timeout");   // filter rows by "timeout"
 
 CRITICAL — follow these rules in every interaction:
 
-1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
+1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **Do not mix DevExpress package versions**: reference the control through the `DevExpress.Win.VerticalGrid` (or `DevExpress.Win.Navigation`) NuGet package — never assembly DLLs by path — and keep every DevExpress package in the project on the same version.
 3. **Target Windows**: `PropertyGridControl` is WinForms-only. Target .NET Framework 4.6.2+ or .NET 8+ with the `-windows` TFM suffix for SDK-style projects.
 4. **Auto vs. manual rows**: if the `Rows` collection is non-empty when `SelectedObject` is assigned, the control uses the defined rows and does **not** auto-generate. Leave `Rows` empty for reflection-based rows.
 5. **Office view limits**: the Office view does not support `MultiEditorRow`; use the Classic view for side-by-side editors.
 6. **Expandable nested objects**: a nested object property is only expandable when its **type** is decorated with `[TypeConverter(typeof(ExpandableObjectConverter))]`.
 7. **Refresh after model changes**: call `RefreshAllProperties()` when the bound object changes outside the grid — the control does not observe arbitrary property changes automatically.
-8. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+8. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

@@ -28,7 +28,7 @@ Do **not** enable both at once on an XYDiagram — you get visual overlap. Disab
 
 ```csharp
 chart.CrosshairEnabled = DefaultBoolean.False;       // turn off crosshair
-chart.ToolTipEnabled   = true;                        // turn on tooltips
+chart.ToolTipEnabled   = DefaultBoolean.True;         // turn on tooltips
 ```
 
 ## Tooltips
@@ -36,7 +36,7 @@ chart.ToolTipEnabled   = true;                        // turn on tooltips
 ### Enable / disable
 
 ```csharp
-chart.ToolTipEnabled = true;                          // chart-wide
+chart.ToolTipEnabled = DefaultBoolean.True;           // chart-wide (ToolTipEnabled is a DefaultBoolean)
 series.ToolTipEnabled = DefaultBoolean.False;          // per-series override
 ```
 
@@ -157,7 +157,7 @@ series.CrosshairEmptyValueLegendText = "—";                // shown when point
 ```csharp
 diagram.AxisX.CrosshairAxisLabelOptions.Pattern = "{A:dd MMM yyyy}";
 diagram.AxisX.CrosshairAxisLabelOptions.BackColor = Color.LightSteelBlue;
-diagram.AxisY.CrosshairAxisLabelOptions.Visible   = false;
+diagram.AxisY.CrosshairAxisLabelOptions.Visibility = DefaultBoolean.False;
 ```
 
 ### `CrosshairLabelMode`
@@ -216,7 +216,7 @@ chart.Series[0].CrosshairLabelPattern = "{S}: {V:c0}";
 
 ```csharp
 chart.CrosshairEnabled = DefaultBoolean.False;
-chart.ToolTipEnabled   = true;
+chart.ToolTipEnabled   = DefaultBoolean.True;
 foreach (Series s in chart.Series)
     s.ToolTipPointPattern = "{S}\n{A:MMM yyyy}: {V:c0}";
 ```
@@ -231,7 +231,7 @@ chart.CrosshairOptions.SnapMode           = CrosshairSnapMode.NearestValue;
 ### Pattern 4 — HTML-formatted tooltip with `SuperTip`
 
 ```csharp
-chart.ToolTipController.AllowHtmlText = DefaultBoolean.True;
+chart.ToolTipController.AllowHtmlText = true;   // ToolTipController.AllowHtmlText is a bool
 series.ToolTipPointPattern = "<b>{S}</b><br>{A:MMM yyyy}<br><size=+2><color=#0078D7>{V:c0}</color></size>";
 ```
 

@@ -194,7 +194,7 @@ fieldCalc.DataBinding = new OLAPExpressionBinding(
 
 ## Server Mode (Large Data Sets)
 
-For large databases, prefer **server mode** over loading the whole `DbSet`/`IQueryable` into memory: the `PivotGridControl` pushes grouping and aggregation down to the database, so only summary results are fetched. This is the scalable alternative to the in-memory Optimized engine (`OptionsData.DataProcessingEngine = PivotDataProcessingEngine.Optimized`, optionally with `OptionsData.UseAsyncMode = true`) — use the engine/async options for in-memory data, and server mode when the data lives in a database.
+For large databases, prefer **server mode** over loading the whole `DbSet`/`IQueryable` into memory: the `PivotGridControl` pushes grouping and aggregation down to the database, so only summary results are fetched. This is the scalable alternative to the in-memory Optimized engine (`OptionsData.DataProcessingEngine = PivotDataProcessingEngine.Optimized`, optionally with `OptionsBehavior.UseAsyncMode = true`) — use the engine/async options for in-memory data, and server mode when the data lives in a database.
 
 Bind through a server-mode source instead of assigning the `DbSet` directly:
 

@@ -35,7 +35,7 @@ var item  = new AccordionControlElement(ElementStyle.Item);
 | `Visible` | `bool` | Shows or hides the element |
 | `Expanded` | `bool` | Initial expand state (groups and items with containers) |
 | `HeaderVisible` | `bool` | Hides the header; only the content container is shown |
-| `ShortcutKey` | `Keys` | Keyboard shortcut that fires the `Click` event |
+| `ShortcutKey` | `BarShortcut` | Keyboard shortcut that fires the `Click` event — wrap a `Keys` value: `element.ShortcutKey = new BarShortcut(Keys.F1)` (from `DevExpress.XtraBars`) |
 | `Style` | `ElementStyle` | `Group` or `Item` |
 
 ## Images
@@ -46,9 +46,9 @@ Assign icons using `ImageOptions.ImageUri` (SVG from a DevExpress catalog) or `I
 // SVG icon from the built-in DX catalog
 item.ImageOptions.ImageUri.Uri = "Home;Office2013";
 
-// Bitmap from an ImageList on the form
+// Bitmap from an image collection on the form
 item.ImageIndex = 2;
-accordion.ImageList = imageList1;
+accordion.Images = imageCollection1;   // property is Images (accepts ImageList / ImageCollection / SvgImageCollection)
 
 // Direct bitmap
 item.Image = Image.FromFile("icons/settings.png");
@@ -57,12 +57,6 @@ item.Image = Image.FromFile("icons/settings.png");
 ## Content Containers (Items Only)
 
 A content container (`AccordionContentContainer`) lets an item host arbitrary WinForms controls in an expandable area below its header.
-
-### Assign at Design Time
-
-In the item's smart tag, click **"Add ContentContainer"**, then drag controls from the Toolbox onto the container.
-
-### Assign in Code
 
 ```csharp
 var container = new AccordionContentContainer();
@@ -153,7 +147,7 @@ Context buttons appear on hover inside each element header. They are defined at 
 ```csharp
 // Add a "delete" context button to a specific element via its own
 // ContextButtons collection (AccordionControlElementBase.ContextButtons)
-var deleteBtn = new AccordionContextButton { Name = "Delete", Hint = "Remove" };
+var deleteBtn = new AccordionContextButton { Name = "Delete", ToolTip = "Remove" };
 element.ContextButtons.Add(deleteBtn);
 
 // Read-only elements simply omit the button (do not add it / clear the collection)
@@ -176,23 +170,25 @@ item.Appearance.Hovered.BackColor = Color.LightSteelBlue;
 Control-level defaults apply when per-element settings are not set:
 
 ```csharp
-accordion.Appearance.ItemNormal.BackColor = Color.WhiteSmoke;
+accordion.Appearance.Item.Normal.BackColor = Color.WhiteSmoke;
 ```
 
 ## HTML-CSS Templates
 
 For pixel-perfect custom layouts, apply HTML-CSS templates through `AccordionControl.HtmlTemplates`:
 
+The templates in `AccordionControl.HtmlTemplates` (`Item`, `Group`, `Separator`, …) are
+**read-only** `DevExpress.Utils.Html.HtmlTemplate` objects — configure their `Template` /
+`Styles` properties, do **not** assign a new instance:
+
 ```csharp
-// Template for all items (HTML string)
-accordion.HtmlTemplates.Item = new HtmlTemplate {
-    Template = @"
-        <div class='item'>
-            <img class='icon' src='${Image}'>
-            <div class='label'>${Text}</div>
-        </div>",
-    Styles = ".item { display:flex; align-items:center; gap:8px; }"
-};
+// Template for all items (HTML string) — configure the existing template, don't reassign it
+accordion.HtmlTemplates.Item.Template = @"
+    <div class='item'>
+        <img class='icon' src='${Image}'>
+        <div class='label'>${Text}</div>
+    </div>";
+accordion.HtmlTemplates.Item.Styles = ".item { display:flex; align-items:center; gap:8px; }";
 ```
 
 - `${Text}` — element caption
@@ -208,6 +204,14 @@ accordion.QueryHtmlElementData += (s, e) => {
 Per-element templates override control-level defaults. Handle `QueryItemTemplate` to supply different templates dynamically:
 
 ```csharp
+using DevExpress.Utils.Html;   // HtmlTemplate
+
+var groupTemplate = new HtmlTemplate {
+    Template = "<div class='grp'>${Text}</div>",
+    Styles   = ".grp { font-weight:bold; }"
+};
+
+// e.Template (type HtmlTemplate) is settable per element
 accordion.QueryItemTemplate += (s, e) => {
     if (e.Element.Style == ElementStyle.Group)
         e.Template = groupTemplate;
@@ -224,7 +228,7 @@ private void Accordion_CustomDrawElement(object sender, CustomDrawElementEventAr
         e.DrawImage();
         // Draw text in red
         using var brush = new SolidBrush(Color.DarkRed);
-        e.Graphics.DrawString(e.Element.Text, e.Font, brush, e.TextBounds);
+        e.Graphics.DrawString(e.Element.Text, e.Appearance.Font, brush, e.ObjectInfo.TextBounds);
         // Skip default expand button for this element
         e.Handled = true;
     }
@@ -232,6 +236,11 @@ private void Accordion_CustomDrawElement(object sender, CustomDrawElementEventAr
 ```
 
 Available draw methods: `DrawImage()`, `DrawText()`, `DrawContextButtons()`, `DrawExpandCollapseButton()`.
+
+`CustomDrawElementEventArgs` members: `Element`, `Graphics`, `Cache`, `Appearance` (use
+`e.Appearance.Font` for the element font), `ObjectInfo` (element view info — bounds live here:
+`e.ObjectInfo.HeaderBounds`, `TextBounds`, `ImageBounds`, `ExpandCollapseButtonBounds`), and
+`Handled`. There is **no** `e.Font` or `e.TextBounds` directly on the args.
 
 ## Key API Summary
 
@@ -247,7 +256,7 @@ Available draw methods: `DrawImage()`, `DrawText()`, `DrawContextButtons()`, `Dr
 | `AccordionControlElement.HeaderControl` | Custom control in the header |
 | `AccordionControlElement.HeaderTemplate` | Per-element header block order |
 | `AccordionControlElement.Appearance` | Per-element visual styles |
-| `AccordionControlElement.ShortcutKey` | Keyboard shortcut |
+| `AccordionControlElement.ShortcutKey` | Keyboard shortcut (`BarShortcut` — `new BarShortcut(Keys.X)`) |
 | `AccordionControl.AllowItemSelection` | Enable item selection highlight |
 | `AccordionControl.SelectedElement` | Get/set selected item |
 | `AccordionControl.HtmlTemplates` | HTML-CSS templates for all element types |
@@ -259,10 +268,11 @@ Available draw methods: `DrawImage()`, `DrawText()`, `DrawContextButtons()`, `Dr
 |---|---|---|
 | Content container not showing | Container not added to `accordion.Controls` | Call `accordion.Controls.Add(container)` after creating it |
 | `ToolTipText` does not compile | No such property on `AccordionControlElement` | Set the element's `Hint` property for a tooltip |
-| `InvalidCastException` casting `AccordionContentContainer` to `ISupportInitialize` | Content container wrapped in `BeginInit()`/`EndInit()` | Remove those calls — only the `AccordionControl` is wrapped in the designer; containers are not |
+| `InvalidCastException` casting `AccordionContentContainer` to `ISupportInitialize` | Content container wrapped in `BeginInit()`/`EndInit()` | Remove those calls. In the designer file only `ISupportInitialize` types are wrapped — `AccordionControl`, `NavigationFrame`, image collections — **not** containers |
+| `InvalidCastException` casting `NavigationPage` to `ISupportInitialize` | A `NavigationPage` wrapped in `BeginInit()`/`EndInit()` in the designer file | Remove those calls — a page is a panel; use `SuspendLayout()`/`ResumeLayout()`. Only `AccordionControl` and `NavigationFrame` are wrapped in `BeginInit`/`EndInit` |
 | `HasContentContainer` event not firing | Item already has a container assigned | The event fires only when `ContentContainer` is null |
 | Custom header control overlaps text | Header layout not adjusted | Use `HeaderTemplate.Set*Position` to rearrange blocks |
-| Image not appearing | `ImageList` not assigned to accordion | Set `accordion.ImageList` or use `ImageOptions.ImageUri` directly |
+| Image not appearing | Image collection not assigned to accordion | Set `accordion.Images` or use `ImageOptions.ImageUri` directly |
 | Per-element appearance ignored | Skin overrides color | Check `Appearance.Options.UseBackColor = true` |
 
 ## Source Material

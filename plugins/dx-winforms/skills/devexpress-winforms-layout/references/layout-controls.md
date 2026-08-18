@@ -63,7 +63,7 @@ DevExpress WinForms ships several layout controls that serve different purposes.
 
 ### What It Does
 
-`DataLayoutControl` extends `LayoutControl` with a **data binding wizard**. When bound to a `DataTable`, `BindingSource`, or a business object (`INotifyPropertyChanged`), it can:
+`DataLayoutControl` extends `LayoutControl` with **automatic layout generation from a data source**. When bound to a `DataTable`, `BindingSource`, or a business object (`INotifyPropertyChanged`), it can:
 
 - Auto-generate editors for each bound field (TextEdit for strings, CheckEdit for bools, DateEdit for dates, etc.)
 - Create `LayoutControlItem` wrappers with label captions from property/column names or `[DisplayName]` attributes
@@ -73,9 +73,8 @@ DevExpress WinForms ships several layout controls that serve different purposes.
 ### Workflow
 
 1. Set `DataSource` (+ `DataMember` for `DataSet`)
-2. Smart tag → **Retrieve Fields** (runs the wizard)
-3. Choose which fields to include, their editor types, and column count
-4. Customize the generated layout as with a plain `LayoutControl`
+2. Call `RetrieveFields()` to generate editors and `LayoutControlItem` wrappers
+3. Customize the generated layout as with a plain `LayoutControl`
 
 ### When to Choose
 
@@ -136,7 +135,7 @@ DevExpress WinForms ships several layout controls that serve different purposes.
 ## StackPanel
 
 **Class**: `DevExpress.Utils.Layout.StackPanel`  
-**NuGet**: `DevExpress.Win.Navigation`  
+**NuGet**: `DevExpress.Utils` (assembly `DevExpress.Utils.dll`; also pulled in transitively by `DevExpress.Win.Navigation`)  
 **Namespace**: `DevExpress.Utils.Layout`
 
 ### What It Does
@@ -161,7 +160,7 @@ var stack = new StackPanel {
 ## TablePanel
 
 **Class**: `DevExpress.Utils.Layout.TablePanel`  
-**NuGet**: `DevExpress.Win.Navigation`  
+**NuGet**: `DevExpress.Utils` (assembly `DevExpress.Utils.dll`; also pulled in transitively by `DevExpress.Win.Navigation`)  
 **Namespace**: `DevExpress.Utils.Layout`
 
 ### What It Does

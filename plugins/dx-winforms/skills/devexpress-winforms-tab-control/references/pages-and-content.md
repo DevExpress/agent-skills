@@ -4,7 +4,7 @@ How to add, remove, reorder, and populate `XtraTabPage` pages, and how to read/s
 
 ## When to Use This Reference
 
-- Adding / removing / reordering pages at runtime or in the designer
+- Adding / removing / reordering pages at runtime or in the designer file
 - Placing controls onto a page
 - Getting or setting the active page
 - Showing or hiding an individual page
@@ -67,9 +67,7 @@ newPage.Controls.Add(new SimpleButton {
 });
 ```
 
-For a structured layout inside a page, drop a layout manager onto the page first — e.g. `DevExpress.Utils.Layout.TablePanel` for a virtual grid, or a `LayoutControl` — and add controls into it.
-
-At design time you can drag controls from the Toolbox directly onto the active page.
+For a structured layout inside a page, add a layout manager to the page first — e.g. `DevExpress.Utils.Layout.TablePanel` for a virtual grid, or a `LayoutControl` — and add controls into it.
 
 ## The Active Page
 

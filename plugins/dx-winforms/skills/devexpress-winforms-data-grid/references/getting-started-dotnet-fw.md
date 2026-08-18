@@ -9,21 +9,24 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 - DevExpress WinForms subscription via the [Unified Component Installer](https://www.devexpress.com/Products/Try/), or DevExpress packages from nuget.org
 - A valid DevExpress license
 
-## Two Installation Paths
+## Install the NuGet Packages
 
-1. **Unified Component Installer** (designer-first). Run the installer, then create the project from the **DevExpress Template Gallery**, or drag `GridControl` from the toolbox onto an `XtraForm`. References are added automatically.
-2. **NuGet packages** (recommended for source control / CI):
+```powershell
+# SDK-style project
+dotnet add package DevExpress.Win.Grid
+dotnet add package DevExpress.Win.TreeList   # only if you use the TreeList
 
-   ```powershell
-   Install-Package DevExpress.Win.Grid
-   Install-Package DevExpress.Win.TreeList   # only if you use the TreeList
-   ```
+# legacy packages.config project (Package Manager Console)
+Install-Package DevExpress.Win.Grid
+```
 
-## Designer Workflow (.NET Framework)
+> The DevExpress Unified Component Installer is only needed for the license and the local offline NuGet feed — the packages are also on nuget.org. Do **not** hand-edit a non-SDK `.csproj` to add `<Reference>` entries and do **not** copy DevExpress DLLs with shell commands; that routinely leaves the project unable to build.
 
-1. Drop a `GridControl` on an `XtraForm`; set `Dock = Fill`. A `GridView` is created automatically.
-2. Set `DataSource` via the smart tag, then **Run Designer** to add/arrange columns and assign in-place editors.
-3. **Data Source Configuration Wizard / typed DataSets** are available in .NET Framework projects — and *not* in .NET SDK projects. If you need a typed dataset for a .NET project, generate it in a .NET Framework project and add the files to the .NET project (see the Constraints in SKILL.md).
+## Setup (.NET Framework)
+
+The form is authored exactly as on .NET 8+ — see [Minimal Example](#minimal-example) below and [getting-started.md](getting-started.md).
+
+> **Typed DataSets** are available in .NET Framework projects — and *not* in .NET SDK projects. If you need a typed dataset for a .NET project, generate it in a .NET Framework project and add the files to the .NET project (see the Constraints in SKILL.md).
 
 ## Required Assemblies (Manual Reference)
 

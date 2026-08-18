@@ -32,7 +32,8 @@ If you want one umbrella that covers most WinForms controls, use `DevExpress.Win
 ```csharp
 using DevExpress.XtraBars;            // BarManager, Bar, BarItem, BarButtonItem, BarCheckItem, BarSubItem, BarEditItem, ItemClickEventArgs
 using DevExpress.XtraBars.Ribbon;     // RibbonControl, RibbonForm, RibbonPage, RibbonPageGroup, RibbonPageCategory, RibbonStatusBar, ApplicationMenu, BackstageViewControl, RibbonItemStyles
-using DevExpress.Utils.Svg;           // SvgImage, SvgImageCollection
+using DevExpress.Utils;               // SvgImageCollection
+using DevExpress.Utils.Svg;           // SvgImage
 ```
 
 ## Host Form Requirement (Ribbon UI)
@@ -49,17 +50,9 @@ public partial class MainForm : RibbonForm {
 }
 ```
 
-`RibbonForm` derives from `XtraForm` and additionally implements `ISupportGlassRegions`, `IBarObjectContainer`, and `ISupportFormShadow`. Use the Visual Studio item template **DevExpress | Ribbon Form** (or convert via the form's smart-tag menu — *"Convert to RibbonForm"*) for a ready-to-use empty form with the right base class.
+`RibbonForm` derives from `XtraForm` and additionally implements `ISupportGlassRegions`, `IBarObjectContainer`, and `ISupportFormShadow`. To convert an existing form, change its base class to `DevExpress.XtraBars.Ribbon.RibbonForm` in both the `.cs` and `.Designer.cs` partial declarations.
 
 For the **classic Bars UI** (no ribbon), `XtraForm` (or a plain `Form`) is fine — `BarManager` does not require a special host. `XtraForm` is recommended so skins paint the title bar.
-
-## Minimal Ribbon — Designer Path
-
-1. Add a new form, base class **`RibbonForm`** (or drag-drop a `RibbonControl` onto an existing form — Visual Studio will offer to convert the form to `RibbonForm`).
-2. Drop a `RibbonControl` from the Toolbox (DX section). The designer creates one default page (`ribbonPage1`) and one group (`ribbonPageGroup1`).
-3. Use the inline **`+`** icons inside the group to add a button (`BarButtonItem`), then set `Caption`, assign an `SvgImage` via `ImageOptions`, and pick a `RibbonStyle` (Default / Large / SmallWithText / SmallWithoutText).
-4. Drop a `RibbonStatusBar` for the bottom strip if needed.
-5. Double-click the button to wire `ItemClick` and write the handler.
 
 ## Minimal Ribbon — Code Path
 
@@ -216,7 +209,7 @@ newCmd.ItemClick += (_, _) => MessageBox.Show("New");
 fileMenu.AddItem(newCmd);
 menuBar.AddItem(fileMenu);
 
-statusBar.AddItem(new BarStaticItem(bars, "Ready"));
+statusBar.AddItem(new BarStaticItem { Caption = "Ready" });
 
 bars.EndUpdate();
 ```

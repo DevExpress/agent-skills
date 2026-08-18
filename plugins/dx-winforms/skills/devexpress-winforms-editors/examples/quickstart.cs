@@ -7,6 +7,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DevExpress.Utils;                 // DefaultBoolean
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Mask;
@@ -23,7 +24,7 @@ public partial class MainForm : XtraForm {
         name.Properties.NullValuePrompt = "Full name";
         name.Properties.MaskSettings.Configure<MaskSettings.RegExp>(s => {
             s.MaskExpression = "[A-Z][a-z]+( [A-Z][a-z]+)+";   // First Last
-            s.AutoComplete = true;
+            s.IsAutoComplete = true;
         });
 
         var salary = new SpinEdit { Width = 140 };
@@ -34,7 +35,7 @@ public partial class MainForm : XtraForm {
 
         var birth = new DateEdit { Width = 140 };
         birth.Properties.VistaCalendarViewStyle =
-            DevExpress.XtraEditors.Repository.VistaCalendarViewStyle.YearView;
+            DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
         birth.Properties.MaskSettings.Configure<MaskSettings.DateTime>(s => s.MaskExpression = "d");
 
         employeeBindingSource.DataSource = currentEmployee;
@@ -101,7 +102,7 @@ public static class SvgGlyph {
 // ------------------------------------------------------------------
 public static class ImmediatePost {
     public static void Apply(CheckEdit checkEdit1, ToggleSwitch toggleSwitch1) {
-        checkEdit1.Properties.InplaceModeImmediatePostChanges = true;   // commits on each tick
-        toggleSwitch1.Properties.InplaceModeImmediatePostChanges = true;
+        checkEdit1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;   // commits on each tick
+        toggleSwitch1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
     }
 }

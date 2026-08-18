@@ -10,22 +10,20 @@ This reference covers the two export engines (data-aware and WYSIWYG), the one-c
 - Including master-detail in print output.
 - Building richer reports via `PrintableComponentLink` or XtraReports.
 
-> **Scope:** this reference is about **printing and exporting** — a subtopic of the Data Grid skill, not general grid configuration. Most of what follows is **runtime (code) API**; see the table below for what is available at design time.
+> **Scope:** this reference is about **printing and exporting** — a subtopic of the Data Grid skill, not general grid configuration. Most of what follows is **runtime (code) API**; see the table below for what can instead be set up front on the view.
 
-## Design-Time vs Runtime
+## Declarative Options vs Runtime API
 
-WinForms developers often expect to configure things in the designer / Property Grid first. For printing and exporting, the split is:
-
-| Capability | Design-time (Designer / Property Grid) | Runtime (code) | Notes |
+| Capability | Set up front on the view (`InitializeComponent` or startup code) | Runtime (code) | Notes |
 |---|---|---|---|
-| `view.OptionsPrint.*` (headers/footers, lines, `AutoWidth`, `PrintDetails`, `UsePrintStyles`) | ✅ yes — set on the view in the Properties window / Grid Designer | ✅ also settable in code | Affects print **and** WYSIWYG export; not data-aware export |
-| Print / Print Preview command in the UI | ✅ yes — add a Ribbon/Bar **Print** item in the designer, or `PrintControl` | `ShowPrintPreview()` / `Print()` | The command can be wired without code |
-| `ExportTo*` methods (XLSX/PDF/CSV/…) | ❌ no design-time trigger | ✅ code only | There is no designer button that exports |
+| `view.OptionsPrint.*` (headers/footers, lines, `AutoWidth`, `PrintDetails`, `UsePrintStyles`) | ✅ yes | ✅ also settable later | Affects print **and** WYSIWYG export; not data-aware export |
+| Print / Print Preview command in the UI | ✅ yes — a Ribbon/Bar **Print** item, or `PrintControl` | `ShowPrintPreview()` / `Print()` | |
+| `ExportTo*` methods (XLSX/PDF/CSV/…) | ❌ no | ✅ code only | Always an explicit call |
 | Export customization events (`CustomizeCell`, `AfterAddRow`, `CustomizeSheetHeader/Footer/Settings`, `BeforeExportTable`) | ❌ no | ✅ code only | Subscribe in code |
 | `PrintingSystem` / `PrintableComponentLink` (composite reports) | ❌ no | ✅ code only | Advanced, code-based |
-| Full reporting | (separate **XtraReports** report designer) | code or designer | Out of this skill's scope |
+| Full reporting | (separate **XtraReports** product) | code or report designer | Out of this skill's scope |
 
-**Rule of thumb:** if a request is "set print layout / show a print preview", much of it is achievable at design time via `OptionsPrint` + a Ribbon Print command. If it is "export to a file" or "customize the exported document", it is **runtime-only** code.
+**Rule of thumb:** if a request is "set print layout / show a print preview", much of it is covered by `OptionsPrint` + a Ribbon Print command. If it is "export to a file" or "customize the exported document", it is **runtime-only** code.
 
 ## Choosing a Printing/Export Approach
 
@@ -87,7 +85,7 @@ Each method has overloads that take a `Stream` and/or an options object.
 
 ## Customize the Output (`XlsxExportOptionsEx`)
 
-> **Runtime-only, and a last resort.** These customization events are code-only (no design-time equivalent). Reach for them **only** when the plain options (`SheetName`, `TextExportMode`, `Encoding`, `Separator`, fixed header, data-aware mode) cannot produce the result. For most exports, the one-call method plus an options object is enough.
+> **A last resort.** Reach for these customization events **only** when the plain options (`SheetName`, `TextExportMode`, `Encoding`, `Separator`, fixed header, data-aware mode) cannot produce the result. For most exports, the one-call method plus an options object is enough.
 
 Pass an options instance with subscribed customization events:
 

@@ -75,7 +75,7 @@ If the host agent has a structured question-asking tool available, use it to ask
 ### Getting Started — Setup and First Tree
 Refer to [references/getting-started.md](references/getting-started.md)
 When you need to:
-- Add `TreeList` to a project (designer or code) and pick the host form
+- Add `TreeList` to a project and pick the host form
 - Author the `.Designer.cs` file (declare the control + columns + editors in `InitializeComponent`) so the form stays editable in the WinForms designer
 - Bind a self-referential employee/region tree end-to-end
 
@@ -241,7 +241,7 @@ treeList.AppendNode(new object[] { "Michael Suyama", "030-0074263" }, root);
 treeList.EndUnboundLoad();
 ```
 
-The `nodeData` array order must match the column order. Columns must exist first (define them in the designer or via `Columns.AddField`).
+The `nodeData` array order must match the column order. Columns must exist first (define them in `InitializeComponent()` or via `Columns.AddField`).
 
 ### Pattern 2: Dynamic (On-Demand) Loading
 
@@ -311,7 +311,7 @@ CRITICAL — follow these rules in every interaction:
 9. In-place editors are `RepositoryItem*` objects added to `TreeList.RepositoryItems` and assigned via `TreeListColumn.ColumnEdit`.
 10. Host on `XtraForm`/`RibbonForm`/`FluentDesignForm`; enable skins at startup and do not change skin after forms are shown.
 11. Never construct DevExpress documentation URLs from training data — use the MCP tool to search.
-12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

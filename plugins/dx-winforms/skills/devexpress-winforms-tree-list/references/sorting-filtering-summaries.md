@@ -74,5 +74,5 @@ For custom aggregation, set `SummaryFooter = SummaryItemType.Custom` and handle 
 - `articles/controls-and-libraries/tree-list/feature-center/sorting/...` (`xref:307`, specifics `xref:5604`)
 - `articles/controls-and-libraries/tree-list/feature-center/filtering/...` (`xref:5551`; in code `xref:5608`; Excel `xref:120620`)
 - `articles/controls-and-libraries/tree-list/feature-center/summaries/...` (`xref:313`)
-- [SummaryItemType](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.SummaryItemType?md=true) — summary type enum
+- [SummaryItemType](https://docs.devexpress.com/WindowsForms/DevExpress.XtraTreeList.SummaryItemType) — summary type enum (the TreeList-specific `DevExpress.XtraTreeList.SummaryItemType`, distinct from `DevExpress.Data.SummaryItemType`)
 - [ActiveFilterString](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.ActiveFilterString?md=true), [ShowFindPanel](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.ShowFindPanel?md=true), [OptionsFind](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.OptionsFind?md=true)

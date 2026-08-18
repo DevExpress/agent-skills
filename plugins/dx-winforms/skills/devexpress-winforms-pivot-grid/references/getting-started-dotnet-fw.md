@@ -9,20 +9,23 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 - DevExpress WinForms subscription via the [Unified Component Installer](https://www.devexpress.com/Products/Try/), or DevExpress packages from nuget.org
 - A valid DevExpress license
 
-## Two Installation Paths
+## Install the NuGet Package
 
-1. **Unified Component Installer** (designer-first). Run the installer, then create the project from the **DevExpress Template Gallery**, or drag `PivotGridControl` from the toolbox onto an `XtraForm`. References are added automatically.
-2. **NuGet package** (recommended for source control / CI):
+```powershell
+# SDK-style project
+dotnet add package DevExpress.Win.PivotGrid
 
-   ```powershell
-   Install-Package DevExpress.Win.PivotGrid
-   ```
+# legacy packages.config project (Package Manager Console)
+Install-Package DevExpress.Win.PivotGrid
+```
 
-## Designer Workflow (.NET Framework)
+> The DevExpress Unified Component Installer is only needed for the license and the local offline NuGet feed — the package is also on nuget.org. Do **not** hand-edit a non-SDK `.csproj` to add `<Reference>` entries and do **not** copy DevExpress DLLs with shell commands; that routinely leaves the project unable to build.
 
-1. Drop a `PivotGridControl` on an `XtraForm`; set `Dock = Fill`.
-2. Set `DataSource` via the smart tag. The **Data Source Configuration Wizard / typed DataSets** are available in .NET Framework projects (not in .NET SDK projects) — convenient for database binding.
-3. Open **Run Designer** → assign fields to the Filter / Row / Column / Data areas and set summary types and formats.
+## Setup (.NET Framework)
+
+The control is created, bound, and configured exactly as on .NET 8+ — see [getting-started.md](getting-started.md).
+
+> **Typed DataSets** are available in .NET Framework projects (not in .NET SDK projects) — convenient for database binding.
 
 ## Required Assemblies (Manual Reference)
 

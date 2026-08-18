@@ -9,21 +9,23 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 - DevExpress WinForms subscription via the [Unified Component Installer](https://www.devexpress.com/Products/Try/), or DevExpress packages from nuget.org
 - A valid DevExpress license
 
-## Two Installation Paths
+## Install the NuGet Package
 
-1. **Unified Component Installer** (designer-first). Run the installer, then create the project from the **DevExpress Template Gallery**, or drag `SchedulerControl` and `SchedulerDataStorage` from the toolbox onto an `XtraForm`. References are added automatically.
-2. **NuGet package** (recommended for source control / CI):
+```powershell
+# SDK-style project
+dotnet add package DevExpress.Win.Scheduler
 
-   ```powershell
-   Install-Package DevExpress.Win.Scheduler
-   ```
+# legacy packages.config project (Package Manager Console)
+Install-Package DevExpress.Win.Scheduler
+```
 
-## Designer Workflow (.NET Framework)
+> The DevExpress Unified Component Installer is only needed for the license and the local offline NuGet feed — the package is also on nuget.org. Do **not** hand-edit a non-SDK `.csproj` to add `<Reference>` entries and do **not** copy DevExpress DLLs with shell commands; that routinely leaves the project unable to build.
 
-1. Drop a `SchedulerControl` on an `XtraForm` (or `RibbonForm`); set `Dock = Fill`.
-2. Drop a `SchedulerDataStorage` and assign it via the scheduler's smart tag.
-3. Configure appointment/resource **field mappings** in the storage smart tag. The **Data Source Configuration Wizard / typed DataSets** are available in .NET Framework projects (not in .NET SDK projects) for bound mode.
-4. Optionally drop a `DateNavigator` and set its `SchedulerControl` property.
+## Setup (.NET Framework)
+
+The control, its `SchedulerDataStorage`, the field mappings, and an optional `DateNavigator` are declared exactly as on .NET 8+ — see [getting-started.md](getting-started.md).
+
+> **Typed DataSets** are available in .NET Framework projects (not in .NET SDK projects) for bound mode.
 
 ## Required Assemblies (Manual Reference)
 

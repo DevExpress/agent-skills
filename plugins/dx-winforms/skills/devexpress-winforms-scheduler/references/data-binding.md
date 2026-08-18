@@ -12,7 +12,7 @@
 
 ## Storage Architecture
 
-When you drop `SchedulerControl` on a form, Visual Studio automatically creates a `SchedulerDataStorage` and links it via `SchedulerControl.DataStorage`. You can also create the storage manually and assign it in code.
+`SchedulerControl` stores its data in a `SchedulerDataStorage` linked via `SchedulerControl.DataStorage`. Create the storage and assign it explicitly.
 
 ```
 SchedulerControl.DataStorage
@@ -151,8 +151,8 @@ schedulerDataStorage1.Appointments.Add(pattern);
 
 ```csharp
 Resource res = schedulerDataStorage1.CreateResource(1);
-res.Caption    = "Alice";
-res.BackColor  = Color.LightBlue;
+res.Caption = "Alice";
+res.SetColor(Color.LightBlue);   // SetColor extension (DevExpress.XtraScheduler); Resource.Color is obsolete, there is no BackColor
 schedulerDataStorage1.Resources.Add(res);
 ```
 
@@ -195,7 +195,7 @@ class ColorConverter : ISchedulerMappingConverter {
 }
 
 schedulerDataStorage1.Resources.Mappings.ColorConverter = new ColorConverter();
-schedulerDataStorage1.Resources.ColorSaving = DXColorSavingType.ColorInstance;
+schedulerDataStorage1.Resources.ColorSaving = ColorSavingType.Color;
 schedulerDataStorage1.Resources.Mappings.Color = "CategoryName";
 schedulerDataStorage1.Resources.Mappings.ColorConversionBehavior =
     MappingConversionBehavior.InPlaceOfMapping;

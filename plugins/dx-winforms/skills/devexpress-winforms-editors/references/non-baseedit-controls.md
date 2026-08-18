@@ -162,7 +162,7 @@ using var dlg = new XtraOpenFileDialog {
 if (dlg.ShowDialog() == DialogResult.OK) Open(dlg.FileName);
 ```
 
-These dialogs are **components**, not controls; they appear in the Toolbox under the `DX.<version>: Dialogs` group (the version segment matches your installed DevExpress version).
+These dialogs are **components**, not controls — create them in code and call `ShowDialog()`.
 
 There is also `BrowsePathEdit` — a `ButtonEdit` descendant (which **is** a `BaseEdit`) that combines a text box with a built-in browse button. Use it when the path should be both visible and editable; use the dialogs above when you only need to ask once.
 

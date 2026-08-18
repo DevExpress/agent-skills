@@ -37,7 +37,7 @@ Every chart concept — series, axis, label, legend, tooltip, crosshair, selecti
 
 ### Host Form
 
-`XtraForm` is recommended for skin propagation but not required — `ChartControl` works on a plain `Form`. The control is found under the `DX.<version>: Data & Analytics` Toolbox group (the version segment matches your installed DevExpress version).
+`XtraForm` is recommended for skin propagation but not required — `ChartControl` works on a plain `Form`.
 
 ### Common Imports
 
@@ -80,7 +80,7 @@ When you need to: configure primary axes (`XYDiagram.AxisX`/`AxisY`); add second
 
 ### Axis Titles and Labels
 Refer to [references/axis-titles-and-labels.md](references/axis-titles-and-labels.md)
-When you need to: set `Axis.Title.Text` + `Title.Alignment` + `Title.DXFont`; format `AxisLabel.TextPattern` with `{A}` / `{V}` / `{VP}` placeholders and .NET format specifiers; use the Pattern Editor at design time; apply a custom `AxisLabel.Formatter`; add `CustomAxisLabel` callouts; handle `CustomDrawAxisLabel` for per-label appearance.
+When you need to: set `Axis.Title.Text` + `Title.Alignment` + `Title.DXFont`; format `AxisLabel.TextPattern` with `{A}` / `{V}` / `{VP}` placeholders and .NET format specifiers; apply a custom `AxisLabel.Formatter`; add `CustomAxisLabel` callouts; handle `CustomDrawAxisLabel` for per-label appearance.
 
 ### Data Aggregation and Summary
 Refer to [references/aggregation-and-summary.md](references/aggregation-and-summary.md)
@@ -88,7 +88,7 @@ When you need to: enable automatic aggregation for very large date-time data (`D
 
 ### Legend
 Refer to [references/legend.md](references/legend.md)
-When you need to: position the legend (`ChartControl.Legend.AlignmentHorizontal`/`AlignmentVertical` with the `*Outside` variants), add additional legends to `ChartControl.Legends`, dock them to specific panes (`Legend.DockTarget`), configure layout (`Direction`, `MaxHorizontalPercentage`/`MaxVerticalPercentage`, `EquallySpacedItems`), add a legend title (`Legend.Title`), format legend item text via `SeriesBase.LegendTextPattern`, enable check-box markers, customize fonts and colors.
+When you need to: position the legend (`ChartControl.Legend.AlignmentHorizontal`/`AlignmentVertical` with the `*Outside` variants), add additional legends to `ChartControl.Legends`, dock them to specific panes (`Legend.DockTargetName`), configure layout (`Direction`, `MaxHorizontalPercentage`/`MaxVerticalPercentage`, `EquallySpacedItems`), add a legend title (`Legend.Title`), format legend item text via `SeriesBase.LegendTextPattern`, enable check-box markers, customize fonts and colors.
 
 ### Tooltips and Crosshair Cursor
 Refer to [references/tooltips-and-crosshair.md](references/tooltips-and-crosshair.md)
@@ -153,7 +153,7 @@ chart.ObjectSelected     += (s, e) => HandleSelection(e.Object);
 | Axis | `Axis.NumericScaleOptions` / `DateTimeScaleOptions` / `TimeSpanScaleOptions` / `QualitativeScaleOptions` | Per-scale settings + aggregation. |
 | Axis | `Axis.Title.Text` / `Title.Alignment` / `Title.Visibility` | Axis title. |
 | Axis | `Axis.Label.TextPattern` / `Label.Formatter` / `Label.Visible` / `CustomLabels` | Axis labels. |
-| Legend | `ChartControl.Legend` / `ChartControl.Legends` / `Legend.AlignmentHorizontal` / `AlignmentVertical` / `DockTarget` / `Direction` / `Title` | Legends. |
+| Legend | `ChartControl.Legend` / `ChartControl.Legends` / `Legend.AlignmentHorizontal` / `AlignmentVertical` / `DockTargetName` / `Direction` / `Title` | Legends. |
 | Legend | `SeriesBase.LegendTextPattern` | Format per-series legend item text. |
 | Tooltip | `ChartControl.ToolTipEnabled` / `ToolTipController` / `ToolTipOptions` / `ToolTipOptions.ToolTipPosition` | Tooltips. |
 | Tooltip | `SeriesBase.ToolTipPointPattern` / `ToolTipSeriesPattern` | Tooltip content templates. |
@@ -225,14 +225,14 @@ chart.SelectedItemsChanged += (s, e) => label.Text = $"{chart.SelectedItems.Coun
 | Currency label shows `$0` for empty rows | `AxisLabel.TextPattern = "{V:c0}"` with empty data. | Filter source data or use `AxisLabel.Formatter`. |
 | Selection does not stick after refresh | `ChartControl.RefreshData()` rebuilds points; selection is cleared. | Re-apply via `SetObjectSelection` in the `RefreshDataCompleted` flow. |
 | `XYDiagram3D` cannot be selected with mouse | 3D charts do not support runtime selection. | Switch to 2D or implement hit-test manually. |
-| Adding a second `Legend` does nothing | New `Legend` must be assigned to a series/indicator. | Set `series.Legend = customLegend` and `customLegend.DockTarget`. |
+| Adding a second `Legend` does nothing | New `Legend` must be assigned to a series/indicator. | Set `series.Legend = customLegend` and `customLegend.DockTargetName`. |
 | Performance degrades with > 100 k points | `XYDiagram` is not optimized for huge data sets. | Switch to `SwiftPlotDiagram` + `SwiftPlotSeriesView`/`SwiftPointSeriesView`, or enable aggregation. |
 
 ## Constraints & Rules
 
 CRITICAL — follow these rules in every interaction:
 
-1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
+1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **NuGet**: charts live in `DevExpress.Win.Charts`. The legacy `DevExpress.XtraCharts.v*.UI.dll` is the WinForms-specific assembly; `DevExpress.XtraCharts.v*.dll` is shared with WPF/web/reports.
 3. **Diagram is implicit**: the first series' `ViewType` decides the diagram. Plan series order, or build the diagram before adding series.
 4. **Cast `Diagram` carefully**: it is `null` until the first series is added. Always null-check before casting.
@@ -242,7 +242,7 @@ CRITICAL — follow these rules in every interaction:
 8. **3D charts have no selection / tooltip / crosshair**: those features are 2D-only.
 9. **Aggregation requires `ScaleMode = Automatic`**: setting `AggregateFunction` alone with `ScaleMode = Continuous` does nothing.
 10. **Use SVG images for legends and titles**: raster images do not adapt to skin/DPI changes.
-11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

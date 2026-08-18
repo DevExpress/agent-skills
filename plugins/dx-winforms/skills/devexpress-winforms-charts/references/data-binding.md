@@ -39,14 +39,13 @@ chart.Series.Add(series);
 
 | Member | Purpose |
 |---|---|
-| `Series.DataSource` | The data source (anything that implements `IEnumerable`, `IList`, `IListSource`, `DataTable`, `DataView`, `DataSet`+`DataMember`). |
-| `Series.DataMember` | Inner member when the source is a `DataSet` / hierarchical object. |
+| `Series.DataSource` | The data source (anything that implements `IEnumerable`, `IList`, `IListSource`, `DataTable`, `DataView`). For a `DataSet`, point `DataSource` at the table directly (`dataSet.Tables["Sales"]`) — `Series` has no `DataMember`. |
 | `Series.DataAdapter` | Optional custom `DataSourceAdapter` (rarely needed). |
 | `Series.ArgumentDataMember` | Column / property providing the **argument** (X) for each point. |
 | `Series.ValueDataMembers` | Collection of columns / properties providing the **value(s)** (Y). Most series take one value; financial series take four; bubble takes two; range-area takes two. |
 | `Series.ArgumentScaleType` | `Auto` / `Numerical` / `DateTime` / `DateTimeOffset` / `TimeSpan` / `Qualitative`. Set explicitly to avoid `Auto` cost. |
 | `Series.ValueScaleType` | Same enum; usually `Numerical` (the default). |
-| `Series.QualitativeSummaryOptions.SummaryFunction` | How to aggregate duplicate arguments (Sum/Average/Count/…). |
+| `Series.QualitativeSummaryOptions.SummaryFunction` | How to aggregate duplicate arguments — a `string` expression such as `"SUM([Value])"` / `"AVERAGE([Value])"` / `"COUNT()"` (empty = keep duplicates). |
 
 ### `ValueDataMembers` Per Series View
 
@@ -89,7 +88,7 @@ chart.SeriesTemplate.LegendTextPattern  = "{S}";
 
 | Member | Purpose |
 |---|---|
-| `ChartControl.DataSource` / `DataMember` / `DataAdapter` | Chart-wide data source. |
+| `ChartControl.DataSource` / `DataAdapter` | Chart-wide data source (no chart-level `DataMember` — bind to the table directly). |
 | `ChartControl.SeriesDataMember` | Column that splits rows into series. |
 | `ChartControl.SeriesTemplate` | A "prototype" `Series` whose settings (view, scale, label, legend text) are copied to each auto-generated series. |
 | `ChartControl.AutoBindingSettingsEnabled` | When `true`, applies the template; when `false`, you bind series manually. |
@@ -257,7 +256,7 @@ timer.Start();
 - **Legend shows `Series 1`, `Series 2`, …** — set `LegendTextPattern = "{S}"` on the template, and set the auto-generated series' `Name` via `SeriesDataMember`.
 - **Empty chart after binding** — `ValueDataMembers` empty, or the member name is misspelled (`ValueDataMembers` is case-sensitive). Check `chart.Series[0].Points.Count`.
 - **Dates show as numbers on the axis** — `ArgumentScaleType` left at `Auto` while the column is typed `object`. Set `ScaleType.DateTime` explicitly.
-- **Duplicate arguments collapse incorrectly** — set `series.QualitativeSummaryOptions.SummaryFunction = SummaryFunction.None` to keep every point.
+- **Duplicate arguments collapse incorrectly** — set `series.QualitativeSummaryOptions.SummaryFunction = ""` (empty string) to keep every point.
 - **Template generates one series per row** — `SeriesDataMember` points to a column that is unique per row. Use a category column instead.
 - **`RefreshData` does nothing** — series uses `Points.Add` (unbound). `RefreshData` only re-reads `DataSource`.
 - **Memory leak on form close** — unsubscribe from `IBindingList.ListChanged` and dispose the chart before disposing the data source.

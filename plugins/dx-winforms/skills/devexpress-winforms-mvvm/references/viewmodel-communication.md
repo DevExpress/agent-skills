@@ -191,7 +191,7 @@ DialogService.ShowDialog(MessageButton.OK, "Details", "OrderDetailsView",
 
 // Via NavigationService
 NavigationService.Navigate("OrderDetailsView",
-    parameter: selectedOrder,
+    param: selectedOrder,
     parentViewModel: this
 );
 ```

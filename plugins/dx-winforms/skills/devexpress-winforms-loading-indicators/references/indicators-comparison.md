@@ -25,7 +25,7 @@ In the WPF DevExpress library there is a control called `LoadingDecorator` that 
 
 ### Variants
 - **Fluent Splash Screen** — Windows 10-inspired acrylic glass. Code only. Best for modern apps.
-- **Skin Splash Screen** — colors follow the DevExpress skin. Created at design-time or in code.
+- **Skin Splash Screen** — colors follow the DevExpress skin.
 - **Default Splash Screen** — classic non-skin appearance; supports auto show/close on startup.
 - **Splash Image** — displays any bitmap (PNG with transparency supported).
 
@@ -74,7 +74,7 @@ SplashScreenManager.CloseForm();
 
 ### Constraints
 - `CloseForm()` must always be called — if not called before the app exits, a hang may occur.
-- Splash screens can only receive data updates via the static `SplashScreenManager.SendCommand(Enum, object)` mechanism. To update a label, your splash screen must override `ProcessCommand`.
+- Splash screens can only receive data updates via the `SplashScreenManager.Default.SendCommand(Enum, object)` mechanism (`SendCommand` is an instance method — call it on `SplashScreenManager.Default` or a component instance). To update a label, your splash screen must override `ProcessCommand`.
 - Do **not** show a splash screen over an already-visible main form — use the Overlay Form instead.
 
 ---
@@ -85,7 +85,7 @@ A skin-aware modal window containing a `ProgressPanel` (animated spinner or bar)
 
 ### Prerequisites
 - A `SplashScreenManager` component on the form (or the static `SplashScreenManager.Default`).
-- A generated `WaitForm1` class (right-click the component → **Add Wait Form**).
+- A `WaitForm1` class derived from `DevExpress.XtraWaitForm.WaitForm`.
 
 ### API Pattern
 
@@ -117,8 +117,8 @@ For anything beyond caption/description, call `SendCommand`:
 // Define a custom command enum (in a shared location)
 public enum WaitFormCommand { UpdateProgress }
 
-// Send from main thread
-SplashScreenManager.SendCommand(WaitFormCommand.UpdateProgress, 50);
+// Send from main thread (SendCommand is an instance method — use SplashScreenManager.Default)
+SplashScreenManager.Default.SendCommand(WaitFormCommand.UpdateProgress, 50);
 
 // WaitForm1 — override ProcessCommand
 public override void ProcessCommand(Enum cmd, object arg)
@@ -215,13 +215,9 @@ handle = SplashScreenManager.ShowOverlayForm(panel1,
 
 ## 4. ProgressPanel (Inline Wait Indicator)
 
-A lightweight control you drop directly onto a form, panel, or user control. Unlike the previous options, `ProgressPanel` runs on the **main thread** and is simply visible or hidden. It does not block interaction with the rest of the form.
+A lightweight control you place directly on a form, panel, or user control. Unlike the previous options, `ProgressPanel` runs on the **main thread** and is simply visible or hidden. It does not block interaction with the rest of the form.
 
-### Design-Time Setup
-
-1. Open **Toolbox** → search "ProgressPanel" (under DevExpress Common Controls).
-2. Drag onto the form; set `Visible = false` initially.
-3. Optionally set `Dock = Fill` inside a dedicated panel or use a `LayoutControlGroup`.
+Add it with `Visible = false` initially, and optionally set `Dock = Fill` inside a dedicated panel or a `LayoutControlGroup`.
 
 ### Key Properties
 

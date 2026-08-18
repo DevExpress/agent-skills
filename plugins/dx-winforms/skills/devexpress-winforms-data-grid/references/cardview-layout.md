@@ -3,7 +3,7 @@
 This reference covers the two card-shaped views inside `GridControl`:
 
 - **`CardView`** — classic Outlook-style cards arranged down then across, with caption-and-fields-stacked layout.
-- **`LayoutView`** — more flexible cards based on a `TemplateCard` (a visual layout you arrange in the designer), supporting `Carousel` and `MultiColumn` modes.
+- **`LayoutView`** — more flexible cards based on a `TemplateCard` (a layout declared in the designer file), supporting `Carousel` and `MultiColumn` modes.
 
 Pick `CardView` for the simple "field caption + value" stack. Pick `LayoutView` when you need an arbitrary layout (image, multi-line text, grouped sections, embedded controls).
 
@@ -88,7 +88,7 @@ grid.ViewCollection.Add(lv);
 grid.MainView = lv;
 grid.DataSource = LoadEmployees();
 
-lv.OptionsView.ViewMode = LayoutViewMode.MultiColumn;     // Single / MultiColumn / Carousel
+lv.OptionsView.ViewMode = LayoutViewMode.MultiColumn;     // SingleRecord / MultiColumn / Carousel
 lv.OptionsView.ShowCardCaption = true;
 lv.CardMinSize = new Size(220, 180);
 ```
@@ -114,7 +114,7 @@ lv.CardFields["Notes"].TextVisible = false;
 
 | Mode | UX |
 |---|---|
-| `Single` | One card per row of the view. |
+| `SingleRecord` | One card per row of the view. |
 | `MultiColumn` | Cards arranged down then across, like `CardView`. |
 | `Carousel` | Carousel-style 3D rotation; user navigates one card at a time. |
 

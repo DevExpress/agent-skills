@@ -6,33 +6,20 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 
 - .NET Framework 4.6.2 or newer, targeting Windows
 - Visual Studio 2022+ (Visual Studio 2019 also supported)
-- DevExpress WinForms subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/) for the designer-first workflow, or DevExpress NuGet packages from nuget.org
+- DevExpress WinForms subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/), or DevExpress NuGet packages from nuget.org
 - A valid DevExpress license
 
-## Two Installation Paths
-
-You can add DevExpress to a .NET Framework project in two ways:
-
-1. **Unified Component Installer** (recommended for designer-first workflows). Run the installer, then drag `XtraTabControl` from the Visual Studio Toolbox onto an `XtraForm`. The IDE adds the required references automatically.
-2. **NuGet packages** (recommended for source control and CI builds). Install `DevExpress.Win.Navigation` from nuget.org.
-
-## Path 1: Unified Component Installer + Toolbox
-
-1. Install the DevExpress Universal/WinForms Component Installer.
-2. In Visual Studio, create or open a **.NET Framework** Windows Forms App, or use the **DevExpress Template Gallery** to scaffold a skinned WinForms application.
-3. Make the main form derive from `XtraForm` (or `RibbonForm` / `FluentDesignForm`).
-4. Drag `XtraTabControl` from the Toolbox onto the form; set `Dock = Fill`. The control starts with two pages.
-5. Open the control's **smart tag** → **"Tab Pages…"** to add, reorder, and configure `XtraTabPage` pages, then drag controls onto each page.
-
-## Path 2: NuGet Package
-
-Install via the Package Manager Console:
+## Install the NuGet Package
 
 ```powershell
+# SDK-style project
+dotnet add package DevExpress.Win.Navigation
+
+# legacy packages.config project (Package Manager Console)
 Install-Package DevExpress.Win.Navigation
 ```
 
-> If your project uses the older `packages.config` instead of `PackageReference`, the same command works — Visual Studio installs the package and adds the required assembly references.
+> The DevExpress Unified Component Installer is only needed for the license and the local offline NuGet feed — the package is also on nuget.org. Do **not** hand-edit a non-SDK `.csproj` to add `<Reference>` entries and do **not** copy DevExpress DLLs with shell commands; that routinely leaves the project unable to build.
 
 This package ships `DevExpress.XtraEditors.v<version>.dll`, which contains the `DevExpress.XtraTab` namespace (`XtraTabControl`, `XtraTabPage`, and `DevExpress.XtraTab.ViewInfo` / `DevExpress.XtraTab.Buttons`).
 

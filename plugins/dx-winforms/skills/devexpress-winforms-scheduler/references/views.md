@@ -144,10 +144,11 @@ tlView.CellsAutoHeightOptions.AutoHeightMode = SchedulerCellAutoHeightMode.Limit
 
 | Class | Granularity |
 |---|---|
-| `TimeScaleMinute` | Minutes |
-| `TimeScaleQuarterHour` | 15 minutes |
+| `TimeScale15Minutes` | 15 minutes (finest built-in scale) |
 | `TimeScaleHour` | Hours |
+| `TimeScaleWorkHour` | Working hours only |
 | `TimeScaleDay` | Days |
+| `TimeScaleWorkDay` | Working days only |
 | `TimeScaleWeek` | Weeks |
 | `TimeScaleMonth` | Months |
 | `TimeScaleQuarter` | Quarters |
@@ -169,17 +170,17 @@ Shows appointments as tasks with optional dependency arrows and a percent-comple
 ```csharp
 schedulerControl1.ActiveViewType = SchedulerViewType.Gantt;
 
-// Add a dependency
-AppointmentDependency dep = schedulerDataStorage1.CreateAppointmentDependency(
-    taskA, taskB, AppointmentDependencyType.FinishToStart);
-schedulerDataStorage1.AppointmentDependencies.Add(dep);
+// Add a dependency — created by appointment ID on the AppointmentDependencies collection
+object idA = taskA.Id, idB = taskB.Id;
+schedulerDataStorage1.AppointmentDependencies.CreateAppointmentDependency(
+    idA, idB, AppointmentDependencyType.FinishToStart);
 ```
 
 > For complex project management needs, prefer the stand-alone `GanttControl` (`DevExpress.Win.Gantt`).
 
 ## Hiding Views from End Users
 
-Disable individual views in code by setting `Enabled = false` (the smart tag offers the same checkboxes at design time):
+Disable individual views by setting `Enabled = false`:
 
 ```csharp
 schedulerControl1.Views.DayView.Enabled = false;

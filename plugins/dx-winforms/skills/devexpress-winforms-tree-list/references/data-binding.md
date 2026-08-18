@@ -50,7 +50,7 @@ devexpress_docs_search(technologies=["WindowsForms"], question="TreeList virtual
 
 Unbound mode means `DataSource = null`; you create nodes yourself.
 
-1. Create columns first — in the Tree List Designer or via the `Columns` collection.
+1. Create columns first — via the `Columns` collection.
 2. Add nodes with `AppendNode`.
 
 ```csharp
@@ -91,7 +91,7 @@ treeList.ImportFromXml("tree.xml");
 For large trees, create root nodes up front and supply children only when a node is expanded:
 
 ```csharp
-// 1. Create root nodes (design time or AppendNode)
+// 1. Create root nodes (AppendNode)
 // 2. Mark nodes that can have children so the expand button appears
 rootNode.HasChildren = true;
 

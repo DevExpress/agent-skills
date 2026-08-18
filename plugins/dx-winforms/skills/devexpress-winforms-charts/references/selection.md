@@ -51,10 +51,12 @@ chart.SeriesSelectionMode = SeriesSelectionMode.Argument;
 `SelectionOptions` is a **diagram** property (`XYDiagram` / `SimpleDiagram` expose it), **not** a `ChartControl` member. Cast `chart.Diagram` to access it:
 
 ```csharp
+using DevExpress.Portable.Input;   // PortableMouseButtons (MouseButton is NOT System.Windows.Forms.MouseButtons)
+
 var diagram = (XYDiagram)chart.Diagram;
-diagram.SelectionOptions.MouseAction.MouseButton = MouseButtons.Left;
+diagram.SelectionOptions.MouseAction.MouseButton = PortableMouseButtons.Left;
 diagram.SelectionOptions.MouseAction.ModifierKeys = ChartModifierKeys.None;
-diagram.SelectionOptions.RectangleSelectionMouseAction.MouseButton = MouseButtons.Left;
+diagram.SelectionOptions.RectangleSelectionMouseAction.MouseButton = PortableMouseButtons.Left;
 diagram.SelectionOptions.RectangleSelectionMouseAction.ModifierKeys = ChartModifierKeys.Shift;
 ```
 
@@ -103,7 +105,7 @@ chart.ObjectHotTracked += (s, e) => {
 | `InSeriesPoint` | Hit a specific point (`HitInfo.SeriesPoint`). |
 | `InLegend` / `InLegendItem` | Hit the legend area. |
 | `InAxis` / `InAxisTitle` / `InAxisLabel` | Hit an axis or its label. |
-| `InTitle` | Hit a chart title. |
+| `InChartTitle` | Hit a chart title. |
 
 ## Working With Selection in Code
 
@@ -121,15 +123,14 @@ foreach (var item in chart.SelectedItems) {
 ### Set / clear
 
 ```csharp
-chart.SetObjectSelection(series, true);                     // select
-chart.SetObjectSelection(seriesPoint, true);                // select a point
-chart.SetObjectSelection(series, false);                    // deselect
+chart.SetObjectSelection(series);                           // select (single-argument overload)
+chart.SetObjectSelection(seriesPoint);                      // select a point
 
-chart.ClearSelection();                                      // clear all
-chart.ReplaceSelectedItems(new object[] { series });         // bulk replace
+chart.ClearSelection();                                      // clear all (there is no single-object deselect)
+chart.ReplaceSelectedItems(new object[] { series });         // bulk replace — selects exactly these, deselecting the rest
 ```
 
-`SetObjectSelection` respects `SelectionMode`. In `Single` mode, selecting a new item deselects the previous one.
+`SetObjectSelection(object)` takes a single argument and respects `SelectionMode`. In `Single` mode, selecting a new item deselects the previous one. To deselect a specific item, rebuild the selection with `ReplaceSelectedItems` (or `ClearSelection` to drop everything).
 
 ## Customizing the Selected Appearance
 
@@ -137,7 +138,7 @@ The default behavior darkens the selected element. Override per-series via `Cust
 
 ```csharp
 chart.CustomDrawSeriesPoint += (s, e) => {
-    if (e.SeriesPoint.SelectionState == SelectionState.Selected) {
+    if (e.SelectionState == SelectionState.Selected) {
         e.SeriesDrawOptions.Color = Color.OrangeRed;
         if (e.SeriesDrawOptions is BarDrawOptions bar)
             bar.Border.Color = Color.DarkRed;
@@ -154,7 +155,7 @@ Only available when `SelectionMode = Extended`. The default binding is **Ctrl+dr
 ```csharp
 chart.SelectionMode = ElementSelectionMode.Extended;
 var diagram = (XYDiagram)chart.Diagram;
-diagram.SelectionOptions.RectangleSelectionMouseAction.MouseButton = MouseButtons.Left;
+diagram.SelectionOptions.RectangleSelectionMouseAction.MouseButton = DevExpress.Portable.Input.PortableMouseButtons.Left;
 diagram.SelectionOptions.RectangleSelectionMouseAction.ModifierKeys = ChartModifierKeys.Control;
 ```
 
@@ -224,7 +225,7 @@ chart.ObjectSelected += (s, e) => {
 
 ```csharp
 chart.CustomDrawSeriesPoint += (s, e) => {
-    if (e.SeriesPoint.SelectionState == SelectionState.Selected)
+    if (e.SelectionState == SelectionState.Selected)
         e.SeriesDrawOptions.Color = Color.OrangeRed;
 };
 ```
@@ -233,7 +234,7 @@ chart.CustomDrawSeriesPoint += (s, e) => {
 
 ```csharp
 chart.ClearSelection();
-chart.SetObjectSelection(series.Points[3], true);
+chart.SetObjectSelection(series.Points[3]);
 ```
 
 ## Common Issues

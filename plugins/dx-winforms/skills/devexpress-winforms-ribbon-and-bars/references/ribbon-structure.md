@@ -182,21 +182,22 @@ var tabOpen = new BackstageViewTabItem  { Caption = "Open" };
 var btnExit = new BackstageViewButtonItem { Caption = "Exit" };
 btnExit.ItemClick += (_, _) => Close();
 
-backstage.Items.AddRange(new BackstageViewItemBase[] {
-    tabInfo, tabNew, tabOpen,
-    new BackstageViewItemSeparator(),
-    btnExit
-});
+// BackstageViewControlItemCollection has no AddRange — add items one at a time
+backstage.Items.Add(tabInfo);
+backstage.Items.Add(tabNew);
+backstage.Items.Add(tabOpen);
+backstage.Items.Add(new BackstageViewItemSeparator());
+backstage.Items.Add(btnExit);
 
-// Right pane content per tab — assign a UserControl
-tabInfo.ContentControl = new InfoPanel();
-tabNew.ContentControl  = new NewDocumentPanel();
-tabOpen.ContentControl = new OpenPanel();
+// Right pane content per tab — a BackstageViewClientControl you author
+tabInfo.ContentControl = new InfoPanel();          // InfoPanel : BackstageViewClientControl
+tabNew.ContentControl  = new NewDocumentPanel();   // NewDocumentPanel : BackstageViewClientControl
+tabOpen.ContentControl = new OpenPanel();          // OpenPanel : BackstageViewClientControl
 
 ribbon.ApplicationButtonDropDownControl = backstage;
 ```
 
-`BackstageViewTabItem.ContentControl` is any `Control` you author. For recent-files lists, use `RecentItemControl` as a child of that content panel.
+`BackstageViewTabItem.ContentControl` is a `BackstageViewClientControl` — your content panel must **derive from `BackstageViewClientControl`**, not a plain `Control`/`UserControl`. For recent-files lists, use `RecentItemControl` as a child of that content panel.
 
 ### Pick based on `RibbonStyle`
 
@@ -307,13 +308,11 @@ public partial class MainForm : RibbonForm {
 
         // ── Application menu / Backstage ──────────────────────────────
         var backstage = new BackstageViewControl { Ribbon = ribbon };
-        backstage.Items.AddRange(new BackstageViewItemBase[] {
-            new BackstageViewTabItem  { Caption = "Info" },
-            new BackstageViewTabItem  { Caption = "New"  },
-            new BackstageViewTabItem  { Caption = "Open" },
-            new BackstageViewItemSeparator(),
-            new BackstageViewButtonItem { Caption = "Exit" }
-        });
+        backstage.Items.Add(new BackstageViewTabItem  { Caption = "Info" });
+        backstage.Items.Add(new BackstageViewTabItem  { Caption = "New"  });
+        backstage.Items.Add(new BackstageViewTabItem  { Caption = "Open" });
+        backstage.Items.Add(new BackstageViewItemSeparator());
+        backstage.Items.Add(new BackstageViewButtonItem { Caption = "Exit" });
         ribbon.ApplicationButtonDropDownControl = backstage;
 
         // ── Status bar ────────────────────────────────────────────────
@@ -340,7 +339,7 @@ public partial class MainForm : RibbonForm {
     static BarButtonItem MakeBtn(RibbonControl r, string text, string svgKey) {
         var b = r.Items.CreateButton(text);
         b.Id = r.Manager.GetNewItemId();
-        b.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImageCollection)r.Images)[svgKey];
+        b.ImageOptions.SvgImage = ((DevExpress.Utils.SvgImageCollection)r.Images)[svgKey];
         b.RibbonStyle = RibbonItemStyles.Default;
         return b;
     }

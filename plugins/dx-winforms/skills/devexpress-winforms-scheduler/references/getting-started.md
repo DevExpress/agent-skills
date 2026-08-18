@@ -21,9 +21,9 @@ DevExpress.Win.Scheduler
 
 This ships `DevExpress.XtraScheduler.v26.1.dll` (the main control) and associated assemblies.
 
-> **Install via Package Manager Console:**
+> **Install the package:**
 > ```powershell
-> Install-Package DevExpress.Win.Scheduler
+> dotnet add package DevExpress.Win.Scheduler
 > ```
 
 ## Required Namespace Imports
@@ -38,19 +38,9 @@ using DevExpress.XtraEditors;            // XtraForm
 
 Host `SchedulerControl` on `XtraForm` (or `RibbonForm` when using a Ribbon) for correct skin integration.
 
-## Adding to a Form at Design Time
-
-1. In Visual Studio, drag `SchedulerControl` from the Toolbox onto the form. Set `Dock = Fill`.
-2. A `SchedulerDataStorage` component is automatically added and linked via `SchedulerControl.DataStorage`.
-3. Use the control's smart tag to:
-   - Click **Create Ribbon** → **Create All Bars** to generate a `RibbonControl` with view-switching, navigation, and editing commands.
-   - Open **Appointments Data Source** to bind to a data source via the wizard.
-   - Open **Resources Data Source** to bind resources.
-   - Click **Mappings Wizard** to configure field-to-property mappings.
-
 ## Authoring the `.Designer.cs` File
 
-When you generate a form **in code** (rather than dragging from the Toolbox), write it the way the WinForms designer serializes it: declare the `SchedulerControl` and `SchedulerDataStorage` as fields and create/configure them — including `DataStorage` wiring, the active view, and (in bound mode) the field mappings — inside `InitializeComponent()` in `MainForm.Designer.cs`. Keep only data loading (assigning `DataSource`, creating appointments) and event handlers in `MainForm.cs`. This is what keeps the form openable in the Visual Studio WinForms designer — if you instead `new` the control/storage and set mappings in the form constructor body, the designer file stays empty and the form can no longer be edited visually.
+Write the form the way the WinForms designer serializes it: declare the `SchedulerControl` and `SchedulerDataStorage` as fields and create/configure them — including `DataStorage` wiring, the active view, and (in bound mode) the field mappings — inside `InitializeComponent()` in `MainForm.Designer.cs`. Keep only data loading (assigning `DataSource`, creating appointments) and event handlers in `MainForm.cs`. This is what keeps the form openable in the Visual Studio WinForms designer — if you instead `new` the control/storage and set mappings in the form constructor body, the designer file stays empty and the form can no longer be edited visually.
 
 **Rules of thumb — what goes where:**
 
@@ -88,6 +78,7 @@ partial class MainForm {
         this.schedulerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
         this.schedulerControl1.Name = "schedulerControl1";
         this.schedulerControl1.ActiveViewType = DevExpress.XtraScheduler.SchedulerViewType.WorkWeek;
+        // View-specific options (e.g. DayView.TimeScale, and keeping TimeRulers) also belong here, not in the constructor.
         //
         // MainForm
         //
@@ -154,19 +145,18 @@ public partial class MainForm : XtraForm {
 
 `DateNavigator` is a calendar control that automatically synchronizes selection with the `SchedulerControl`. Place both in a `SplitContainerControl` to allow runtime resizing.
 
+Declare the `DateNavigator` as a field in `MainForm.Designer.cs` and create/dock it in `InitializeComponent()` — the only line you typically set in code is the link to the scheduler:
+
 ```csharp
-var dateNav = new DateNavigator {
-    Dock = DockStyle.Left,
-    SchedulerControl = schedulerControl1
-};
-Controls.Add(dateNav);
+// dateNavigator1 and schedulerControl1 are declared in MainForm.Designer.cs
+dateNavigator1.SchedulerControl = schedulerControl1;
 ```
 
 Selecting a date in `DateNavigator` scrolls the scheduler. Selecting a range automatically picks the best-fitting view.
 
 ## RibbonForm Integration
 
-For a Ribbon-based application, derive the form from `RibbonForm`, then use the scheduler's smart tag to create the Ribbon. The generated Ribbon includes:
+For a Ribbon-based application, derive the form from `RibbonForm` and declare the Ribbon in `MainForm.Designer.cs`. A scheduler Ribbon typically includes:
 - **Navigate** tab — Back/Forward, date picker, view switcher
 - **View** tab — view type buttons, time scale, grouping options
 - **File** tab — print and export

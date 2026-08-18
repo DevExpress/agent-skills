@@ -144,7 +144,7 @@ schedulerControl1.InitAppointmentDisplayText +=
 
         // Prepend a tag to the subject
         if (apt.CustomFields["priority"] is string priority)
-            e.DisplayText = $"[{priority}] {e.DisplayText}";
+            e.Text = $"[{priority}] {e.Text}";
 
         // Optionally change description text
         e.Description = $"{apt.Duration.TotalMinutes:0} min — {apt.Location}";
@@ -161,8 +161,11 @@ Fires for each time cell in Day/WorkWeek/FullWeek views. Use to highlight holida
 schedulerControl1.CustomDrawTimeCell +=
     (s, e) =>
     {
+        // Cell characteristics (interval, resource, selection) come from e.ObjectInfo —
+        // cast it to SelectableIntervalViewInfo; they are NOT direct members of e.
+        var info = e.ObjectInfo as DevExpress.XtraScheduler.Drawing.SelectableIntervalViewInfo;
         // Highlight lunch hour
-        if (e.Interval.Start.Hour == 12)
+        if (info != null && info.Interval.Start.Hour == 12)
         {
             e.Cache.FillRectangle(
                 Color.FromArgb(30, Color.Green), e.Bounds);
@@ -174,8 +177,7 @@ schedulerControl1.CustomDrawTimeCell +=
 
 | `e.` Member | Description |
 |---|---|
-| `Interval` | `TimeInterval` this cell represents |
-| `Resource` | Resource owning this cell (when grouped by resource) |
+| `ObjectInfo` | Cast to `SelectableIntervalViewInfo` for the cell's `Interval` (`TimeInterval`), `Resource`, and selection state |
 | `Bounds` | Cell rectangle |
 | `Cache` | `GraphicsCache` for drawing |
 | `Handled` | Set `true` to suppress the default cell render |

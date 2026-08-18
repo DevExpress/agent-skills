@@ -60,7 +60,8 @@ For the classic Bars UI without a ribbon, `XtraForm` (or even a plain `Form`) wo
 ```csharp
 using DevExpress.XtraBars;            // BarManager, Bar, BarItem, BarButtonItem, BarCheckItem, BarSubItem, BarEditItem, ItemClickEventArgs, BarMenuMerge
 using DevExpress.XtraBars.Ribbon;     // RibbonControl, RibbonForm, RibbonPage, RibbonPageGroup, RibbonPageCategory, RibbonStatusBar, ApplicationMenu, BackstageViewControl, RibbonItemStyles, RibbonMdiMergeStyle
-using DevExpress.Utils.Svg;           // SvgImage.FromFile, SvgImageCollection
+using DevExpress.Utils;               // SvgImageCollection
+using DevExpress.Utils.Svg;           // SvgImage, SvgImage.FromFile
 ```
 
 ## Before You Start — Ask the Developer
@@ -78,7 +79,7 @@ If the host agent has a structured question-asking tool available, use it to ask
 
 ### Getting Started
 Refer to [references/getting-started.md](references/getting-started.md) (.NET 8+) or [references/getting-started-dotnet-fw.md](references/getting-started-dotnet-fw.md) (.NET Framework 4.x)
-When you need to: install NuGet, inherit from `RibbonForm`, drop a `RibbonControl` (or `BarManager`) on the form, author the `.Designer.cs` file (ribbon, pages, groups, items, links in `InitializeComponent`) so the form stays designer-editable, create a first page/group/item, hook `ItemClick`.
+When you need to: install NuGet, inherit from `RibbonForm`, add a `RibbonControl` (or `BarManager`) to the form, author the `.Designer.cs` file (ribbon, pages, groups, items, links in `InitializeComponent`) so the form stays designer-editable, create a first page/group/item, hook `ItemClick`.
 
 ### Items and Settings
 Refer to [references/items-and-settings.md](references/items-and-settings.md)
@@ -176,7 +177,7 @@ bars.EndUpdate();
 | Pages | `RibbonPageCategory(name, Color)` / `RibbonPage(name)` / `RibbonPageGroup(name)` | Structure. Categories optional; pages must be inside ribbon or a category. |
 | Items | `BarButtonItem`, `BarCheckItem`, `BarToggleSwitchItem`, `BarSubItem`, `BarEditItem`, `BarStaticItem`, `BarHeaderItem`, `BarLargeButtonItem`, `BarMdiChildrenListItem`, `RibbonGalleryBarItem`, `SkinDropDownButtonItem` | One per command type. A split button is a `BarButtonItem` with `ButtonStyle = BarButtonStyle.DropDown`. |
 | Item properties | `Caption`, `ImageOptions.SvgImage`/`Image`/`ImageUri`, `RibbonStyle`, `PaintStyle`, `ButtonStyle`, `GroupIndex`, `ItemShortcut`, `Hint`/`SuperTip`, `SearchTags`, `Tag`, `Id`, `Enabled`, `Visibility` | Shared on `BarItem`. |
-| Link properties | `BarItemLink.UserCaption`, `UserGlyph`, `UserRibbonStyle`, `UserAlignment`, `BeginGroup`, `Visible`, `Enabled`, `MostRecentlyUsed`, `PaintStyle` | Per-link overrides; one item, many links. |
+| Link properties | `BarItemLink.UserCaption`, `UserGlyph`, `UserRibbonStyle`, `UserAlignment`, `UserPaintStyle`, `BeginGroup`, `Visible`, `MostRecentlyUsed` | Per-link overrides; one item, many links. (A link's `PaintStyle`/`Enabled` are read-only — set `UserPaintStyle` / the item's `Enabled`.) |
 | Bars | `BarManager.Form` / `Bars` / `Items` / `MainMenu` / `StatusBar` / `MdiMenuMergeStyle` | Classic stack. |
 | Bars | `Bar.DockStyle` / `DockRow` / `OptionsBar` / `LinksPersistInfo` | Bar layout. |
 | Bars | `Bar.Merge(bar)` / `Bar.UnMerge()` / `BarManager.Merge`/`UnMerge` events | Manual merging. |
@@ -274,7 +275,7 @@ ribbon.StatusBar.ItemLinks.Add(zoom);
 
 CRITICAL — follow these rules in every interaction:
 
-1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
+1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **Author the form's `.Designer.cs`, not the constructor body.** Declare the `RibbonControl` (or `BarManager`), its `RibbonPage`/`RibbonPageGroup`/`BarItem*` objects, and the `ItemLinks` as fields of the `*.Designer.cs` partial class and build them in `InitializeComponent()`, wrapping setup in `((System.ComponentModel.ISupportInitialize)(ribbonControl1)).BeginInit()` … `EndInit()`. Keep only `ItemClick` handlers and runtime data in the form's `.cs` file. Building the whole ribbon in the constructor leaves the designer file empty so the form cannot be reopened in the Visual Studio WinForms designer. See [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file).
 3. **NuGet**: ribbon and bars live in `DevExpress.Win.Navigation`. Do not mix versions across the solution.
 4. **Host form**: `RibbonControl` requires a `RibbonForm`. `BarManager` works on any form but `XtraForm` is recommended for skinning.
@@ -285,7 +286,7 @@ CRITICAL — follow these rules in every interaction:
 9. **There is no native WinForms MVVM**: use `DevExpress.Mvvm` (`BindableBase`, `DelegateCommand`) + `BindingSource` + `BarItem.DataBindings` for property binding. Wire `ItemClick` to `command.Execute`.
 10. **Merging**: ribbon pages, groups, page-header items, and QAT merge automatically when `MdiMergeStyle` triggers; status bars and arbitrary toolbars do **not** — merge them manually in the `Merge`/`UnMerge` event handlers.
 11. **Use SVG images**: assign `ImageOptions.SvgImage` from an `SvgImageCollection` (the most reliable approach) — it scales for High-DPI and respects skin recoloring. For a built-in DevExpress icon use `ImageOptions.ImageUri.Uri` with the exact gallery format `"<ImageName>;Size<W>x<H>"` (e.g., `"Print;Size32x32"`); do not guess the string. Raster `Image` is the fallback for legacy assets.
-12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

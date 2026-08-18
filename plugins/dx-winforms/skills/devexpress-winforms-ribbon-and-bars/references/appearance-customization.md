@@ -33,19 +33,21 @@ Apply once, before any form is shown:
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 
-UserLookAndFeel.Default.SetSkinStyle(SkinSvgPalette.WXI.WhiteSquid);
+UserLookAndFeel.Default.SetSkinStyle(SkinStyle.WXI);
 // Other examples:
-// UserLookAndFeel.Default.SetSkinStyle(SkinSvgPalette.Bezier.AquaRush);
+// UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Bezier);
 // UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Office2019Colorful);
-// UserLookAndFeel.Default.SetSkinStyle(SkinStyle.DevExpressDarkStyle);
+// UserLookAndFeel.Default.SetSkinStyle(SkinStyle.DevExpressDark);
+// A specific palette (color variant) uses the (skinName, paletteName) string overload:
+// UserLookAndFeel.Default.SetSkinStyle("WXI", "Sharp");
 SkinManager.EnableFormSkins();
 ```
 
 Skin families: **WXI** (Windows 11), **Bezier**, **The Bezier**, **DevExpress Style**, **DevExpress Dark Style**, **Office 2019 Colorful**, **Office 2019 Dark Gray**, **Office 2019 Black**, **Office 2019 White**, **Office 2016 Colorful**, **Office 2016 Dark**, **Visual Studio 2013**, **Visual Studio 2017**, **High Contrast**.
 
-Many skins ship with multiple **palettes** (color variants). Use `SkinSvgPalette.<Skin>.<Palette>` for a typed pick or the `SkinHelper`-based skin chooser at runtime.
+Many skins ship with multiple **palettes** (color variants). Pass the skin name and palette name to the `SetSkinStyle(string skinName, string paletteName)` overload, or use the `SkinHelper`-based skin chooser at runtime.
 
-End-user skin picker — drop `SkinDropDownButtonItem` and `SkinPaletteDropDownButtonItem` into the ribbon:
+End-user skin picker — add `SkinDropDownButtonItem` and `SkinPaletteDropDownButtonItem` to the ribbon:
 
 ```csharp
 ribbon.Items.Add(new SkinDropDownButtonItem());
@@ -77,7 +79,7 @@ ribbon.RibbonStyle = RibbonControlStyle.Office2019;
 
 Every visual element exposes one or more `AppearanceObject` properties on `Appearance` or `Appearances` (depending on the class). An `AppearanceObject` has `Font`, `ForeColor`, `BackColor`, `BackColor2`, `BorderColor`, `GradientMode`, `TextOptions`, `Image*`, plus a `UseFont` / `UseForeColor` / `UseBackColor` flag for each one that you must enable for the override to take effect (when the property is exposed as `Use…` instead of being implicit).
 
-There is **no** `RibbonControl.Appearance` property. Ribbon-wide per-element appearances are exposed through the docking controller's `AppearancesRibbon` (type `RibbonAppearances`) — see the next section. `RibbonAppearances` exposes members such as `PageGroupCaption`, `PageHeader`, `PageHeaderSelected`, `PageHeaderHovered`, `PageCategory`, `Item`, `ItemHovered`, `ItemPressed`, and `ApplicationButton`.
+There is **no** `RibbonControl.Appearance` property. Ribbon-wide per-element appearances are exposed through a `BarAndDockingController`'s `AppearancesRibbon` (type `RibbonAppearances`) — reached via `DefaultBarAndDockingController.Controller.AppearancesRibbon` (see the next section). `RibbonAppearances` exposes members such as `PageGroupCaption`, `PageHeader`, `PageHeaderSelected`, `PageHeaderHovered`, `PageCategory`, `Item`, `ItemHovered`, `ItemPressed`, and `ApplicationButton`.
 
 Per-item appearance — `BarItem` exposes `Appearance` and `AppearanceDisabled`:
 
@@ -97,17 +99,18 @@ toolBar.Appearance.Options.UseBackColor = true;
 
 Two non-visual components let you override defaults for **all** bars and ribbons:
 
-- **`DefaultBarAndDockingController`** — application-scope. Drop one onto your startup form, set its `Default = true`. All `BarManager`/`RibbonControl`/`DockManager`/`DocumentManager` instances in the app inherit its settings unless overridden.
-- **`BarAndDockingController`** — form-scope. Drop onto a form, assign each `BarManager`/`RibbonControl`/`DockManager` to it via the `Controller` property.
+- **`DefaultBarAndDockingController`** — application-scope. Add one to your startup form, set its `Default = true`. All `BarManager`/`RibbonControl`/`DockManager`/`DocumentManager` instances in the app inherit its settings unless overridden.
+- **`BarAndDockingController`** — form-scope. Add it to a form, assign each `BarManager`/`RibbonControl`/`DockManager` to it via the `Controller` property.
 
 Settings include `LookAndFeel`, `AppearancesBar`, `AppearancesRibbon`, `BarItemStyle`, `PaintStyle`, `PaintStyleName`, `EnableLogicalSkinning`, `MenuAnimationType`, `OptionsRibbonMiniToolbar`, etc.
 
 ```csharp
-defaultController.AppearancesRibbon.PageGroupCaption.BackColor = Color.FromArgb(45, 45, 48);
-defaultController.AppearancesRibbon.PageGroupCaption.Options.UseBackColor = true;
+// DefaultBarAndDockingController exposes the appearances through its Controller property.
+defaultController.Controller.AppearancesRibbon.PageGroupCaption.BackColor = Color.FromArgb(45, 45, 48);
+defaultController.Controller.AppearancesRibbon.PageGroupCaption.Options.UseBackColor = true;
 
-defaultController.AppearancesBar.ItemsBar.ForeColor = Color.White;
-defaultController.AppearancesBar.ItemsBar.Options.UseForeColor = true;
+defaultController.Controller.AppearancesBar.Bar.ForeColor = Color.White;
+defaultController.Controller.AppearancesBar.Bar.Options.UseForeColor = true;
 ```
 
 Use this when you want consistent appearance across many forms without setting `Appearance` on every individual `RibbonControl` / `BarManager`.
@@ -137,8 +140,8 @@ For those, `RibbonControl` exposes a single owner-draw hook — `CustomDrawItem`
 
 ```csharp
 ribbon.CustomDrawItem += (s, e) => {
-    if (e.ObjectInfo is DevExpress.XtraBars.ViewInfo.BarButtonItemViewInfo info
-        && info.Item.Caption == "Save") {
+    // e.LinkInfo is a BarLinkViewInfo; its Link.Item is the BarItem being drawn.
+    if (e.LinkInfo?.Link?.Item is BarButtonItem btn && btn.Caption == "Save") {
         e.Cache.FillRectangle(new SolidBrush(Color.MediumSeaGreen), e.Bounds);
         e.Handled = true;
     }
@@ -165,25 +168,27 @@ When you find a customization you cannot make through `Appearance*`, the answer 
 
 ## Bars Appearance
 
-`Bar.Appearance` and `BarManager.AppearanceBar` / `AppearanceMenu` cover the classic toolbar/menu chrome. Subitem captions, hovered items, and disabled items each have their own `AppearanceObject`.
+`Bar.Appearance` covers a single toolbar's chrome. Bar- and menu-wide appearances live on a `BarAndDockingController` (app-scope `DefaultBarAndDockingController`, or a form-scope `BarAndDockingController` assigned via `BarManager.Controller`): `AppearancesBar.Bar` / `.MainMenu` / `.SubMenu` / `.StatusBar`. Subitem captions, hovered items, and disabled items each have their own `AppearanceObject`.
 
 ```csharp
-barManager1.AppearanceMenu.Header.BackColor = Color.FromArgb(50, 50, 50);
-barManager1.AppearanceMenu.Header.ForeColor = Color.White;
-barManager1.AppearanceMenu.Header.Options.UseBackColor = true;
-barManager1.AppearanceMenu.Header.Options.UseForeColor = true;
+// Menu header appearance via the controller (BarManager has no AppearanceMenu property).
+var menu = defaultController.Controller.AppearancesBar.SubMenu.HeaderItemAppearance;
+menu.BackColor = Color.FromArgb(50, 50, 50);
+menu.ForeColor = Color.White;
+menu.Options.UseBackColor = true;
+menu.Options.UseForeColor = true;
 ```
 
-For per-item paint style overrides on a single link:
+For a paint-style override on a single link (`link.PaintStyle` is read-only — use `UserPaintStyle`):
 
 ```csharp
-link.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+link.UserPaintStyle = BarItemPaintStyle.CaptionGlyph;
 ```
 
 ## DPI and Glyph Rendering
 
 - Always prefer SVG (`ImageOptions.SvgImage`) for icons. SVG glyphs are re-recolored to match the active skin; raster glyphs are not.
-- Set `RibbonControl.DefaultGlyphSize` and `RibbonControl.LargeGlyphSize` to control icon dimensions.
+- Control icon dimensions through the glyphs you supply: set the `ImageSize` of the `SvgImageCollection` (or provide separate small/large images via `RibbonControl.Images` / `LargeImages`). SVG glyphs then scale automatically to the size the ribbon requests.
 - High-DPI scaling works automatically when `<ApplicationHighDpiMode>` is set in `Program.Main`:
 
 ```csharp

@@ -25,13 +25,6 @@ Supported targets:
 
 Drag works **only between these supported DevExpress controls**. For other targets use the standard engine.
 
-### Attach in the Designer
-
-1. Drop `BehaviorManager` from the Toolbox onto the form.
-2. Smart tag → **Edit Behaviors…**.
-3. Add **Drag and Drop Behavior**; the Behavior's `Target` is the source/target control.
-4. Repeat per control that should participate.
-
 ### Attach in Code
 
 ```csharp

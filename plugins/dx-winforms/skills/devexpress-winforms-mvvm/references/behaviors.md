@@ -155,7 +155,7 @@ mvvmContext1.AttachBehavior<GridCtrlVBehavior>(gridControl1);
 |---|---|
 | `mvvmContext.AttachBehavior<TBehavior>(control)` | Class-based behavior, no initialization |
 | `mvvmContext.AttachBehavior<TBehavior>(control, init, eventName)` | Class-based with inline initialization |
-| `fluent.WithEvent<TArgs>(control, "EventName").Confirmation(...)` | Inline confirmation, one line |
+| `mvvmContext.WithEvent<TArgs>(control, "EventName").Confirmation(...)` | Inline confirmation, one line — `Confirmation` is on the **MVVMContext-level** `WithEvent`, **not** the Fluent-API `fluent.WithEvent` (which has no `.Confirmation`) |
 | `fluent.WithEvent<TArgs>(control, "EventName").EventToCommand(vm => vm.Method)` | Inline event-to-command, one line |
 | `fluent.WithKey(control, Keys.X).KeyToCommand(vm => vm.Method)` | Keyboard shortcut |
 

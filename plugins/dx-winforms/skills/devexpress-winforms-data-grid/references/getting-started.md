@@ -24,7 +24,7 @@ This reference covers the prerequisites, NuGet packages, and minimal code needed
 | `DevExpress.Win` *(umbrella)* | Adds most WinForms UI controls including Grid, TreeList, Editors, Bars, etc. Heavier; faster to start with, slower designer load. |
 | `DevExpress.Win.Design` *(umbrella + extra design-time)* | `DevExpress.Win` plus additional design-time components. |
 
-Atomic packages give 15–20% faster designer load over the umbrella package. Install via the Visual Studio NuGet UI, `dotnet add package`, or the local DevExpress Unified Component Installer feed. Keep all DevExpress NuGet versions aligned across the solution.
+Atomic packages give 15–20% faster designer load over the umbrella package. Install them with `dotnet add package` (they are on nuget.org and in the local DevExpress Unified Component Installer feed). Keep all DevExpress NuGet versions aligned across the solution.
 
 ### Project file example
 
@@ -53,16 +53,6 @@ using DevExpress.XtraEditors.Repository;
 ## Host Form
 
 The grid renders on any `Form`, but DevExpress skin integration looks best on `XtraForm` (or `RibbonForm` when the form has a ribbon).
-
-## Minimal Setup at Design Time
-
-1. Open the form in the Visual Studio designer.
-2. Drag a `GridControl` from the DevExpress Toolbox onto the form. A `GridView` named `gridView1` is created automatically as the main view.
-3. Set `gridControl1.Dock = DockStyle.Fill` (or anchor as needed).
-4. Click the smart tag → **Data Source Wizard** to bind to a database, or set `DataSource` in code.
-5. Click the smart tag → **Run Designer…** → **Columns** → **Retrieve Fields** to populate columns from the bound source.
-
-For `TreeList`, follow the same steps but additionally set `KeyFieldName`, `ParentFieldName`, and `RootValue` in the **Properties** window before binding.
 
 ## Minimal Setup in Code
 

@@ -9,10 +9,10 @@
 DevExpress.Win.PivotGrid
 ```
 
-Install via the NuGet Package Manager or Package Manager Console:
+Install the package:
 
 ```powershell
-Install-Package DevExpress.Win.PivotGrid
+dotnet add package DevExpress.Win.PivotGrid
 ```
 
 **Assembly**: `DevExpress.XtraPivotGrid.v26.1.dll`  
@@ -33,14 +33,6 @@ using DevExpress.Utils;
 ---
 
 ## Add PivotGridControl to a Form
-
-### Designer
-
-1. Open the Toolbox → **DX.26.1: Data** group.
-2. Drag **PivotGridControl** onto an `XtraForm`.
-3. Set `Dock = Fill` in the Properties window.
-
-### Code-Only (XtraForm)
 
 ```csharp
 using DevExpress.XtraEditors;

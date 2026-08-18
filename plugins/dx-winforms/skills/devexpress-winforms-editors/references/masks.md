@@ -43,15 +43,7 @@ For these editors, validate input via `Validating` / `EditValueChanged` instead.
 
 ## How to Apply a Mask
 
-### In the Visual Studio designer
-
-1. Select the editor.
-2. In the **Properties** window, click the ellipsis next to `Properties.MaskSettings`.
-3. Pick a mask type from the dropdown.
-4. Pick a predefined expression or click **Create New Mask…**.
-5. Optionally toggle **Show Advanced Options** for `UseMaskAsDisplayFormat`, `AutoComplete`, `AllowBlankInput`, etc.
-
-### In code (fluent API — recommended)
+Use the fluent `MaskSettings.Configure<T>()` API:
 
 ```csharp
 using DevExpress.XtraEditors.Mask;
@@ -74,12 +66,12 @@ textEdit4.Properties.MaskSettings.Configure<MaskSettings.RegExp>(s => {
     s.MaskExpression = @"\d+(\.\d{0,2})?";       // optional 2-decimal number
     s.ShowPlaceholders = true;
     s.Placeholder = '_';
-    s.AutoComplete = true;
+    s.IsAutoComplete = true;
 });
 ```
 
 The generic argument types are nested types of the public `DevExpress.XtraEditors.Mask.MaskSettings` class (imported above via `using DevExpress.XtraEditors.Mask;`):
-`MaskSettings.Numeric`, `MaskSettings.DateOnly`, `MaskSettings.TimeOnly`, `MaskSettings.DateTime`, `MaskSettings.DateTimeOffset`, `MaskSettings.TimeSpan`, `MaskSettings.Simple`, `MaskSettings.RegExp`, `MaskSettings.RegExpSimplified`.
+`MaskSettings.Numeric`, `MaskSettings.DateOnly`, `MaskSettings.TimeOnly`, `MaskSettings.DateTime`, `MaskSettings.DateTimeOffset`, `MaskSettings.TimeSpan`, `MaskSettings.Simple`, `MaskSettings.RegExp` (extended regex), `MaskSettings.Regular` (simplified regex).
 
 ### In code (legacy API — still supported)
 
@@ -245,9 +237,8 @@ Settings unique to RegEx (`MaskSettings.RegExp`):
 | `MaskExpression` | The pattern. |
 | `ShowPlaceholders` | Show underscores (or `Placeholder`) for empty metacharacters. |
 | `Placeholder` | Character used for placeholders. Default `_`. |
-| `AutoComplete` | Auto-fill literal characters as the user types. |
+| `IsAutoComplete` | Auto-fill literal characters as the user types. |
 | `AllowBlankInput` | Allow the editor to be empty even if the pattern requires content. |
-| `CaseSensitive` | Match case for character ranges. |
 
 ## TimeSpan Mask Reference
 
@@ -267,13 +258,11 @@ By default the mask only restricts editing; the displayed value when the editor 
 textEdit1.Properties.Mask.UseMaskAsDisplayFormat = true;
 ```
 
-Or in the fluent API:
+`UseMaskAsDisplayFormat` lives on `Properties.Mask`, not on the fluent `MaskSettings.*` types — configure the mask fluently, then set the flag:
 
 ```csharp
-textEdit1.Properties.MaskSettings.Configure<MaskSettings.Numeric>(s => {
-    s.MaskExpression = "c2";
-    s.UseMaskAsDisplayFormat = true;
-});
+textEdit1.Properties.MaskSettings.Configure<MaskSettings.Numeric>(s => s.MaskExpression = "c2");
+textEdit1.Properties.Mask.UseMaskAsDisplayFormat = true;
 ```
 
 This is the usual choice for currency / date masks where the unfocused display should match the input format.

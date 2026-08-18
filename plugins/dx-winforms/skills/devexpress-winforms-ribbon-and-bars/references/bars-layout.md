@@ -27,7 +27,7 @@ For the items that live inside bars, see [items-and-settings.md](items-and-setti
 
 ## `BarManager` — The Top-Level Component
 
-A `BarManager` is a non-visual component that owns all bars, items, and the four dock containers. Drop it onto a form (or set `Form = this` in code).
+A `BarManager` is a non-visual component that owns all bars, items, and the four dock containers. Add it to a form (or set `Form = this` in code).
 
 ```csharp
 var bars = new BarManager { Form = this };
@@ -130,15 +130,15 @@ var palette = new Bar(bars, "Color Palette") {
 
 Sometimes you want a toolbar that does *not* live in any of the four form-side dock containers — e.g., inside a `UserControl`, a `XtraTabPage`, or a side panel.
 
-Drop a `StandaloneBarDockControl` onto the target container and set the bar's `DockStyle = Standalone`:
+Add a `StandaloneBarDockControl` to the target container and set the bar's `DockStyle = Standalone`:
 
 ```csharp
 var standalone = new StandaloneBarDockControl { Dock = DockStyle.Top };
 panel.Controls.Add(standalone);
+standalone.Manager = bars;
 
 var localToolbar = new Bar(bars, "Local") { DockStyle = BarDockStyle.Standalone };
-standalone.Manager = bars;
-standalone.AssignedBars.Add(new BarLink(localToolbar.Name));
+localToolbar.StandaloneBarDockControl = standalone;   // host this bar in the standalone dock control
 ```
 
 `StandaloneBarDockControl` is what makes "context toolbars" practical — a toolbar that belongs to one panel, not the whole form.
@@ -234,7 +234,7 @@ link.UserAlignment = BarItemLinkAlignment.Right;
 - **`MainMenu` is just a toolbar look-alike** — assign `bars.MainMenu = mainBar` for it to span the row and auto-merge in MDI.
 - **Status bar items missing borders** — `OptionsBar.DrawDragBorder = false` is enabled by default for the status bar role. That is intentional.
 - **Floating panel ignores `FloatLocation`** — set it before docking changes; the location is captured when the bar transitions to `None`.
-- **Standalone bar empty** — `StandaloneBarDockControl.AssignedBars` not populated. Add a `BarLink(bar.Name)` referencing the docked bar.
+- **Standalone bar empty** — the bar's `StandaloneBarDockControl` is not assigned. Set `bar.StandaloneBarDockControl = theDockControl` (and `theDockControl.Manager = bars`).
 - **Vertical bar text upside down** — `OptionsBar.RotateWhenVertical = true` is the default. Set it to `false` to keep items horizontal in a Left/Right docked bar.
 
 ## Source Material

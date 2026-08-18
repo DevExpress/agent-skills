@@ -55,9 +55,8 @@ SplashScreenManager.CloseForm();
 
 ## Wait Form — Minimum Code
 
-1. Drop a `SplashScreenManager` component on the form.
-2. Right-click it in the VS tray → **Add Wait Form**. A `WaitForm1` class is generated.
-3. Show/hide via the `SplashScreenManager` instance or the static API:
+1. Add a `WaitForm1` class derived from `DevExpress.XtraWaitForm.WaitForm` to the project.
+2. Show/hide it via a `SplashScreenManager` instance or the static API:
 
 ```csharp
 // Show (opens in a separate thread — non-blocking)
@@ -73,7 +72,7 @@ splashScreenManager1.SetWaitFormDescription("Fetching from server");
 splashScreenManager1.CloseWaitForm();
 ```
 
-Static (no designer component needed):
+Static (no `SplashScreenManager` instance needed):
 
 ```csharp
 SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
@@ -113,8 +112,7 @@ The overlay can target any control or the form itself.
 ```csharp
 using DevExpress.XtraWaitForm;
 
-// In designer: drag ProgressPanel from Toolbox, set Visible = false
-// In code:
+// Declare progressPanel1 in MainForm.Designer.cs with Visible = false, then:
 private async void btnLoad_Click(object sender, EventArgs e)
 {
     progressPanel1.Caption     = "Loading";
@@ -146,14 +144,14 @@ pp.BringToFront();
 
 ---
 
-## Design-Time Quick Start
+## Quick Reference
 
-| Indicator | Toolbox item | Steps |
-|---|---|---|
-| Splash Screen (Fluent/Skin) | None — code only | Call `SplashScreenManager.ShowFluentSplashScreen(...)` before `Application.Run()` |
-| Wait Form | Drop **SplashScreenManager** onto form | Right-click component → Add Wait Form; call `ShowWaitForm()` / `CloseWaitForm()` |
-| Overlay Form | None — code only | Call `SplashScreenManager.ShowOverlayForm(control)` |
-| ProgressPanel | **ProgressPanel** in Toolbox | Drag onto form; set `Visible = false`; toggle in code |
+| Indicator | How to show it |
+|---|---|
+| Splash Screen (Fluent/Skin) | Call `SplashScreenManager.ShowFluentSplashScreen(...)` before `Application.Run()` |
+| Wait Form | Add a `WaitForm` descendant, then call `ShowWaitForm()` / `CloseWaitForm()` |
+| Overlay Form | Call `SplashScreenManager.ShowOverlayForm(control)` |
+| ProgressPanel | Add the control to the form with `Visible = false`; toggle it in code |
 
 ## Source Material
 

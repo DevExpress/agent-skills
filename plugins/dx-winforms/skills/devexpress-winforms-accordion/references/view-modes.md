@@ -102,8 +102,9 @@ accordionControl1.ExpandElementMode = ExpandElementMode.Multiple;
 ### Auto-Scroll on Expand
 
 ```csharp
-// Scroll the control so that the expanded element's content is visible
-accordionControl1.ElementPositionOnExpanding = ElementPositionOnExpanding.ScrollToTop;
+// Scroll the control so that the expanded element's content is visible.
+// Valid values: Default, Fixed, ScrollUp.
+accordionControl1.ElementPositionOnExpanding = ElementPositionOnExpanding.ScrollUp;
 ```
 
 ### Expand / Collapse All

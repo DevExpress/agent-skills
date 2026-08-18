@@ -19,8 +19,8 @@ fieldSales.SummaryType = DevExpress.Data.PivotGrid.PivotSummaryType.Sum;
 | `Max` | Maximum value |
 | `StdDev` | Sample standard deviation |
 | `StdDevp` | Population standard deviation |
-| `StdVar` | Sample variance |
-| `StdVarp` | Population variance |
+| `Var` | Sample variance |
+| `Varp` | Population variance |
 | `Custom` | Handled via the `CustomSummary` event |
 
 ### Summary Display Types
@@ -35,15 +35,15 @@ fieldSales.SummaryDisplayType =
 | `PivotSummaryDisplayType` value | Shows |
 |---|---|
 | `Default` | Raw summary value |
-| `PercentOfColumnTotal` | % of the column subtotal |
+| `PercentOfColumn` | % of the column subtotal |
 | `PercentOfColumnGrandTotal` | % of the column grand total |
-| `PercentOfRowTotal` | % of the row subtotal |
+| `PercentOfRow` | % of the row subtotal |
 | `PercentOfRowGrandTotal` | % of the row grand total |
 | `PercentOfGrandTotal` | % of the overall grand total |
 | `AbsoluteVariation` | Absolute diff from the previous cell |
 | `PercentVariation` | % diff from the previous cell |
-| `RankInColumnSmallestIsTop` | Rank within column (1 = smallest) |
-| `RankInRowSmallestIsTop` | Rank within row |
+| `RankInColumnSmallestToLargest` | Rank within column (1 = smallest) |
+| `RankInRowSmallestToLargest` | Rank within row |
 
 ### Custom Summary
 
@@ -155,19 +155,22 @@ field.SortMode = PivotSortMode.Value;
 ### Sort by Summary (Sort a Row/Column by a Data Field's Values)
 
 ```csharp
-// Sort the "Category" row field by "Sales" data field values in ascending order
-fieldCategory.SortBySummaryInfo.Field     = fieldSales;
-fieldCategory.SortBySummaryInfo.SortOrder = PivotSortOrder.Descending;
-// Optionally limit to a specific column or row crossing:
-// fieldCategory.SortBySummaryInfo.ColumnField = fieldYear;
+// Sort the "Category" row field by the "Sales" data field summary
+fieldCategory.SortBySummaryInfo.Field = fieldSales;
+// Direction is set on the field itself — SortBySummaryInfo has no SortOrder:
+fieldCategory.SortOrder = PivotSortOrder.Descending;
+// Optionally restrict the sort to a specific column/row crossing by adding
+// entries to fieldCategory.SortBySummaryInfo.Conditions.
 ```
 
 ### Top N (limit displayed values)
 
 ```csharp
-// Show only the top 5 categories by Sales
+// Show only the top 5 categories by Sales (largest first)
+fieldCategory.SortBySummaryInfo.Field = fieldSales;   // rank by the Sales summary
+fieldCategory.SortOrder = PivotSortOrder.Descending;   // largest first
 fieldCategory.TopValueCount    = 5;
-fieldCategory.TopValueType     = PivotTopValueType.Largest;
+fieldCategory.TopValueType     = PivotTopValueType.Absolute; // Absolute = top N by count (Percent / Sum also available)
 fieldCategory.TopValueShowOthers = true; // group the rest as "Others"
 ```
 
@@ -250,7 +253,7 @@ fieldCategory.Options.ShowTotals = false;
 | `PivotGridField.SortMode` | `PivotSortMode.Value` / `DisplayText` |
 | `PivotGridField.SortBySummaryInfo` | Sort row/col by a data field |
 | `PivotGridField.TopValueCount` | Limit displayed values |
-| `PivotGridField.TopValueType` | `Largest` / `Smallest` |
+| `PivotGridField.TopValueType` | `PivotTopValueType.Absolute` / `Percent` / `Sum` |
 | `PivotGridField.TopValueShowOthers` | Group remaining values as "Others" |
 | `PivotGridField.FilterValues` | `PivotGridFieldFilterValues` — programmatic filter |
 | `FilterValues.FilterType` | `PivotFilterType.Included` / `Excluded` |

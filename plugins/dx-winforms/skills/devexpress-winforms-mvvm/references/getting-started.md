@@ -10,7 +10,7 @@ DevExpress WinForms supports two MVVM approaches — choose one based on your pr
 | Approach | Package(s) | .NET Requirement | Priority |
 |---|---|---|---|
 | **DevExpress Compile-Time (Code Generator)** | `DevExpress.Mvvm.CodeGenerators` + `DevExpress.Mvvm` | .NET 6+ (C# source generators) | **Recommended for new projects** |
-| DevExpress Runtime POCO | `DevExpress.Utils` (included in all DevExpress WinForms packages) | .NET Framework 4.6.2+ or .NET 8+ | Legacy / design-time-first |
+| DevExpress Runtime POCO | `DevExpress.Utils` (included in all DevExpress WinForms packages) | .NET Framework 4.6.2+ or .NET 8+ | Legacy |
 | Microsoft CommunityToolkit.Mvvm | `CommunityToolkit.Mvvm` | .NET 6+ | Alternative; no DevExpress Services/Behaviors |
 
 All approaches use the `MVVMContext` component (`DevExpress.Utils.MVVM` namespace, in `DevExpress.Utils.v26.1.dll`) for binding ViewModel to View.
@@ -21,7 +21,7 @@ All approaches use the `MVVMContext` component (`DevExpress.Utils.MVVM` namespac
 
 ### Option A: DevExpress Compile-Time (Recommended)
 
-Install via NuGet Package Manager or `dotnet add package`:
+Install with `dotnet add package`:
 
 ```
 DevExpress.Mvvm.CodeGenerators    (free; from NuGet.org — no DevExpress license required)
@@ -63,12 +63,7 @@ using DevExpress.Mvvm.CodeGenerators;   // GenerateViewModel, GenerateProperty, 
 
 The `MVVMContext` is the bridge between a View (Form / UserControl) and its ViewModel.
 
-**Design-time (recommended):**
-1. Open the form in the designer.
-2. Drag `MVVMContext` from the Toolbox onto the form (appears in the component tray).
-3. Click its smart tag → **Add ViewModel** to create a bound ViewModel class, or use the drop-down to assign an existing one.
-
-**Code-only (compile-time approach):**
+Declare the `MVVMContext` component in `MainForm.Designer.cs` (`InitializeComponent`), then assign the ViewModel type and set up bindings in the form:
 
 ```csharp
 // In the Form constructor
@@ -114,19 +109,19 @@ partial class MainViewModel {
     string userName = string.Empty;
 
     [GenerateCommand]
-    void Save() {
+    public void Save() {   // public: bound from the View via vm => vm.Save
         // business logic — no UI references
     }
     bool CanSave() => !string.IsNullOrEmpty(UserName);
 
     [GenerateCommand]
-    async Task LoadAsync() {
+    public async Task LoadAsync() {
         await Task.Delay(1000); // simulate work
     }
 }
 ```
 
-The generator creates `UserName` property (with `RaisePropertyChanged`), `SaveCommand` (`DelegateCommand`), `LoadCommand` (`AsyncCommand`), and wires `CanSave()` automatically.
+The generator creates the `UserName` property (with `RaisePropertyChanged`), `SaveCommand` (`DelegateCommand`), `LoadAsyncCommand` (`AsyncCommand` — the DevExpress generator keeps the full method name and appends `Command`, so `LoadAsync` → `LoadAsyncCommand`), and wires `CanSave()` automatically.
 
 **3. View:**
 ```csharp

@@ -54,7 +54,9 @@ spinEdit1.Properties.IsFloatValue = false;       // integer mode
 | **`TimeSpanEdit`** | `TimeSpan` | For duration values; supports `[d.]HH:mm:ss[.fff]` patterns. |
 
 ```csharp
-dateEdit1.Properties.VistaCalendarViewStyle  = VistaCalendarViewStyle.TouchUI;
+// Touch style: DateEdit.Properties.CalendarView (DevExpress.XtraEditors.Repository.CalendarView) — NOT
+// VistaCalendarViewStyle, whose values are the zoom levels (MonthView/YearView/…).
+dateEdit1.Properties.CalendarView            = DevExpress.XtraEditors.Repository.CalendarView.TouchUI;
 dateEdit1.Properties.AllowNullInput          = DefaultBoolean.True;
 dateEdit1.Properties.NullDate                = DateTime.MinValue;
 dateEdit1.Properties.DisplayFormat.FormatType   = FormatType.DateTime;
@@ -72,7 +74,7 @@ dateEdit1.Properties.DisplayFormat.FormatString = "d";
 ```csharp
 checkEdit1.Properties.Caption    = "Send email";
 checkEdit1.Properties.AllowGrayed = false;
-checkEdit1.Properties.InplaceModeImmediatePostChanges = true;
+checkEdit1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
 
 toggleSwitch1.Properties.OnText  = "On";
 toggleSwitch1.Properties.OffText = "Off";
@@ -176,7 +178,7 @@ lookUp.Properties.Columns.AddRange(new[] {
 ```csharp
 ratingControl1.Properties.ItemCount = 5;
 ratingControl1.Properties.FillPrecision = RatingItemFillPrecision.Half;
-ratingControl1.Properties.InplaceModeImmediatePostChanges = true;
+ratingControl1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
 ```
 
 ## Hyperlink

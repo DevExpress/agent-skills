@@ -19,7 +19,7 @@ This reference covers the minimum setup for DevExpress WinForms editors: the NuG
 | `DevExpress.Win.Dialogs` | `BrowsePathEdit`, `XtraOpenFileDialog`, `XtraSaveFileDialog`, `XtraFolderBrowserDialog`. |
 | `DevExpress.Win` *(umbrella)* | One package for most WinForms controls including all editors. Heavier; faster to start with. |
 
-Add via Visual Studio NuGet UI, `dotnet add package`, or the local DevExpress Unified Component Installer feed. Keep all DevExpress versions aligned across the solution.
+Add them with `dotnet add package` (they are on nuget.org and in the local DevExpress Unified Component Installer feed). Keep all DevExpress versions aligned across the solution.
 
 ```xml
 <ItemGroup>
@@ -116,11 +116,11 @@ Subscribe to `EditValueChanged` for general notifications, `EditValueChanging` t
 By default, value changes commit when focus leaves the editor. For editors with a single discrete value, set the editor to push on each change:
 
 ```csharp
-checkEdit1.Properties.InplaceModeImmediatePostChanges = true;
-toggleSwitch1.Properties.InplaceModeImmediatePostChanges = true;
-trackBar1.Properties.InplaceModeImmediatePostChanges = true;
-ratingControl1.Properties.InplaceModeImmediatePostChanges = true;
-radioGroup1.Properties.InplaceModeImmediatePostChanges = true;
+checkEdit1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
+toggleSwitch1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
+trackBar1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
+ratingControl1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
+radioGroup1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
 ```
 
 Or set it globally:

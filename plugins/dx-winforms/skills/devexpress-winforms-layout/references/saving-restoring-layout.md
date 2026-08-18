@@ -144,15 +144,15 @@ using (var ms = new MemoryStream(bytes))
 
 ### Setup
 
-1. Drop `WorkspaceManager` from the Toolbox onto the form.
+1. Create a `WorkspaceManager` and assign the form: `var wm = new WorkspaceManager { TargetControl = this };`
 2. It automatically detects registered `LayoutControl`, `DockManager`, `GridView`, etc. instances.
 3. (Optional) Add a `BarWorkspaceMenuItem` to a ribbon/toolbar so users can manage workspaces from the UI.
 
 ### API
 
 ```csharp
-// Save the current layout as a named workspace
-workspaceManager1.SaveWorkspace("MyWorkspace");
+// Capture the current layout into a named workspace (in the Workspaces collection)
+workspaceManager1.CaptureWorkspace("MyWorkspace");
 
 // Apply a workspace (must already be in the Workspaces collection)
 workspaceManager1.ApplyWorkspace("MyWorkspace");
@@ -181,7 +181,7 @@ private void MainForm_Load(object sender, EventArgs e)
 
 private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 {
-    workspaceManager1.SaveWorkspace("Default");
+    workspaceManager1.CaptureWorkspace("Default");
     workspaceManager1.SaveWorkspaces(WorkspaceFile);
 }
 ```

@@ -1,12 +1,12 @@
 # Columns
 
-This reference covers everything about Grid and TreeList columns — definition at design time and in code, auto-generation, smart-column generation in the Designer, unbound columns, bands in `BandedGridView` and `AdvBandedGridView`, runtime customization on events, and the `FieldName` vs `Name` vs `ColumnEdit` triangle.
+This reference covers everything about Grid and TreeList columns — definition in `InitializeComponent()` and in code, auto-generation, unbound columns, bands in `BandedGridView` and `AdvBandedGridView`, runtime customization on events, and the `FieldName` vs `Name` vs `ColumnEdit` triangle.
 
-> **WinForms note**: there is no XAML. Columns are defined in the Visual Studio designer (which generates `Form.Designer.cs` and `.resx`) or directly in code. When the developer asks for "XAML columns", interpret it as designer-generated or code-generated columns.
+> **WinForms note**: there is no XAML. Columns are declared in `Form.Designer.cs` (`InitializeComponent`) or created directly in code. When the developer asks for "XAML columns", interpret it as columns declared in the designer file or in code.
 
 ## When to Use This Reference
 
-- Designing a grid layout at design time using the Grid Designer.
+- Declaring a grid's columns in `MainForm.Designer.cs`.
 - Generating columns at runtime from the data source.
 - Adding unbound (calculated or externally supplied) columns.
 - Configuring multi-row column headers (bands) in `BandedGridView` / `AdvBandedGridView`.
@@ -61,23 +61,6 @@ gridControl1.DataSourceChanged += (s, e) => {
 
 `PopulateColumns` has overloads for `DataTable`, `IList`, `DataColumnInfo[]`, and code-first types (with `PopulateColumnsParameters`).
 
-## Smart Column Generation (Grid Designer)
-
-The Grid Designer (right-click the grid → **Run Designer…**) offers a **Columns** page with three sections:
-
-1. **Field List** — fields present in the bound data source; bold means no column exists yet.
-2. **Columns** — current view columns.
-3. **Properties** — selected column's settings.
-
-Buttons:
-
-- **Retrieve Fields** — clears the column collection and recreates a column per data field (respects `[Display]` attributes).
-- **Add Column / Insert Column** — manually create a column.
-- **Remove Column** — delete the selected column (or press `Delete`).
-- **Show Field List** — drag-and-drop a field onto the Columns list to bind a new column.
-
-The Designer also supports drag-reorder, header captions inline-edit, and per-column `ColumnEdit` smart-tag picker.
-
 ## Define Columns in Code
 
 ### Add bound columns by field name
@@ -119,7 +102,7 @@ The `Columns[]` indexer is keyed by `Name` (component name) — not `FieldName`.
 
 | Member | Purpose |
 |---|---|
-| `GridColumn.Name` | Component/identity name; default is the variable name when created in the Designer (e.g., `colOrderDate`). Use it in `Columns[name]`. |
+| `GridColumn.Name` | Component/identity name; default is the variable name used in the designer file (e.g., `colOrderDate`). Use it in `Columns[name]`. |
 | `GridColumn.FieldName` | Data-source field this column is bound to. Unbound columns set this to a unique value not present in the data source. |
 | `GridColumn.Caption` | Text shown in the column header. Defaults to a humanized `FieldName`. |
 | `GridColumn.ColumnEditName` | The name of the `RepositoryItem` (from the grid's repository) used as in-place editor. Synchronized with `ColumnEdit`. |
@@ -131,9 +114,9 @@ The `Columns[]` indexer is keyed by `Name` (component name) — not `FieldName`.
 
 Unbound columns display custom values calculated on the fly or supplied via an event. They participate in sort, filter, group, summary, and export like bound columns.
 
-### Designer
+### Setup Checklist
 
-1. Open the Grid Designer → **Columns** → **Add Column**.
+1. Add a column to the view.
 2. Set `FieldName` to a unique value that does **not** appear in the data source.
 3. Set `UnboundDataType` to the column data type (`int`, `decimal`, `DateTime`, `string`, etc.).
 4. Populate the column via `UnboundExpression` (expression-based) or `CustomUnboundColumnData` (event-based).
@@ -220,7 +203,7 @@ colLast.OwnerBand  = bandPersonal;
 colEmail.OwnerBand = bandContact;
 
 view.OptionsView.ShowColumnHeaders = false;  // band caption replaces column header
-view.OptionsBand.ShowBandHeader    = true;
+view.OptionsBand.ShowCaption       = true;
 ```
 
 In `AdvBandedGridView`, additionally use `BandedGridColumn.RowIndex` and `BandedGridColumn.ColIndex` to position the column within a band, and `RowCount` on the band to set the number of rows.

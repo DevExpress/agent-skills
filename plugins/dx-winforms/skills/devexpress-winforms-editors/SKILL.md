@@ -63,7 +63,7 @@ If the host agent has a structured question-asking tool available, use it to ask
 2. Does it need an embedded **dropdown panel** (list, calendar, color palette, image gallery, custom UI), or a **calculator** popup, or a button to invoke an external dialog?
 3. Does it need a **mask** (e.g., phone, ZIP code, currency, ISO 8601 date), and which culture should drive separators?
 4. Should it be **embedded in the Grid/TreeList/Ribbon** as a cell editor or used only **standalone**? If both, the repository item is the canonical reference.
-5. Does it need **immediate post** on change (`InplaceModeImmediatePostChanges = true`) or wait until focus leaves?
+5. Does it need **immediate post** on change (`InplaceModeImmediatePostChanges = DefaultBoolean.True`) or wait until focus leaves?
 6. Should the text box be **visible**, **read-only**, or **completely hidden** (`TextEditStyle.HideTextEditor` — turns a `ButtonEdit` into a button-only control)?
 
 ## Documentation & Navigation Guide
@@ -100,7 +100,7 @@ var name = new TextEdit { Width = 240 };
 name.Properties.NullValuePrompt = "Full name";
 name.Properties.MaskSettings.Configure<MaskSettings.RegExp>(s => {
     s.MaskExpression = "[A-Z][a-z]+( [A-Z][a-z]+)+";   // First Last with capitalization
-    s.AutoComplete = true;
+    s.IsAutoComplete = true;
 });
 
 var salary = new SpinEdit { Width = 140 };
@@ -110,7 +110,7 @@ salary.Properties.Increment = 100;
 salary.Properties.MaskSettings.Configure<MaskSettings.Numeric>(s => s.MaskExpression = "c0");
 
 var birth = new DateEdit { Width = 140 };
-birth.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.Repository.VistaCalendarViewStyle.YearView;
+birth.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
 birth.Properties.MaskSettings.Configure<MaskSettings.DateTime>(s => s.MaskExpression = "d");
 
 employeeBindingSource.DataSource = currentEmployee;
@@ -194,8 +194,8 @@ buttonEdit1.Properties.Buttons[0].Width = 120;
 ### Pattern 4 — Immediate post on toggle
 
 ```csharp
-checkEdit1.Properties.InplaceModeImmediatePostChanges = true;   // commits on each tick
-toggleSwitch1.Properties.InplaceModeImmediatePostChanges = true;
+checkEdit1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;   // commits on each tick
+toggleSwitch1.Properties.InplaceModeImmediatePostChanges = DefaultBoolean.True;
 ```
 
 ### Pattern 5 — Cascaded LookUpEdit
@@ -220,7 +220,7 @@ countryLookUp.EditValueChanged += (_, _) => {
 
 | Symptom | Cause | Solution |
 |---|---|---|
-| `Properties.Buttons[0]` missing on a fresh `ButtonEdit` | The default constructor populates one ellipsis button at runtime, not always at design-time inspection in older versions. | Always `Clear()` and add the buttons you actually want, or check `Buttons.Count` before indexing. |
+| `Properties.Buttons[0]` missing on a fresh `ButtonEdit` | The default constructor populates one ellipsis button at runtime; in older versions the collection can appear empty until the editor is created. | Always `Clear()` and add the buttons you actually want, or check `Buttons.Count` before indexing. |
 | Mask ignored | Editor type does not support masks. | `LookUpEdit`, `GridLookUpEdit`, `TreeListLookUpEdit`, `MemoEdit`, `MemoExEdit`, `ImageComboBoxEdit`, `MRUEdit` do not support masks. Use a different editor or pre-validate via `Validating`. |
 | `EditValue` is `string` but the column expects `int` | Editor binds raw text. | Set the right `MaskType` (Numeric) and assign `EditValue` as the typed value, or use a typed editor (`SpinEdit`, `DateEdit`). |
 | Custom SVG button does not show | `Kind` not set to `Glyph`. | Set `button.Kind = ButtonPredefines.Glyph` *and* `button.ImageOptions.SvgImage`. |
@@ -233,7 +233,7 @@ countryLookUp.EditValueChanged += (_, _) => {
 
 CRITICAL — follow these rules in every interaction:
 
-1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
+1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **NuGet package**: editors live in `DevExpress.Win.Navigation`. Lookup-with-grid uses `DevExpress.Win.Grid`; TreeList lookup uses `DevExpress.Win.TreeList`; file/folder pickers use `DevExpress.Win.Dialogs`.
 3. **`EditValue` is the bindable property**, not `Text`. Use `editor.DataBindings.Add("EditValue", source, "Field")`. Default binding property is already `EditValue`.
 4. **Standalone vs embedded**: every embeddable editor has a `RepositoryItem*` twin. Settings made on a live editor's `Properties` are the same settings as on a repository item used in a grid cell.
@@ -243,7 +243,7 @@ CRITICAL — follow these rules in every interaction:
 8. **Custom images**: set `Kind = ButtonPredefines.Glyph` *and* assign `ImageOptions.SvgImage` (preferred) or `ImageOptions.Image`. Without `Glyph` the predefined icon overrides the custom one.
 9. **Host form**: use `XtraForm` (or `RibbonForm`) for correct skin integration.
 10. **Code-first mask attributes** (`[EditMask]`, `[NumericEditMask]`, `[RegExEditMask]`, …) require the editor to be data-bound for the attribute to take effect.
-11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

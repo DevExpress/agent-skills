@@ -17,7 +17,7 @@ Many concepts are shared across `GridView`, `BandedGridView`, `CardView`, `Layou
 ## When to Use This Skill
 
 - Bind a grid or tree list to any data source (DataTable, BindingSource, IList, Entity Framework, XPO, LINQ to SQL, MongoDB, JSON, ServerMode/InstantFeedback sources, `VirtualServerModeSource` for infinite scrolling).
-- Define columns at design time (Grid Designer), via auto-generation (`AutoPopulateColumns`), or in code (`PopulateColumns`, `Columns.AddVisible`). Configure unbound columns with `UnboundExpression` or `CustomUnboundColumnData`.
+- Define columns in `InitializeComponent()`, via auto-generation (`AutoPopulateColumns`), or in code (`PopulateColumns`, `Columns.AddVisible`). Configure unbound columns with `UnboundExpression` or `CustomUnboundColumnData`.
 - Assign in-place editors with `RepositoryItem` descendants (`RepositoryItemSpinEdit`, `RepositoryItemLookUpEdit`, `RepositoryItemCheckEdit`, `RepositoryItemProgressBar`, `RepositoryItemRichTextEdit`, etc.). Use `CustomRowCellEdit` and `CustomRowCellEditForEditing` for per-cell editors.
 - Format cell values (`DisplayFormat`, `EditFormat`, `CustomColumnDisplayText`) and switch between in-place edit, edit-form, and edit-entire-row modes.
 - Apply conditional formatting (color scales, data bars, icon sets, expressions) via `FormatRules`.
@@ -94,7 +94,7 @@ When you need to: bind to `DataTable`, `BindingSource`, `IList`/`IBindingList`, 
 
 ### Columns
 Refer to [references/columns.md](references/columns.md)
-When you need to: create columns at design time via Grid Designer, auto-generate via `AutoPopulateColumns`, call `PopulateColumns()` after data-source changes, create columns in code with `Columns.AddVisible`, configure unbound columns (`UnboundDataType`, `UnboundExpression`, `CustomUnboundColumnData`), use `Display` attribute to control auto-generation, configure bands in `BandedGridView`/`AdvBandedGridView`, set `FieldName` vs `Name`, and customize columns at runtime on events.
+When you need to: declare columns in `InitializeComponent()`, auto-generate via `AutoPopulateColumns`, call `PopulateColumns()` after data-source changes, create columns in code with `Columns.AddVisible`, configure unbound columns (`UnboundDataType`, `UnboundExpression`, `CustomUnboundColumnData`), use `Display` attribute to control auto-generation, configure bands in `BandedGridView`/`AdvBandedGridView`, set `FieldName` vs `Name`, and customize columns at runtime on events.
 
 ### Cell Display and Editing
 Refer to [references/cell-display-and-editing.md](references/cell-display-and-editing.md)
@@ -118,11 +118,11 @@ When you need to: sort by one or many columns (`SortInfo`, `GridMergedColumnSort
 
 ### Master-Detail
 Refer to [references/master-detail.md](references/master-detail.md)
-When you need to: configure master-detail at design time via the Grid Designer, build it in code through `GridControl.LevelTree` and `GridLevelNode`, mix view types per level (e.g., `GridView` master + `CardView` detail), expand/collapse master rows (`SetMasterRowExpanded`, `MasterRowExpanded`), hide expand buttons for empty details (`MasterRowEmpty`), implement runtime relation counts (`MasterRowGetRelationCount`/`MasterRowGetRelationName`), enable joint group panel and Clone-View synchronization, restrict drill-down, and understand limitations (no master-detail in ServerMode).
+When you need to: build master-detail in code through `GridControl.LevelTree` and `GridLevelNode`, mix view types per level (e.g., `GridView` master + `CardView` detail), expand/collapse master rows (`SetMasterRowExpanded`, `MasterRowExpanded`), hide expand buttons for empty details (`MasterRowEmpty`), implement runtime relation counts (`MasterRowGetRelationCount`/`MasterRowGetRelationName`), enable joint group panel and Clone-View synchronization, restrict drill-down, and understand limitations (no master-detail in ServerMode).
 
 ### Printing and Exporting
 Refer to [references/printing-and-exporting.md](references/printing-and-exporting.md)
-When you need to: decide what is configurable at **design time** (`OptionsPrint`, a Ribbon Print command) vs **runtime-only** (`ExportTo*`, export events, `PrintingSystem`), choose the right approach (one-call export → options object → data-aware/WYSIWYG → events → `PrintingSystem`/XtraReports), choose between data-aware (default for `GridView`/`BandedGridView`) and WYSIWYG modes, call `ExportToXlsx`/`ExportToXls`/`ExportToCsv`/`ExportToPdf`/`ExportToHtml`, customize the exported document via `XlsxExportOptionsEx` (`CustomizeCell`, `AfterAddRow`, `CustomizeSheetHeader`, `CustomizeSheetFooter`, `CustomizeSheetSettings`), print master-detail (`OptionsPrint.PrintDetails`, `ExpandAllDetails`), and use the `PrintingSystem` for advanced reports.
+When you need to: decide what is configurable up front on the view (`OptionsPrint`, a Ribbon Print command) vs **runtime-only** (`ExportTo*`, export events, `PrintingSystem`), choose the right approach (one-call export → options object → data-aware/WYSIWYG → events → `PrintingSystem`/XtraReports), choose between data-aware (default for `GridView`/`BandedGridView`) and WYSIWYG modes, call `ExportToXlsx`/`ExportToXls`/`ExportToCsv`/`ExportToPdf`/`ExportToHtml`, customize the exported document via `XlsxExportOptionsEx` (`CustomizeCell`, `AfterAddRow`, `CustomizeSheetHeader`, `CustomizeSheetFooter`, `CustomizeSheetSettings`), print master-detail (`OptionsPrint.PrintDetails`, `ExpandAllDetails`), and use the `PrintingSystem` for advanced reports.
 
 ### Focus and Selection
 Refer to [references/focus-and-selection.md](references/focus-and-selection.md)
@@ -285,7 +285,7 @@ treeList.ExpandAll();
 CRITICAL — follow these rules in every interaction:
 
 1. **Verify builds**: after changes, run `dotnet build` and report errors before claiming success.
-2. **Target framework**: confirm whether the project targets .NET Framework or modern .NET. Some helpers (e.g., the Data Source Configuration Wizard) are not available in .NET projects — generate datasets in a .NET Framework project and add the files to the .NET project.
+2. **Target framework**: confirm whether the project targets .NET Framework or modern .NET. Typed DataSets are not available in .NET SDK projects — generate them in a .NET Framework project and add the files to the .NET project.
 3. **NuGet rules**: prefer atomic packages (`DevExpress.Win.Grid`, `DevExpress.Win.TreeList`) over the umbrella `DevExpress.Win` for faster designer load. Keep package versions aligned across all DevExpress references.
 4. **Host form**: use `XtraForm` (or `RibbonForm` for ribbons) for correct skin integration.
 5. **WinForms is code-first**: forms are designer-generated (`.Designer.cs` + `.resx`) or built in code — there is no XAML. When the user asks for "XAML", interpret it as "designer or code".
@@ -294,7 +294,7 @@ CRITICAL — follow these rules in every interaction:
 8. **`ColumnView.Columns[name]` indexer matches `Name` (component name), not `FieldName`**: when accessing columns by string, prefer `view.Columns.ColumnByFieldName(...)` or hold a typed reference.
 9. **Always set `RootValue` for `TreeList`**: omitting it (or using the wrong type) yields a flat list. Default `RootValue` is `0`, which fails when keys are strings or `null`.
 10. **Layout persistence**: pass an explicit `OptionsLayoutBase` (e.g., `OptionsLayoutGrid` with `StoreAppearance = true`) when you need filters, summaries, or appearance to persist — default overloads omit them.
-11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+11. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

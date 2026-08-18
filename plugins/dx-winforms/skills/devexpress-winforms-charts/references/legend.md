@@ -80,13 +80,13 @@ chart.Legend.AlignmentVertical      = LegendAlignmentVertical.BottomOutside;
 ## Legend Title
 
 ```csharp
-chart.Legend.Title.Visibility = DefaultBoolean.True;
+chart.Legend.Title.Visible    = true;
 chart.Legend.Title.Text       = "Regions";
 chart.Legend.Title.Font       = new Font("Segoe UI", 10, FontStyle.Bold);
-chart.Legend.Title.Alignment  = LegendTitleAlignment.Center;
+chart.Legend.Title.Alignment  = StringAlignment.Center;
 ```
 
-Like axis titles, the **title is hidden by default** — set `Visibility = True` explicitly.
+Like axis titles, the **title is hidden by default** — set `Visible = true` explicitly. (Unlike axis titles, `LegendTitle.Visible` is a plain `bool`, not a `DefaultBoolean`.)
 
 ## Per-Series Text — `LegendTextPattern`
 
@@ -119,11 +119,10 @@ pieSeries.LegendTextPattern = "{A}: {VP:p1}";        // "North: 32.5 %"
 Add additional legends and dock them to specific panes or use them for indicators:
 
 ```csharp
-var legend2 = new Legend(chart) {
-    Name = "indicators",
+var legend2 = new Legend("indicators") {   // the ctor takes the legend Name (there is no Legend(chart) ctor)
     AlignmentHorizontal = LegendAlignmentHorizontal.Right,
     AlignmentVertical   = LegendAlignmentVertical.BottomOutside,
-    Title = { Text = "Indicators", Visibility = DefaultBoolean.True }
+    Title = { Text = "Indicators", Visible = true }
 };
 chart.Legends.Add(legend2);
 
@@ -134,10 +133,10 @@ series.Legend = legend2;
 ### Dock a legend to a pane
 
 ```csharp
-legend2.DockTarget = "pricePane";    // name of an XYDiagramPane
+legend2.DockTargetName = "pricePane";    // name of an XYDiagramPane (DockTarget itself is a ChartElement)
 ```
 
-When `DockTarget` is set, the legend follows the pane's vertical position.
+When `DockTargetName` is set, the legend follows the pane's vertical position.
 
 ## Check-Box Markers
 
@@ -176,11 +175,11 @@ helperSeries.ShowInLegend = false;               // series visible on the diagra
 ```csharp
 chart.CustomDrawSeries += (s, e) => {
     if (e.Series.Name == "Forecast")
-        e.LegendDrawOptions.Text = "Forecast (projected)";
+        e.LegendText = "Forecast (projected)";
 };
 ```
 
-`e.LegendDrawOptions.Text` overrides the legend text for one redraw — useful for runtime annotations.
+`e.LegendText` overrides the legend text for one redraw — useful for runtime annotations.
 
 ## Common Patterns
 
@@ -217,13 +216,12 @@ pieSeries.LegendTextPattern = "{A}: {V:c0} ({VP:p1})";
 ### Pattern 5 — Two legends (one per pane)
 
 ```csharp
-chart.Legend.DockTarget = "revenuePane";
+chart.Legend.DockTargetName = "revenuePane";
 
-var legend2 = new Legend(chart) {
-    Name = "tempLegend",
+var legend2 = new Legend("tempLegend") {
     AlignmentHorizontal = LegendAlignmentHorizontal.Right,
     AlignmentVertical   = LegendAlignmentVertical.Center,
-    DockTarget          = "temperaturePane"
+    DockTargetName      = "temperaturePane"
 };
 chart.Legends.Add(legend2);
 tempSeries.Legend = legend2;
@@ -232,7 +230,7 @@ tempSeries.Legend = legend2;
 ## Common Issues
 
 - **Legend hides part of the plot area** — switch from `Right` to `RightOutside` so the diagram shrinks instead of being covered.
-- **Legend title invisible** — `Title.Visibility = DefaultBoolean.True` is required.
+- **Legend title invisible** — `Title.Visible = true` is required.
 - **`LegendTextPattern` shows literally** — make sure the placeholder name is right and the brace is closed.
 - **Pie legend shows series name instead of slice names** — set `LegendTextPattern = "{A}"` (or default; some skin templates override).
 - **Adding a `Legend` to `Legends` has no effect** — no series assigned. Set `series.Legend = newLegend`.

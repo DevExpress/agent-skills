@@ -6,21 +6,20 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 
 - .NET Framework 4.6.2 or newer, targeting Windows
 - Visual Studio 2022+ (Visual Studio 2019 also supported)
-- DevExpress WinForms subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/) for the designer-first workflow, or DevExpress NuGet packages from nuget.org
+- DevExpress WinForms subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/), or DevExpress NuGet packages from nuget.org
 - A valid DevExpress license
 
-## Two Installation Paths
-
-1. **Unified Component Installer** (recommended for designer-first workflows). Run the installer, then drag `AccordionControl` from the Visual Studio Toolbox onto a form. References are added automatically.
-2. **NuGet package** (recommended for source control and CI builds). Install `DevExpress.Win.Navigation` from nuget.org.
-
-> **Adding the DevExpress reference — do it the right way (especially when none exists yet).** Add the reference via the **NuGet Package Manager** (`Install-Package DevExpress.Win.Navigation`) or by **dropping an `AccordionControl` from the Toolbox onto a form once** (which initializes the assemblies and adds the reference automatically). Do **not** hand-edit a legacy (non-SDK) `.csproj` to add `<Reference>` entries, and do **not** copy DevExpress DLLs with shell/PowerShell commands — the non-SDK project format is intricate and manual edits routinely leave the project unable to build or run. If you cannot run the NuGet command and no DevExpress reference is present yet, ask the developer to install the package (or drop the control from the Toolbox once) instead of editing project files by hand.
-
-## Path 2: NuGet Package
+## Install the NuGet Package
 
 ```powershell
+# SDK-style project
+dotnet add package DevExpress.Win.Navigation
+
+# legacy packages.config project (Package Manager Console)
 Install-Package DevExpress.Win.Navigation
 ```
+
+> The DevExpress Unified Component Installer is only needed for the license and the local offline NuGet feed — the package is also on nuget.org. Do **not** hand-edit a legacy (non-SDK) `.csproj` to add `<Reference>` entries and do **not** copy DevExpress DLLs with shell/PowerShell commands — the non-SDK project format is intricate and manual edits routinely leave the project unable to build. If the NuGet command cannot be run in this environment, stop and report which package is missing instead of editing project files by hand.
 
 `PackageReference` form (keep every DevExpress package on the same version):
 
@@ -30,7 +29,7 @@ Install-Package DevExpress.Win.Navigation
 </ItemGroup>
 ```
 
-> If your project still uses `packages.config`, the `Install-Package` command works the same — Visual Studio installs the package and adds the assembly references.
+> Both commands above add the required assembly references.
 
 This package ships `DevExpress.XtraBars.v<version>.dll`, which contains the entire `DevExpress.XtraBars.Navigation` namespace.
 

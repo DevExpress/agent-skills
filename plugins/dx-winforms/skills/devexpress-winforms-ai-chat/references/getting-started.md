@@ -159,13 +159,6 @@ internal static class Program
 
 ## Step 4 — Add AIChatControl to a Form
 
-### Designer
-Drag **AIChatControl** from the **DX.26.1: AI** Toolbox group onto the form.
-
-> **Note**: The control does not render at design time — a placeholder is shown.
-
-### Code
-
 ```csharp
 using DevExpress.AIIntegration.WinForms.Chat;
 using DevExpress.XtraEditors;
@@ -197,7 +190,7 @@ public partial class ChatForm : XtraForm
 | `EmptyStateText` | `string` | Placeholder shown when the conversation is empty |
 | `ShowHeader` | `DefaultBoolean` | Display a header bar with a title and Clear button |
 | `HeaderText` | `string` | Title text in the header |
-| `AllowInputResize` | `DefaultBoolean` | Let users resize the input area |
+| `AllowResizeInput` | `DefaultBoolean` | Let users resize the input area |
 | `FileUploadEnabled` | `DefaultBoolean` | Allow file attachments in messages |
 | `ChatResponseProviderServiceKey` | `string` | Select a specific chat response provider when multiple are registered |
 
@@ -310,6 +303,7 @@ DevExpress APIs; `IChatClient`, `OllamaApiClient`, etc. come from the provider p
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.DependencyInjection;
 using DevExpress.AIIntegration;
+using DevExpress.AIIntegration.Chat;   // IChatResponseProvider, AsIChatResponseProvider()
 
 IChatClient azureClient = azureOpenAiClient.GetChatClient("gpt-4o").AsIChatClient();
 IChatClient ollamaClient = new OllamaApiClient(new Uri("http://localhost:11434/"), "llama3.2");
@@ -353,16 +347,15 @@ aiChatControl2.ChatResponseProviderServiceKey = "ollamaAiProviderServiceKey";
 | Member | Description |
 |---|---|
 | `AIChatControl` | The main chat control class |
-| `AIExtensionsContainerDesktop.Default.RegisterChatClient(client)` | Register a default AI client |
-| `AIExtensionsContainerDesktop.Default.RegisterChatClient(client, key)` | Register a named client |
+| `AIExtensionsContainerDesktop.Default.RegisterChatClient(client)` | Register a default AI client (there is no `(client, key)` overload — for named/multiple providers use the keyed-DI approach below) |
 | `AIChatControl.ChatResponseProviderServiceKey` | Select a named chat response provider for this control |
 | `AIChatControl.UseStreaming` | Enable token streaming |
-| `AIChatControl.ContentFormat` | `ResponseContentFormat.Markdown` / `Text` |
+| `AIChatControl.ContentFormat` | `ResponseContentFormat.Markdown` / `PlainText` |
 | `AIChatControl.MarkdownConvert` | Event to convert Markdown → HTML |
 | `AIChatControl.MessageSending` | Event for manual message handling (raised before a message is sent) |
 | `AIChatControl.EmptyStateText` | Placeholder when chat is empty |
 | `AIChatControl.ShowHeader` / `HeaderText` | Show/configure header |
-| `AIChatControl.AllowInputResize` | Resizable input area |
+| `AIChatControl.AllowResizeInput` | Resizable input area |
 | `AIChatControl.FileUploadEnabled` | File attachment button |
 | `AIChatControl.OptionsFileUpload` | File upload settings (extensions, size, count) |
 | `AIChatControl.SetPromptSuggestions(list)` | Display pre-set prompt buttons |

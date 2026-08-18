@@ -11,14 +11,44 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraVerticalGrid;
 
 // ------------------------------------------------------------------
-// 1. Show an object's properties
+// 1. Show an object's properties (designer-backed)
+//    The control is declared in the *.Designer.cs partial below
+//    (InitializeComponent), so the form stays editable in the Visual
+//    Studio WinForms designer. Only SelectedObject — the runtime data —
+//    is assigned in the code-behind; rows auto-generate from its public
+//    properties.
 // ------------------------------------------------------------------
-public partial class SettingsForm : XtraForm {
-    PropertyGridControl propertyGridControl1;
 
+// --- SettingsForm.cs — data only ---
+public partial class SettingsForm : XtraForm {
     public SettingsForm() {
-        InitializeComponent();
+        InitializeComponent();                 // builds propertyGridControl1
         propertyGridControl1.SelectedObject = new AppSettings();
+    }
+}
+
+// --- SettingsForm.Designer.cs — the control the WinForms designer round-trips ---
+partial class SettingsForm {
+    private System.ComponentModel.IContainer components = null;
+    private PropertyGridControl propertyGridControl1;
+
+    private void InitializeComponent() {
+        this.propertyGridControl1 = new PropertyGridControl();
+        ((System.ComponentModel.ISupportInitialize)(this.propertyGridControl1)).BeginInit();
+        this.SuspendLayout();
+        //
+        // propertyGridControl1
+        //
+        this.propertyGridControl1.Dock = DockStyle.Fill;
+        this.propertyGridControl1.Name = "propertyGridControl1";
+        //
+        // SettingsForm
+        //
+        this.Controls.Add(this.propertyGridControl1);
+        this.Name = "SettingsForm";
+        this.Text = "Settings";
+        ((System.ComponentModel.ISupportInitialize)(this.propertyGridControl1)).EndInit();
+        this.ResumeLayout(false);
     }
 }
 

@@ -16,7 +16,7 @@ The framework supports four ViewModel authoring styles. **Prefer the compile-tim
 
 ## When to Use This Skill
 
-- Set up the `MVVMContext` component in a WinForms form (design-time or code).
+- Set up the `MVVMContext` component in a WinForms form.
 - Choose a ViewModel type and write properties with `INotifyPropertyChanged` support.
 - Declare synchronous (`DelegateCommand`) or asynchronous (`AsyncCommand`) commands with CanExecute.
 - Bind editor properties and command buttons via the Fluent API (`SetBinding`, `BindCommand`).
@@ -31,7 +31,7 @@ The framework supports four ViewModel authoring styles. **Prefer the compile-tim
 
 | Package | Required For | Source |
 |---|---|---|
-| `DevExpress.Mvvm.CodeGenerators` | `[GenerateViewModel]`, `[GenerateProperty]`, `[GenerateCommand]` (compile-time) | NuGet.org — **free** |
+| `DevExpress.Mvvm.CodeGenerators` | `[GenerateViewModel]`, `[GenerateProperty]`, `[GenerateCommand]` (compile-time) | NuGet.org — **free** (versioned **independently** — latest ~`22.1.x`; use `Version="*"`, do **not** pin to the DevExpress product version) |
 | `DevExpress.Mvvm` | `ViewModelBase`, `DelegateCommand`, `AsyncCommand`, `Messenger`, `ISupportParameter` | NuGet.org — **free** |
 | `DevExpress.Utils` | `MVVMContext`, runtime POCO framework, Fluent API | DevExpress feed — license required |
 | Any `DevExpress.Win.*` | Includes `DevExpress.Utils`; adds UI controls | DevExpress feed — license required |
@@ -101,11 +101,11 @@ partial class MainViewModel {
     string userName = string.Empty;
 
     [GenerateCommand]
-    void Save() { /* persist data */ }
+    public void Save() { /* persist data */ }   // public: bound from the View via vm => vm.Save
     bool CanSave() => !string.IsNullOrEmpty(UserName);
 
     [GenerateCommand]
-    async Task LoadAsync() {
+    public async Task LoadAsync() {
         var data = await FetchDataAsync();
         UserName = data.Name;
     }
@@ -121,7 +121,7 @@ using DevExpress.Utils.MVVM;
 public partial class MainForm : XtraForm {
     public MainForm() {
         InitializeComponent();
-        // mvvmContext1 is dropped from the Toolbox onto the form
+        // mvvmContext1 is declared in MainForm.Designer.cs
 
         mvvmContext1.ViewModelType = typeof(MainViewModel);
         var fluent = mvvmContext1.OfType<MainViewModel>();
@@ -179,18 +179,20 @@ DevExpress MVVM is a niche framework, so base models frequently fabricate plausi
 | Invented (does NOT exist) | Use instead |
 |---|---|
 | `BindCommandToButton(...)`, `BindCancelCommandToButton(...)` | `fluent.BindCommand(button, x => x.Save())` and `fluent.BindCancelCommand(button, x => x.LoadAsync())` |
-| `GetAsyncCommandCancellationTokenSource()`, `AsyncCommandManager` | Check cancellation via `fluent.GetAsyncCommand(x => x.LoadAsync()).IsCancellationRequested`; cancel by binding a button with `BindCancelCommand` |
+| `GetAsyncCommandCancellationTokenSource()`, `AsyncCommandManager` | Check cancellation **from inside the ViewModel** via `this.GetAsyncCommand(x => x.LoadAsync()).IsCancellationRequested` (`GetAsyncCommand` is a POCO ViewModel extension, **not** on the Fluent API); cancel by binding a button with `BindCancelCommand` |
 | `[CommandFromAction]` (or any "make this a command" attribute) | Nothing needed — a `public void`/`Task` method *is* the command; its `Can<Method>()` companion controls `CanExecute` |
 | `MessageBoxService.Create(...)`, `RegisterMessageBoxService(...)` | The standard services are registered globally by `MVVMContext` — just resolve: `this.GetService<IMessageBoxService>()` |
-| "POCO auto-tracks `CanExecute` when a bound property changes" | **False** — POCO does *not* auto-track. Call `this.RaiseCanExecuteChanged(x => x.Save())` from `OnTitleChanged()` (the property-changed callback) |
+| "POCO auto-tracks `CanExecute` when a bound property changes" | **False** — neither POCO nor the code generator auto-tracks. Call `this.RaiseCanExecuteChanged(x => x.Save())` from the change callback. POCO auto-calls a parameterless `OnXChanged()`; the **code generator does not** — wire it with `[GenerateProperty(OnChangedMethod = nameof(OnXChanged))]` or the callback never fires |
 
 ## Troubleshooting
 
 | Symptom | Likely Cause | Fix |
 |---|---|---|
 | Binding doesn't update UI | POCO property has a backing field | Remove the backing field (use pure auto-property) or add `[BindableProperty]` |
-| Command button stays disabled | `CanXxx()` not re-evaluated on property change | Call `this.RaiseCanExecuteChanged(x => x.Save())` in `OnXChanged()` — pass the command **method call**, not a placeholder |
-| `GetService<T>()` returns `null` | Service not registered | Register the service in the View constructor or via the `MVVMContext` smart tag |
+| Command button stays disabled | `CanXxx()` not re-evaluated on property change | Call `this.RaiseCanExecuteChanged(x => x.Save())` in `OnXChanged()` (pass the command **method call**). POCO auto-calls `OnXChanged()`; the **code generator** does not — wire it with `[GenerateProperty(OnChangedMethod = nameof(OnXChanged))]` |
+| Codegen `OnXChanged()` never fires | Plain `[GenerateProperty]` does not auto-call it | Add `OnChangedMethod = nameof(OnXChanged)` to the attribute; the callback is a regular method (receives the old value), not a `partial void` |
+| NuGet restore fails on `DevExpress.Mvvm.CodeGenerators` | Pinned to the DevExpress product version (e.g. `26.1.*`) | Use `Version="*"` — the generator package is versioned independently (latest ~`22.1.x`) |
+| `GetService<T>()` returns `null` | Service not registered | Register the service in the View constructor |
 | Compile-time generator not running | Project targets .NET Framework | Switch to .NET 6+ or use runtime POCO instead |
 | Designer throws on POCO ViewModel | Designer tries to instantiate proxy class | Move ViewModel instantiation outside `InitializeComponent` |
 | Async command runs twice | `BindCommand` called twice | Ensure `BindCommand` is called exactly once per button |
@@ -200,14 +202,14 @@ DevExpress MVVM is a niche framework, so base models frequently fabricate plausi
 
 CRITICAL — follow these rules in every interaction:
 
-1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
-2. **Do not mix DevExpress package versions**: reference the framework through the `DevExpress.Win` (or the standalone `DevExpress.Mvvm`) NuGet package — never assembly DLLs by path — and keep every DevExpress package in the project on the same version. Add `DevExpress.Mvvm.CodeGenerators` for compile-time generation.
+1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
+2. **Do not mix DevExpress package versions**: reference the framework through the `DevExpress.Win` (or the standalone `DevExpress.Mvvm`) NuGet package — never assembly DLLs by path — and keep the DevExpress **product** packages (`DevExpress.Win.*`, `DevExpress.Utils`, `DevExpress.Mvvm`) on the same version. **Exception:** `DevExpress.Mvvm.CodeGenerators` is versioned independently on NuGet.org (latest ~`22.1.x`, no 26.1 build) — reference it with `Version="*"`; pinning it to the product version (e.g. `26.1.*`) fails NuGet restore.
 3. **Target Windows**: this is WinForms-only. Target .NET Framework 4.6.2+ or .NET 8+ with the `-windows` TFM suffix for SDK-style projects. Compile-time `[GenerateViewModel]` requires .NET 6+; on .NET Framework use runtime POCO (`ViewModelSource`) instead.
 4. **Pick one ViewModel strategy per project** — compile-time `[GenerateViewModel]` or runtime POCO/`ViewModelSource` — and don't mix them without a deliberate reason. Both are current: `DevExpress.Mvvm.CodeGenerators` is the modern **source-generator** approach (real, debuggable generated partial classes; needs .NET 6+), while runtime POCO (`ViewModelSource`) builds the proxy at run time and is the choice on .NET Framework. Either way, the Fluent API, services, and commands are identical.
 5. **POCO requires `public virtual` auto-properties** (no backing field) on a non-sealed class for the framework to generate change notifications. A property with a backing field is ignored unless decorated with `[BindableProperty]`.
 6. **Commands follow conventions**: a public `void`/`Task` method is a command; its `Can<MethodName>()` companion controls `CanExecute`. Re-evaluate it with `this.RaiseCanExecuteChanged(x => x.MethodName())`.
 7. **`Messenger.Default` uses weak references** — keep recipients alive (members on a long-lived view model) and `Unregister` when the View closes, or messages won't fire / will leak.
-8. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control (e.g. `MVVMContext`) from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+8. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

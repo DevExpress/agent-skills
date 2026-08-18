@@ -101,24 +101,24 @@ opt.AggregateFunction = AggregateFunction.Maximum;
 Each series can override the aggregate function set on the axis:
 
 ```csharp
-series.QualitativeSummaryOptions.SummaryFunction = SummaryFunction.Sum;     // qualitative
+series.QualitativeSummaryOptions.SummaryFunction = "SUM([Value])";     // qualitative
 ```
 
 For numeric/date-time, aggregation is **axis-driven**, so all series sharing that axis use the same function. To aggregate one series differently, assign it to a secondary axis with its own settings.
 
 ## Qualitative Summary
 
-Qualitative axes do not aggregate by bucket (there is no continuous distance). Instead, when two points share the **same argument**, `QualitativeSummaryOptions.SummaryFunction` decides how they combine:
+Qualitative axes do not aggregate by bucket (there is no continuous distance). Instead, when two points share the **same argument**, `QualitativeSummaryOptions.SummaryFunction` decides how they combine. It is a **`string`** holding a summary expression (`[Value]` = the value data member), not an enum:
 
-| `SummaryFunction` | Behavior |
+| `SummaryFunction` string | Behavior |
 |---|---|
-| `None` | Keep duplicates (multiple points at one argument). |
-| `Sum` | Sum values for the same argument. |
-| `Average` | Mean. |
-| `Min`, `Max`, `Count` | As named. |
+| `""` (empty) | Keep duplicates (multiple points at one argument). |
+| `"SUM([Value])"` | Sum values for the same argument. |
+| `"AVERAGE([Value])"` | Mean. |
+| `"MIN([Value])"` / `"MAX([Value])"` / `"COUNT()"` | As named. |
 
 ```csharp
-series.QualitativeSummaryOptions.SummaryFunction = SummaryFunction.Sum;
+series.QualitativeSummaryOptions.SummaryFunction = "SUM([Value])";
 ```
 
 ## Histogram
@@ -213,7 +213,7 @@ diagram.AxisX.NumericScaleOptions.GridSpacing       = 1;
 ### Pattern 5 — Qualitative sum (multiple rows per category)
 
 ```csharp
-series.QualitativeSummaryOptions.SummaryFunction = SummaryFunction.Sum;
+series.QualitativeSummaryOptions.SummaryFunction = "SUM([Value])";
 ```
 
 ## Common Issues

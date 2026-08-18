@@ -9,21 +9,23 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 - DevExpress WinForms subscription via the [Unified Component Installer](https://www.devexpress.com/Products/Try/), or DevExpress packages from nuget.org
 - A valid DevExpress license
 
-## Two Installation Paths
+## Install the NuGet Package
 
-1. **Unified Component Installer** (designer-first). Run the installer, then create the project from the **DevExpress Template Gallery** (File → New → Project → DevExpress v26.1 Template Gallery → *WinForms Application*), or drag `TreeList` from the toolbox onto a form. References are added automatically.
-2. **NuGet package** (recommended for source control / CI):
+```powershell
+# SDK-style project
+dotnet add package DevExpress.Win.TreeList
 
-   ```powershell
-   Install-Package DevExpress.Win.TreeList
-   ```
+# legacy packages.config project (Package Manager Console)
+Install-Package DevExpress.Win.TreeList
+```
 
-## Designer Workflow (.NET Framework)
+> The DevExpress Unified Component Installer is only needed for the license and the local offline NuGet feed — the package is also on nuget.org. Do **not** hand-edit a non-SDK `.csproj` to add `<Reference>` entries and do **not** copy DevExpress DLLs with shell commands; that routinely leaves the project unable to build.
 
-1. Drop a `TreeList` on an `XtraForm`; set `Dock = Fill`.
-2. Open the smart tag → **Run Designer** → add columns (FieldName, Caption, in-place editors) and, for unbound mode, nodes.
-3. For bound mode, set `DataSource` via the smart tag, then `KeyFieldName`, `ParentFieldName`, and `RootValue`.
-4. **Data Source Configuration Wizard / typed DataSets** are available in .NET Framework projects (they are *not* in .NET SDK projects) — convenient when binding to a database.
+## Setup (.NET Framework)
+
+The control, its columns, and its in-place editors are declared exactly as on .NET 8+ — see [Minimal Bound Example](#minimal-bound-example) below and [getting-started.md](getting-started.md).
+
+> **Typed DataSets** are available in .NET Framework projects (they are *not* in .NET SDK projects) — convenient when binding to a database.
 
 ## Required Assemblies (Manual Reference)
 

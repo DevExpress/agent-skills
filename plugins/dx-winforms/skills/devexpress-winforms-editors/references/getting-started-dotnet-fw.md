@@ -6,17 +6,26 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 
 - .NET Framework 4.6.2 or newer, targeting Windows
 - Visual Studio 2022+ (Visual Studio 2019 also supported)
-- DevExpress WinForms subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/) for the designer-first workflow, or DevExpress NuGet packages from nuget.org
+- DevExpress WinForms subscription with the [Unified Component Installer](https://www.devexpress.com/Products/Try/), or DevExpress NuGet packages from nuget.org
 - A valid DevExpress license
 
-## Two Installation Paths
+## Install the NuGet Packages
 
-1. **Unified Component Installer** (recommended for designer-first workflows). Run the installer, then drag editors (`TextEdit`, `SpinEdit`, `LookUpEdit`, …) from the Visual Studio Toolbox onto a form. References are added automatically.
-2. **NuGet package** (recommended for source control and CI builds). Install the packages below from nuget.org.
+Editors live in `DevExpress.Win.Navigation`. Add `DevExpress.Win.Grid` for grid-based lookups (`GridLookUpEdit`/`SearchLookUpEdit`), `DevExpress.Win.TreeList` for `TreeListLookUpEdit`, and `DevExpress.Win.Dialogs` for the file/folder pickers:
 
-## Path 2: NuGet Packages
+```powershell
+# SDK-style project
+dotnet add package DevExpress.Win.Navigation
+dotnet add package DevExpress.Win.Grid       # grid-based lookups
+dotnet add package DevExpress.Win.Dialogs    # file/folder pickers
 
-Editors live in `DevExpress.Win.Navigation`. Add `DevExpress.Win.Grid` for grid-based lookups (`GridLookUpEdit`/`SearchLookUpEdit`), `DevExpress.Win.TreeList` for `TreeListLookUpEdit`, and `DevExpress.Win.Dialogs` for the file/folder pickers. Keep every DevExpress package on the **same** version:
+# legacy packages.config project (Package Manager Console)
+Install-Package DevExpress.Win.Navigation
+```
+
+> The DevExpress Unified Component Installer is only needed for the license and the local offline NuGet feed — the packages are also on nuget.org. Do **not** hand-edit a non-SDK `.csproj` to add `<Reference>` entries and do **not** copy DevExpress DLLs with shell commands; that routinely leaves the project unable to build.
+
+Keep every DevExpress package on the **same** version:
 
 ```xml
 <ItemGroup>
@@ -26,7 +35,7 @@ Editors live in `DevExpress.Win.Navigation`. Add `DevExpress.Win.Grid` for grid-
 </ItemGroup>
 ```
 
-> If your project still uses `packages.config`, `Install-Package DevExpress.Win.Navigation` works the same — Visual Studio installs the package and adds the assembly references. The `DevExpress.Win` umbrella package covers all of the above.
+> Both commands above add the required assembly references. The `DevExpress.Win` umbrella package covers all of the above.
 
 ## Required Assemblies (Manual Reference)
 

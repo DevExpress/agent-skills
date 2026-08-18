@@ -122,10 +122,6 @@ behaviorManager1.GetBehavior<PersistenceBehavior>(this).SaveLayout(@"%APPDATA%\A
 
 The form layout includes `GridControl`, `TreeList`, `LayoutControl`, dock layouts, etc. The grid's `OptionsLayout` (default subset) is what gets included unless you customize it.
 
-## At Design Time
-
-The Grid Designer's **Layout** page saves and reloads layout files into the designer itself. Useful for shipping a pre-canned layout that ships with the form.
-
 ## Where to Save
 
 | Destination | Pros | Cons |

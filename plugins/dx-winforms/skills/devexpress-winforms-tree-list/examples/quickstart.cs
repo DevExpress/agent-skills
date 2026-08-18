@@ -80,7 +80,7 @@ partial class MainForm {
         this.colPosition.Caption = "Position"; this.colPosition.FieldName = "Position"; this.colPosition.Name = "colPosition";
         this.colPosition.Visible = true; this.colPosition.VisibleIndex = 1;
         //
-        // colSales — in-place editor + total summary, defined in the designer
+        // colSales — in-place editor + total summary, defined in the designer file
         //
         this.colSales.Caption = "Sales"; this.colSales.FieldName = "Sales"; this.colSales.Name = "colSales";
         this.colSales.ColumnEdit = this.repoSales;
@@ -110,7 +110,7 @@ public class Employee {
     public int ParentID { get; set; }   // RootValue (-1) → root node
     public string Name { get; set; } = "";
     public string Position { get; set; } = "";
-    public decimal Sales { get; set; }  // bound "Sales" column (editor + summary configured in the designer above)
+    public decimal Sales { get; set; }  // bound "Sales" column (editor + summary configured in the designer file above)
 }
 
 // ------------------------------------------------------------------

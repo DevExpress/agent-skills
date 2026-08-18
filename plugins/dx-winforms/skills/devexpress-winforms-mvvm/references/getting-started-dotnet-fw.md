@@ -23,7 +23,7 @@ On .NET Framework, use one of the runtime approaches instead:
 Install-Package DevExpress.Mvvm          # framework (free, NuGet.org)
 ```
 
-`MVVMContext` and the runtime POCO framework ship with `DevExpress.Utils` / any `DevExpress.Win.*` package (added automatically by the Unified Component Installer or when you drop `MVVMContext` from the toolbox).
+`MVVMContext` and the runtime POCO framework ship with `DevExpress.Utils` / any `DevExpress.Win.*` package (added automatically by the Unified Component Installer).
 
 ## Required Assemblies (Manual Reference)
 
@@ -45,7 +45,7 @@ public class MainViewModel {
 }
 
 public partial class MainForm : XtraForm {
-    MVVMContext mvvmContext1;     // dropped from the toolbox
+    MVVMContext mvvmContext1;     // declared in MainForm.Designer.cs
     TextEdit textEdit1;
     SimpleButton btnSave;
 

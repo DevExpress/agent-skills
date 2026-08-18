@@ -7,7 +7,7 @@
 
 ## When to Use This Reference
 
-- Adding `TreeList` to a project for the first time (designer or code)
+- Adding `TreeList` to a project for the first time
 - Choosing the host form and enabling skins
 - Binding a self-referential tree end-to-end
 
@@ -19,9 +19,9 @@ DevExpress.Win.TreeList
 
 This package ships `DevExpress.XtraTreeList.v26.1.dll`. For print preview / export, also add `DevExpress.Win.Printing`.
 
-> **Install via Package Manager Console:**
+> **Install the package:**
 > ```powershell
-> Install-Package DevExpress.Win.TreeList
+> dotnet add package DevExpress.Win.TreeList
 > ```
 
 ## Required Namespace Imports
@@ -51,17 +51,9 @@ static class Program {
 }
 ```
 
-## Designer Workflow
-
-1. Drag `TreeList` from the Toolbox onto the form; set `Dock = Fill`.
-2. Open the smart tag → **"Run Designer"** to launch the Tree List Designer.
-3. **Columns** page: add columns and set `FieldName`, `Caption`, in-place editors.
-4. For bound mode, set `DataSource` (smart tag), then set `KeyFieldName`, `ParentFieldName`, and `RootValue`.
-5. For unbound mode, use the **Nodes** page of the designer to add nodes manually.
-
 ## Authoring the `.Designer.cs` File
 
-When you generate a form **in code** (rather than dragging from the Toolbox), write it the way the WinForms designer serializes it: put the control, its columns, and its in-place editors in `InitializeComponent()` inside `MainForm.Designer.cs`, and keep only data loading and event handlers in `MainForm.cs`. This is what keeps the form openable in the Visual Studio WinForms designer — if you instead `new` the `TreeList` and build its columns in the form constructor body, the designer file stays empty and the form can no longer be edited visually.
+Write the form the way the WinForms designer serializes it: put the control, its columns, and its in-place editors in `InitializeComponent()` inside `MainForm.Designer.cs`, and keep only data loading and event handlers in `MainForm.cs`. This is what keeps the form openable in the Visual Studio WinForms designer — if you instead `new` the `TreeList` and build its columns in the form constructor body, the designer file stays empty and the form can no longer be edited visually.
 
 **Rules of thumb — what goes where:**
 
@@ -167,7 +159,7 @@ public class Employee {
 }
 ```
 
-> Auto-populate matches existing columns by `FieldName`, so the columns you declared above are reused rather than duplicated; to suppress *any* extra auto-generated columns for other data-source fields, set `treeList.OptionsBehavior.AutoPopulateColumns = false` (in the designer too). The form opens cleanly in the WinForms designer, where you can keep refining columns, editors, and layout.
+> Auto-populate matches existing columns by `FieldName`, so the columns you declared above are reused rather than duplicated; to suppress *any* extra auto-generated columns for other data-source fields, set `treeList.OptionsBehavior.AutoPopulateColumns = false` in the designer file as well. The form still opens cleanly in the WinForms designer.
 
 ## Minimal Bound Setup in Code
 

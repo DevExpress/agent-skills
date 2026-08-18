@@ -99,7 +99,7 @@ opt.GridSpacing       = 1;
 opt.AutoGrid          = false;
 opt.AggregateFunction = AggregateFunction.Average;
 opt.WorkdaysOnly      = true;                          // skip weekends
-opt.WorkdaysOptions.Holidays.Add(new DateTime(2026, 12, 25));
+opt.WorkdaysOptions.Holidays.Add(new KnownDate("Christmas", new DateTime(2026, 12, 25)));
 ```
 
 | Member | Purpose |

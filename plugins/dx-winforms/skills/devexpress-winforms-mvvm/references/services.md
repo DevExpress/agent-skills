@@ -117,8 +117,14 @@ Register in View:
 ```csharp
 MVVMContext.RegisterXtraDialogService();  // global
 // or
-mvvmContext1.RegisterService(DialogService.CreateXtraDialogService(this));  // local
+mvvmContext1.RegisterService(DialogService.CreateXtraDialogService(this));  // local (title optional)
 ```
+
+> **.NET 8 SDK-style projects:** the unified `DevExpress.Mvvm` package also carries WPF dialog
+> overloads, so `IDialogService.ShowDialog(...)` can fail to compile with a `MessageBoxResult` /
+> `PresentationFramework` reference error in a WinForms-only project. If you hit this, add
+> `<UseWPF>true</UseWPF>` alongside `<UseWindowsForms>true</UseWindowsForms>` in the `.csproj`.
+> `IMessageBoxService.ShowMessage(...)` is unaffected.
 
 ---
 
@@ -151,7 +157,7 @@ protected INavigationService NavigationService =>
     this.GetService<INavigationService>();
 
 public void GoToOrders() {
-    NavigationService.Navigate("OrdersView", parameter: null, parentViewModel: this);
+    NavigationService.Navigate("OrdersView", param: null, parentViewModel: this);
 }
 
 public void GoBack() {

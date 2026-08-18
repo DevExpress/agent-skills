@@ -24,15 +24,6 @@ The Data Grid supports any number of nesting levels, mixed view types per level 
 | **Level node** | An entry in `GridControl.LevelTree.Nodes` linking a relation name to a pattern view. Levels can be nested arbitrarily. |
 | **Relation** | Source-level link between master and detail (e.g., `DataRelation` in a `DataSet`, navigation property in EF, collection property on a business object). |
 
-## Quickstart from a DataSet
-
-1. Drop a `GridControl` on a form.
-2. Smart-tag → **Data Source Wizard** → bind to a `DataSet` containing two tables joined by a `DataRelation` (e.g., **Categories** + **Products**).
-3. Smart-tag → **Run Designer…** → **Levels** → **Retrieve Details**.
-4. The Designer creates a `GridLevelNode` per relation and a pattern view per level.
-
-At runtime, expand a master row to see children rendered in the matching pattern view.
-
 ## Build Master-Detail in Code
 
 ```csharp

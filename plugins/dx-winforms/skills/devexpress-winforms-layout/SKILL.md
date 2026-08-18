@@ -22,7 +22,7 @@ DevExpress WinForms ships a family of layout controls that cover form compositio
 
 > **Common misconception**: There is no separate `FlowLayoutControl` or `TableLayoutControl` class. *Flow Layout* and *Table Layout* are **modes** (`LayoutMode`) on a `LayoutControlGroup` inside `LayoutControl`.
 
-> **Author layouts in the designer by default.** Generate the layout in the form's `*.Designer.cs` (`InitializeComponent`), the same way the Visual Studio WinForms designer serializes it — **not** in the form constructor body. Only build a layout in runtime code when the user explicitly asks for it or the structure is genuinely dynamic/data-driven. See rule 1 in **Constraints & Rules** and the worked example in [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file). (For a form generated from a table or class, prefer `DataLayoutControl` + `RetrieveFields()` over a hand-built `LayoutControl`.)
+> **Author layouts in the form's `*.Designer.cs` by default.** Generate the layout inside `InitializeComponent()`, the same way the Visual Studio WinForms designer serializes it — **not** in the form constructor body. Only build a layout in runtime code when the user explicitly asks for it or the structure is genuinely dynamic/data-driven. See rule 1 in **Constraints & Rules** and the worked example in [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file). (For a form generated from a table or class, prefer `DataLayoutControl` + `RetrieveFields()` over a hand-built `LayoutControl`.)
 
 ## When to Use This Skill
 
@@ -74,7 +74,7 @@ When you need to: choose between `LayoutControl`, `DataLayoutControl`, `DockMana
 
 ### Building Layouts in Code
 Refer to [references/building-layouts.md](references/building-layouts.md)
-When you need to: construct a `LayoutControl` hierarchy (`AddItem`, `AddGroup`, `AddTabbedGroup`, `EmptySpaceItem`, `SplitterItem`), enable Flow or Table layout mode on a group, set size constraints, hide/show items, dock panels with `DockManager` (`AddPanel`, `DockTo`, `DockAsTab`), or configure `StackPanel`/`TablePanel` rows/columns. (Prefer authoring in the designer — see Getting Started — unless the layout is built dynamically at runtime.)
+When you need to: construct a `LayoutControl` hierarchy (`AddItem`, `AddGroup`, `AddTabbedGroup`, `EmptySpaceItem`, `SplitterItem`), enable Flow or Table layout mode on a group, set size constraints, hide/show items, dock panels with `DockManager` (`AddPanel`, `DockTo`, `DockAsTab`), or configure `StackPanel`/`TablePanel` rows/columns. (Prefer authoring in the `*.Designer.cs` file — see Getting Started — unless the layout is built dynamically at runtime.)
 
 ### Saving and Restoring Layout
 Refer to [references/saving-restoring-layout.md](references/saving-restoring-layout.md)
@@ -176,7 +176,7 @@ void Form_FormClosing(object sender, FormClosingEventArgs e) {
 | Save/Restore | `RestoreLayoutFromXml(path)` | Available on the same controls |
 | Save/Restore | `SaveLayoutToJson(stream)` | Available on `LayoutControl`, `DockManager` |
 | Save/Restore | `OptionsSerialization` | `LayoutControl`-specific persistence options |
-| Workspaces | `WorkspaceManager.SaveWorkspace(name)` | Save current state of all registered controls |
+| Workspaces | `WorkspaceManager.CaptureWorkspace(name)` | Capture current state of all registered controls into the Workspaces collection |
 | Workspaces | `WorkspaceManager.ApplyWorkspace(name)` | Apply a named workspace |
 
 ## Troubleshooting
@@ -197,7 +197,7 @@ CRITICAL — follow these rules in every interaction:
 
 1. **Author layouts in the `*.Designer.cs` file by default.** Declare the `LayoutControl`/`DataLayoutControl`/`DockManager`, its `LayoutControlGroup`/`LayoutControlItem`s (or `DockPanel`s), and their property setup as fields and build them inside `InitializeComponent()` in `MainForm.Designer.cs` — wrapping layout configuration in `((System.ComponentModel.ISupportInitialize)(layoutControl1)).BeginInit()` … `EndInit()` — exactly as the WinForms designer serializes it, so the form stays editable in the designer. Build the layout in **runtime code** (constructor) **only** when the user explicitly asks or the layout is genuinely dynamic/data-driven. Do **not** default to constructing the layout in the form constructor body. See [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file).
 2. **A form generated from a table or class → `DataLayoutControl`.** When the task is "build an edit form for this table / entity / class", bind a `DataLayoutControl` to the data source and call `RetrieveFields()` to auto-generate the editor layout — do not hand-build a `LayoutControl` with one `AddItem` per column.
-3. **Verify builds** — after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors; otherwise ask the developer to run it and share the output. Never report success on an unverified build.
+3. **Verify builds** — after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified. Never report success on an unverified build.
 4. **Do not mix DevExpress package versions** — reference the controls through NuGet packages (never assembly DLLs by path), and keep every DevExpress package in the project on the same version.
 5. **NuGet packages** — `LayoutControl`, `DataLayoutControl`, and `DockManager` ship in `DevExpress.Win.Navigation`; `StackPanel` and `TablePanel` ship in `DevExpress.Utils` (pulled in transitively by any `DevExpress.Win.*` package).
 6. **One `DockManager` per form** — do not place two `DockManager` instances on the same form.
@@ -206,7 +206,7 @@ CRITICAL — follow these rules in every interaction:
 9. **Create panels before restoring `DockManager` layout** — `RestoreLayoutFromXml` repositions existing panels; it does not create missing ones.
 10. **There is no `FlowLayoutControl`/`TableLayoutControl` class** — use `LayoutControl` with `group.LayoutMode = LayoutMode.Flow` (or `LayoutMode.Table`).
 11. **Do not generate skin/theme code** — do not write code that calls `UserLookAndFeel.Default.SkinName` or `DevExpress.Skins.SkinManager`. Skin management is the application's responsibility.
-12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+12. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

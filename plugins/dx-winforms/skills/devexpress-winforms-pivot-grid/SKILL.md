@@ -144,15 +144,15 @@ fieldSales.CellFormat.FormatString = "c2";
 ### Sort category by descending sales
 
 ```csharp
-fieldCategory.SortBySummaryInfo.Field     = fieldSales;
-fieldCategory.SortBySummaryInfo.SortOrder = PivotSortOrder.Descending;
+fieldCategory.SortBySummaryInfo.Field = fieldSales;   // rank by the Sales summary
+fieldCategory.SortOrder = PivotSortOrder.Descending;   // direction is set on the field
 ```
 
 ### Show Top 5 + "Others"
 
 ```csharp
 fieldCategory.TopValueCount      = 5;
-fieldCategory.TopValueType       = PivotTopValueType.Largest;
+fieldCategory.TopValueType       = PivotTopValueType.Absolute;  // Absolute = top N by count (Percent / Sum also available)
 fieldCategory.TopValueShowOthers = true;
 ```
 
@@ -194,13 +194,13 @@ pivotGridControl1.RestoreLayoutFromXml("layout.xml");
 
 CRITICAL — follow these rules in every interaction:
 
-1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
+1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **Do not mix DevExpress package versions**: reference the control through the `DevExpress.Win.PivotGrid` NuGet package — never assembly DLLs by path — and keep every DevExpress package in the project on the same version.
 3. **Target Windows**: `PivotGridControl` is WinForms-only. Target .NET Framework 4.6.2+ or .NET 8+ with the `-windows` TFM suffix for SDK-style projects.
 4. **Batch field changes**: wrap bulk field/layout changes in `BeginUpdate()` / `EndUpdate()`, and put `EndUpdate()` in a `finally` block so the control is never left update-locked if setup throws. Use `UseAsyncMode` + `EndUpdateAsync()` for large data.
 5. **Bindings are required**: a field only shows data when its `DataBinding` is set — use `Fields.AddDataSourceColumn(...)` or assign a `*Binding` object. For expression/window calculations set `OptionsData.DataProcessingEngine = PivotDataProcessingEngine.Optimized`.
 6. **`CustomDrawCell` must set `e.Handled = true`** when you take over rendering, or the default cell still paints over your drawing.
-7. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+7. **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

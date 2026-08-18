@@ -17,8 +17,8 @@ Every `LayoutControl` has a single **root group** (`LayoutControl.Root`), which 
 | Tabbed Group | `TabbedControlGroup` | Presents nested `LayoutControlGroup` objects as tabs |
 | Empty Space Item | `EmptySpaceItem` | Invisible filler that occupies free space |
 | Splitter Item | `SplitterItem` | Drag to resize adjacent items |
-| Label Item | `LabelItem` | Static text within the layout |
-| Separator Item | `SeparatorItem` | Horizontal or vertical divider line |
+| Label Item | `SimpleLabelItem` | Static text within the layout |
+| Separator Item | `SimpleSeparator` | Horizontal or vertical divider line |
 
 ### Golden Rules
 
@@ -38,9 +38,10 @@ try {
     LayoutControlItem item1 = layoutControl1.AddItem("First Name", firstNameEdit);
     item1.Name = "lciFirstName";
 
-    // Add a control without a label (label hidden)
+    // Add a control without a label (there is no AddItem(Control) overload; pass a
+    // caption and hide it). Real overloads are AddItem(string, Control) / AddItem(BaseLayoutItem).
     var memoEdit = new MemoEdit { Name = "edNotes" };
-    LayoutControlItem item2 = layoutControl1.AddItem(memoEdit);
+    LayoutControlItem item2 = layoutControl1.AddItem("Notes", memoEdit);
     item2.TextVisible = false;
     item2.Name = "lciNotes";
 }
@@ -111,7 +112,7 @@ group.LayoutMode = LayoutMode.Flow;  // enable Flow Layout
 
 foreach (var tag in tags) {
     var btn = new SimpleButton { Text = tag, AutoSizeMode = AutoSizeMode.GrowAndShrink };
-    var item = group.AddItem(btn);
+    var item = group.AddItem(tag, btn);   // AddItem(string, Control); caption hidden below
     item.TextVisible = false;
     item.SizeConstraintsType = SizeConstraintsType.Default;
 }
@@ -195,7 +196,7 @@ item.TextVisible = false;            // hide label entirely
 
 `DataLayoutControl` uses the same building rules as `LayoutControl` for manual editing, plus these specific rules:
 
-1. **Set `DataSource` before calling `RetrieveFields()`** — the wizard cannot generate editors without a data source.
+1. **Set `DataSource` before calling `RetrieveFields()`** — the control cannot generate editors without a data source.
 2. **Use `[Display]` attribute** on business object properties to control captions and grouping:
 
    ```csharp
@@ -204,7 +205,7 @@ item.TextVisible = false;            // hide label entirely
    ```
 
 3. **Nested objects become groups** when the property is a complex type. Use `[Display(GroupName = "...")]` on nested object properties.
-4. **Change editor type** at design time via item smart tag → "Change Editor Type", or in code:
+4. **Change editor type** by replacing the item's `Control`:
 
    ```csharp
    ((LayoutControlItem)dataLayoutControl1.GetItemByFieldName("BirthDate"))
@@ -220,7 +221,7 @@ item.TextVisible = false;            // hide label entirely
 ### Panel Creation Rules
 
 1. **One `DockManager` per form** — placing multiple `DockManager` instances on the same form causes conflicts.
-2. **`DockManager.Form` must be set** before calling `AddPanel`. In the designer, dropping a `DockManager` on the form sets this automatically.
+2. **`DockManager.Form` must be set** before calling `AddPanel` — assign it explicitly (`dockManager1.Form = this;`) wherever you create the manager.
 3. **Use `DockPanel.Controls.Add(control)`** to place a control inside a panel. The hosted control should have `Dock = DockStyle.Fill`.
 
 ### Docking and Grouping

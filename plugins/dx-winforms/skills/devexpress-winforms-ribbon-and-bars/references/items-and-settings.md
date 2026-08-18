@@ -14,7 +14,7 @@ This reference covers the items / links architecture used by both Ribbon and Bar
 
 A `BarItem` is a non-visual component holding all settings: `Caption`, `ImageOptions`, `Hint`, `ItemClick`, `Enabled`, `Visibility`, `ItemShortcut`, etc. Putting an item on a `Bar` / `RibbonPageGroup` / `Toolbar` / `RibbonStatusBar` creates a **`BarItemLink`** — the actual on-screen control.
 
-You can create multiple links to the same item. Clicking any of them fires the same `ItemClick`. Each link can override the visual style independently (`PaintStyle`, `UserRibbonStyle`, `UserCaption`, `UserGlyph`, `UserAlignment`, `BeginGroup`).
+You can create multiple links to the same item. Clicking any of them fires the same `ItemClick`. Each link can override the visual style independently (`UserPaintStyle`, `UserRibbonStyle`, `UserCaption`, `UserGlyph`, `UserAlignment`, `BeginGroup`).
 
 ```text
                  ┌──────────────────────┐
@@ -164,13 +164,13 @@ For ribbon items, also set `RibbonStyle = RibbonItemStyles.Large` if you want th
 ## RibbonStyle vs PaintStyle
 
 - **`BarItem.RibbonStyle`** controls how the item *can* be displayed inside a `RibbonPageGroup`. The group picks `Large`/`SmallWithText`/`SmallWithoutText` depending on available width and the bitmask. Default is `All`.
-- **`BarItemLink.PaintStyle`** controls how a single link paints in a classic `Bar` (`Default`, `Standard`, `CaptionGlyph`, `CaptionInMenu`). Has no effect in ribbon groups.
+- **`BarItemLink.UserPaintStyle`** overrides how a single link paints in a classic `Bar` (`Default`, `Standard`, `CaptionGlyph`, `CaptionInMenu`). `BarItemLink.PaintStyle` itself is read-only (it reflects the item), so set `UserPaintStyle` on the link. Has no effect in ribbon groups.
 
 ```csharp
 itemNew.RibbonStyle = RibbonItemStyles.Large | RibbonItemStyles.SmallWithText;
 
 var linkInToolbar = bar1.AddItem(itemNew);
-linkInToolbar.PaintStyle = BarItemPaintStyle.CaptionGlyph;
+linkInToolbar.UserPaintStyle = BarItemPaintStyle.CaptionGlyph;
 ```
 
 ## Per-Link Overrides
@@ -199,7 +199,8 @@ Link-only properties:
 | `UserAlignment` | Align link to `Left`/`Right` of its container. |
 | `BeginGroup` | Show a separator before the link. |
 | `MostRecentlyUsed` | Mark as recently used (for popup menus that hide unused items). |
-| `Visible` / `Enabled` | Per-link state (independent of item-level state). |
+| `Visible` | Per-link visibility (independent of item-level state). A link's `Enabled` is read-only — set `Enabled` on the item. |
+| `UserPaintStyle` | Override the item's `PaintStyle` for this link only (`PaintStyle` on the link is read-only). |
 
 ## Wiring Clicks
 

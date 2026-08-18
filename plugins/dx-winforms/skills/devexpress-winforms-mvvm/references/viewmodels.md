@@ -26,8 +26,9 @@ using DevExpress.Mvvm.CodeGenerators;
 
 [GenerateViewModel]
 partial class OrderViewModel {
-    // Generates: public string Title { get; set; } + RaisePropertyChanged
-    [GenerateProperty]
+    // Generates: public string Title { get; set; } + RaisePropertyChanged.
+    // A plain [GenerateProperty] does NOT auto-call a change callback — wire one with OnChangedMethod.
+    [GenerateProperty(OnChangedMethod = nameof(OnTitleChanged))]
     string title = string.Empty;
 
     // IsVirtual = false generates a non-virtual property (omit it for the default).
@@ -35,8 +36,10 @@ partial class OrderViewModel {
     [GenerateProperty(IsVirtual = false)]
     int orderId;
 
-    // OnTitleChanged() is called automatically when Title changes
-    partial void OnTitleChanged(string value) {
+    // Called automatically after Title changes; the callback receives the OLD value.
+    // (Use a parameterless OnTitleChanged() if you don't need it, or OnChangingMethod for a
+    //  pre-change hook that receives the NEW value.) It is a regular method — not partial.
+    void OnTitleChanged(string oldValue) {
         // react to property change
     }
 }
@@ -56,7 +59,7 @@ partial class OrderViewModel {
 
     // Generates: SaveCommand (DelegateCommand)
     [GenerateCommand]
-    void Save() {
+    public void Save() {   // public so the View can bind it via vm => vm.Save
         // business logic
     }
 
@@ -79,7 +82,7 @@ partial class OrderViewModel {
     // Generates: LoadAsyncCommand (AsyncCommand)
     // The button is disabled automatically while the command runs
     [GenerateCommand]
-    async Task LoadAsync() {
+    public async Task LoadAsync() {   // public so the View can bind it via vm => vm.LoadAsync
         await FetchOrdersAsync();
     }
 
@@ -286,11 +289,11 @@ public partial class OrderViewModel : ObservableObject {
     string title = string.Empty;
 
     [RelayCommand(CanExecute = nameof(CanSave))]
-    void Save() { /* business logic */ }
+    public void Save() { /* business logic */ }   // public so the View can bind it via vm => vm.Save
     bool CanSave() => !string.IsNullOrEmpty(Title);
 
     [RelayCommand]
-    async Task LoadAsync() {
+    public async Task LoadAsync() {                // public so the View can bind it via vm => vm.LoadAsync
         await FetchOrdersAsync();
     }
 }

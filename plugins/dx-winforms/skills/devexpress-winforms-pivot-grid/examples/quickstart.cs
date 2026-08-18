@@ -8,26 +8,19 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraPivotGrid;
 
 // ------------------------------------------------------------------
-// 1. Minimal pivot — assign fields to areas and bind data
+// 1. Minimal pivot — fixed fields in the designer file, bind data at runtime
+//    The control and its four fields (fixed columns) are declared in the
+//    *.Designer.cs partial below (InitializeComponent), so the form stays
+//    editable in the Visual Studio WinForms designer. Only the data source
+//    is assigned in the code-behind. For fields discovered from the data at
+//    run time, use the AddDataSourceColumn helper (see Section 2).
 // ------------------------------------------------------------------
+
+// --- Form1.cs — data only ---
 public partial class Form1 : XtraForm {
-    PivotGridControl pivotGridControl1;
-
     public Form1() {
-        InitializeComponent();
-
-        pivotGridControl1.BeginUpdate();
-        try {
-            pivotGridControl1.OptionsData.DataProcessingEngine = PivotDataProcessingEngine.Optimized;
-            pivotGridControl1.DataSource = GetSalesData();   // IList / DataTable / BindingSource
-            pivotGridControl1.Fields.AddDataSourceColumn("Country",  PivotArea.FilterArea);
-            pivotGridControl1.Fields.AddDataSourceColumn("Category", PivotArea.RowArea);
-            pivotGridControl1.Fields.AddDataSourceColumn("Year",     PivotArea.ColumnArea);
-            pivotGridControl1.Fields.AddDataSourceColumn("Sales",    PivotArea.DataArea);
-        }
-        finally {
-            pivotGridControl1.EndUpdate();   // always unlock, even if setup throws
-        }
+        InitializeComponent();                 // builds pivotGridControl1 + its fields/areas
+        pivotGridControl1.DataSource = GetSalesData();   // IList / DataTable / BindingSource
         pivotGridControl1.BestFit();
     }
 
@@ -36,6 +29,61 @@ public partial class Form1 : XtraForm {
         new SalesRecord { Country = "USA", Category = "Bikes", Year = 2026, Sales = 15000m },
         new SalesRecord { Country = "DE",  Category = "Parts", Year = 2026, Sales = 8000m  },
     };
+}
+
+// --- Form1.Designer.cs — control + fixed fields the WinForms designer round-trips ---
+partial class Form1 {
+    private System.ComponentModel.IContainer components = null;
+    private PivotGridControl pivotGridControl1;
+    private PivotGridField fieldCountry;
+    private PivotGridField fieldCategory;
+    private PivotGridField fieldYear;
+    private PivotGridField fieldSales;
+
+    private void InitializeComponent() {
+        this.pivotGridControl1 = new PivotGridControl();
+        this.fieldCountry = new PivotGridField();
+        this.fieldCategory = new PivotGridField();
+        this.fieldYear = new PivotGridField();
+        this.fieldSales = new PivotGridField();
+        ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl1)).BeginInit();
+        this.SuspendLayout();
+        //
+        // pivotGridControl1
+        //
+        this.pivotGridControl1.Dock = DockStyle.Fill;
+        this.pivotGridControl1.Name = "pivotGridControl1";
+        this.pivotGridControl1.OptionsData.DataProcessingEngine = PivotDataProcessingEngine.Optimized;
+        this.pivotGridControl1.Fields.AddRange(new PivotGridField[] {
+            this.fieldCountry, this.fieldCategory, this.fieldYear, this.fieldSales});
+        //
+        // fields — FieldName binds to a data-source column; Area places it
+        //
+        this.fieldCountry.Area = PivotArea.FilterArea;
+        this.fieldCountry.Caption = "Country";
+        this.fieldCountry.FieldName = "Country";
+        this.fieldCountry.Name = "fieldCountry";
+        this.fieldCategory.Area = PivotArea.RowArea;
+        this.fieldCategory.Caption = "Category";
+        this.fieldCategory.FieldName = "Category";
+        this.fieldCategory.Name = "fieldCategory";
+        this.fieldYear.Area = PivotArea.ColumnArea;
+        this.fieldYear.Caption = "Year";
+        this.fieldYear.FieldName = "Year";
+        this.fieldYear.Name = "fieldYear";
+        this.fieldSales.Area = PivotArea.DataArea;
+        this.fieldSales.Caption = "Sales";
+        this.fieldSales.FieldName = "Sales";
+        this.fieldSales.Name = "fieldSales";
+        //
+        // Form1
+        //
+        this.Controls.Add(this.pivotGridControl1);
+        this.Name = "Form1";
+        this.Text = "Sales";
+        ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl1)).EndInit();
+        this.ResumeLayout(false);
+    }
 }
 
 public class SalesRecord {

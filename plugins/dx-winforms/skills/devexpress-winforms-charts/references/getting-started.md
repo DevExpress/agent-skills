@@ -9,7 +9,7 @@ For data binding details see [data-binding.md](data-binding.md). For picking a s
 - First time adding a `ChartControl` to a WinForms project.
 - Confirming which NuGet package(s) to reference.
 - Understanding the `ChartControl` → `Diagram` → `Series` → `View` hierarchy before configuring anything else.
-- Running the **Chart Designer** at design time or runtime.
+- Running the **Chart Designer** at runtime for end-user customization.
 
 ## NuGet Packages
 
@@ -42,16 +42,7 @@ using DevExpress.XtraEditors;         // XtraForm if you want skin-aware host fo
 
 For native designer assets (skin-aware controls, repository items) also `using DevExpress.XtraEditors.Repository;`.
 
-## Drop a `ChartControl` on a Form
-
-### Designer
-
-1. Open the form in the designer.
-2. Open the Toolbox → the `DX.<version>: Data & Analytics` group (the version segment matches your installed DevExpress version) → drag **ChartControl** onto the form.
-3. Set `Dock = Fill` or use anchors.
-4. Right-click the chart → **Run Designer…** to open the Chart Designer.
-
-### Code-only
+## Add a `ChartControl` to a Form
 
 ```csharp
 var chart = new ChartControl {
@@ -138,15 +129,9 @@ chart.Titles.Add(new ChartTitle {
 
 `ChartControl.Titles` is a collection — add as many as you need; subsequent titles stack vertically.
 
-## Chart Designer
+## Chart Designer (Runtime End-User Customization)
 
-The **Chart Designer** is a full GUI editor for every chart property — series, diagrams, axes, legends, tooltips, palette.
-
-### Design-time
-
-Right-click the `ChartControl` on the form → **Run Designer…**
-
-### Runtime (end-user customization)
+The **Chart Designer** is a full GUI editor for every chart property — series, diagrams, axes, legends, tooltips, palette. Show it to end users at runtime:
 
 ```csharp
 using DevExpress.XtraCharts.Designer;
@@ -162,11 +147,9 @@ The runtime designer requires `DevExpress.XtraCharts.v26.1.Design.dll` (the `v26
 - **Wrong diagram type after adding the wrong series first** — clear `Series` and re-add in the intended order, or build the diagram via an initial dummy series of the right `ViewType`.
 - **Dates show as numbers** — set `series.ArgumentScaleType = ScaleType.DateTime` explicitly.
 - **Currency shows raw numbers** — set `Axis.Label.TextPattern = "{V:c0}"` (see [axis-titles-and-labels.md](axis-titles-and-labels.md)).
-- **Designer changes lost on rebuild** — the designer writes to `Form.Designer.cs`. Don't hand-edit the generated `chart.Series` block; use the designer.
 
 ## Common Issues
 
-- **`ChartControl` not in Toolbox** — verify `DevExpress.Win.Charts` is referenced; reset the Toolbox if the DX category is missing.
 - **`ViewType` enum value not found** — confirm the `using DevExpress.XtraCharts;` directive; some niche views (e.g., `ViewType.Bar3D`) require referencing the 3D-enabled package version.
 - **Chart shows placeholder image** — no series added or all series are empty. Add data via `Points` or `DataSource`.
 - **License dialog appears** — register a valid DevExpress license (`licenses.licx`) or use a trial activation.

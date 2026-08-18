@@ -130,7 +130,7 @@ protected override void OnShown(EventArgs e) {
 | `CloseForm()` | Close the most recently shown splash or wait form |
 | `ShowOverlayForm(...)` → `IOverlaySplashScreenHandle` | Show overlay over a control/form (see signatures below) |
 | `CloseOverlayForm(handle)` | Close overlay by handle |
-| `SendCommand(enum, object)` | Send custom command to an open splash/wait form |
+| `Default.SendCommand(enum, object)` | Send a custom command to an open splash/wait form. `SendCommand` is an **instance** method — call it on the component instance or `SplashScreenManager.Default`, not statically. |
 
 #### `ShowOverlayForm` — pick **one** signature (do not mix)
 
@@ -146,10 +146,10 @@ var h = SplashScreenManager.ShowOverlayForm(gridControl1, options);
 
 // 3) The multi-parameter named overload (no options object)
 var h = SplashScreenManager.ShowOverlayForm(
-    owner: gridControl1, startupDelay: 300, opacity: 0.5, fadeIn: true, fadeOut: true);
+    owner: gridControl1, startupDelay: 300, opacity: 128, fadeIn: true, fadeOut: true);
 ```
 
-`imageSize` (in the multi-parameter overload) is a `Size?` — pass `new Size(w, h)`, not a made-up `ImageSize.Default`.
+Note the two different `opacity` scales: on the multi-parameter `ShowOverlayForm` overload `opacity` is an **`int?` (0–255)**, while `OverlayWindowOptions(opacity: …)` takes a **`double` (0.0–1.0)**. `imageSize` (in the multi-parameter overload) is a `Size?` — pass `new Size(w, h)`, not a made-up `ImageSize.Default`.
 
 ### SplashScreenManager (instance — from designer component)
 
@@ -193,7 +193,7 @@ var h = SplashScreenManager.ShowOverlayForm(
 - **Overlay Form requires an initialized control handle** — `ShowOverlayForm` before `Form.Load` throws `InvalidOperationException`.
 - **Never generate skin / look-and-feel code for a loading indicator** — do **not** add `BonusSkins.Register()`, `UserLookAndFeel.Default.SetSkinStyle(...)`, `WindowsFormsSettings.LoadApplicationSettings()`, or `SkinManager` calls. The indicators inherit the application's existing skin; skin setup is the application's responsibility and is out of scope here.
 - **Never wait with `Application.DoEvents()`** — do not write a `while (!done) Application.DoEvents();` busy-loop to keep an indicator responsive. Use `async`/`await` (and `Task.Run` for CPU-bound work) so the UI message loop keeps running; the indicator animates on its own.
-- **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
+- **Adding assembly references (.NET Framework):** Resolve the required assemblies via the DevExpress Docs MCP and add the corresponding NuGet package. Avoid manually editing the `.csproj` references node to add new assembly references.
 
 ## Using DevExpress Documentation MCP
 

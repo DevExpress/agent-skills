@@ -46,8 +46,6 @@ gridView1.Columns["Quantity"].ColumnEditName = "riQuantity";
 
 You can share one repository item across multiple columns or even multiple controls. Settings changes propagate everywhere — be careful editing a shared instance at runtime.
 
-At design time, the column's `ColumnEdit` smart tag shows a dropdown of all repository items in the grid (and any attached external repository).
-
 ## Default Cell Editors
 
 If `ColumnEdit` is not set, the grid auto-picks based on the column's data type:

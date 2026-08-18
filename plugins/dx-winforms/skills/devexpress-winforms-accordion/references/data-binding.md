@@ -1,6 +1,6 @@
 # Data Binding and Populating Items
 
-`AccordionControl` is **not a data-bound control** in the traditional WinForms sense — it has no `DataSource` / `DataMember` properties. All elements (`AccordionControlElement`) are added explicitly to the `Elements` collection. This page covers the three patterns for populating the control and explains when to use each.
+`AccordionControl` is **not a data-bound control** in the traditional WinForms sense — it has no `DataSource` / `DataMember` properties. All elements (`AccordionControlElement`) are added explicitly to the `Elements` collection. This page covers the two patterns for populating the control and explains when to use each.
 
 ## When to Use This Reference
 
@@ -12,26 +12,12 @@
 
 | Strategy | Best For | API |
 |---|---|---|
-| **Designer / Static** | Fixed menus that never change | Visual Studio designer, Elements tab |
 | **Code — static items** | Fixed menus defined in code at startup | `accordion.Elements.Add(...)` at form init |
 | **Code — data-driven** | Items generated from a collection, config file, or database | Iterate collection → create `AccordionControlElement` per record |
 
-There is no `ItemsSource`/`DataSource` equivalent. All three strategies ultimately write to `AccordionControl.Elements` or `AccordionControlElement.Elements`.
+There is no `ItemsSource`/`DataSource` equivalent. Both strategies ultimately write to `AccordionControl.Elements` or `AccordionControlElement.Elements`.
 
-## Strategy 1 — Designer (Static Items)
-
-Use the built-in designer for navigation menus whose structure is defined at design time and does not change at runtime.
-
-1. Double-click the control or click **"Run Designer"** in its smart tag.
-2. In the **Elements** tab, click **+ Group** or **+ Item**.
-3. Set `Text`, `Image`, `Expanded`, and other properties in the property grid.
-4. Drag to reorder; nest by dragging an item onto a group.
-
-The designer writes the result into the form's `.Designer.cs` file, producing code equivalent to Strategy 2.
-
-**When not to use:** Any time the item list is determined by data (user roles, configuration, database records).
-
-## Strategy 2 — Code, Static Items
+## Strategy 1 — Code, Static Items
 
 Populate in the constructor or `Form_Load` when the menu is fixed but defined in code:
 
@@ -62,7 +48,7 @@ void BuildMenu(AccordionControl accordion) {
 
 Always wrap bulk additions in `BeginUpdate()` / `EndUpdate()` — it suppresses per-item layout passes and is significantly faster for large menus.
 
-## Strategy 3 — Code, Data-Driven
+## Strategy 2 — Code, Data-Driven
 
 Generate items programmatically from a collection (list, query result, config section). This is the closest equivalent to XAML's `ItemsSource`.
 

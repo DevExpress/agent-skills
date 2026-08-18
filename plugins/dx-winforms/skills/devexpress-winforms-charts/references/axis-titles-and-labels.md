@@ -100,10 +100,6 @@ diagram.AxisX.Label.TextPattern = "{A:dd MMM}";
 diagram.AxisY.Label.TextPattern = "{V:c0}";
 ```
 
-## Pattern Editor (Design-time)
-
-Open the Chart Designer → select an axis → click the `…` button next to `Label.TextPattern` → the Pattern Editor opens with a tree of placeholders and a live preview.
-
 ## Custom Formatter
 
 When `TextPattern` is not flexible enough (custom units like K/M/B; runtime localization; computed labels):
@@ -161,14 +157,12 @@ Use `CustomAxisLabel` for thresholds, milestones, named ranges.
 
 ```csharp
 chart.CustomDrawAxisLabel += (s, e) => {
-    if (e.Item.Axis == diagram.AxisY && Convert.ToDouble(e.Item.AxisValue) > 1000) {
+    if (e.Item.Axis == diagram.AxisY && Convert.ToDouble(e.Item.AxisValue) > 1000)
         e.Item.TextColor = Color.IndianRed;
-        e.Item.TextDecorationOptions.StrikeThrough = DefaultBoolean.True;
-    }
 };
 ```
 
-`AxisLabelCustomDrawEventArgs.Item` exposes `Text`, `TextColor`, `AxisValue`, `TextDecorationOptions`, `EnableAntialiasing`. Setting `Item.Text` replaces the pattern output.
+`AxisLabelCustomDrawEventArgs.Item` exposes `Text`, `TextColor`, `Axis`, `AxisValue`, and `EnableAntialiasing`. Setting `Item.Text` replaces the pattern output.
 
 ## Label Resolution / Overlap
 

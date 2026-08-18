@@ -55,7 +55,7 @@ Always host `AccordionControl` on `XtraForm` (or `RibbonForm` / `FluentDesignFor
 
 If the host agent has a structured question-asking tool available, use it to ask these questions one at a time with clear options — for example, Claude Code's `AskUserQuestion` tool or GitHub Copilot's `askQuestions` tool. If no such tool is available, ask the questions directly in the chat response before generating code.
 
-1. Is the navigation structure fixed at design time, or generated from data (list/database)?
+1. Is the navigation structure fixed in code, or generated from data (list/database)?
 2. Should the sidebar always be visible, or should it collapse to an icon strip (Hamburger Menu)?
 3. Do items need embedded controls (DatePicker, ToggleSwitch, lists) inside them?
 4. Does the app have a `RibbonControl` that should share a title bar with the accordion?
@@ -220,7 +220,7 @@ public partial class MainForm : XtraForm {
 | `HeaderControl` | Custom WinForms control in the header |
 | `HeaderTemplate` | Header block order and alignment |
 | `Appearance` | Per-element visual styles |
-| `ShortcutKey` | Keyboard shortcut |
+| `ShortcutKey` | Keyboard shortcut (`BarShortcut`, e.g. `new BarShortcut(Keys.F1)`) |
 
 ## Common Patterns
 
@@ -246,6 +246,8 @@ accordion.ElementClick += (s, e) => {
         navFrame.SelectedPage = page;
 };
 ```
+
+> **Authoring this in a `*.Designer.cs`:** wrap **both** the `AccordionControl` **and** the `NavigationFrame` in `BeginInit()`/`EndInit()` (both implement `ISupportInitialize`). Do **not** wrap the `NavigationPage` objects — they are panels; a page is added with `navFrame.Pages.Add(page)` and set up with `SuspendLayout()`/`ResumeLayout()`. Casting a `NavigationPage` to `ISupportInitialize` compiles but throws `InvalidCastException` when `InitializeComponent` runs.
 
 ### Pattern 2: Hamburger Menu (Overlay)
 
@@ -308,10 +310,10 @@ CRITICAL — follow these rules in every interaction:
 4. Do not use `DataSource` or `ItemsSource` on `AccordionControl` — these properties do not exist. Items are added via `Elements.Add()`.
 5. Always host `AccordionControl` on `XtraForm`, `RibbonForm`, or `FluentDesignForm` — not plain `Form`.
 6. Set the application skin before any form is shown; do not change it after forms are visible.
-7. For content containers, always call `accordion.Controls.Add(container)` in addition to assigning `item.ContentContainer = container`. **Never wrap a content container in `BeginInit()`/`EndInit()`** — `AccordionContentContainer` does **not** implement `ISupportInitialize` (casting it throws `InvalidCastException`); in a `*.Designer.cs` only the `AccordionControl` itself is wrapped in `BeginInit`/`EndInit`.
+7. For content containers, always call `accordion.Controls.Add(container)` in addition to assigning `item.ContentContainer = container`. `BeginInit()`/`EndInit()` applies **only** to types that implement `ISupportInitialize`. In a `*.Designer.cs`, wrap **`AccordionControl`, `NavigationFrame`, and image collections (`SvgImageCollection`/`ImageCollection`)** in `BeginInit`/`EndInit`; **never** wrap `AccordionControlElement`, `AccordionContentContainer`, or **`NavigationPage`** — they do **not** implement `ISupportInitialize`, so casting them throws `InvalidCastException` at runtime (a `NavigationPage` is a panel — use `SuspendLayout()`/`ResumeLayout()` for it, exactly like any WinForms container).
 8. Wrap all bulk element additions in `BeginUpdate()` / `EndUpdate()`.
 9. Accordion elements use **`Hint`** for tooltip text — there is **no** `ToolTipText` property on `AccordionControlElement`.
-10. **.NET Framework references**: add DevExpress via the NuGet Package Manager (`DevExpress.Win.Navigation`) or by dropping an `AccordionControl` from the Toolbox once (auto-adds references). Do **not** hand-edit a non-SDK `.csproj` or copy DevExpress DLLs with shell/PowerShell commands — that routinely breaks the build; if you cannot run NuGet, ask the developer to add the package.
+10. **.NET Framework references**: add DevExpress with `dotnet add package DevExpress.Win.Navigation`. Do **not** hand-edit a non-SDK `.csproj` or copy DevExpress DLLs with shell/PowerShell commands — that routinely breaks the build. If NuGet cannot be run in this environment, stop and report which package is missing.
 11. Never construct DevExpress documentation URLs from training data — always use the MCP tool to search.
 12. Do not mix `AccordionControl` with `NavBarControl` API (different namespaces, different element models).
 

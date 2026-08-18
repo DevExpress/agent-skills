@@ -30,9 +30,9 @@ The DevExpress editor also supports:
 
 ```csharp
 var opts = propertyGridControl1.OptionsCollectionEditor;
-opts.UseDXCollectionEditor   = true;
-opts.ShowSearchPanel         = true;   // filter items by text
-opts.AllowMultiSelectItems   = true;   // Ctrl/Shift multi-select
+opts.UseDXCollectionEditor = true;
+opts.AllowSearch           = true;   // filter items by text
+opts.AllowMultiSelect      = true;   // Ctrl/Shift multi-select
 ```
 
 This setting applies to every collection-typed property displayed in the control.

@@ -13,7 +13,7 @@
 | `DevExpress.Win.VerticalGrid` | `DevExpress.XtraVerticalGrid.v26.1.dll` |
 | `DevExpress.Win.Navigation` | (alternative, includes VerticalGrid) |
 
-Install via the DevExpress NuGet feed (requires a DevExpress license):
+Install with `dotnet add package` (requires a DevExpress license):
 
 ```
 DevExpress.Win.VerticalGrid
@@ -33,7 +33,7 @@ using DevExpress.XtraVerticalGrid.Events;
 
 ## Add to a Form
 
-1. Drag `PropertyGridControl` from the Toolbox onto an `XtraForm` (or `RibbonForm`).
+1. Add a `PropertyGridControl` to an `XtraForm` (or `RibbonForm`).
 2. Set `Dock = DockStyle.Fill` (or desired layout).
 3. Assign an object to display:
 
@@ -73,9 +73,7 @@ propertyGridControl1.SelectedObject = mySettings;
 // Rows auto-created from public properties of mySettings
 ```
 
-**Design-time** — in the smart tag, click **Run Designer**, then use **Retrieve Fields** to scan the bound object. Rows are stored in the designer file and can be rearranged, styled, and grouped.
-
-**Manual (code)** — add `EditorRow` objects before setting `SelectedObject`. If the `Rows` collection is non-empty when `SelectedObject` is assigned, the control uses existing rows instead of auto-generating them.
+**Manual** — add `EditorRow` objects before setting `SelectedObject`. If the `Rows` collection is non-empty when `SelectedObject` is assigned, the control uses existing rows instead of auto-generating them.
 
 ```csharp
 var row = new EditorRow();

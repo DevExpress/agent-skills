@@ -12,25 +12,69 @@ using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraEditors;
 
 // ------------------------------------------------------------------
-// 1. Two static pages with content
+// 1. Two static pages with content (designer-backed — RECOMMENDED)
+//    Static pages belong in the *.Designer.cs partial below
+//    (InitializeComponent), so the form stays editable in the Visual
+//    Studio WinForms designer. Only the event handler lives in the
+//    code-behind. Build pages in runtime code (Section 2) when they are
+//    added dynamically.
 // ------------------------------------------------------------------
+
+// --- MainForm.cs — behavior only ---
 public partial class MainForm : XtraForm {
     public MainForm() {
-        InitializeComponent();
+        InitializeComponent();                 // builds the tab control and its two pages
+        xtraTabControl1.SelectedPageChanged += (s, e) => Text = "Active: " + e.Page.Text;
+    }
+}
 
-        var tabControl = new XtraTabControl { Dock = DockStyle.Fill };
-        Controls.Add(tabControl);
+// --- MainForm.Designer.cs — static pages the WinForms designer round-trips ---
+partial class MainForm {
+    private System.ComponentModel.IContainer components = null;
+    private XtraTabControl xtraTabControl1;
+    private XtraTabPage pageGeneral;
+    private XtraTabPage pageAdvanced;
+    private SimpleButton btnSave;
 
-        var pageGeneral = new XtraTabPage { Text = "General" };
-        pageGeneral.Controls.Add(new SimpleButton {
-            Text = "Save", Size = new Size(120, 32), Location = new Point(12, 12)
-        });
-        var pageAdvanced = new XtraTabPage { Text = "Advanced" };
-
-        // The first page added becomes the initial SelectedTabPage.
-        tabControl.TabPages.AddRange(new[] { pageGeneral, pageAdvanced });
-
-        tabControl.SelectedPageChanged += (s, e) => Text = "Active: " + e.Page.Text;
+    private void InitializeComponent() {
+        this.xtraTabControl1 = new XtraTabControl();
+        this.pageGeneral = new XtraTabPage();
+        this.pageAdvanced = new XtraTabPage();
+        this.btnSave = new SimpleButton();
+        ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+        this.xtraTabControl1.SuspendLayout();
+        this.pageGeneral.SuspendLayout();
+        //
+        // xtraTabControl1 — the first page added is the initial SelectedTabPage
+        //
+        this.xtraTabControl1.Dock = DockStyle.Fill;
+        this.xtraTabControl1.Name = "xtraTabControl1";
+        this.xtraTabControl1.TabPages.AddRange(new XtraTabPage[] {
+            this.pageGeneral, this.pageAdvanced});
+        //
+        // pageGeneral + hosted button
+        //
+        this.pageGeneral.Controls.Add(this.btnSave);
+        this.pageGeneral.Name = "pageGeneral";
+        this.pageGeneral.Text = "General";
+        this.btnSave.Location = new Point(12, 12);
+        this.btnSave.Name = "btnSave";
+        this.btnSave.Size = new Size(120, 32);
+        this.btnSave.Text = "Save";
+        //
+        // pageAdvanced
+        //
+        this.pageAdvanced.Name = "pageAdvanced";
+        this.pageAdvanced.Text = "Advanced";
+        //
+        // MainForm
+        //
+        this.Controls.Add(this.xtraTabControl1);
+        this.Name = "MainForm";
+        this.Text = "Settings";
+        ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+        this.xtraTabControl1.ResumeLayout(false);
+        this.pageGeneral.ResumeLayout(false);
     }
 }
 

@@ -15,7 +15,7 @@ metadata:
 
 # DevExpress WinForms AI Chat Control
 
-`AIChatControl` (namespace `DevExpress.AIIntegration.WinForms.Chat`) embeds a ready-made chat UI in a WinForms app. It is a Blazor/WebView2-hosted control: you register an `IChatClient` (OpenAI, Azure OpenAI, Ollama) once at startup, drop the control on a form, and it handles the message list, streaming, Markdown rendering, and history. It is **.NET 8+ only** (the project must use the `Microsoft.NET.Sdk.Razor` SDK).
+`AIChatControl` (namespace `DevExpress.AIIntegration.WinForms.Chat`) embeds a ready-made chat UI in a WinForms app. It is a Blazor/WebView2-hosted control: you register an `IChatClient` (OpenAI, Azure OpenAI, Ollama) once at startup, add the control to a form, and it handles the message list, streaming, Markdown rendering, and history. It is **.NET 8+ only** (the project must use the `Microsoft.NET.Sdk.Razor` SDK).
 
 ## When to Use This Skill
 
@@ -85,7 +85,7 @@ public partial class Form1 : XtraForm
 }
 ```
 
-> **If you add `AIChatControl` in the WinForms designer instead of code, wrap its setup in `BeginInit`/`EndInit`.** `AIChatControl` implements `ISupportInitialize`, so a correct `*.Designer.cs` must surround its configuration in `InitializeComponent()` with `((System.ComponentModel.ISupportInitialize)(this.aiChatControl1)).BeginInit();` … `EndInit();` (the designer normally emits this — verify generated code includes it; omitting it is bad practice). The control does **not** render at design time (it shows a placeholder); register the `IChatClient` and set `ContentFormat`/templates in code.
+> **If you declare `AIChatControl` in `*.Designer.cs`, wrap its setup in `BeginInit`/`EndInit`.** `AIChatControl` implements `ISupportInitialize`, so a correct `*.Designer.cs` must surround its configuration in `InitializeComponent()` with `((System.ComponentModel.ISupportInitialize)(this.aiChatControl1)).BeginInit();` … `EndInit();` — omitting it is bad practice. Register the `IChatClient` and set `ContentFormat`/templates in code.
 
 ---
 
@@ -187,7 +187,7 @@ using DevExpress.AIIntegration.Blazor.Chat;
 
 aiChatControl1.SetMessageTemplate(message => builder => {
     builder.OpenElement(0, "div");
-    builder.AddAttribute(1, "class", message.Role == ChatRole.User ? "user-msg" : "ai-msg");
+    builder.AddAttribute(1, "class", message.Role == ChatMessageRole.User ? "user-msg" : "ai-msg");
     builder.AddContent(2, message.Content);
     builder.CloseElement();
 });
@@ -212,14 +212,14 @@ aiChatControl1.SetMessageTemplate(message => builder => {
 
 CRITICAL — follow these rules in every interaction:
 
-1. **Verify builds**: after code changes, the project must build cleanly before you claim success. If you have a build environment, run `dotnet build` and report any errors. If you cannot (or must not) execute commands, ask the developer to run `dotnet build` and share the output — never report success on an unverified build.
+1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **Do not mix DevExpress package versions**: reference the control through the `DevExpress.AIIntegration.WinForms.Chat` NuGet package — never assembly DLLs by path — and keep every DevExpress package in the project on the same version.
 3. **.NET 8+ and the Razor SDK are mandatory**: the project must target .NET 8+ (Windows) and use `<Project Sdk="Microsoft.NET.Sdk.Razor">`. The control is **not** available on .NET Framework. `AIChatControl` was introduced in **DevExpress v26.1** — it does not exist in earlier versions.
 4. **Register an `IChatClient` before `Application.Run`**: call `AIExtensionsContainerDesktop.Default.RegisterChatClient(...)` (or register keyed providers) at startup, or the control reports "No registered service of type IChatClient".
 5. **Never hardcode API keys**: read them from environment variables / a secrets store, not source.
 6. **Sanitize Markdown/HTML**: when handling `MarkdownConvert`, run the generated HTML through `HtmlSanitizer` before assigning `e.HtmlText` — AI output is untrusted and can carry XSS.
 7. **WebView2 runtime is required at runtime**: distribute it for Windows 10 / Server (built into Windows 11).
-8. **Wrap the control in `BeginInit`/`EndInit` in the designer file**: if `AIChatControl` is placed in the WinForms designer, the generated `InitializeComponent()` must surround its setup with `((System.ComponentModel.ISupportInitialize)(aiChatControl1)).BeginInit()` … `EndInit()`. It implements `ISupportInitialize`; omitting these is bad practice.
+8. **Wrap the control in `BeginInit`/`EndInit` in the designer file**: if `AIChatControl` is declared in `*.Designer.cs`, `InitializeComponent()` must surround its setup with `((System.ComponentModel.ISupportInitialize)(aiChatControl1)).BeginInit()` … `EndInit()`. It implements `ISupportInitialize`; omitting these is bad practice.
 
 ## Using DevExpress Documentation MCP
 

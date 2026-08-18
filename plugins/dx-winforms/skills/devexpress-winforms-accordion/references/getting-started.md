@@ -6,7 +6,7 @@ The `AccordionControl` is a side-navigation control from the `DevExpress.XtraBar
 
 - Setting up `AccordionControl` in a new project for the first time
 - Understanding which NuGet package and assembly to reference
-- Adding the control to a form in code or via the designer
+- Adding the control to a form in code or in the designer file
 - Choosing the right host form type
 
 ## NuGet Package
@@ -17,9 +17,9 @@ DevExpress.Win.Navigation
 
 This package ships `DevExpress.XtraBars.v26.1.dll`, which contains the entire `DevExpress.XtraBars.Navigation` namespace.
 
-> **Install via Package Manager Console:**
+> **Install the package:**
 > ```powershell
-> Install-Package DevExpress.Win.Navigation
+> dotnet add package DevExpress.Win.Navigation
 > ```
 
 ## Required Namespace Imports
@@ -82,14 +82,6 @@ Key points:
 - `ElementStyle.Group` creates a collapsible group; `ElementStyle.Item` creates a clickable leaf.
 - Root-level elements go into `AccordionControl.Elements`; nested elements go into `AccordionControlElement.Elements`.
 - Wrap bulk additions in `BeginUpdate()` / `EndUpdate()` to suppress intermediate redraws.
-
-## Designer Workflow
-
-1. Drag `AccordionControl` from the Toolbox onto the form.
-2. Set `Dock = Left`.
-3. Click **"Run Designer"** on the control's surface → switch to the **Elements** tab.
-4. Use the **+Group** / **+Item** toolbar buttons; drag elements to reorder.
-5. Click a group's smart tag to add child items inline.
 
 ## Integration with RibbonForm (optional)
 

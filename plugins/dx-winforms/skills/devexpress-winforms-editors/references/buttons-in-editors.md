@@ -18,13 +18,13 @@ This reference covers the `EditorButton` infrastructure shared across every `But
 - **`EditorButton`** (`DevExpress.XtraEditors.Controls`) — one button. Has `Kind`, `Caption`, `Width`, `Visible`, `Enabled`, `IsLeft`, `IsDefaultButton`, `Shortcut`, `ToolTip`, `Tag`, `ImageOptions`.
 - **`EditorButtonCollection`** — the `Properties.Buttons` collection.
 - **`ButtonPredefines`** — enum of predefined glyph kinds (`Glyph`, `Ellipsis`, `OK`, `Close`, `Delete`, `Clear`, `Plus`, `Minus`, `Up`, `Down`, `Left`, `Right`, `Search`, `Combo`, `DropDown`, `Redo`, `Undo`, `SpinUp`, `SpinDown`, `SpinLeft`, `SpinRight`, `Separator`, …).
-- **`EditorButtonImageOptions`** — `SvgImage`, `Image`, `SvgImageSize`, `Location`, `Alignment`.
+- **`EditorButtonImageOptions`** — `SvgImage`, `Image`, `SvgImageSize`, `Location`, `ImageToTextAlignment`, `ImageToTextIndent`.
 - **`RepositoryItemButtonEdit.ButtonClick`** / **`.ButtonPressed`** — click events.
 - **`RepositoryItemButtonEdit.TextEditStyle`** — `Standard`, `HideTextEditor`, `DisableTextEditor`.
 
 ## The Default Button
 
-A freshly dropped `ButtonEdit` has **one** button — `Kind = Ellipsis`. Lookup-family editors have a default **DropDown** button instead. To customize, modify `Buttons[0]` or clear the collection.
+A newly created `ButtonEdit` has **one** button — `Kind = Ellipsis`. Lookup-family editors have a default **DropDown** button instead. To customize, modify `Buttons[0]` or clear the collection.
 
 ```csharp
 // Inspect the default

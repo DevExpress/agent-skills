@@ -10,7 +10,7 @@ All layout and docking controls ship in a single NuGet package:
 DevExpress.Win.Navigation
 ```
 
-Install via the NuGet Package Manager or the DevExpress Unified Component Installer. This package includes all of the following controls and their assemblies:
+Install it with `dotnet add package DevExpress.Win.Navigation`. This package includes all of the following controls and their assemblies:
 
 | Control | Assembly | Namespace |
 |---|---|---|
@@ -40,9 +40,7 @@ using DevExpress.Utils.Layout;        // StackPanel, TablePanel
 
 ## LayoutControl — Minimum Setup
 
-**Designer**: Drop a `LayoutControl` from the Toolbox onto the form. Set `Dock = Fill`. Drag controls from the Toolbox directly onto the LayoutControl's surface — it automatically wraps them in `LayoutControlItem` wrappers.
-
-**Code**:
+Add the control to the form and call `AddItem` for each child control — the `LayoutControl` automatically wraps them in `LayoutControlItem` wrappers:
 
 ```csharp
 public partial class MainForm : DevExpress.XtraEditors.XtraForm
@@ -73,9 +71,7 @@ public partial class MainForm : DevExpress.XtraEditors.XtraForm
 
 ## DataLayoutControl — Minimum Setup
 
-**Designer**: Drop `DataLayoutControl`, set `DataSource` in the Properties window (or via smart tag → Data Source Wizard), then click smart tag → **Retrieve Fields** to auto-generate the layout.
-
-**Code**:
+Set `DataSource`, then call `RetrieveFields()` to auto-generate the layout:
 
 ```csharp
 var dlc = new DataLayoutControl { Dock = DockStyle.Fill };
@@ -88,9 +84,7 @@ dlc.RetrieveFields();               // generate layout from data source fields
 
 ## DockManager — Minimum Setup
 
-`DockManager` is a non-visual component. Drop it on the form from the Toolbox, then use its smart tag ("Add Panel at…" links) to add panels at design time.
-
-**Code**:
+`DockManager` is a non-visual component — create it, assign the form, and add panels with `AddPanel`:
 
 ```csharp
 using DevExpress.XtraBars.Docking;
@@ -150,14 +144,6 @@ Controls.Add(table);
 ```
 
 ---
-
-## Design-Time Quick Start
-
-1. Add `DevExpress.Win.Navigation` NuGet package.
-2. Change `Form` base class to `XtraForm` (recommended).
-3. Build the project once so the DevExpress Toolbox tab appears.
-4. Drag the desired layout control from the Toolbox onto the form.
-5. Use the smart tag to add child items/panels and configure the control.
 
 ## Authoring the `.Designer.cs` File
 
@@ -242,7 +228,7 @@ partial class MainForm {
 }
 ```
 
-For a `DataLayoutControl`, declare it as a field and set `DataSource`/`RetrieveFields()` in `MainForm.cs` (or bind in the designer via the smart tag) — let it generate the items rather than adding them by hand.
+For a `DataLayoutControl`, declare it as a field and set `DataSource`/`RetrieveFields()` in `MainForm.cs` — let it generate the items rather than adding them by hand.
 
 ## Source Material
 

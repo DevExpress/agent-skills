@@ -16,9 +16,9 @@ DevExpress.Win.Navigation
 
 This package ships `DevExpress.XtraEditors.v26.1.dll`, which contains the `DevExpress.XtraTab` namespace (`XtraTabControl`, `XtraTabPage`, the event-args classes, and `DevExpress.XtraTab.ViewInfo` / `DevExpress.XtraTab.Buttons`).
 
-> **Install via Package Manager Console:**
+> **Install the package:**
 > ```powershell
-> Install-Package DevExpress.Win.Navigation
+> dotnet add package DevExpress.Win.Navigation
 > ```
 
 ## Required Namespace Imports
@@ -53,14 +53,6 @@ static class Program {
     }
 }
 ```
-
-## Designer Workflow
-
-1. Drag `XtraTabControl` from the Toolbox onto the form; set `Dock = Fill` (or place it in a region).
-2. By default the control starts with two pages.
-3. Open the control's **smart tag** and click **"Tab Pages…"** to open the Collection Editor.
-4. In the Collection Editor: add, reorder, and remove pages; set each page's `Text`, `ImageOptions`, etc.
-5. Drag controls from the Toolbox directly onto a page to populate it.
 
 ## Minimal Setup in Code
 
