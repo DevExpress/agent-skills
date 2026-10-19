@@ -40,8 +40,6 @@ For indicator types (`ColorScaleFormatCondition`, `DataBarFormatCondition`, `Ico
 - `SelectiveExpression` — restrict which rows the indicator applies to
 - `MinValue` / `MaxValue` (inherited from `IndicatorFormatConditionBase`) — range bounds (default: auto-detect from data)
 
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/`.
-
 ## Pattern 1: Comparison Rule (`FormatCondition`)
 
 ```xaml
@@ -71,8 +69,6 @@ view.FormatConditions.Add(condition);
 - **Blank checks**: `IsBlank`, `IsNotBlank` — no Value1/Value2 needed
 - **Unique**: `Unique`, `Duplicate`
 
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-comparison-rules.md`.
-
 ## Pattern 2: Custom Criteria Expression
 
 For rules that depend on multiple columns or use complex logic, use `Expression` instead of `ValueRule` / `Value1`:
@@ -92,8 +88,6 @@ new FormatCondition {
 ```
 
 Expression uses the [DevExpress Criteria Language Syntax](https://docs.devexpress.com/content/CoreLibraries/4928?md=true) — fields in brackets, dates in `#...#`, operators `And`, `Or`, `Not`, etc.
-
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-custom-conditions.md`.
 
 ## Pattern 3: Color Scale (`ColorScaleFormatCondition`)
 
@@ -129,9 +123,7 @@ view.FormatConditions.Add(new ColorScaleFormatCondition {
 
 `ColorScaleElement.Threshold` + `Color` define each stop. `ElementThresholdType` is `Number` (raw value) or `Percent` (percent of data range).
 
-> Verify exact `ColorScaleElement` / `ColorScaleFormat` schema against `apidoc/DevExpress.Xpf.Grid.ConditionalFormatting/ColorScaleFormat/` and `DevExpress.Xpf.Core.ConditionalFormatting` namespace before shipping. The pattern matches `IconSetFormat` which is documented; `ColorScaleFormat` follows the same shape.
-
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-color-scales.md`.
+> Verify exact `ColorScaleElement` / `ColorScaleFormat` schema with `devexpress_docs_search` before shipping. The pattern matches `IconSetFormat` which is documented; `ColorScaleFormat` follows the same shape.
 
 ## Pattern 4: Data Bars (`DataBarFormatCondition`)
 
@@ -163,9 +155,7 @@ view.FormatConditions.Add(new DataBarFormatCondition {
 </dxg:DataBarFormatCondition>
 ```
 
-`PositiveFill`, `NegativeFill`, `ShowValue` are paraphrased — verify exact `DataBarFormat` property names against `apidoc/DevExpress.Xpf.Grid.ConditionalFormatting/DataBarFormat/` if needed.
-
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-data-bars.md`.
+`PositiveFill`, `NegativeFill`, `ShowValue` are paraphrased — verify exact `DataBarFormat` property names with `devexpress_docs_search` if needed.
 
 ## Pattern 5: Icon Sets (`IconSetFormatCondition`)
 
@@ -212,8 +202,6 @@ view.FormatConditions.Add(new IconSetFormatCondition {
 
 When `ElementThresholdType="Percent"`, `MinValue`/`MaxValue` define the 0–100% range. Defaults (when omitted): the min/max of the data column.
 
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-icon-sets.md`.
-
 ## Pattern 6: Top / Bottom (`TopBottomRuleFormatCondition`)
 
 ```xaml
@@ -245,8 +233,6 @@ view.FormatConditions.Add(new TopBottomRuleFormatCondition {
 
 For `AboveAverage` / `BelowAverage`, `Threshold` is ignored.
 
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-top-and-bottom-values.md`.
-
 ## Apply Formatting to the Entire Row
 
 By default, the format applies only to the column's cell. To highlight the whole row:
@@ -261,8 +247,6 @@ By default, the format applies only to the column's cell. To highlight the whole
 ```
 
 `ApplyToRow="True"` extends the highlight across all cells of the matching row.
-
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats.md` and example in `printing-and-exporting/data-aware-export.md` § "Excel Style Conditional Formatting".
 
 ## Custom `Format` Object (No Predefined Style)
 
@@ -281,7 +265,7 @@ Source: `articles/controls-and-libraries/data-grid/conditional-formatting/condit
 - `BorderBrush`, `BorderThickness`
 - `HorizontalAlignment`, `VerticalAlignment`
 
-> Verify exact `Format` properties against `apidoc/DevExpress.Xpf.Core.ConditionalFormatting/Format/` if you need esoteric properties. Common ones above are reliable.
+> Verify exact `Format` properties with `devexpress_docs_search` if you need esoteric properties. Common ones above are reliable.
 
 ## `SelectiveExpression` — Restrict Indicator Rules
 
@@ -342,8 +326,6 @@ Users can add rules at runtime via:
 
 > Verify exact property names (`AllowConditionalFormattingMenu`, `AllowConditionalFormattingManager`) via DxDocs MCP if your version differs.
 
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting/creating-conditional-formatting-rules/conditional-formatting-menu.md` and `conditional-formatting-rules-manager.md`.
-
 ## MVVM: Bind Conditional Formats from a ViewModel
 
 Use `TableView.FormatConditionsSource` + `FormatConditionGeneratorTemplate`:
@@ -361,7 +343,7 @@ Use `TableView.FormatConditionsSource` + `FormatConditionGeneratorTemplate`:
 </dxg:TableView>
 ```
 
-`FormatRules` is an `ObservableCollection<FormatRuleDefinition>` on the ViewModel. See https://docs.devexpress.com/content/WPF/117884?md=true and `articles/controls-and-libraries/data-grid/mvvm-enhancements/bind-to-collections-specified-in-the-viewmodel.md`.
+`FormatRules` is an `ObservableCollection<FormatRuleDefinition>` on the ViewModel. See https://docs.devexpress.com/content/WPF/117884?md=true.
 
 ## Mode Compatibility
 
@@ -369,8 +351,6 @@ Use `TableView.FormatConditionsSource` + `FormatConditionGeneratorTemplate`:
 - **Hierarchical Data Templates** (in `TreeListView`): conditional formatting does NOT work.
 - **Server Mode / Virtual Sources**: most conditional formats work, but **top/bottom rules** (TopItems, TopPercent, BottomItems, BottomPercent, AboveAverage, BelowAverage) are NOT supported.
 - **Custom `CellTemplate`**: works only if the template contains a `BaseEdit` descendant named `PART_Editor`. See [cell-display-and-editing.md](cell-display-and-editing.md) § "CellTemplate vs CellDisplayTemplate".
-
-Source: `articles/controls-and-libraries/data-grid/conditional-formatting.md` § "Usage Notes".
 
 ## Conditional Formatting Filters
 
@@ -381,8 +361,6 @@ grid.FilterString = "[@TopItems]([Profit], 5)";   // Show only rows in Top 5 by 
 ```
 
 The `@` prefix signals "matches the named conditional-formatting rule on this column". See [sorting-filtering-grouping.md](sorting-filtering-grouping.md) § "Conditional Formatting Filters".
-
-Source: `articles/controls-and-libraries/data-grid/filtering-and-searching/conditional-formatting-filters.md`.
 
 ## Print and Export
 
@@ -414,23 +392,3 @@ All concepts and APIs are identical.
 - **Multiple rules conflict** — last-matching wins. Reorder the `FormatConditions` collection or use `SelectiveExpression` for exclusivity.
 - **ViewModel `FormatConditionsSource` doesn't update** — collection must implement `INotifyCollectionChanged` (use `ObservableCollection<T>`).
 - **Excel-export round-trip loses scales / bars / icons** — Data-Aware export only preserves `FormatCondition`. Use WYSIWYG mode for visual fidelity.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/conditional-formatting.md` (root)
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-comparison-rules.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-custom-conditions.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-color-scales.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-data-bars.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-values-using-icon-sets.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-top-and-bottom-values.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-date-time-values.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-above-or-below-average-values.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-unique-and-duplicate-values.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-changing-values.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-focused-cells-and-rows.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/creating-conditional-formatting-rules/conditional-formatting-menu.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/creating-conditional-formatting-rules/conditional-formatting-rules-manager.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/conditional-formatting-filters.md`
-- `apidoc/DevExpress.Xpf.Grid.ConditionalFormatting/` (apidoc namespace)

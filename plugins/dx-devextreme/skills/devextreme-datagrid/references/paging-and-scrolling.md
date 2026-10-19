@@ -66,6 +66,16 @@ import { DataGrid, Paging, Pager } from 'devextreme-react/data-grid';
 </DataGrid>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Paging(paging => paging.Enabled(true).PageSize(20))
+    .Pager(pager => pager.Visible(true).ShowPageSizeSelector(true).AllowedPageSizes(new[] { 10, 20, 50 }).ShowInfo(true))
+)
+```
+
 ---
 
 ## Virtual and Infinite Scrolling
@@ -119,6 +129,17 @@ import { DataGrid, Scrolling, Paging } from 'devextreme-react/data-grid';
     <Scrolling mode="virtual" />
     <Paging pageSize={50} />
 </DataGrid>
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Height(600)
+    .Scrolling(scrolling => scrolling.Mode(DevExtreme.AspNet.Mvc.ScrollingMode.Virtual))
+    .Paging(paging => paging.PageSize(50))
+)
 ```
 
 ---

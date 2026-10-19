@@ -113,7 +113,5 @@ private void xtraTabControl1_SelectedPageChanged(object sender, TabPageChangedEv
 
 ## Source Material
 
-- `articles/controls-and-libraries/form-layout-managers/tab-control.md` — "Custom Tab Page Navigation"
-- `examples/xtratabcontrol_closebuttonclick1275.md` — handling `CloseButtonClick`
 - [ClosePageButtonShowMode](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.ClosePageButtonShowMode?md=true) — Close-button display modes
 - [TabPageChangingEventArgs](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.TabPageChangingEventArgs?md=true), [TabPageChangedEventArgs](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.TabPageChangedEventArgs?md=true), [TabPageCancelEventArgs](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.TabPageCancelEventArgs?md=true) — event args

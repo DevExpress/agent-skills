@@ -322,12 +322,11 @@ Single Agenda view — looks like a phone calendar. Disable editing via `Schedul
 
 ## Source Material
 
-- `articles/controls-and-libraries/scheduler/views.md` (https://docs.devexpress.com/content/WPF/119203?md=true)
-- `articles/controls-and-libraries/scheduler/views/day-view.md` (https://docs.devexpress.com/content/WPF/119204?md=true)
-- `articles/controls-and-libraries/scheduler/views/work-week-view.md` (https://docs.devexpress.com/content/WPF/119205?md=true)
-- `articles/controls-and-libraries/scheduler/views/week-view.md` (https://docs.devexpress.com/content/WPF/119206?md=true)
-- `articles/controls-and-libraries/scheduler/views/month-view.md` (https://docs.devexpress.com/content/WPF/119207?md=true)
-- `articles/controls-and-libraries/scheduler/views/timeline-view.md` (https://docs.devexpress.com/content/WPF/119586?md=true)
-- `articles/controls-and-libraries/scheduler/views/agenda-view.md` (https://docs.devexpress.com/content/WPF/400420?md=true)
-- `articles/controls-and-libraries/scheduler/views/list-view.md` (https://docs.devexpress.com/content/WPF/400421?md=true)
-- `articles/controls-and-libraries/scheduler/grouping.md`
+- views: https://docs.devexpress.com/content/WPF/119203?md=true
+- day-view: https://docs.devexpress.com/content/WPF/119204?md=true
+- work-week-view: https://docs.devexpress.com/content/WPF/119205?md=true
+- week-view: https://docs.devexpress.com/content/WPF/119206?md=true
+- month-view: https://docs.devexpress.com/content/WPF/119207?md=true
+- timeline-view: https://docs.devexpress.com/content/WPF/119586?md=true
+- agenda-view: https://docs.devexpress.com/content/WPF/400420?md=true
+- list-view: https://docs.devexpress.com/content/WPF/400421?md=true

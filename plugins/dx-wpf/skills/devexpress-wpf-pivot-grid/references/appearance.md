@@ -268,11 +268,11 @@ But prefer `FormatConditions` ([conditional-formatting.md](conditional-formattin
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/appearance.md` (https://docs.devexpress.com/content/WPF/8399?md=true)
-- `articles/controls-and-libraries/pivot-grid/appearance/pivot-grid-styles.md` (https://docs.devexpress.com/content/WPF/8401?md=true)
-- `articles/controls-and-libraries/pivot-grid/appearance/pivot-grid-elements-that-support-templates.md` (https://docs.devexpress.com/content/WPF/8400?md=true)
-- `articles/controls-and-libraries/pivot-grid/appearance/customizing-pivot-grid-colors.md` (https://docs.devexpress.com/content/WPF/11213?md=true)
-- `articles/controls-and-libraries/pivot-grid/examples/appearance/how-to-customize-the-cell-template.md` (https://docs.devexpress.com/content/WPF/8038?md=true)
-- `articles/controls-and-libraries/pivot-grid/examples/appearance/how-to-create-the-field-value-template.md` (https://docs.devexpress.com/content/WPF/8143?md=true)
-- `articles/controls-and-libraries/pivot-grid/examples/appearance/how-to-specify-custom-styles-for-pivot-grid-elements.md` (https://docs.devexpress.com/content/WPF/11221?md=true)
-- `articles/controls-and-libraries/pivot-grid/examples/appearance/how-to-override-theme-colors.md` (https://docs.devexpress.com/content/WPF/11220?md=true)
+- appearance: https://docs.devexpress.com/content/WPF/8399?md=true
+- pivot-grid-styles: https://docs.devexpress.com/content/WPF/8401?md=true
+- pivot-grid-elements-that-support-templates: https://docs.devexpress.com/content/WPF/8400?md=true
+- customizing-pivot-grid-colors: https://docs.devexpress.com/content/WPF/11213?md=true
+- how-to-customize-the-cell-template: https://docs.devexpress.com/content/WPF/8038?md=true
+- how-to-create-the-field-value-template: https://docs.devexpress.com/content/WPF/8143?md=true
+- how-to-specify-custom-styles-for-pivot-grid-elements: https://docs.devexpress.com/content/WPF/11221?md=true
+- how-to-override-theme-colors: https://docs.devexpress.com/content/WPF/11220?md=true

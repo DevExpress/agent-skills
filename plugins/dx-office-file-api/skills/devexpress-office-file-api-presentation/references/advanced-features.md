@@ -334,7 +334,7 @@ ThemeFontScheme fontScheme = theme.FontScheme;
 // theme.ColorScheme.Accent2 = new OfficeColor(Color.DarkGreen);
 ```
 
-> **Note:** For exact `ThemeColorScheme` property names and `ThemeFontScheme` API, use the DxDocs MCP tool or check the `apidoc/DevExpress.Docs.Presentation/ThemeColorScheme` reference file.
+> **Note:** For exact `ThemeColorScheme` property names and `ThemeFontScheme` API, use `devexpress_docs_search`.
 
 ### Apply a Theme to a Slide Master
 

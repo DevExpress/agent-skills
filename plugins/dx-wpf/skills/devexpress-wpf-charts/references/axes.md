@@ -325,8 +325,8 @@ To force the y-axis to always include 0:
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/axes/axes.md` (https://docs.devexpress.com/content/WPF/6334?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/axes/primary-and-secondary-axes.md` (https://docs.devexpress.com/content/WPF/7845?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/axes/axis-scale-types.md` (https://docs.devexpress.com/content/WPF/115179?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/axes/whole-and-visual-ranges.md` (https://docs.devexpress.com/content/WPF/115158?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/axes/axis-layout-and-appearance.md` (https://docs.devexpress.com/content/WPF/115165?md=true)
+- axes: https://docs.devexpress.com/content/WPF/6334?md=true
+- primary-and-secondary-axes: https://docs.devexpress.com/content/WPF/7845?md=true
+- axis-scale-types: https://docs.devexpress.com/content/WPF/115179?md=true
+- whole-and-visual-ranges: https://docs.devexpress.com/content/WPF/115158?md=true
+- axis-layout-and-appearance: https://docs.devexpress.com/content/WPF/115165?md=true

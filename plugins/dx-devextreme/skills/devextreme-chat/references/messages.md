@@ -18,6 +18,7 @@ When the user submits a message, `onMessageEntered` fires with the new `Message`
 ```js
 $('#chat').dxChat({
     user: currentUser,
+    items: messages,
     onMessageEntered({ component, message }) {
         component.renderMessage(message);
     }
@@ -122,6 +123,17 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .User(currentUser)
+    .Items(messages)
+    .OnMessageEntered("function(e) { e.component.renderMessage(e.message); }")
+)
+``` 
+
 ---
 
 ## Typing Indicator
@@ -209,6 +221,37 @@ function showTyping() {
 }
 
 <Chat typingUsers={typingUsers} items={messages} />
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .Items(messages)
+    .TypingUsers(typingUsers)
+    .OnInitialized("chatInitialized")
+)
+<script>
+    var chat;
+    function chatInitialized(e) {
+        chat = e.component;
+    }
+    function simulateResponse() {
+        // Show typing indicator
+        chat.option('typingUsers', [bot]);
+
+        setTimeout(() => {
+            // Clear indicator and render response
+            chat.option('typingUsers', []);
+            chat.renderMessage({
+                author: bot,
+                timestamp: Date.now(),
+                text: 'Here is my response!'
+            });
+        }, 1500);
+    }
+</script>
 ```
 
 ---

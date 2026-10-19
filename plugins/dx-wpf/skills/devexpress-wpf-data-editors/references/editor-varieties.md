@@ -160,7 +160,7 @@ Common style-settings properties:
 - `DateEditPickerStyleSettings` — independent date columns (day/month/year)
 - `DateEditTimePickerStyleSettings` — time-only picker
 
-(All derive from `DateEditStyleSettingsBase`.) See `articles/.../editor-operation-modes/dateedit.md` (https://docs.devexpress.com/content/WPF/116793?md=true) for the full set.
+(All derive from `DateEditStyleSettingsBase`.) See https://docs.devexpress.com/content/WPF/116793?md=true for the full set.
 
 ### TrackBarEdit Modes
 
@@ -252,12 +252,12 @@ Inside the settings class you also set `StyleSettings` to switch the in-place ed
 
 ## Source Material
 
-- `articles/controls-and-libraries/data-editors/included-components.md` (https://docs.devexpress.com/content/WPF/6933?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes.md` (https://docs.devexpress.com/content/WPF/116526?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes/comboboxedit.md` (https://docs.devexpress.com/content/WPF/116528?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes/lookupedit.md` (https://docs.devexpress.com/content/WPF/116556?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes/listboxedit.md` (https://docs.devexpress.com/content/WPF/116529?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes/dateedit.md` (https://docs.devexpress.com/content/WPF/116793?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes/trackbaredit.md` (https://docs.devexpress.com/content/WPF/116531?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes/progressbaredit.md` (https://docs.devexpress.com/content/WPF/116530?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/editor-operation-modes/sparklineedit.md` (https://docs.devexpress.com/content/WPF/116527?md=true)
+- included-components: https://docs.devexpress.com/content/WPF/6933?md=true
+- editor-operation-modes: https://docs.devexpress.com/content/WPF/116526?md=true
+- comboboxedit: https://docs.devexpress.com/content/WPF/116528?md=true
+- lookupedit: https://docs.devexpress.com/content/WPF/116556?md=true
+- listboxedit: https://docs.devexpress.com/content/WPF/116529?md=true
+- dateedit: https://docs.devexpress.com/content/WPF/116793?md=true
+- trackbaredit: https://docs.devexpress.com/content/WPF/116531?md=true
+- progressbaredit: https://docs.devexpress.com/content/WPF/116530?md=true
+- sparklineedit: https://docs.devexpress.com/content/WPF/116527?md=true

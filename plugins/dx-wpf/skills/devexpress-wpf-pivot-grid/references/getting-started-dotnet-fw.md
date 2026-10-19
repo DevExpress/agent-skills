@@ -22,8 +22,6 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
 4. Right-click the PivotGrid → **Layout → Reset All** to stretch it to fill the window.
 5. Use Quick Actions to bind `DataSource` via the **Items Source Configuration Wizard** (supports SQL, OLAP, ADO.NET DataSets, Entity Framework, OData, and more).
 
-Source: `articles/controls-and-libraries/pivot-grid/getting-started/NET-Framework/lesson-1-bind-a-pivot-grid-to-an-mdb-database.md`.
-
 ## Path 2: NuGet Package
 
 ```powershell

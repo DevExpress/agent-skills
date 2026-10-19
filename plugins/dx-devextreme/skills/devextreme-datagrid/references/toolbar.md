@@ -140,6 +140,24 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Toolbar(toolbar => {
+        toolbar.Items(items => {
+            items.Add().Name("groupPanel");
+            items.Add().Location(GridToolbarItemLocation.After).Widget("dxButton").Options(new { text = "Refresh", icon = "refresh", onClick = "refreshGrid" });
+            items.Add().Name("addRowButton").ShowText(GridToolbarItemShowText.Always);
+            items.Add().Name("exportButton");
+            items.Add().Name("columnChooserButton");
+            items.Add().Name("searchPanel");
+        });
+    })
+)
+```
+
 ---
 
 ## Toolbar Item Location

@@ -260,7 +260,7 @@ void buttonNext_Click(object sender, EventArgs e) {
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. After any code changes, run `dotnet build` and report errors before claiming success.
 2. Target .NET Framework 4.6.2+ or .NET 8+ (Windows only). Use the `-windows` TFM suffix for SDK-style .NET projects.

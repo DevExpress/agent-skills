@@ -7,7 +7,6 @@
 - Map custom structure tags to standard PDF roles
 - Edit the structure tree of an existing document
 - Remove elements from a structure tree
-- Validate a structure tree for PDF/UA compliance
 
 ## Concept
 
@@ -70,7 +69,8 @@ using (PdfDocument document = new PdfDocument()) {
     // Footer paragraph
     StructureElement pTotal = section.AddChildElement(Pdf17StructureType.P);
     pTotal.AddFragment(page, new TextFragment {
-        Text = "Total: $50.00", Location = new PointF(50, 620), Bold = true
+        Text = "Total: $50.00", Location = new PointF(50, 620),
+        Font = new TextFont("Arial", TextFontStyle.Bold)
     });
 
     document.Save(File.Create("TaggedInvoice.pdf"));
@@ -149,7 +149,7 @@ using (PdfDocument pdfDocument = new PdfDocument(File.OpenRead("Document.pdf")))
 
     // Find a section element
     StructureElement section = structureTree.Elements.Find(
-        e => e is StructureElement se && se.Type == "Sect") as StructureElement;
+        e => e is StructureElement se && se.Descriptor.Value == "Sect") as StructureElement;
 
     if (section != null) {
         StructureElement heading = section.AddChildElement(Pdf17StructureType.H2);
@@ -157,7 +157,7 @@ using (PdfDocument pdfDocument = new PdfDocument(File.OpenRead("Document.pdf")))
         heading.AddFragment(page, new TextFragment {
             Text = "New Heading",
             Location = new PointF(50, 700),
-            Bold = true
+            Font = new TextFont("Arial", TextFontStyle.Bold)
         });
     }
 
@@ -168,33 +168,13 @@ using (PdfDocument pdfDocument = new PdfDocument(File.OpenRead("Document.pdf")))
 ## Remove Elements
 
 ```csharp
+StructureTree structureTree = pdfDocument.StructureTree;
 StructureItem target = structureTree.Elements.Find(
     e => e is StructureElement se && se.Descriptor.Value == "Private",
     out StructureElement parent);
 
 if (target != null)
     parent.Elements.Remove(target);
-```
-
-## Validate a Structure Tree
-
-```csharp
-using (PdfDocument pdfDocument = new PdfDocument(File.OpenRead("Document.pdf"))) {
-    StructureTreeValidationResult result = pdfDocument.StructureTree.Validate();
-
-    if (!result.IsValid) {
-        foreach (StructureTreeValidationError error in result.Errors) {
-            Console.WriteLine($"Error: {error.Message}");
-            StructureElement parent = error.Parent;
-            StructureItem invalidChild = error.InvalidChild;
-            parent.Elements.Remove(invalidChild);
-            // Optionally replace with a valid type:
-            parent.AddChildElement(Pdf17StructureType.Div);
-        }
-    }
-
-    pdfDocument.Save(File.Create("ValidatedDocument.pdf"));
-}
 ```
 
 ## Key API
@@ -209,6 +189,3 @@ using (PdfDocument pdfDocument = new PdfDocument(File.OpenRead("Document.pdf")))
 | `StructureTree.RoleMap` | Dictionary mapping custom tag names to standard roles |
 | `StructureTree.Elements` | Collection of root structure items |
 | `StructureElementCollection.Find(predicate)` | Find element by predicate |
-| `StructureTree.Validate()` | Returns `StructureTreeValidationResult` |
-| `StructureTreeValidationResult.IsValid` | `true` if tree is PDF/UA compliant |
-| `StructureTreeValidationResult.Errors` | List of `StructureTreeValidationError` |

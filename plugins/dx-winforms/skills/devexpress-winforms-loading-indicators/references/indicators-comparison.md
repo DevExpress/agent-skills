@@ -293,5 +293,3 @@ Is the operation triggered at runtime?
 - Skin Splash Screen: `https://docs.devexpress.com/content/WindowsForms/401718?md=true`
 - Wait Form: `https://docs.devexpress.com/content/WindowsForms/10824?md=true`
 - Overlay Form: `https://docs.devexpress.com/content/WindowsForms/120029?md=true`
-- `SplashScreenManager` class: `xref:DevExpress.XtraSplashScreen.SplashScreenManager`
-- `ProgressPanel` class: `xref:DevExpress.XtraWaitForm.ProgressPanel`

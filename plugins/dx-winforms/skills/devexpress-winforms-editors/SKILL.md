@@ -231,7 +231,7 @@ countryLookUp.EditValueChanged += (_, _) => {
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **NuGet package**: editors live in `DevExpress.Win.Navigation`. Lookup-with-grid uses `DevExpress.Win.Grid`; TreeList lookup uses `DevExpress.Win.TreeList`; file/folder pickers use `DevExpress.Win.Dialogs`.

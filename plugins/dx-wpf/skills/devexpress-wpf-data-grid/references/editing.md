@@ -57,8 +57,6 @@ Auto-selection happens when `EnableSmartColumnsGeneration="True"` on the grid (d
 
 `Shippers` is a separate collection on the ViewModel. The grid stores `ShipperId` in the bound entity while displaying `CompanyName`.
 
-Source: `articles/controls-and-libraries/data-grid/getting-started/code/lesson-2-display-and-edit-data.md`.
-
 ## Custom Editor: Currency Mask
 
 ```xaml
@@ -125,8 +123,6 @@ public class MainViewModel : ViewModelBase {
 }
 ```
 
-Source: `articles/controls-and-libraries/data-grid/getting-started/designer/lesson-1-add-a-gridcontrol-to-a-project.md`.
-
 > The `RowValidationArgs.SetError(string)` API surface above is paraphrased from common DevExpress patterns. If you need the exact signature, verify with:
 > `devexpress_docs_search(technology="WPF Data Grid", query="RowValidationArgs SetError")`
 
@@ -144,7 +140,7 @@ private void View_CellValueChanged(object sender,
 }
 ```
 
-`CellValueChangedEventArgs` exposes `Row`, `Column`, `Value`, `OldValue`. Source: `articles/controls-and-libraries/data-grid/data-summaries.md` shows the pattern in context.
+`CellValueChangedEventArgs` exposes `Row`, `Column`, `Value`, `OldValue`.
 
 ## Clipboard Paste
 
@@ -155,16 +151,4 @@ Clipboard paste support is on by default. Configure it via the view:
                AllowClipboardPaste="True"/>
 ```
 
-See `articles/controls-and-libraries/data-grid/data-editing-and-validation/clipboard-management.md` for the full clipboard pipeline (paste validation, custom paste handlers).
-
-## Validation Topics in This Repo
-
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/` — cell and row validation
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/` — programmatic cell updates
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/clipboard-management/`
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/getting-started/code/lesson-2-display-and-edit-data.md`
-- `articles/controls-and-libraries/data-grid/getting-started/designer/lesson-1-add-a-gridcontrol-to-a-project.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/`
+For the full clipboard pipeline (paste validation, custom paste handlers), search with `devexpress_docs_search` for "clipboard management".

@@ -65,6 +65,21 @@ import { DataGrid, Editing } from 'devextreme-react/data-grid';
 </DataGrid>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .DataSource(employees, "EmployeeID")
+    .Editing(editing => editing
+        .Mode(GridEditMode.Row)
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)
+```
+
 ---
 
 ## Column-Level Validation Rules
@@ -120,6 +135,21 @@ import { Column, RequiredRule, EmailRule, RangeRule } from 'devextreme-react/dat
 <Column dataField="FullName"><RequiredRule /></Column>
 <Column dataField="Email"><RequiredRule /><EmailRule /></Column>
 <Column dataField="Salary"><RangeRule min={0} /></Column>
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Columns(columns => {
+        columns.Add().DataField("FullName").ValidationRules(rules => rules.AddRequired());
+        columns.Add().DataField("Email").ValidationRules(rules => {
+            rules.AddRequired();
+            rules.AddEmail();
+        });
+        columns.Add().DataField("Salary").ValidationRules(rules => rules.AddRange().Min(0));
+    })
+)
 ```
 
 ---

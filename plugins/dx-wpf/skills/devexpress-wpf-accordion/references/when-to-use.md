@@ -103,6 +103,6 @@ For top-bar navigation (across the top of the window), don't use any of the thre
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/navigation-bar.md` (https://docs.devexpress.com/content/WPF/6189?md=true) — see the tip recommending `AccordionControl` for new projects
-- `articles/controls-and-libraries/navigation-controls/accordion-control.md` (https://docs.devexpress.com/content/WPF/118347?md=true)
-- `articles/controls-and-libraries/windows-modern-ui/hamburger-menu.md` (https://docs.devexpress.com/content/WPF/119536?md=true)
+- navigation-bar: https://docs.devexpress.com/content/WPF/6189?md=true — see the tip recommending `AccordionControl` for new projects
+- accordion-control: https://docs.devexpress.com/content/WPF/118347?md=true
+- hamburger-menu: https://docs.devexpress.com/content/WPF/119536?md=true

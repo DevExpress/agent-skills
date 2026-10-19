@@ -141,5 +141,5 @@ Required assembly references (when not using NuGet):
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/getting-started.md` (https://docs.devexpress.com/content/WPF/119805?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control.md` (https://docs.devexpress.com/content/WPF/118347?md=true)
+- getting-started: https://docs.devexpress.com/content/WPF/119805?md=true
+- accordion-control: https://docs.devexpress.com/content/WPF/118347?md=true

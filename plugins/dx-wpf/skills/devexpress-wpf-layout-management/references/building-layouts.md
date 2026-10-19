@@ -489,10 +489,10 @@ Press `Ctrl+Tab` to bring up the document selector — a list of currently open 
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/tile-and-layout/layout-and-data-layout-controls/layout-control.md` (https://docs.devexpress.com/content/WPF/8147?md=true)
-- `articles/controls-and-libraries/layout-management/tile-and-layout/layout-and-data-layout-controls/data-layout-control.md` (https://docs.devexpress.com/content/WPF/11540?md=true)
-- `articles/controls-and-libraries/layout-management/tile-and-layout/layout-and-data-layout-controls/layout-items-and-groups.md` (https://docs.devexpress.com/content/WPF/8150?md=true)
-- `articles/controls-and-libraries/layout-management/tile-and-layout/tile-layout-control.md` (https://docs.devexpress.com/content/WPF/11541?md=true)
-- `articles/controls-and-libraries/layout-management/tile-and-layout/flow-layout-control.md` (https://docs.devexpress.com/content/WPF/8148?md=true)
-- `articles/controls-and-libraries/layout-management/tile-and-layout/dock-layout-control.md` (https://docs.devexpress.com/content/WPF/8149?md=true)
-- `articles/controls-and-libraries/layout-management/dock-windows.md` (https://docs.devexpress.com/content/WPF/6191?md=true)
+- layout-control: https://docs.devexpress.com/content/WPF/8147?md=true
+- data-layout-control: https://docs.devexpress.com/content/WPF/11540?md=true
+- layout-items-and-groups: https://docs.devexpress.com/content/WPF/8150?md=true
+- tile-layout-control: https://docs.devexpress.com/content/WPF/11541?md=true
+- flow-layout-control: https://docs.devexpress.com/content/WPF/8148?md=true
+- dock-layout-control: https://docs.devexpress.com/content/WPF/8149?md=true
+- dock-windows: https://docs.devexpress.com/content/WPF/6191?md=true

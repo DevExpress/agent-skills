@@ -37,8 +37,6 @@ Use this when you need to:
 | Custom-object filter criteria (only primitive-type filters survive) |
 | Enum-typed filter values (limited) |
 
-Source: `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md`.
-
 ## Basic Save / Restore
 
 ### To / From XML File
@@ -67,8 +65,6 @@ gridControl.RestoreLayoutFromStream(loadStream);
 ```
 
 Both pairs round-trip through `DXSerializer`. The XML form is human-readable (useful for debugging); the stream form is more compact.
-
-Source: `articles/common-concepts/save-and-restore-layouts.md` and `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md`.
 
 ## Unique Identification — `x:Name` and `UseFieldNameForSerialization`
 
@@ -119,8 +115,6 @@ When columns or bands are generated from a `ColumnsSource` / `BandsSource` colle
 xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
 xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
 ```
-
-Source: `articles/common-concepts/save-and-restore-layouts.md` and `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md`.
 
 ## `StoreLayoutMode` — Control What's Saved
 
@@ -201,8 +195,6 @@ When loading a layout, the grid's current columns may differ from those in the s
 Common pattern for app upgrades:
 - `AddNewColumns="True" RemoveOldColumns="False"` — preserve user customizations across schema additions / removals.
 
-Source: `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md` § "Layout Loading Specifics".
-
 ## Restore State on Source Change — `RestoreStateOnSourceChange`
 
 A different scenario: not save/load to disk, but **preserve focus / selection / check / group state when `ItemsSource` is reassigned** (e.g., after re-fetching from a database).
@@ -233,11 +225,9 @@ What's NOT preserved here (use `SaveLayoutToXml` for these):
 
 > `RestoreStateOnSourceChange` is for live data refreshes. `SaveLayoutToXml` / `RestoreLayoutFromXml` is for persistence between app sessions. Use both for the full picture.
 
-Source: `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md` § "Restore State On Source Change".
-
 ## DXSerializer Lifecycle Events
 
-For richer customization (e.g., transform XML between save and load, log serialization, encrypt sensitive parts), DXSerializer raises events. Common ones (verify exact names via apidoc):
+For richer customization (e.g., transform XML between save and load, log serialization, encrypt sensitive parts), DXSerializer raises events. Common ones (verify exact names with `devexpress_docs_search`):
 
 | Event | When |
 |---|---|
@@ -250,7 +240,7 @@ For richer customization (e.g., transform XML between save and load, log seriali
 DXSerializer.AddSerializingPropertyHandler(grid, OnSerializingProperty);
 ```
 
-See `articles/common-concepts/save-and-restore-layouts.md` § "Advanced Scenarios" and `articles/common-concepts/dxserializer-events-advanced-scenarios.md` (if present in your version).
+For advanced scenarios, search with `devexpress_docs_search` for "DXSerializer events advanced scenarios".
 
 ## MVVM Pattern — Store Layout in a ViewModel
 
@@ -303,7 +293,7 @@ foreach (var rowHandle in grid.GetVisibleRows()) {
 }
 ```
 
-> `GetVisibleRows` / `GetVisibleDetail` exact method names — verify against `apidoc/DevExpress.Xpf.Grid/GridControl/`.
+> `GetVisibleRows` / `GetVisibleDetail` exact method names — verify with `devexpress_docs_search`.
 
 In practice, master-detail apps usually save only the master layout — detail layouts are reset on each master row expand.
 
@@ -348,7 +338,7 @@ pivotGrid.RestoreLayoutFromStream(stream);
 
 The Pivot Grid layout includes: field positions (Row / Column / Data / Filter areas), group intervals, sort order, filter values, column widths.
 
-See `articles/controls-and-libraries/pivot-grid/layout/save-and-restore-layout.md`.
+For details, search with `devexpress_docs_search` for "pivot grid save and restore layout".
 
 ## Common Issues
 
@@ -359,12 +349,3 @@ See `articles/controls-and-libraries/pivot-grid/layout/save-and-restore-layout.m
 - **`StoreLayoutMode="UI"` skips custom property** — your property isn't marked with `[GridUIProperty]`. Use `"All"` or handle `AllowProperty` to opt in.
 - **Restore takes ages on large grids** — column count too high. Consider serializing only what changed via custom `AllowProperty` event filtering.
 - **Master-detail: detail layouts lost** — detail grids serialize independently. Save each detail's layout separately if needed.
-
-## Source Material
-
-- `articles/common-concepts/save-and-restore-layouts.md`
-- `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md`
-- `articles/controls-and-libraries/pivot-grid/layout/save-and-restore-layout.md` (Pivot Grid–specific)
-- `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-save-and-restore-layout-to-from-xml.md`
-- `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-save-and-restore-layout-to-from-a-stream.md`
-- `apidoc/DevExpress.Xpf.Core.Serialization/` (apidoc namespace for `DXSerializer`)

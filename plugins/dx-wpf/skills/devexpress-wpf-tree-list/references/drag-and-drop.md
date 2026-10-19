@@ -1,4 +1,4 @@
-﻿# Drag-and-Drop — DevExpress WPF TreeList
+# Drag-and-Drop — DevExpress WPF TreeList
 
 `TreeListControl` supports drag-and-drop with the same `DataViewBase`-level API as `GridControl` (six events, drag hint, drop marker, auto-expand on hover) — plus tree-specific semantics: dropping **inside** a node makes the dragged node a child (creating a parent-child relationship), and the `IndentNode` / `OutdentNode` API enables restructuring without drag.
 
@@ -29,8 +29,6 @@ Use this when you need to:
 ```
 
 `AutoExpandOnDrag` is **especially important for trees**: when the user hovers a dragged item over a collapsed parent for `AutoExpandDelayOnDrag` ms, the parent expands so the user can drop into a specific child position.
-
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/drag-and-drop-options.md`.
 
 ## TreeList-Specific Drop Position
 
@@ -85,8 +83,6 @@ void OnStartRecordDrag(object sender, StartRecordDragEventArgs e) {
     }
 }
 ```
-
-This is exact pattern from `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop-operations.md` § "Prevent Dragging Specific Records".
 
 ## Pattern: Restrict Drop to Specific Levels
 
@@ -149,7 +145,7 @@ Or use built-in commands for selected nodes:
 <Button Content="Outdent" Command="{x:Static dxg:TreeListViewCommands.OutdentSelectedNodes}"/>
 ```
 
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/move-nodes.md`. See also [nodes.md § Move Nodes](nodes.md).
+See also [nodes.md § Move Nodes](nodes.md).
 
 > Indent / outdent move the node **with its children**. If the node has 10 descendants, the whole subtree moves.
 
@@ -257,12 +253,3 @@ Inherits the same restriction as Grid: .NET 9 cross-app drag requires the Binary
 For shared concepts (`AllowDragDrop`, six events, `RecordDragDropData`, `DragDropHintTemplate`, `DropMarkerTemplate`, cross-app drag, .NET 9 BinaryFormatter): see [the data-grid skill's `references/drag-and-drop.md`](../../devexpress-wpf-data-grid/references/drag-and-drop.md).
 
 This tree-list reference covers tree-specific semantics: `DropPosition.Inside`, `AutoExpandOnDrag`, indent/outdent, level-aware drop logic.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/drag-and-drop.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/drag-and-drop-options.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop-operations.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/move-nodes.md`
-- `articles/controls-and-libraries/tree-list.md` § Drag-and-Drop
-- The data-grid skill's `references/drag-and-drop.md`

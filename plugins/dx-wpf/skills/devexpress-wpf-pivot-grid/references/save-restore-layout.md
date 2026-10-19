@@ -173,7 +173,5 @@ public class MainViewModel : ViewModelBase {
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/layout/save-and-restore-layout.md` (https://docs.devexpress.com/content/WPF/8023?md=true)
-- `articles/common-concepts/save-and-restore-layouts.md` (https://docs.devexpress.com/content/WPF/7391?md=true)
-- `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-save-and-restore-layout-to-from-xml.md`
-- `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-save-and-restore-layout-to-from-a-stream.md`
+- save-and-restore-layout: https://docs.devexpress.com/content/WPF/8023?md=true
+- save-and-restore-layouts: https://docs.devexpress.com/content/WPF/7391?md=true

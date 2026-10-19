@@ -416,7 +416,7 @@ range.EndUpdateFormatting(fmt);
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After making changes, verify the project builds with `dotnet build`. Check for errors before reporting success.
 2. **NuGet packages**: Use only `DevExpress.Document.Processor`. Do not guess other package names.

@@ -349,7 +349,7 @@ Renders a toolbar with file action buttons, a radio-group alignment selector, a 
 
 ## Constraints & Rules
 
-0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`) or the local `apidoc/` folder. Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxToolbar` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
+0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`). Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxToolbar` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
 1. **Build verification**: Run `dotnet build` after changes and fix errors before reporting success.
 2. **Render mode**: Most Toolbar interactivity (clicks, checked state) requires an interactive render mode.
 3. **GroupName for radio behavior**: Items in the same `GroupName` act as a radio group — only one can be checked.

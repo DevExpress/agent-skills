@@ -101,6 +101,22 @@ import { Scheduler, Resource } from 'devextreme-react/scheduler';
 </Scheduler>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .DataSource(appointments)
+    .Resources(resources => {
+        resources.Add(resource => {
+            resource.FieldExpr("roomId");
+            resource.DataSource(rooms);
+            resource.Label("Room");
+        });
+    })
+)
+```
+
 ---
 
 ## Multiple Resources Per Appointment
@@ -175,6 +191,24 @@ $('#scheduler').dxScheduler({
 </Scheduler>
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .Groups(new[] { "roomId", "teacherId" })
+    .Resources(resources => {
+        resources.Add(resource => {
+            resource.FieldExpr("roomId");
+            resource.DataSource(rooms);
+        });
+        resources.Add(resource => {
+            resource.FieldExpr("teacherId");
+            resource.DataSource(teachers);
+        });
+    })
+)
+```
+
 > **Agenda view does not support grouping.** Grouping works with all other view types.
 
 ### `groupByDate`
@@ -229,4 +263,17 @@ function ResourceCell({ data }: { data: { text: string } }) {
     return <div className="resource-header">{data.text}</div>;
 }
 <Scheduler resourceCellRender={ResourceCell} />
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .ResourceCellTemplate(new TemplateName("resourceCellTemplate"))
+)
+
+@using (Html.DevExtreme().NamedTemplate("resourceCellTemplate")) {
+    <div class="resource-header"><%- text %></div>
+}
 ```

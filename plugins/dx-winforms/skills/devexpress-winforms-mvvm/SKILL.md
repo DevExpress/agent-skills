@@ -200,7 +200,7 @@ DevExpress MVVM is a niche framework, so base models frequently fabricate plausi
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **Do not mix DevExpress package versions**: reference the framework through the `DevExpress.Win` (or the standalone `DevExpress.Mvvm`) NuGet package — never assembly DLLs by path — and keep the DevExpress **product** packages (`DevExpress.Win.*`, `DevExpress.Utils`, `DevExpress.Mvvm`) on the same version. **Exception:** `DevExpress.Mvvm.CodeGenerators` is versioned independently on NuGet.org (latest ~`22.1.x`, no 26.1 build) — reference it with `Version="*"`; pinning it to the product version (e.g. `26.1.*`) fails NuGet restore.

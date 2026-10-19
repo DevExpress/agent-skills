@@ -1,10 +1,6 @@
 // Quickstart ViewModel for the DevExpress WPF TreeList.
 // Companion to quickstart-mainview.xaml.
 //
-// Verified APIs:
-//   - DevExpress.Mvvm.ViewModelBase (DevExpress.Mvvm package, bundled with
-//     DevExpress.Wpf.Grid.Core)
-//
 // Tree shape (self-referential):
 //   - Root: ID=0 (President), ParentID=null
 //   - Level 1: VPs (Marketing, Operations, Production, Finance) report to President

@@ -14,9 +14,14 @@
       "description": "DevExpress Blazor skills: AI Chat, charts, gauges, Grid, Treelist, Pivot Table, Scheduler, Combo Box, Ribbon, and Toolbar."
     },
     {
+      "name": "dx-dashboard",
+      "source": "./plugins/dx-dashboard",
+      "description": "DevExpress Dashboard skills: configure and register data sources (SQL, Object, Entity Framework, JSON, MongoDB, Excel, OLAP, XPO, Federation) in code, create and bind dashboard parameters, and export dashboards to PDF, Image, or Excel for ASP.NET Core, Blazor, WinForms, and WPF."
+    },
+    {
       "name": "dx-devextreme",
       "source": "./plugins/dx-devextreme",
-      "description": "DevExtreme JavaScript UI skills: DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, and Theming for Angular, React, Vue, and jQuery."
+      "description": "DevExtreme skills: DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, and Theming for Angular, React, Vue, jQuery, and ASP.NET Core Controls."
     },
     {
       "name": "dx-office-file-api",
@@ -26,7 +31,7 @@
     {
       "name": "dx-reporting",
       "source": "./plugins/dx-reporting",
-      "description": "DevExpress XtraReports skills for .NET, ASP.NET Core, Blazor, and Visual Studio designer code patterns: runtime report creation, web viewer/designer integration, safe *.Designer.cs edits, report storage, customization, and export (PDF, XLSX, DOCX, and more)."
+      "description": "DevExpress XtraReports skills for .NET, ASP.NET Core, Blazor, WinForms, WPF, and Visual Studio designer code patterns: runtime report creation, web and desktop viewer/designer integration, safe *.Designer.cs edits, report storage, customization, and export (PDF, XLSX, DOCX, and more)."
     },
     {
       "name": "dx-winforms",
@@ -36,7 +41,7 @@
     {
       "name": "dx-wpf",
       "source": "./plugins/dx-wpf",
-      "description": "DevExpress WPF skills: Data Grid, Tree List, Pivot Grid, Scheduler, Charts, Tab Control, Ribbon and Bars, MVVM Framework, Property Grid, Data Editors, Layout Management, Loading Indicators, Accordion, AI Chat Control."
+      "description": "DevExpress WPF skills: Data Grid, Tree List, Pivot Grid, Scheduler, Charts, Tab Control, Ribbon and Bars, MVVM Framework, Property Grid, Data Editors, Layout Management, Loading Indicators, Accordion, AI Chat Control, Grid Data Source Advisor, Dependency Injection (adding Microsoft.Extensions.DependencyInjection to an existing app), Theme Customization (appearance, templates, and theme-resource overrides), and Screen from Screenshot (building a DevExpress WPF screen from a screenshot, mockup, or Figma frame)."
     },
     {
       "name": "dx-xaf",

@@ -282,7 +282,7 @@ treeList.ExpandAll();
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Verify builds**: after changes, run `dotnet build` and report errors before claiming success.
 2. **Target framework**: confirm whether the project targets .NET Framework or modern .NET. Typed DataSets are not available in .NET SDK projects — generate them in a .NET Framework project and add the files to the .NET project.

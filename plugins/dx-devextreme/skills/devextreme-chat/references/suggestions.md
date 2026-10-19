@@ -56,6 +56,18 @@ const suggestionsConfig = { items: suggestionItems };
 <Chat suggestions={suggestionsConfig} />
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .Suggestions(s => s.Items(new[] {
+        new { text = "Tell me more" },
+        new { text = "Show examples" },
+        new { text = "Summarize" }
+    }))
+)
+```
+
 ---
 
 ## Filling the Input Field on Click
@@ -149,6 +161,22 @@ const suggestionsConfig = useMemo(
     onInputFieldTextChanged={handleInputFieldTextChanged}
     suggestions={suggestionsConfig}
 />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .InputFieldText(inputText)
+    .OnInputFieldTextChanged("function(e) { inputText = e.value; }")
+    .Suggestions(s => s
+        .Items(new[] {
+            new { text = "Tell me more", message = "Can you elaborate on that?" },
+            new { text = "Summarize", message = "Please give me a brief summary." }
+        })
+        .OnItemClick("function(e) { inputText = e.itemData.message; }")
+    )
+)
 ```
 
 ---

@@ -192,7 +192,7 @@ pivotGridControl1.RestoreLayoutFromXml("layout.xml");
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **Do not mix DevExpress package versions**: reference the control through the `DevExpress.Win.PivotGrid` NuGet package — never assembly DLLs by path — and keep every DevExpress package in the project on the same version.

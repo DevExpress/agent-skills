@@ -159,4 +159,3 @@ public partial class MainForm : XtraForm {
 - ViewModel Management: `https://docs.devexpress.com/content/WindowsForms/119492?md=true`
 - Fluent API: `https://docs.devexpress.com/content/WindowsForms/117019?md=true`
 - CodeGenerators GitHub: `https://github.com/DevExpress/DevExpress.Mvvm.CodeGenerators`
-- `MVVMContext` class: `xref:DevExpress.Utils.MVVM.MVVMContext`

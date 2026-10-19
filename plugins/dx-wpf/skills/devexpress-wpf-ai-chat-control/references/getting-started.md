@@ -484,8 +484,8 @@ devexpress_docs_get_content(url="https://docs.devexpress.com/WPF/405607")
 
 ## Source Material
 
-- `articles/ai-powered-extensions/ai-chat-control.md` (https://docs.devexpress.com/content/WPF/405434?md=true)
-- `articles/ai-powered-extensions.md` (https://docs.devexpress.com/content/WPF/405223?md=true)
-- `articles/ai-powered-extensions/ai-chat-control/chat-with-your-own-data.md` (https://docs.devexpress.com/content/WPF/405606?md=true)
-- `articles/ai-powered-extensions/ai-chat-control/manage-multiple-chat-clients.md` (https://docs.devexpress.com/content/WPF/405607?md=true)
-- `articles/dotnet-core-support/project-template-kit.md` (https://docs.devexpress.com/content/WPF/405220?md=true)
+- ai-chat-control: https://docs.devexpress.com/content/WPF/405434?md=true
+- ai-powered-extensions: https://docs.devexpress.com/content/WPF/405223?md=true
+- chat-with-your-own-data: https://docs.devexpress.com/content/WPF/405606?md=true
+- manage-multiple-chat-clients: https://docs.devexpress.com/content/WPF/405607?md=true
+- project-template-kit: https://docs.devexpress.com/content/WPF/405220?md=true

@@ -365,6 +365,6 @@ Both can be active at once; usually the chart looks cleaner with one.
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/tooltip-and-crosshair-cursor/tooltip.md` (https://docs.devexpress.com/content/WPF/11975?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/tooltip-and-crosshair-cursor/crosshair-cursor.md` (https://docs.devexpress.com/content/WPF/14682?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/tooltip-and-crosshair-cursor/tooltip-and-crosshair-cursor.md` (https://docs.devexpress.com/content/WPF/11974?md=true)
+- tooltip: https://docs.devexpress.com/content/WPF/11975?md=true
+- crosshair-cursor: https://docs.devexpress.com/content/WPF/14682?md=true
+- tooltip-and-crosshair-cursor: https://docs.devexpress.com/content/WPF/11974?md=true

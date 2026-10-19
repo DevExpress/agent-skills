@@ -396,7 +396,7 @@ targets a single occurrence or the surrounding code already manages recurrence e
 
 ## Constraints & Rules
 
-0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`) or the local `apidoc/` folder. Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxScheduler` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
+0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`). Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxScheduler` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
 1. **Render mode**: `DxScheduler` requires interactive render mode for appointment creation, editing, and navigation.
 2. **AppointmentMappings**: All mapping properties must exactly match your data model field names. Use `nameof()` to avoid spelling errors.
 3. **AppointmentType**: Recurring appointments created in code require `AppointmentType = 1` and a valid `RecurrenceInfo` mapping. Regular non-recurring appointments use `0`.

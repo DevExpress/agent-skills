@@ -373,7 +373,7 @@ using (PdfDocumentProcessor processor = new PdfDocumentProcessor())
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After making changes, verify with `dotnet build`. Check for errors before reporting success.
 2. **NuGet packages**: Use `DevExpress.Document.Processor` for core processing, `DevExpress.Pdf.SkiaRenderer` for rendering on .NET 8+. Do not guess other package names.

@@ -135,7 +135,3 @@ dotnet run
 - [Editing](editing.md) — in-place editors, validation, edit forms
 - [End-User Features](end-user-features.md) — sorting, filtering, multi-selection
 - [Advanced Features](advanced-features.md) — drag-drop, conditional formatting, printing/export
-
-## Source Material
-
-- `articles/controls-and-libraries/tree-list/getting-started/lesson-1-add-a-treelistcontrol-to-a-project.md`

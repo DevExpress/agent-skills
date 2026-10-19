@@ -70,12 +70,3 @@ If you have an existing `NavBarControl`-based UI and want to migrate:
 4. Move group `ControlContainer` content into item `ContentContainer` (if groups had embedded controls).
 
 Key behavioral difference: `NavBarControl` groups are mutually exclusive by default (one expanded at a time), while `AccordionControl` allows multiple groups expanded simultaneously — control this with `AccordionControl.ExpandElementMode`.
-
-## Source Material
-
-- `articles/114553` — Accordion Control overview
-- `articles/4870` — Navigation Bar overview
-- `articles/120498` — Hamburger Menu View Style
-- `articles/1637` — NavBarControl Views
-- `articles/DevExpress.XtraBars.Navigation.AccordionControl` — AccordionControl class reference
-- `articles/DevExpress.XtraNavBar.NavBarControl` — NavBarControl class reference

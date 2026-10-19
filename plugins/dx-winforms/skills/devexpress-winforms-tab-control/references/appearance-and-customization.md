@@ -88,7 +88,5 @@ Task-based examples from the docs:
 
 ## Source Material
 
-- `articles/controls-and-libraries/form-layout-managers/tab-control.md` — "Header Buttons" (custom buttons), "Task-Based Help"
-- `examples/adding-custom-header-buttons-to-the-xtratabcontrol2734.md`, `examples/adding-the-functionality-to-custom-header-buttons2740.md`
 - [DevExpress.XtraTab.Buttons](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.Buttons?md=true) — `CustomHeaderButton`, `CustomHeaderButtonCollection`
 - [DevExpress.XtraTab.ViewInfo](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.ViewInfo?md=true) — `CustomHeaderButtonEventArgs`

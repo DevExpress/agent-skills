@@ -84,6 +84,21 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .Toolbar(toolbar => toolbar
+        .Items(items => {
+            items.Add().Name("today");
+            items.Add().Name("viewSwitcher");
+            items.Add().Name("dateNavigator");
+        })
+    )
+)
+```
+
 ---
 
 ## Customizing Predefined Items
@@ -164,6 +179,20 @@ function App() {
         </Scheduler>
     );
 }
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .Toolbar(toolbar => toolbar
+        .Items(items => {
+            items.Add().Name("dateNavigator").Options(new { items = new[] { "prev", "dateInterval", "next" } });
+            items.Add().Name("viewSwitcher");
+        })
+    )
+)
 ```
 
 ---
@@ -251,6 +280,25 @@ function App() {
         </Scheduler>
     );
 }
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .Toolbar(toolbar => toolbar
+        .Items(items => {
+            items.Add().Name("dateNavigator");
+            items.Add().Name("viewSwitcher");
+            items.Add().Location("after").Widget("dxButton").Options(new {
+                text = "Export",
+                icon = "export",
+                onClick = "onExport"
+            });
+        })
+    )
+)
 ```
 
 ---

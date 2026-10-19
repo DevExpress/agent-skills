@@ -217,5 +217,4 @@ Required assemblies (when not using NuGet):
 
 ## Source Material
 
-- `articles/controls-and-libraries/scheduler.md`
-- `articles/controls-and-libraries/scheduler/getting-started/create-a-simple-scheduling-application.md` (https://docs.devexpress.com/content/WPF/119796?md=true)
+- create-a-simple-scheduling-application: https://docs.devexpress.com/content/WPF/119796?md=true

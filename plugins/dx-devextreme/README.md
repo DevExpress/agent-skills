@@ -1,6 +1,6 @@
 # AI Agent Skills for DevExtreme
 
-This plugin contains AI agent skills for [DevExtreme](https://js.devexpress.com/) (DevExpress UI component library for Angular, React, Vue, and jQuery).
+This plugin contains AI agent skills for [DevExtreme](https://js.devexpress.com/) and [DevExtreme-based ASP.NET Core Controls](https://docs.devexpress.com/AspNetCore/400263/devextreme-based-controls). The skills generate framework-specific code for Angular, React, Vue, jQuery, and ASP.NET Core Razor applications.
 
 ---
 
@@ -8,6 +8,17 @@ This plugin contains AI agent skills for [DevExtreme](https://js.devexpress.com/
 
 - DevExtreme v26.1+
 - [DevExpress subscription license](https://www.devexpress.com/buy/winforms-wpf-blazor-asp-net-maui/) (DevExtreme Complete, ASP.NET and Blazor, DXperience, Universal)
+- For ASP.NET Core projects: the matching DevExtreme ASP.NET Core package version and its client-side DevExtreme dependencies
+
+## Supported Frameworks
+
+- Angular 20+
+- React 18+
+- Vue 3
+- jQuery 3.x or 4.x
+- ASP.NET Core Controls
+
+Each component skill includes framework-specific setup and API guidance.
 
 ---
 

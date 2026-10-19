@@ -112,12 +112,8 @@ For aggregates that don't fit `Sum/Min/Max/Count/Average`, use `SummaryType="Cus
 // Use DxDocs MCP: devexpress_docs_search(technology="WPF Data Grid", query="CustomSummary event")
 ```
 
-See `articles/controls-and-libraries/data-grid/data-summaries/` for the full custom summary article (https://docs.devexpress.com/content/WPF/6129?md=true).
+See https://docs.devexpress.com/content/WPF/6129?md=true for the full custom summary article.
 
 ## ViewModel-Defined Summaries
 
-The grid supports binding `TotalSummary` / `GroupSummary` to ViewModel properties. See the GitHub example linked in `articles/controls-and-libraries/data-grid/data-summaries.md`: "How to Bind the GridControl to Total and Group Summaries Specified in a ViewModel".
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/data-summaries.md`
+The grid supports binding `TotalSummary` / `GroupSummary` to ViewModel properties. See the GitHub example "How to Bind the GridControl to Total and Group Summaries Specified in a ViewModel".

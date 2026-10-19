@@ -213,4 +213,4 @@ Disable the crosshair on charts with rich selection UI to avoid visual noise:
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/selection.md` (https://docs.devexpress.com/content/WPF/117345?md=true)
+- selection: https://docs.devexpress.com/content/WPF/117345?md=true

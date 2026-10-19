@@ -486,4 +486,4 @@ Always unsubscribe in `OnDetaching()` to avoid leaks.
 
 ## Source Material
 
-- `articles/mvvm-framework/behaviors.md` (https://docs.devexpress.com/content/WPF/17442?md=true)
+- behaviors: https://docs.devexpress.com/content/WPF/17442?md=true

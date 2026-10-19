@@ -194,5 +194,5 @@ Required assemblies (when not using NuGet):
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/tile-and-layout.md` (https://docs.devexpress.com/content/WPF/8085?md=true)
-- `articles/controls-and-libraries/layout-management/dock-windows.md` (https://docs.devexpress.com/content/WPF/6191?md=true)
+- tile-and-layout: https://docs.devexpress.com/content/WPF/8085?md=true
+- dock-windows: https://docs.devexpress.com/content/WPF/6191?md=true

@@ -17,11 +17,14 @@ Each form field is a non-visual data container. To display it on a page, bind it
 
 Set `field.ReadOnly = true` to make a field non-editable (users can view but not change its value).
 
+The new API has no form-flatten method. To lock filled answers, set `ReadOnly = true` on each field, or encrypt the document with `ModificationPermissions` and `InteractivityPermissions` set to `NotAllowed` (see [security.md](security.md)).
+
 ## Text Box Field
 
 ```csharp
 using DevExpress.Docs.Pdf;
 using DevExpress.Drawing;
+using DevExpress.Drawing.Printing;
 using System.Drawing;
 
 using (PdfDocument pdfDocument = new PdfDocument()) {
@@ -30,9 +33,7 @@ using (PdfDocument pdfDocument = new PdfDocument()) {
     TextBoxField loginField = new TextBoxField("Login");
     pdfDocument.Fields.Add(loginField);
 
-    TextBoxWidgetAnnotation loginWidget = new TextBoxWidgetAnnotation(loginField) {
-        Bounds = new RectangleF(120, 730, 220, 20)
-    };
+    TextBoxWidgetAnnotation loginWidget = new TextBoxWidgetAnnotation(loginField, new RectangleF(120, 730, 220, 20));
     page.Annotations.Add(loginWidget);
 }
 ```
@@ -40,6 +41,7 @@ using (PdfDocument pdfDocument = new PdfDocument()) {
 ```vb
 Imports DevExpress.Docs.Pdf
 Imports DevExpress.Drawing
+Imports DevExpress.Drawing.Printing
 Imports System.Drawing
 
 Using pdfDocument As New PdfDocument()
@@ -48,9 +50,7 @@ Using pdfDocument As New PdfDocument()
     Dim loginField As New TextBoxField("Login")
     pdfDocument.Fields.Add(loginField)
 
-    Dim loginWidget As New TextBoxWidgetAnnotation(loginField) With {
-        .Bounds = New RectangleF(120, 730, 220, 20)
-    }
+    Dim loginWidget As New TextBoxWidgetAnnotation(loginField, New RectangleF(120, 730, 220, 20))
     page.Annotations.Add(loginWidget)
 End Using
 ```
@@ -61,9 +61,7 @@ End Using
 CheckBoxField agreeField = new CheckBoxField("AgreeToTerms");
 pdfDocument.Fields.Add(agreeField);
 
-CheckBoxWidgetAnnotation agreeWidget = new CheckBoxWidgetAnnotation(agreeField) {
-    Bounds = new RectangleF(50, 730, 18, 18)
-};
+CheckBoxWidgetAnnotation agreeWidget = new CheckBoxWidgetAnnotation(agreeField, new RectangleF(50, 730, 18, 18));
 page.Annotations.Add(agreeWidget);
 ```
 
@@ -98,11 +96,9 @@ listBoxField.Items.Add(new ChoiceFieldItem("Option #2"));
 listBoxField.Items.Add(new ChoiceFieldItem("Option #3"));
 pdfDocument.Fields.Add(listBoxField);
 
-ListBoxWidgetAnnotation listBoxWidget = new ListBoxWidgetAnnotation(listBoxField) {
-    Bounds = new RectangleF(20, 500, 100, 80)
-};
+ListBoxWidgetAnnotation listBoxWidget = new ListBoxWidgetAnnotation(listBoxField, new RectangleF(20, 500, 100, 80));
 listBoxWidget.BackgroundColor = PdfColor.White;
-listBoxWidget.BorderColor = PdfColor.Red;
+listBoxWidget.OutlineColor = PdfColor.Red;
 page.Annotations.Add(listBoxWidget);
 
 // Get selected values / set selection
@@ -121,9 +117,7 @@ comboBoxField.Items.Add(new ChoiceFieldItem("Option #3"));
 comboBoxField.Value = "Option #2";    // pre-select
 pdfDocument.Fields.Add(comboBoxField);
 
-ComboBoxWidgetAnnotation comboBoxWidget = new ComboBoxWidgetAnnotation(comboBoxField) {
-    Bounds = new RectangleF(20, 680, 100, 30)
-};
+ComboBoxWidgetAnnotation comboBoxWidget = new ComboBoxWidgetAnnotation(comboBoxField, new RectangleF(20, 680, 100, 30));
 page.Annotations.Add(comboBoxWidget);
 ```
 
@@ -134,10 +128,8 @@ SignatureField signatureField = new SignatureField("signature");
 signatureField.ShowDate = true;
 pdfDocument.Fields.Add(signatureField);
 
-SignatureWidgetAnnotation signatureWidget = new SignatureWidgetAnnotation(signatureField) {
-    Bounds = new RectangleF(20, 400, 200, 100)
-};
-signatureWidget.BorderColor = PdfColor.Black;
+SignatureWidgetAnnotation signatureWidget = new SignatureWidgetAnnotation(signatureField, new RectangleF(20, 400, 200, 100));
+signatureWidget.OutlineColor = PdfColor.Black;
 page.Annotations.Add(signatureWidget);
 ```
 
@@ -173,7 +165,7 @@ foreach (FormField f in pdfDocument.Fields) {
 
 ```csharp
 FormField field = pdfDocument.Fields.Find(f => f.Name.StartsWith("First"));
-List<FormField> fields = pdfDocument.Fields.FindAll(f => f.Name.Contains("Name"));
+IReadOnlyList<FormField> fields = pdfDocument.Fields.FindAll(f => f.Name.Contains("Name"));
 FormField byName = pdfDocument.Fields.FindByName("Login");
 ```
 
@@ -195,9 +187,12 @@ using (PdfDocument pdfDocument = new PdfDocument(
 }
 
 // Export
-pdfDocument.ExportFormData(
-    new FileStream("ExportedData.xml", FileMode.OpenOrCreate),
-    ExportDataFormat.Xml);
+using (PdfDocument pdfDocument = new PdfDocument(
+    new FileStream("FilledForm.pdf", FileMode.Open, FileAccess.Read))) {
+    pdfDocument.ExportFormData(
+        new FileStream("ExportedData.xml", FileMode.OpenOrCreate),
+        ExportDataFormat.Xml);
+}
 ```
 
 ```vb

@@ -230,7 +230,7 @@ chart.SelectedItemsChanged += (s, e) => label.Text = $"{chart.SelectedItems.Coun
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **NuGet**: charts live in `DevExpress.Win.Charts`. The legacy `DevExpress.XtraCharts.v*.UI.dll` is the WinForms-specific assembly; `DevExpress.XtraCharts.v*.dll` is shared with WPF/web/reports.

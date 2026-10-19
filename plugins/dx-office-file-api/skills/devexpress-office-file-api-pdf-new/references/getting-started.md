@@ -88,9 +88,8 @@ public class Program {
             // Add an image
             using (var logoStream = File.OpenRead("logo.png")) {
                 DXImage logo = DXImage.FromStream(logoStream);
-                page.AddImageFragment(new ImageFragment(logo) {
-                    Location = new PointF(50, 600),
-                    Size = new SizeF(200, 100)
+                page.AddFragment(new ImageFragment(logo) {
+                    Location = new PointF(50, 600)
                 });
             }
 

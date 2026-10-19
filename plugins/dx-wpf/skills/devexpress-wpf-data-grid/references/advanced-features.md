@@ -14,7 +14,7 @@ Use this when you need to:
 
 ## Drag-and-Drop Between Grids
 
-The grid supports drag-and-drop of rows out of itself, between two grids, and reordering within itself. See `articles/controls-and-libraries/data-grid/drag-and-drop.md` and the `drag-and-drop/process-drag-and-drop/` subdirectory for the event-driven API:
+The grid supports drag-and-drop of rows out of itself, between two grids, and reordering within itself. The event-driven API:
 
 - `DataViewBase.DragRecordOver`
 - `DataViewBase.DropRecord`
@@ -37,8 +37,6 @@ The grid raises events that let you supply custom comparison or matching logic:
 | `GridControl.SubstituteFilter` | Grid | Replace a filter criterion before it's applied. |
 | `GridControl.CustomSummary` | Grid | Implement `SummaryType="Custom"`. |
 
-Source: `articles/controls-and-libraries/data-grid/sorting.md` ("Sorting Modes and Custom Sorting" link) and `grouping.md` ("Group Modes and Custom Grouping" link).
-
 ## Save / Restore Grid Layout
 
 The grid serializes its layout (column order, widths, sort, group, filter) via the DXSerializer infrastructure:
@@ -57,8 +55,6 @@ grid.RestoreLayoutFromStream(stream);
 
 Wire `RestoreStateKeyFieldName` (often the entity's primary key field) so focused-row restoration works after the data is refetched.
 
-Source: `articles/common-concepts/save-and-restore-layouts.md`.
-
 ## MVVM: Bind Grid State to ViewModel
 
 | Bindable Property | What It Holds |
@@ -73,7 +69,7 @@ Source: `articles/common-concepts/save-and-restore-layouts.md`.
                  SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"/>
 ```
 
-> Verify the exact property names against `apidoc/DevExpress.Xpf.Grid/DataControlBase/` and `GridControl/` if you need to bind less common state (group expansion, scroll offset, etc.).
+> Verify the exact `DataControlBase` / `GridControl` property names with `devexpress_docs_search` if you need to bind less common state (group expansion, scroll offset, etc.).
 
 ## Performance Tuning
 
@@ -85,7 +81,7 @@ For 100,000+ rows:
 4. **Enable Optimized Summary Calculation** if applicable. See [data-summaries.md](data-summaries.md).
 5. **Avoid custom `CellTemplate`** when possible — virtualization-friendly built-in editors are faster.
 
-See `articles/controls-and-libraries/data-grid/performance-improvement/` for the full performance guide.
+For the full performance guide, search with `devexpress_docs_search` for "data grid performance improvement".
 
 ## Compare With Standard WPF DataGrid
 
@@ -101,12 +97,4 @@ See `articles/controls-and-libraries/data-grid/performance-improvement/` for the
 | `RowDetailsTemplate` | `DataControlDetailDescriptor` |
 | `CanUserAddRows` | `TableView.NewItemRowPosition` |
 
-Migration article (in the repo): `articles/controls-and-libraries/data-grid/compare-grids.md`.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/drag-and-drop.md`
-- `articles/controls-and-libraries/data-grid/performance-improvement.md`
-- `articles/controls-and-libraries/data-grid/mvvm-enhancements/`
-- `articles/controls-and-libraries/data-grid/compare-grids.md`
-- `articles/common-concepts/save-and-restore-layouts.md`
+For the migration article, search with `devexpress_docs_search` for "compare grids".

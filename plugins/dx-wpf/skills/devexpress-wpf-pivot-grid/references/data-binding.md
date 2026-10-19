@@ -39,7 +39,7 @@ pivotGridControl1.DataProcessingEngine = DataProcessingEngine.Optimized;
 pivotGridControl1.DataSource = sales;   // List<Sale>
 ```
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data.md` (root) and https://docs.devexpress.com/content/WPF/404337?md=true (In-Memory Mode).
+Docs: https://docs.devexpress.com/content/WPF/404337?md=true.
 
 ## ADO.NET — DataTable from OLE DB / SQL
 
@@ -56,8 +56,6 @@ pivotGridControl1.DataSource = ds.Tables["SalesPerson"];
 ```
 
 For SQL Server / other providers, swap `OleDbConnection` / `OleDbDataAdapter` for the provider-specific classes (`SqlConnection`, `SqlDataAdapter`, etc.). The pattern is identical.
-
-Source: `articles/controls-and-libraries/pivot-grid/getting-started/NET-Core/lesson-1-bind-a-pivot-grid-to-an-mdb-database-net.md`.
 
 ## Entity Framework Core
 
@@ -96,7 +94,7 @@ pivotGridControl1.DataSource = source;
 
 The control queries the server for aggregated cell values — only the cells visible in the pivot are computed.
 
-Source: `articles/controls-and-libraries/pivot-grid.md` § Binding to Data → Server Mode (https://docs.devexpress.com/content/WPF/18010?md=true).
+Docs: https://docs.devexpress.com/content/WPF/18010?md=true.
 
 ## OLAP (Microsoft Analysis Services Cube)
 
@@ -148,9 +146,9 @@ pivotGridControl1.RetrieveFields();                  // Auto-create PivotGridFie
 
 ### .NET 5+ Limitation
 
-> **You cannot bind the Pivot Grid to data at design time in .NET 5+ projects.** Use code-only setup (above) on modern .NET. Design-time wizards work only on .NET Framework. See `articles/controls-and-libraries/pivot-grid/getting-started/NET-Framework/lesson-2-bind-a-pivot-grid-to-an-olap-cube.md` for .NET Framework design-time path.
+> **You cannot bind the Pivot Grid to data at design time in .NET 5+ projects.** Use code-only setup (above) on modern .NET. Design-time wizards work only on .NET Framework. For the .NET Framework design-time path, search with `devexpress_docs_search` for "pivot grid bind to an OLAP cube".
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/olap-data-source/binding-to-olap-data-sources.md` (https://docs.devexpress.com/content/WPF/8015?md=true).
+Docs: https://docs.devexpress.com/content/WPF/8015?md=true.
 
 ## Asynchronous Mode
 
@@ -202,7 +200,7 @@ pivotGridControl1.AsyncOperationCompleted += (s, e) => statusBar.Text = "Ready";
 
 In async mode, summary-calculation events (`CustomCellValue`, `CustomSummary`, etc.) fire on the **background thread**, not the UI thread. Do NOT touch UI elements from these handlers — use `Dispatcher.Invoke` if you must.
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/asynchronous-mode.md` (https://docs.devexpress.com/content/WPF/9776?md=true).
+Docs: https://docs.devexpress.com/content/WPF/9776?md=true.
 
 ## Items Source Configuration Wizard (Design Time)
 
@@ -218,7 +216,7 @@ The Quick Actions smart tag on `PivotGridControl` opens the **Items Source Confi
 
 The wizard generates the connection plumbing + field setup. Use this path when you prefer designer-driven scaffolding.
 
-Source: `articles/controls-and-libraries/pivot-grid.md` references the wizard at https://docs.devexpress.com/content/WPF/115629?md=true.
+Docs: https://docs.devexpress.com/content/WPF/115629?md=true.
 
 ## Calculated Expression Fields
 
@@ -233,7 +231,7 @@ profitField.DataBinding = new ExpressionDataBinding { Expression = "[Revenue] - 
 
 The expression uses [Criteria Language Syntax](https://docs.microsoft.com/) — same as `GridControl` filters. Field names go in square brackets.
 
-Source: `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md` § Bind Pivot Grid Fields to Data → Calculated Expressions (https://docs.devexpress.com/content/WPF/8025?md=true).
+Docs: https://docs.devexpress.com/content/WPF/8025?md=true.
 
 ## Window Calculations
 
@@ -254,11 +252,3 @@ Window calculations (running totals, percent-of-parent, rank, moving averages, a
 - **Pivot is empty after `DataSource = ...`** — fields haven't been added yet. `DataSource` alone doesn't show data; you must also add at least one field to each of Row, Column, Data areas.
 - **`OleDbConnection` throws "provider is not registered"** — install the Microsoft Access Database Engine Redistributable (x86 / x64 must match the process architecture).
 - **Server-mode source is slow** — check the underlying query plan and indexes. The grid only requests aggregated values for visible cells, but the server must compute them efficiently.
-
-## Source Material
-
-- `articles/controls-and-libraries/pivot-grid.md` (root, sections § Binding to Data)
-- `articles/controls-and-libraries/pivot-grid/binding-to-data.md`
-- `articles/controls-and-libraries/pivot-grid/getting-started/NET-Core/lesson-1-bind-a-pivot-grid-to-an-mdb-database-net.md`
-- `articles/controls-and-libraries/pivot-grid/getting-started/NET-Core/lesson-2-bind-a-pivot-grid-to-an-olap-cube-net.md`
-- `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md`

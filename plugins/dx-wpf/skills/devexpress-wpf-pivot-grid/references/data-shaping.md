@@ -49,7 +49,7 @@ Available functions (from the docs):
 - `Median` / `Mode`
 - `Custom` (handle `PivotGridControl.CustomSummary` event for arbitrary aggregation)
 
-Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Aggregation (https://docs.devexpress.com/content/WPF/11732?md=true) and `pivot-grid/data-shaping/aggregation/summaries/`.
+Docs: https://docs.devexpress.com/content/WPF/11732?md=true.
 
 ## Date Grouping
 
@@ -74,7 +74,7 @@ AddDate("Month",   FieldArea.ColumnArea, "OrderDate", FieldGroupInterval.DateMon
 
 User can expand Year → Quarter → Month inline.
 
-Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Grouping (https://docs.devexpress.com/content/WPF/8061?md=true).
+Docs: https://docs.devexpress.com/content/WPF/8061?md=true.
 
 ## Numeric Range Grouping
 
@@ -177,9 +177,9 @@ In **OLAP mode** with `TopValueType.Percent`, the Pivot Grid shows top values wh
 
 Sort by Summary ignores: running totals, custom `SummaryDisplayType`, and values produced by `CustomCellValue` / `CustomCellDisplayText` events.
 
-Source:
-- `articles/controls-and-libraries/pivot-grid/data-shaping/sorting/sorting-by-summary.md` (https://docs.devexpress.com/content/WPF/8072?md=true)
-- `articles/controls-and-libraries/pivot-grid/data-shaping/sorting/display-top-n-values.md` (https://docs.devexpress.com/content/WPF/8063?md=true)
+Docs:
+- sorting-by-summary: https://docs.devexpress.com/content/WPF/8072?md=true
+- display-top-n-values: https://docs.devexpress.com/content/WPF/8063?md=true
 
 ## Filtering
 
@@ -209,7 +209,7 @@ pivotGridControl1.FilterString = "[Amount] > 500";
 
 The filter criterion uses the same Criteria Language Syntax as `GridControl.FilterString`. Available via `DevExpress.Data.Filtering`.
 
-Source: `articles/controls-and-libraries/pivot-grid/data-shaping.md` § Filtering (https://docs.devexpress.com/content/WPF/10927?md=true).
+Docs: https://docs.devexpress.com/content/WPF/10927?md=true.
 
 ## Calculated Fields
 
@@ -225,7 +225,7 @@ profit.SummaryType = FieldSummaryType.Sum;
 
 The expression uses Criteria Language Syntax — field names in square brackets, operators `+`, `-`, `*`, `/`, parentheses, and functions (`Iif`, `Substring`, etc.).
 
-Source: `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md` references https://docs.devexpress.com/content/WPF/8025?md=true.
+Docs: https://docs.devexpress.com/content/WPF/8025?md=true.
 
 ## Window Calculations
 
@@ -284,7 +284,7 @@ runningTotal.DataBinding = new RunningTotalBinding {
 
 > Window calculations require `DataProcessingEngine.Optimized` (the default for non-legacy data sources). The Legacy engine ignores window-calculation bindings.
 
-Source: `articles/controls-and-libraries/pivot-grid/binding-to-data/in-memory-mode/Optimized-Mode/bind-pivot-grid-fields-to-window-calculations.md` (https://docs.devexpress.com/content/WPF/403913?md=true).
+Docs: https://docs.devexpress.com/content/WPF/403913?md=true.
 
 ## Custom Summary
 
@@ -304,10 +304,3 @@ field.SummaryType = FieldSummaryType.Custom;
 
 > Verify exact `CustomSummary` event-arg member names via DxDocs MCP:
 > `devexpress_docs_search(technology="WPF Pivot Grid", query="CustomSummary event handler")`
-
-## Source Material
-
-- `articles/controls-and-libraries/pivot-grid.md` (root, § Data Shaping)
-- `articles/controls-and-libraries/pivot-grid/data-shaping.md`
-- `articles/controls-and-libraries/pivot-grid/data-shaping/aggregation/summaries/`
-- `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md`

@@ -173,6 +173,5 @@ Because they aren't `BaseEdit`, they:
 
 ## Source Material
 
-- `articles/controls-and-libraries/data-editors.md` § Simple Controls (https://docs.devexpress.com/content/WPF/6190?md=true#simple-controls)
-- `articles/controls-and-libraries/data-editors/included-components.md` § Buttons (https://docs.devexpress.com/content/WPF/6933?md=true)
-- `articles/controls-and-libraries/data-editors/range-control.md`
+- data-editors § Simple Controls: https://docs.devexpress.com/content/WPF/6190?md=true#simple-controls
+- included-components § Buttons: https://docs.devexpress.com/content/WPF/6933?md=true

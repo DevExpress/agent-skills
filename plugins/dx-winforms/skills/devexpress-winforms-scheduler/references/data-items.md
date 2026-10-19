@@ -219,11 +219,3 @@ string caption = res.Caption;
 | Exception changes are lost on reload | `Id` and `RecurrenceInfo` mappings missing | Both are required for exception persistence |
 | Pattern generates unexpected extra occurrences | `RecurrenceInfo.Start` not set to `apt.Start` | Always set `RecurrenceInfo.Start = apt.Start` before adding the pattern |
 | Reminder fires for every occurrence | `ReminderInfo` mapping missing — reminder is stored on the occurrence, not the pattern | Add `Mappings.ReminderInfo` to a `string` column |
-
-## Source Material
-
-- `articles/controls-and-libraries/scheduler/appointments.md` (`xref:1753`)
-- `articles/controls-and-libraries/scheduler/appointments/appointment-labels-and-statuses.md` (`xref:1754`)
-- `articles/controls-and-libraries/scheduler/appointments/reminders-for-appointments.md` (`xref:1778`)
-- `DevExpress.XtraScheduler.Appointment` (`xref:CoreLibraries/DevExpress.XtraScheduler.Appointment`)
-- `DevExpress.XtraScheduler.RecurrenceInfo` (`xref:CoreLibraries/DevExpress.XtraScheduler.RecurrenceInfo`)

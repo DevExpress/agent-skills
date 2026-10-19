@@ -31,8 +31,6 @@ A node renders 5 visual elements (some optional):
 
 In **bound mode** (with `KeyFieldName` / `ParentFieldName` or `ChildNodesPath`), nodes are auto-created per data record. In **unbound mode**, you create `TreeListNode` instances and add them to `Nodes` collections. See [data-binding.md](data-binding.md) for the binding strategies.
 
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/nodes-overview.md`.
-
 ## Root Nodes
 
 Root nodes have no parent — their `ParentID` doesn't match any other node's key (or is `null` in nullable-key designs).
@@ -101,8 +99,6 @@ for (int i = 0; i < view.DataControl.VisibleRowCount; i++) {
 - **Visible index** — index among currently visible nodes; `-1` if hidden inside a collapsed group; renumbers when nodes expand/collapse.
 
 Use row handles for stable references; use visible indices for UI positioning (e.g., scroll-to-row).
-
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/obtain-nodes.md`.
 
 ## Expand and Collapse Nodes
 
@@ -186,8 +182,6 @@ In unbound mode (XAML node trees), use:
 </dxg:TreeListNode>
 ```
 
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/expand-and-collapse-nodes.md`.
-
 ### Dynamic Loading (Hierarchical Binding)
 
 When binding to hierarchical data (`ChildNodesPath` / `ChildNodesSelector`), the grid creates child nodes lazily on expand by default. Tuning properties:
@@ -200,8 +194,6 @@ When binding to hierarchical data (`ChildNodesPath` / `ChildNodesSelector`), the
 | `TreeListView.ExpandNodesOnFiltering` | `false` | If `true`, expand nodes whose children match the search/filter |
 
 `HasChildNodesPath` matters when `FetchSublevelChildrenOnExpand = false`: without it, every node shows an expand button (since the grid doesn't yet know if children exist). With it, the grid evaluates the property to decide button visibility.
-
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/expand-and-collapse-nodes.md` § "Related API".
 
 ## Iterate Through Nodes — `TreeListNodeIterator`
 
@@ -230,8 +222,6 @@ while (iterator.MoveNext()) {
 ```csharp
 iterator.Reset();   // Restart from the initial state
 ```
-
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/iterate-through-nodes.md`.
 
 ## Checkboxes
 
@@ -318,8 +308,6 @@ Or:
 
 `IsCheckBoxEnabledBinding` takes precedence over `IsCheckBoxEnabledFieldName`.
 
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/check-nodes.md`.
-
 ## Node Images
 
 ```xaml
@@ -366,8 +354,6 @@ Or:
 ```
 
 > Both operations move children along with the node. Indent makes node a child of the previous sibling; outdent makes the node a sibling of its parent.
-
-Source: `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/move-nodes.md`.
 
 ## TreeListNode API Surface
 
@@ -421,12 +407,11 @@ When `TreeListView` filters data:
 <dxg:TreeListView ExpandNodesOnFiltering="True"/>
 ```
 
-Per-node filter via `TreeListView.CustomNodeFilter` event / `CustomNodeFilterCommand` — see `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/filter-nodes.md`.
+Per-node filter via `TreeListView.CustomNodeFilter` event / `CustomNodeFilterCommand` — search with `devexpress_docs_search` for "filter nodes".
 
 ## Sort Nodes
 
 `TreeListView` sorts within each level — siblings are sorted relative to each other, hierarchy is preserved. See:
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/sort-nodes.md`
 - [end-user-features.md § Sorting](end-user-features.md)
 
 ## Common Issues
@@ -439,16 +424,3 @@ Per-node filter via `TreeListView.CustomNodeFilter` event / `CustomNodeFilterCom
 - **`ExpandToLevel` doesn't expand level 0** — level 0 is the root; root nodes are always "expanded" in the sense of being visible. Use level 1+ to drill down.
 - **Iterator skips collapsed nodes** — used `visibleOnly: true` in the constructor. Pass `false` (or omit) to walk all nodes.
 - **Recursive checking causes performance issues on large trees** — every check propagates up and down. Use `BeginInit` / `EndInit` patterns on the view if available, or temporarily disable recursive checking during bulk updates.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/nodes-overview.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/obtain-nodes.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/expand-and-collapse-nodes.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/iterate-through-nodes.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/check-nodes.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/move-nodes.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/sort-nodes.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/filter-nodes.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/expanding-and-collapsing-nodes.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/navigating-through-nodes-and-cells.md`

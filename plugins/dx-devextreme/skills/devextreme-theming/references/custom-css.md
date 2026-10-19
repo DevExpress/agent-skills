@@ -41,6 +41,14 @@ function App() {
 }
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .ElementAttr(new { @class = "my-grid" })
+)
+```
+
 Then target the class in CSS:
 
 ```css
@@ -131,6 +139,18 @@ DataGrid.defaultOptions({ options: { showBorders: true } });
 // React — call in main.tsx before ReactDOM.createRoot()
 import DataGrid from 'devextreme/ui/data_grid';
 DataGrid.defaultOptions({ options: { showBorders: true } });
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+<script>
+DevExpress.ui.dxDataGrid.defaultOptions({
+    options: {
+        showBorders: true,
+        elementAttr: { class: "app-grid" }
+    }
+});
+</script>
 ```
 
 You can also target specific devices using the `device` field:

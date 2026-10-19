@@ -103,6 +103,16 @@ function App() {
 export default App;
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@using DevExtreme.AspNet.Mvc
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .FormData(new { name = "John Heart", officeNumber = 901, hireDate = new DateTime(2012, 5, 13) })
+)
+```
+
 ## Listening for field changes
 
 Use `onFieldDataChanged` to react to any field value change. The event argument provides `dataField` and `value`.
@@ -143,4 +153,18 @@ function onFieldDataChanged(e) {
 }
 // ...
 <Form formData={employee.current} onFieldDataChanged={onFieldDataChanged} />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .FormData(new { name = "John Heart", officeNumber = 901, hireDate = new DateTime(2012, 5, 13) })
+    .OnFieldDataChanged("onFieldDataChanged")
+)
+<script>
+    function onFieldDataChanged(e) {
+        console.log(e.dataField, e.value);
+    }
+</script>
 ```

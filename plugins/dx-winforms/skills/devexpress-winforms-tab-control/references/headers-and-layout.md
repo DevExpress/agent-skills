@@ -73,6 +73,4 @@ SVG icons from the DevExpress Image Gallery are added at the default 32x32 size;
 
 ## Source Material
 
-- `articles/controls-and-libraries/form-layout-managers/tab-control.md` — "Main Settings", "Header Buttons"
-- `examples/xtratabcontrol-headerbuttons729.md` — enabling the Close header button
 - [XtraTabControl](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.XtraTabControl?md=true) — header layout members (`HeaderLocation`, `HeaderOrientation`, `HeaderAutoFill`, `MultiLine`, `HeaderButtons`)

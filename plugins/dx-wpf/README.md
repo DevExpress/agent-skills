@@ -22,6 +22,7 @@ This plugin contains AI agent skills for [DevExpress WPF Controls](https://www.d
 |---|---|---|
 | [devexpress-wpf-data-grid](skills/devexpress-wpf-data-grid/) | `GridControl` — view management (TableView, CardView, TreeListView), data binding (EF Core, XPO, server mode), columns, data shaping (sort, filter, group rows), summaries, master-detail layout, conditional formatting, printing, and export | [DataGrid Documentation](https://docs.devexpress.com/WPF/6084/controls-and-libraries/data-grid) |
 | [devexpress-wpf-tree-list](skills/devexpress-wpf-tree-list/) | `TreeListControl` — data binding (self-referential and hierarchical sources), unbound mode, drag-and-drop settings, row selection, edit forms, validation | [TreeList Documentation](https://docs.devexpress.com/WPF/9759/controls-and-libraries/tree-list) |
+| [devexpress-wpf-grid-datasource](skills/devexpress-wpf-grid-datasource/) | Data source advisor for `GridControl` and `TreeListControl` — inspects the project, picks `ObservableCollection<T>`, Server Mode, Instant Feedback, Virtual Sources, or `RealTimeSource`, and implements the binding | [Large Data Sources Documentation](https://docs.devexpress.com/WPF/401037) |
 | [devexpress-wpf-pivot-grid](skills/devexpress-wpf-pivot-grid/) | `PivotGridControl` — area management (row, column, data, and filter areas), OLAP, server mode, aggregation, drill-down, KPI, conditional formatting | [PivotGrid Documentation](https://docs.devexpress.com/WPF/7228/controls-and-libraries/pivot-grid) |
 | [devexpress-wpf-property-grid](skills/devexpress-wpf-property-grid/) | `PropertyGridControl` — selected object, properties, collections, categories, expandable nested types | [PropertyGrid Documentation](https://docs.devexpress.com/WPF/15640/controls-and-libraries/property-grid) |
 | [devexpress-wpf-charts](skills/devexpress-wpf-charts/) | `ChartControl` (2D) — diagram management (XY, polar, radar, simple), 15+ series types, primary and secondary axes, legend, tooltip, crosshair, aggregation | [Chart Documentation](https://docs.devexpress.com/WPF/115092/controls-and-libraries/charts-suite) |
@@ -50,11 +51,21 @@ This plugin contains AI agent skills for [DevExpress WPF Controls](https://www.d
 
 ---
 
+### UI Design and Appearance
+
+| Skill | Capabilities | Docs |
+|---|---|---|
+| [devexpress-wpf-from-screenshot](skills/devexpress-wpf-from-screenshot/) | Builds a DevExpress WPF screen from a screenshot, an image, or a Figma frame — picks a control per region, writes the XAML, runs the app, and compares the result with the mockup | [WPF Controls Documentation](https://docs.devexpress.com/WPF/) |
+| [devexpress-wpf-theme-customizer](skills/devexpress-wpf-theme-customizer/) | Changes the appearance of any DevExpress WPF control — public API first, then a scoped style, then a theme resource override from the installed theme source; verifies the result with before/after captures | [Modify Theme Resources](https://docs.devexpress.com/WPF/403598) |
+
+---
+
 ### Frameworks
 
 | Skill | Capabilities | Docs |
 |---|---|---|
 | [devexpress-wpf-mvvm](skills/devexpress-wpf-mvvm/) | View-model strategies (`GenerateViewModel` source generator, `ViewModelSource`, `ViewModelBase`, `BindableBase`), `DelegateCommand` and `AsyncCommand`, 25+ predefined services (`IMessageBoxService`, `IDialogService`, `IDocumentManagerService`, `INotificationService`, and more), behaviors (`EventToCommand`, `KeyToCommand`, `FocusBehavior`, and more), `Messenger` | [Overview](https://docs.devexpress.com/WPF/15112/mvvm-framework) |
+| [devexpress-wpf-dependency-injection](skills/devexpress-wpf-dependency-injection/) | Adds `Microsoft.Extensions.DependencyInjection` (optionally the .NET Generic Host) to an existing app — inspects how view models and services are created, composition root, registrations and lifetimes, `IocServiceProvider` and `{dxmvvm:Ioc}`, views created by `DialogService`/`WindowService`, child UserControls, POCO view models | [Dependency Injection](https://docs.devexpress.com/WPF/403514) |
 
 ---
 

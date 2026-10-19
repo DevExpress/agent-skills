@@ -554,8 +554,8 @@ Status text updates while the indicator is visible.
 
 ## Source Material
 
-- `articles/controls-and-libraries/windows-and-utility-controls/splash-screen-manager.md` (https://docs.devexpress.com/content/WPF/401685?md=true)
-- `articles/controls-and-libraries/windows-and-utility-controls/wait-indicator.md` (https://docs.devexpress.com/content/WPF/114373?md=true)
-- `articles/mvvm-framework/services/predefined-set/splashscreenmanagerservice.md` (https://docs.devexpress.com/content/WPF/401692?md=true)
+- splash-screen-manager: https://docs.devexpress.com/content/WPF/401685?md=true
+- wait-indicator: https://docs.devexpress.com/content/WPF/114373?md=true
+- splashscreenmanagerservice: https://docs.devexpress.com/content/WPF/401692?md=true
 - DxDocs API: `DevExpress.Xpf.Core.LoadingDecorator` — `OwnerLock`, `IsSplashScreenShown`, `UseSplashScreen`, `SplashScreenTemplate`, `SplashScreenDataContext`, `SplashScreenLocation`, `BorderEffect`, `UseFadeEffect`
 - DxDocs API: `DevExpress.Xpf.Core.SplashScreenLock` enum — `Full`, `InputOnly`, `LoadingContent`, `None`

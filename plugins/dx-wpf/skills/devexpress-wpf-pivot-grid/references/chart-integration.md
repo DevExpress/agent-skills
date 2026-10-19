@@ -138,6 +138,4 @@ For an even richer dashboard experience (combining Pivot Grid + Chart + Map + KP
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/data-analysis/integration-with-the-chart-control.md` (https://docs.devexpress.com/content/WPF/8016?md=true)
-- `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-visualize-data-from-a-pivot-grid-control-using-the-chart-control.md`
-- `articles/controls-and-libraries/pivot-grid/examples/miscellaneous/how-to-customize-a-pivotgrid-controls-data-before-displaying-it-in-a-chart-control.md`
+- integration-with-the-chart-control: https://docs.devexpress.com/content/WPF/8016?md=true

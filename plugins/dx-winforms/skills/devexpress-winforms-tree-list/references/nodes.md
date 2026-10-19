@@ -109,7 +109,4 @@ In `AppendNode`, optional `imageIndex` / `selectImageIndex` parameters set these
 
 ## Source Material
 
-- `articles/controls-and-libraries/tree-list/feature-center/nodes.md` (`xref:5593`)
-- `articles/controls-and-libraries/tree-list/feature-center/focus-selection-and-navigation/...` (`xref:5598`)
-- `articles/.../node-checking-checkboxes-and-radio-buttons` (`xref:120672`)
 - [TreeListNode](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.Nodes.TreeListNode?md=true) — node reference

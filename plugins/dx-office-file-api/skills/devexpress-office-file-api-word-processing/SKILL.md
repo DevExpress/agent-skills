@@ -403,7 +403,7 @@ using (var server = new RichEditDocumentServer())
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Server-side only**: Always use `RichEditDocumentServer`, never `RichEditControl` (UI-only, requires WinForms/WPF).
 2. **Build verification**: After making changes, verify the project builds with `dotnet build`. Check for errors before reporting success.

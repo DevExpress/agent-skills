@@ -277,7 +277,7 @@ This pattern is in the docs page "Binding to a collection of PropertyDefinitions
 
 ## Source Material
 
-- `articles/controls-and-libraries/property-grid/property-definitions.md` (https://docs.devexpress.com/content/WPF/15521?md=true)
-- `articles/controls-and-libraries/property-grid/getting-started/creating-property-definitions.md` (https://docs.devexpress.com/content/WPF/15610?md=true)
-- `articles/controls-and-libraries/property-grid/property-definitions/binding-to-a-collection-of-propertydefinitions.md` (https://docs.devexpress.com/content/WPF/115668?md=true)
-- `articles/controls-and-libraries/property-grid/property-definitions/displaying-multiple-properties-in-a-single-cell.md` (https://docs.devexpress.com/content/WPF/118197?md=true)
+- property-definitions: https://docs.devexpress.com/content/WPF/15521?md=true
+- creating-property-definitions: https://docs.devexpress.com/content/WPF/15610?md=true
+- binding-to-a-collection-of-propertydefinitions: https://docs.devexpress.com/content/WPF/115668?md=true
+- displaying-multiple-properties-in-a-single-cell: https://docs.devexpress.com/content/WPF/118197?md=true

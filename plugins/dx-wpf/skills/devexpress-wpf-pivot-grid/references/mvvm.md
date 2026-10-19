@@ -1,4 +1,4 @@
-﻿# MVVM Integration — DevExpress WPF Pivot Grid
+# MVVM Integration — DevExpress WPF Pivot Grid
 
 The Pivot Grid supports the **Model-View-ViewModel** pattern through:
 
@@ -140,7 +140,7 @@ To set properties shared across all template variants, use `FieldGeneratorStyle`
 
 ## Field Groups in ViewModel (`GroupsSource`)
 
-For dynamic groups, supply a parallel collection — see `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/binding-to-a-collection-of-groups.md`.
+For dynamic groups, supply a parallel collection — search with `devexpress_docs_search` for "binding to a collection of groups".
 
 ```csharp
 public ObservableCollection<PivotGroupDescriptor> Groups { get; }
@@ -194,6 +194,5 @@ The Pivot Grid extends those patterns with `FieldsSource` / `GroupsSource` and t
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/binding-to-a-collection-of-fields.md` (https://docs.devexpress.com/content/WPF/115438?md=true)
-- `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/binding-to-a-collection-of-groups.md`
-- `articles/controls-and-libraries/pivot-grid/examples/binding-to-data/how-to-bind-the-pivot-grid-to-fields-and-groups-specified-in-viewmodel.md` (https://docs.devexpress.com/content/WPF/118813?md=true)
+- binding-to-a-collection-of-fields: https://docs.devexpress.com/content/WPF/115438?md=true
+- how-to-bind-the-pivot-grid-to-fields-and-groups-specified-in-viewmodel: https://docs.devexpress.com/content/WPF/118813?md=true

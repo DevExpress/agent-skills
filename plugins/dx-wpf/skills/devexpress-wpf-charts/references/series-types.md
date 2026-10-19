@@ -172,6 +172,5 @@ For radically different value ranges, add a **secondary y-axis** instead of figh
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/series/2d-series-types.md` (https://docs.devexpress.com/content/WPF/114223?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/series/series-type-compatibility.md`
-- `articles/controls-and-libraries/charts-suite/chart-control/series/series.md` (https://docs.devexpress.com/content/WPF/6339?md=true)
+- 2d-series-types: https://docs.devexpress.com/content/WPF/114223?md=true
+- series: https://docs.devexpress.com/content/WPF/6339?md=true

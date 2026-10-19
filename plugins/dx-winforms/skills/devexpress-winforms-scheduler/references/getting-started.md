@@ -168,11 +168,3 @@ schedulerControl1.Start = new DateTime(2026, 5, 1);
 ```
 
 The scheduler focuses the current day by default. Set `Start` when displaying historical or future data.
-
-## Source Material
-
-- `articles/controls-and-libraries/scheduler/getting-started.md` (`xref:2949`)
-- `articles/controls-and-libraries/scheduler.md` (`xref:1971`)
-- `DevExpress.XtraScheduler.SchedulerControl` (`xref:DevExpress.XtraScheduler.SchedulerControl`)
-- `DevExpress.XtraScheduler.SchedulerDataStorage` (`xref:DevExpress.XtraScheduler.SchedulerDataStorage`)
-- `DevExpress.XtraScheduler.DateNavigator` (`xref:DevExpress.XtraScheduler.DateNavigator`)

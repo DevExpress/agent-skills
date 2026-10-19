@@ -28,8 +28,6 @@ Restrict on specific fields:
 
 Both `PivotGridControl.AllowDrag` (type `bool`) and `PivotGridField.AllowDrag` (type `bool?`) are real properties.
 
-Source: `articles/controls-and-libraries/pivot-grid/end-user-interaction.md` and `pivot-grid/end-user-capabilities.md`.
-
 ## Drill-Down (Inspect Source Records)
 
 When a user double-clicks a Data cell, the Pivot Grid can show the underlying rows that contributed to that aggregated value. Handle `PivotGridControl.CellDoubleClick` (event args: `PivotCellEventArgs`) and call `CreateDrillDownDataSource`:
@@ -41,8 +39,6 @@ private void pivotGridControl1_CellDoubleClick(object sender, PivotCellEventArgs
     // Show `details` in a popup or secondary grid
 }
 ```
-
-Source: `articles/controls-and-libraries/pivot-grid.md` § "drill-down" mentions; `pivot-grid/end-user-interaction.md`.
 
 ## Excel-Style Filter Dropdown
 
@@ -101,10 +97,3 @@ pivotGridControl1.BestFit();
 | `PivotGridControl.IsFieldListVisible` | `bool` | `False` | Field List panel visibility (bindable) |
 | `PivotGridControl.AllowCustomizationForm` | `bool` | `True` | End user can invoke the Field List |
 | `PivotGridControl.AllowHideFields` | `AllowHideFieldsType` | `WhenFieldListVisible` | Can fields be dropped into the Field List to hide them |
-
-## Source Material
-
-- `articles/controls-and-libraries/pivot-grid.md` (root, § End-User Interaction)
-- `articles/controls-and-libraries/pivot-grid/end-user-capabilities.md`
-- `articles/controls-and-libraries/pivot-grid/end-user-interaction.md`
-- `articles/controls-and-libraries/pivot-grid/ui-elements.md`

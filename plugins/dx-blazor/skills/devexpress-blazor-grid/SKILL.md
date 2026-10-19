@@ -631,7 +631,7 @@ The source grid sets `AllowDragRows="true"` + `AllowedDropTarget="GridAllowedDro
 
 **Follow these rules in every interaction:**
 
-0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`) or the local `apidoc/` folder. Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxGrid` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
+0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`). Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxGrid` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
 1. **Filter panel API**: Use `FilterPanelDisplayMode`, not `ShowFilterPanel`. Set it to `Always` or `Auto` depending on whether the panel should always be visible.
 2. **Filter builder operators**: To change date operators such as `IsJanuary` for a specific field, customize `DxFilterBuilder` inside `FilterBuilderTemplate`. `DxGrid.CustomizeFilterMenu` only affects the column filter menu and `DxGridDataColumn.CustomizeFilterMenu` does not exist.
 3. **Build verification**: After making changes, run `dotnet build` before reporting success.

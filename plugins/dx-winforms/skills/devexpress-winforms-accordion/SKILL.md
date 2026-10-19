@@ -302,7 +302,7 @@ mySettingsItem.ContentContainer = container;
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. After any code changes, run `dotnet build` and report errors before claiming success.
 2. Target .NET Framework 4.6.2+ or .NET 8+ (Windows only). Do not generate code that targets cross-platform `net8.0` without `-windows` suffix.

@@ -2,15 +2,6 @@
   Quickstart MainView for the DevExpress WPF Data Grid.
   Drop this into a new WPF .NET 8 project after adding the
   DevExpress.Wpf.Grid.Core NuGet package.
-
-  Verified APIs (apidoc / lesson articles):
-    - DevExpress.Xpf.Grid.GridControl
-    - DevExpress.Xpf.Grid.TableView (AutoWidth, BestFitModeOnSourceChange,
-      ShowGroupPanel, NewItemRowPosition)
-    - DevExpress.Xpf.Grid.GridColumn (FieldName, ReadOnly, EditSettings)
-    - DevExpress.Xpf.Editors.Settings.TextEditSettings (Mask, MaskType,
-      MaskUseAsDisplayFormat)
-    - DevExpress.Xpf.Grid.GridSummaryItem (FieldName, SummaryType, DisplayFormat)
 -->
 <Window x:Class="DevExpressGridQuickstart.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

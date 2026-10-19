@@ -342,7 +342,7 @@ Switch `LookUpEdit` to search mode with token output:
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After any changes, run `dotnet build` and report errors before claiming success.
 2. **Target framework**: Editors are Windows-only. `.csproj` must target `net{X}-windows` with `<UseWPF>true</UseWPF>`.

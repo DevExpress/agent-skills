@@ -30,8 +30,6 @@ Use this when you need to:
 | `TreeDerivationMode` | Mode switch | `Selfreference` (default), `ChildNodesSelector`, or `HierarchicalDataTemplate`. (There is **no** `ChildNodesPath` mode — for a children-field, use `ChildNodesSelector` mode + the `ChildNodesPath` property.) |
 | `Nodes` | Unbound | Root `TreeListNodeCollection` populated in XAML or code. |
 
-Source: `articles/controls-and-libraries/data-grid/display-hierarchical-data.md`.
-
 ## Self-Referential
 
 Most common pattern. Flat list of records, each with an `Id` and `ParentId`.
@@ -59,8 +57,6 @@ public class Employee {
 ```
 
 **Root detection**: a record is a root when its `ParentID` value doesn't match any other record's `ID`. Using a nullable key type (e.g., `int?`) and setting the root's `ParentID` to `null` is the safest pattern.
-
-Source: `articles/controls-and-libraries/tree-list/getting-started/lesson-1-add-a-treelistcontrol-to-a-project.md`.
 
 ## Hierarchical with `ChildNodesPath` (Same Type)
 
@@ -119,7 +115,7 @@ public class OrgChartChildSelector : IChildNodesSelector {
 </dxg:TreeListControl>
 ```
 
-> The interface `IChildNodesSelector` and the exact selector pattern are described in `articles/controls-and-libraries/data-grid/display-hierarchical-data.md`. If the precise member signatures differ in your DevExpress version, verify via DxDocs MCP:
+> The interface `IChildNodesSelector` and the exact selector pattern are described in the DevExpress docs on displaying hierarchical data. If the precise member signatures differ in your DevExpress version, verify via DxDocs MCP:
 > `devexpress_docs_search(technology="WPF TreeList", query="IChildNodesSelector SelectChildren")`
 
 ## Asynchronous Child-Nodes Selector
@@ -206,8 +202,6 @@ void BuildTree() {
 }
 ```
 
-Source: `articles/controls-and-libraries/tree-list/getting-started/lesson-2-build-a-tree-in-unbound-mode.md`.
-
 ## Bind Expand State
 
 To restore expansion across sessions, bind each `TreeListNode.ExpandStateBinding` to a property on the data item:
@@ -232,9 +226,3 @@ Or set it programmatically via `Binding`. For bound mode, `TreeListView` has exp
 | Remote data, lazy loading | Async selector | (verify exact interface) |
 | Type-specific row visuals | `HierarchicalDataTemplate` | `<HierarchicalDataTemplate>` resources |
 | No data source / programmatic | Unbound | `TreeListView.Nodes` |
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/display-hierarchical-data.md`
-- `articles/controls-and-libraries/tree-list/getting-started/lesson-1-add-a-treelistcontrol-to-a-project.md`
-- `articles/controls-and-libraries/tree-list/getting-started/lesson-2-build-a-tree-in-unbound-mode.md`

@@ -319,7 +319,7 @@ For per-user persistence, expose `SavedLayout` to your settings provider (`Prope
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/dock-windows/saving-and-restoring-the-layout-of-dock-panels-and-controls.md` (https://docs.devexpress.com/content/WPF/7059?md=true)
-- `articles/controls-and-libraries/layout-management/tile-and-layout/common-features/save-and-restore-item-layout.md` (https://docs.devexpress.com/content/WPF/8155?md=true)
-- `articles/common-concepts/save-and-restore-layouts.md` (https://docs.devexpress.com/content/WPF/7391?md=true)
-- `articles/common-concepts/save-and-restore-layouts/dxserializer-events.md` (https://docs.devexpress.com/content/WPF/7410?md=true)
+- saving-and-restoring-the-layout-of-dock-panels-and-controls: https://docs.devexpress.com/content/WPF/7059?md=true
+- save-and-restore-item-layout: https://docs.devexpress.com/content/WPF/8155?md=true
+- save-and-restore-layouts: https://docs.devexpress.com/content/WPF/7391?md=true
+- dxserializer-events: https://docs.devexpress.com/content/WPF/7410?md=true

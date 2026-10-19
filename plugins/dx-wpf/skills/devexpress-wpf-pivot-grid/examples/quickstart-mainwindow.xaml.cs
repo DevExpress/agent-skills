@@ -1,15 +1,6 @@
 // Quickstart MainWindow code-behind for the DevExpress WPF Pivot Grid.
 // Companion to quickstart-mainview.xaml.
 //
-// Verified APIs (Lesson 1 of getting-started + apidoc):
-//   - DevExpress.Xpf.PivotGrid.PivotGridControl.DataSource (object)
-//   - DevExpress.Xpf.PivotGrid.PivotGridControl.Fields (PivotGridFieldCollection)
-//   - DevExpress.Xpf.PivotGrid.PivotGridControl.BeginUpdate() / EndUpdate()
-//   - DevExpress.Xpf.PivotGrid.PivotGridField (Caption, Area, AreaIndex, DataBinding)
-//   - DevExpress.Xpf.PivotGrid.FieldArea (RowArea, ColumnArea, DataArea, FilterArea)
-//   - DevExpress.Xpf.PivotGrid.DataSourceColumnBinding (ColumnName, GroupInterval)
-//   - DevExpress.Xpf.PivotGrid.FieldGroupInterval (DateYear, etc.)
-//
 // Note the System.Windows.RoutedEventArgs qualification to avoid the
 // `RoutedEventArgs` -> `System.Windows.Forms.PaintEventArgs` style ambiguity
 // that ImplicitUsings can introduce. The Window base class is also qualified.

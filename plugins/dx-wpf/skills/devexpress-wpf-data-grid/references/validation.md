@@ -26,8 +26,6 @@ Use this when you need to:
 
 > Event- and command-based validation methods are **primarily designed to validate user input as it is entered**. They do NOT run on existing data when the grid loads. To validate data on load, use **interface-based validation**.
 
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation.md`.
-
 ## GridControl-Level: Cell Validation
 
 Fires when a user edits a single cell and tries to move focus / commit.
@@ -102,8 +100,6 @@ By default the grid **does not** validate when you change a cell value programma
 
 > This flag also lets users tab away from an invalid editor (the error is shown but doesn't trap focus). Without it, the user can't leave an invalid cell until they fix or undo it.
 
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/cell-validation.md`.
-
 ## GridControl-Level: Row Validation
 
 Fires when the user moves focus to another row, or `CommitEditing()` is called. Use for cross-field rules.
@@ -146,8 +142,6 @@ static ValidationErrorInfo GetValidationErrorInfo(Task task) {
 ```xaml
 <dxg:TreeListView ValidateNodeCommand="{Binding ValidateNodeCommand}"/>
 ```
-
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/row-validation.md`.
 
 ## Error Display: `ValidationErrorInfo`
 
@@ -294,8 +288,6 @@ public class TaskItem : INotifyDataErrorInfo {
 > Verify exact pattern via DxDocs MCP if needed:
 > `devexpress_docs_search(technology="WPF Data Grid", query="INotifyDataErrorInfo validation")`
 
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/interface-based-validation.md`.
-
 ## Data Level: Attribute-Based Validation (DataAnnotations)
 
 Reference `System.ComponentModel.DataAnnotations`. Apply attributes to data class properties; the grid picks them up automatically.
@@ -345,8 +337,6 @@ The grid:
 
 - **Attribute-based validation does NOT work with `ColumnBase.Binding`** — only `FieldName`. (Because `Binding` columns are treated as unbound and the grid can't resolve which property's attributes apply.)
 - Validation runs only on bound properties. Unbound columns (`UnboundDataType`) need event-based validation.
-
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/attribute-based-validation.md`.
 
 ## Validation in Edit Forms
 
@@ -414,12 +404,3 @@ The naming switches from "Row" to "Node" for tree-list. Source: `row-validation.
 - **Error window is intrusive** — set `InvalidRowExceptionCommand` + `args.ExceptionMode = ExceptionMode.NoAction`.
 - **Existing data shows as valid even though it isn't** — events fire only on edits; use interface-based validation for load-time errors.
 - **User can leave an invalid cell** — `AllowLeaveInvalidEditor="False"` (default behavior traps focus) or `AllowCommitOnValidationAttributeError="False"` for attribute-based.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/cell-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/row-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/interface-based-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/attribute-based-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/data-editing-and-validation.md`

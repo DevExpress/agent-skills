@@ -227,7 +227,7 @@ schedulerControl1.GroupType = SchedulerGroupType.Resource;
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Verify the build** — After any code changes, run `dotnet build` and report errors before claiming success.
 2. **Author the form's `.Designer.cs`, not the constructor body.** For a designer-backed form, declare the `SchedulerControl`, the `SchedulerDataStorage`, and any `DateNavigator` as fields of the `*.Designer.cs` partial class and create/configure them inside `InitializeComponent()`, wrapping setup in `((System.ComponentModel.ISupportInitialize)(schedulerDataStorage1)).BeginInit()` / `((System.ComponentModel.ISupportInitialize)(schedulerControl1)).BeginInit()` … `EndInit()`. Keep only data loading (assigning `DataSource`, creating appointments) and event handlers in the form's `.cs` file. Do **not** `new` the control/storage or build mappings/views in the constructor body — that leaves the designer file empty so the form cannot be reopened in the Visual Studio WinForms designer. See [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file).

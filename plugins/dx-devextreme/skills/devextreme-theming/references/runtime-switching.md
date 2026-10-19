@@ -57,6 +57,14 @@ For Vue/React (Vite), copy the CSS files to the `public/` folder and reference t
 <link rel="dx-theme" data-theme="generic.dark"  href="/dx.dark.css"  data-active="false">
 ```
 
+For ASP.NET Core Controls, reference the CSS files in `_Layout.cshtml`:
+
+```cshtml
+<!-- _Layout.cshtml -->
+<link rel="dx-theme" data-theme="generic.light" href="~/lib/devextreme/css/dx.light.css" data-active="true" asp-append-version="true">
+<link rel="dx-theme" data-theme="generic.dark"  href="~/lib/devextreme/css/dx.dark.css"  data-active="false" asp-append-version="true">
+```
+
 ### Step 2: Switch the Theme
 
 ```ts
@@ -279,6 +287,32 @@ function ThemeSwitcher() {
         />
     );
 }
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@Html.DevExtreme().SelectBox()
+    .ID("themeSelector")
+    .DataSource(new[] { "light", "dark" })
+    .Value("light")
+    .OnValueChanged("onThemeChanged")
+<script>
+function onThemeChanged(e) {
+    const accent = e.value;
+    for (const index in document.styleSheets) {
+        const styleSheet = document.styleSheets[index];
+        const href = styleSheet.href;
+        if (!href) continue;
+        const markerPos = href.indexOf('theme.');
+        if (markerPos === -1) continue;
+        const fileNamePart = href.substring(markerPos + 'theme.'.length, href.indexOf('.css'));
+        if (fileNamePart.includes('custom-scheme')) {
+            styleSheet.disabled = accent !== fileNamePart.substring(fileNamePart.indexOf('.') + 1);
+        }
+    }
+}
+</script>
 ```
 
 > The swatch file names in the examples follow the pattern `theme.custom-scheme.[light|dark].css`. Adjust the `includes('custom-scheme')` check to match your actual file names.

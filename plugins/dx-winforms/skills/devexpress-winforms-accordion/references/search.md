@@ -161,11 +161,3 @@ behaviorManager1.Attach<SmartSearchBehavior>(accordionControl1, behavior => {
 | Groups disappear even though a child matches | Custom `IFilterContent` returns `false` for groups | Return `true` for `ElementStyle.Group` elements always, or check children |
 | AI search not triggering | `IChatClient` not registered, or behavior not attached | Call `AIExtensionsContainerDesktop.Default.RegisterChatClient(...)` at startup and attach a `SmartSearchBehavior` to the accordion |
 | Clearing search does not restore all items | Custom filter not resetting its text | Clear the search box (or reset `FilterText` when using an `IFilterContentEx` control) |
-
-## Source Material
-
-- `articles/114553` — Accordion Control overview (Search Panel and AI-powered Smart Search sections)
-- `articles/DevExpress.XtraBars.Navigation.AccordionControl.ShowFilterControl` — ShowFilterControl property reference
-- `articles/DevExpress.XtraBars.Navigation.AccordionControl.FilterDelay` — FilterDelay property reference
-- `articles/DevExpress.XtraBars.Navigation.AccordionControl.FilterControl` — FilterControl property reference
-- `articles/405154` — AI-powered Smart Search

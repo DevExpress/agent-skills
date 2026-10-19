@@ -273,4 +273,4 @@ For per-item text styling, use `Legend.ItemTemplate` (above).
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/legends.md` (https://docs.devexpress.com/content/WPF/6343?md=true)
+- legends: https://docs.devexpress.com/content/WPF/6343?md=true

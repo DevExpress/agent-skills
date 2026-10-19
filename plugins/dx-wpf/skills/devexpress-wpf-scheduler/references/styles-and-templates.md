@@ -399,7 +399,7 @@ Appointments with `LabelId = 1` show with a coral background.
 
 ## Source Material
 
-- `articles/controls-and-libraries/scheduler/styles-and-templates.md` (https://docs.devexpress.com/content/WPF/119866?md=true)
-- `articles/controls-and-libraries/scheduler/styles-and-templates/visual-appointment.md` (https://docs.devexpress.com/content/WPF/119867?md=true)
-- `articles/controls-and-libraries/scheduler/styles-and-templates/scheduler-elements-that-support-templates.md` (https://docs.devexpress.com/content/WPF/400598?md=true)
-- `articles/controls-and-libraries/scheduler/appearance-customization.md` (https://docs.devexpress.com/content/WPF/400994?md=true)
+- styles-and-templates: https://docs.devexpress.com/content/WPF/119866?md=true
+- visual-appointment: https://docs.devexpress.com/content/WPF/119867?md=true
+- scheduler-elements-that-support-templates: https://docs.devexpress.com/content/WPF/400598?md=true
+- appearance-customization: https://docs.devexpress.com/content/WPF/400994?md=true

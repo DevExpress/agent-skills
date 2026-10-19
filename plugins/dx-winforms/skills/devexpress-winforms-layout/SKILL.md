@@ -193,7 +193,7 @@ void Form_FormClosing(object sender, FormClosingEventArgs e) {
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Author layouts in the `*.Designer.cs` file by default.** Declare the `LayoutControl`/`DataLayoutControl`/`DockManager`, its `LayoutControlGroup`/`LayoutControlItem`s (or `DockPanel`s), and their property setup as fields and build them inside `InitializeComponent()` in `MainForm.Designer.cs` — wrapping layout configuration in `((System.ComponentModel.ISupportInitialize)(layoutControl1)).BeginInit()` … `EndInit()` — exactly as the WinForms designer serializes it, so the form stays editable in the designer. Build the layout in **runtime code** (constructor) **only** when the user explicitly asks or the layout is genuinely dynamic/data-driven. Do **not** default to constructing the layout in the form constructor body. See [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file).
 2. **A form generated from a table or class → `DataLayoutControl`.** When the task is "build an edit form for this table / entity / class", bind a `DataLayoutControl` to the data source and call `RetrieveFields()` to auto-generate the editor layout — do not hand-build a `LayoutControl` with one `AddItem` per column.

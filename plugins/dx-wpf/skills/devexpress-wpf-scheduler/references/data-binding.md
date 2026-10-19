@@ -244,7 +244,7 @@ For very large data sets, load only the visible time range:
 1. Use `QueryStart` / `QueryEnd` mappings to tell the Scheduler which appointments are eligible (server-side filter).
 2. Set `DataSource.FetchMode` and handle `DataSource.FetchAppointments` to load the next chunk when the visible interval changes.
 
-See `articles/controls-and-libraries/scheduler/data-binding/load-data-on-demand.md` for the full pattern.
+For the full pattern, search with `devexpress_docs_search` for "scheduler load data on demand".
 
 ## Common Issues
 
@@ -258,8 +258,8 @@ See `articles/controls-and-libraries/scheduler/data-binding/load-data-on-demand.
 
 ## Source Material
 
-- `articles/controls-and-libraries/scheduler/data-binding.md` (https://docs.devexpress.com/content/WPF/119226?md=true)
-- `articles/controls-and-libraries/scheduler/data-binding/mappings.md` (https://docs.devexpress.com/content/WPF/119493?md=true)
-- `articles/controls-and-libraries/scheduler/data-binding/custom-fields.md` (https://docs.devexpress.com/content/WPF/119962?md=true)
-- `articles/controls-and-libraries/scheduler/data-binding/mapping-converters.md` (https://docs.devexpress.com/content/WPF/119833?md=true)
-- `articles/controls-and-libraries/scheduler/data-binding/load-data-on-demand.md` (https://docs.devexpress.com/content/WPF/402187?md=true)
+- data-binding: https://docs.devexpress.com/content/WPF/119226?md=true
+- mappings: https://docs.devexpress.com/content/WPF/119493?md=true
+- custom-fields: https://docs.devexpress.com/content/WPF/119962?md=true
+- mapping-converters: https://docs.devexpress.com/content/WPF/119833?md=true
+- load-data-on-demand: https://docs.devexpress.com/content/WPF/402187?md=true

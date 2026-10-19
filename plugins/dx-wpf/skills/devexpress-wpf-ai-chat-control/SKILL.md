@@ -401,7 +401,7 @@ DevExpress docs page **"Chat with Your Own Data"** (https://docs.devexpress.com/
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After changes, run `dotnet build` and report errors before claiming success.
 2. **.NET 8+ only**: Refuse to wire this control on .NET Framework, .NET 6, or .NET 7. There is no workaround.

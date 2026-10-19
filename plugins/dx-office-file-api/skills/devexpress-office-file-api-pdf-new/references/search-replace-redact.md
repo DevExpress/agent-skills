@@ -129,6 +129,8 @@ End Using
 
 > **Warning**: `ApplyRedaction` permanently removes underlying content. This operation cannot be undone. Save to a new file.
 
+On non-Windows platforms (Linux, macOS, Docker), `ApplyRedaction` requires the `DevExpress.Pdf.SkiaRenderer` package in addition to `DevExpress.Drawing.Skia`: `dotnet add package DevExpress.Pdf.SkiaRenderer`.
+
 Create `RedactionAnnotation` objects from match rectangles, then call `ApplyRedaction`.
 
 ```csharp

@@ -99,6 +99,28 @@ import { Scheduler, View } from 'devextreme-react/scheduler';
 </Scheduler>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .Views(views => {
+        views.Add("month");
+        views.Add(view => view
+            .Type(SchedulerViewType.Week)
+            .StartDayHour(8)
+            .EndDayHour(20)
+            .CellDuration(60));
+        views.Add(view => view
+            .Type(SchedulerViewType.Day)
+            .StartDayHour(8)
+            .EndDayHour(20)
+            .MaxAppointmentsPerCell(3));
+    })
+    .CurrentView("week")
+)
+```
+
 ---
 
 ## Per-View Configuration Options
@@ -232,5 +254,13 @@ function App() {
     }
 
     return <Scheduler onInitialized={handleInitialized} />;
+}
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@{
+    var scheduler = Html.DevExtreme().Scheduler().GetInstance("scheduler");
+    scheduler.Option("currentView", "month");
 }
 ```

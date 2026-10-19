@@ -237,4 +237,4 @@ This matches against name, description, and synonyms — well beyond what `Displ
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/searching.md` (https://docs.devexpress.com/content/WPF/118715?md=true)
+- searching: https://docs.devexpress.com/content/WPF/118715?md=true

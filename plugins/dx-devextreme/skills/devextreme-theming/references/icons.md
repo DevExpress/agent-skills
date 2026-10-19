@@ -39,6 +39,15 @@ $('#saveButton').dxButton({ icon: 'save' });
 <Button icon="save" text="Save" />
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Button()
+    .ID("saveButton")
+    .Icon("save")
+    .Text("Save")
+)
+```
+
 ### Icons in Data-Bound Items
 
 Components with item templates (ContextMenu, List, Menu, TreeView, etc.) accept `icon` in their data items:
@@ -236,6 +245,14 @@ $('#btn').dxButton({ icon: 'ms-Icon ms-Icon--Home' }); // Fabric/Fluent UI
 ```tsx
 // React
 <Button icon="fas fa-home" />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Button()
+    .ID("btn")
+    .Icon("fas fa-home")
+)
 ```
 
 ---

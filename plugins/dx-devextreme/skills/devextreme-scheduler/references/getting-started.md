@@ -115,6 +115,33 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .DataSource(appointments)
+    .CurrentDate(currentDate)
+    .CurrentView("week")
+    .StartDayHour(8)
+    .EndDayHour(20)
+    .Height(600)
+)
+```
+
+```cshtml
+@{
+    var currentDate = new DateTime(2026, 5, 5);
+    var appointments = new[] {
+        new {
+            text = "Planning Meeting",
+            startDate = new DateTime(2026, 5, 5, 10, 0, 0),
+            endDate = new DateTime(2026, 5, 5, 11, 0, 0)
+        }
+    };
+}
+```
+
 ---
 
 ## Binding to Data
@@ -187,6 +214,19 @@ $('#scheduler').dxScheduler({
     allDayExpr="isAllDay"
     recurrenceRuleExpr="rrule"
 />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .DataSource(appointments)
+    .TextExpr("title")
+    .StartDateExpr("startAt")
+    .EndDateExpr("endAt")
+    .AllDayExpr("isAllDay")
+    .RecurrenceRuleExpr("rrule")
+)
 ```
 
 ---

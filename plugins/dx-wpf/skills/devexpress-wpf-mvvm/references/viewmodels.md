@@ -503,10 +503,8 @@ Replace XAML `DataContext="{dxmvvm:ViewModelSource Type=vm:ViewModel}"` with `<v
 
 ## Source Material
 
-- `articles/mvvm-framework/viewmodels.md` (https://docs.devexpress.com/content/WPF/17439?md=true)
-- `articles/mvvm-framework/viewmodels/compile-time-generated-viewmodels.md` (https://docs.devexpress.com/content/WPF/402989?md=true)
-- `articles/mvvm-framework/viewmodels/runtime-generated-poco-viewmodels.md` (https://docs.devexpress.com/content/WPF/17352?md=true)
-- `articles/mvvm-framework/viewmodels/viewmodelbase.md` (https://docs.devexpress.com/content/WPF/17351?md=true)
-- `articles/mvvm-framework/viewmodels/bindablebase.md` (https://docs.devexpress.com/content/WPF/17350?md=true)
-- `articles/mvvm-framework/commands/delegate-commands.md`
-- `articles/mvvm-framework/commands/asynchronous-commands.md`
+- viewmodels: https://docs.devexpress.com/content/WPF/17439?md=true
+- compile-time-generated-viewmodels: https://docs.devexpress.com/content/WPF/402989?md=true
+- runtime-generated-poco-viewmodels: https://docs.devexpress.com/content/WPF/17352?md=true
+- viewmodelbase: https://docs.devexpress.com/content/WPF/17351?md=true
+- bindablebase: https://docs.devexpress.com/content/WPF/17350?md=true
