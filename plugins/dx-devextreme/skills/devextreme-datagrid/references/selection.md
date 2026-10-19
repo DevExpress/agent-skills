@@ -51,6 +51,15 @@ import { DataGrid, Selection } from 'devextreme-react/data-grid';
 </DataGrid>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Selection(selection => selection.Mode(GridSelectionMode.Multiple).ShowCheckBoxesMode(GridSelectionShowCheckBoxesMode.Always))
+)
+```
+
 ---
 
 ## Reading Selected Row Data
@@ -114,6 +123,15 @@ function onSelectionChanged(e: DataGridTypes.SelectionChangedEvent) {
 </DataGrid>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Selection(selection => selection.Mode(GridSelectionMode.Multiple))
+    .OnSelectionChanged("onSelectionChanged")
+)
+
 ---
 
 ## Pre-selecting Rows
@@ -138,6 +156,14 @@ $('#data-grid').dxDataGrid({ selectedRowKeys: [1, 3, 5] });
 ```tsx
 // React
 <DataGrid defaultSelectedRowKeys={[1, 3, 5]} />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .SelectedRowKeys(new[] { 1, 3, 5 })
+)
 ```
 
 ---
@@ -171,6 +197,14 @@ const selected = gridRef.value?.instance.getSelectedRowsData();
 import dxDataGrid from 'devextreme/ui/data_grid';
 const gridInstance = useRef<dxDataGrid | null>(null);
 const selected = gridInstance.current?.getSelectedRowsData();
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@{
+    var grid = Html.DevExtreme().DataGrid().GetInstance("data-grid");
+    var selectedRows = grid.GetSelectedRowsData();
+}
 ```
 
 ---

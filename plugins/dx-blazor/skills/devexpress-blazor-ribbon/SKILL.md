@@ -379,7 +379,7 @@ Container for ribbon items. Groups can collapse into labeled drop-down buttons d
 
 ## Constraints & Rules
 
-0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`) or the local `apidoc/` folder. Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxRibbon` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
+0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`). Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxRibbon` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
 1. **Build verification**: Run `dotnet build` after changes and fix errors before reporting success.
 2. **Render mode required**: Ribbon interactivity requires an interactive render mode. Static SSR is not supported.
 3. **Version consistency**: All DevExpress packages must use the same version number.

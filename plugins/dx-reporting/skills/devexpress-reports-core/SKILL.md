@@ -18,7 +18,7 @@ metadata:
 
 ## When to Use This Skill
 
-> **CRITICAL — Do not bypass this skill.** Whenever this skill is active, follow the patterns and constraints here. Do not substitute your own general knowledge of DevExpress APIs. If a scenario is not covered in the main skill body, read the relevant reference file or use MCP servers before writing code — do not guess API signatures.
+> Follow the patterns and constraints in this skill rather than general knowledge of DevExpress APIs. If a scenario is not covered in the main skill body, read the relevant reference file or use MCP servers before writing code — do not guess API signatures.
 
 Use for any task involving:
 - Creating `XtraReport` instances and building report structure in code

@@ -274,11 +274,3 @@ Available draw methods: `DrawImage()`, `DrawText()`, `DrawContextButtons()`, `Dr
 | Custom header control overlaps text | Header layout not adjusted | Use `HeaderTemplate.Set*Position` to rearrange blocks |
 | Image not appearing | Image collection not assigned to accordion | Set `accordion.Images` or use `ImageOptions.ImageUri` directly |
 | Per-element appearance ignored | Skin overrides color | Check `Appearance.Options.UseBackColor = true` |
-
-## Source Material
-
-- `articles/114553` — Accordion Control overview (Items/Groups, Content Containers, Header Layout sections)
-- `articles/115716` — Element Header Layout
-- `articles/DevExpress.XtraBars.Navigation.AccordionControlElement` — AccordionControlElement class reference
-- `articles/DevExpress.XtraBars.Navigation.AccordionControlElementBase` — AccordionControlElementBase class reference
-- `articles/DevExpress.XtraBars.Navigation.AccordionControlHtmlTemplates` — HtmlTemplates property reference

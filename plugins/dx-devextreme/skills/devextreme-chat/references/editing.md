@@ -45,6 +45,18 @@ import { Chat, Editing } from 'devextreme-react/chat';
 </Chat>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .Editing(editing => editing
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)
+```
+
 ---
 
 ## Conditional Editing (Function-Based)
@@ -115,6 +127,18 @@ function canEdit({ message }: { message: ChatTypes.Message }): boolean {
 <Chat>
     <Editing allowUpdating={canEdit} allowDeleting={canEdit} />
 </Chat>
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .Editing(editing => editing
+        .AllowUpdating("function(e) { return Date.now() - e.message.timestamp < 5 * 60 * 1000; }")
+        .AllowDeleting("function(e) { return Date.now() - e.message.timestamp < 5 * 60 * 1000; }")
+    )
+)
 ```
 
 ---

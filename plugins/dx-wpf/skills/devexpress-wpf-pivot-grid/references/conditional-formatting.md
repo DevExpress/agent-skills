@@ -302,6 +302,6 @@ Highlight negative profits in red.
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid/conditional-formatting.md` (https://docs.devexpress.com/content/WPF/114038?md=true)
-- `articles/controls-and-libraries/pivot-grid/end-user-capabilities/applying-conditional-formatting.md` (https://docs.devexpress.com/content/WPF/114395?md=true)
-- `articles/controls-and-libraries/pivot-grid/examples/appearance/how-to-apply-conditional-formatting-to-data-cells.md` (https://docs.devexpress.com/content/WPF/8035?md=true)
+- conditional-formatting: https://docs.devexpress.com/content/WPF/114038?md=true
+- applying-conditional-formatting: https://docs.devexpress.com/content/WPF/114395?md=true
+- how-to-apply-conditional-formatting-to-data-cells: https://docs.devexpress.com/content/WPF/8035?md=true

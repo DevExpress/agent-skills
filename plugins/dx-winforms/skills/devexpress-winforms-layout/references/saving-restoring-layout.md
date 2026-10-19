@@ -236,4 +236,3 @@ private void btnResetLayout_Click(object sender, EventArgs e)
 - Save and Restore Layouts of DevExpress Controls: `https://docs.devexpress.com/content/WindowsForms/2404?md=true`
 - Saving and Restoring Dock Panel Layouts: `https://docs.devexpress.com/content/WindowsForms/1433?md=true`
 - Workspace Manager: `https://docs.devexpress.com/content/WindowsForms/17674?md=true`
-- `LayoutSerializationOptions`: `xref:DevExpress.XtraLayout.LayoutSerializationOptions`

@@ -289,11 +289,11 @@ All five item types bound. Each has its own mappings; mappings name the data-cla
 
 ## Source Material
 
-- `articles/controls-and-libraries/scheduler/appointments.md` (https://docs.devexpress.com/content/WPF/119211?md=true)
-- `articles/controls-and-libraries/scheduler/appointments/appointment.md` (https://docs.devexpress.com/content/WPF/119212?md=true)
-- `articles/controls-and-libraries/scheduler/appointments/recurrence.md` (https://docs.devexpress.com/content/WPF/119213?md=true)
-- `articles/controls-and-libraries/scheduler/resources.md` (https://docs.devexpress.com/content/WPF/119219?md=true)
-- `articles/controls-and-libraries/scheduler/appointments/labels.md` (https://docs.devexpress.com/content/WPF/119214?md=true)
-- `articles/controls-and-libraries/scheduler/appointments/statuses.md` (https://docs.devexpress.com/content/WPF/119215?md=true)
-- `articles/controls-and-libraries/scheduler/time-regions.md` (https://docs.devexpress.com/content/WPF/401378?md=true)
-- `articles/controls-and-libraries/scheduler/reminders.md` (https://docs.devexpress.com/content/WPF/119237?md=true)
+- appointments: https://docs.devexpress.com/content/WPF/119211?md=true
+- appointment: https://docs.devexpress.com/content/WPF/119212?md=true
+- recurrence: https://docs.devexpress.com/content/WPF/119213?md=true
+- resources: https://docs.devexpress.com/content/WPF/119219?md=true
+- labels: https://docs.devexpress.com/content/WPF/119214?md=true
+- statuses: https://docs.devexpress.com/content/WPF/119215?md=true
+- time-regions: https://docs.devexpress.com/content/WPF/401378?md=true
+- reminders: https://docs.devexpress.com/content/WPF/119237?md=true

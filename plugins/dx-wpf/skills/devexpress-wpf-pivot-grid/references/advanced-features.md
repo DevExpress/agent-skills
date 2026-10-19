@@ -67,7 +67,7 @@ pivotGridControl1.ExportToXlsx("pivot.xlsx", options);
 
 Required package: `DevExpress.Wpf.Printing`.
 
-Source: `articles/controls-and-libraries/pivot-grid/printing-and-exporting/tutorial-printing-and-exporting-a-pivot-grid.md` and `printing-and-exporting/export-to-tabular-formats.md` (https://docs.devexpress.com/content/WPF/8446?md=true).
+Docs: https://docs.devexpress.com/content/WPF/8446?md=true.
 
 ## Appearance — Colors, Styles, Templates
 
@@ -83,12 +83,7 @@ The Pivot Grid supports MVVM through `FieldsSource` / `GroupsSource` (ViewModel-
 
 ## Source Material
 
-- `articles/controls-and-libraries/pivot-grid.md` (root)
-- `articles/controls-and-libraries/pivot-grid/appearance.md`
-- `articles/controls-and-libraries/pivot-grid/appearance/customizing-pivot-grid-colors.md` (https://docs.devexpress.com/content/WPF/11213?md=true)
-- `articles/controls-and-libraries/pivot-grid/data-analysis/conditional-formatting.md` (https://docs.devexpress.com/content/WPF/114038?md=true)
-- `articles/controls-and-libraries/pivot-grid/data-analysis/key-performance-indicators-kpis.md` (https://docs.devexpress.com/content/WPF/11641?md=true)
-- `articles/controls-and-libraries/pivot-grid/data-analysis/integration-with-the-chart-control.md` (https://docs.devexpress.com/content/WPF/8016?md=true)
-- `articles/controls-and-libraries/pivot-grid/printing-and-exporting/tutorial-printing-and-exporting-a-pivot-grid.md`
-- `articles/controls-and-libraries/pivot-grid/printing-and-exporting/export-to-tabular-formats.md`
-- `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/`
+- customizing-pivot-grid-colors: https://docs.devexpress.com/content/WPF/11213?md=true
+- conditional-formatting: https://docs.devexpress.com/content/WPF/114038?md=true
+- key-performance-indicators-kpis: https://docs.devexpress.com/content/WPF/11641?md=true
+- integration-with-the-chart-control: https://docs.devexpress.com/content/WPF/8016?md=true

@@ -74,8 +74,6 @@ The drag-and-drop lifecycle has six events on `DataViewBase`. Listen to whicheve
 
 > The Data Grid does NOT raise the standard WPF events (`DragDrop.DragOver`, `DragDrop.Drop`, etc.). Use these grid-specific events instead.
 
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/drag-and-drop-options.md`.
-
 ## Pattern 1: Block Specific Records From Being Dragged
 
 ```xaml
@@ -105,8 +103,6 @@ void OnStartRecordDrag(object sender, StartRecordDragEventArgs e) {
     }
 }
 ```
-
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop-operations.md` § "Prevent Dragging Specific Records".
 
 ## Pattern 2: Block Specific Drop Targets
 
@@ -185,8 +181,6 @@ void OnDropRecord(object sender, DropRecordEventArgs e) {
 
 `RecordDragDropData.Records` is an `IList` of the dragged data items.
 
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop-operations.md` § "Customize Dragged Items".
-
 ## Pattern 4: Prevent Removal From Source (Copy Instead of Move)
 
 By default, dropping a record into another grid **removes** it from the source. To copy instead:
@@ -205,8 +199,6 @@ void OnCompleteRecordDragDrop(object sender, CompleteRecordDragDropEventArgs e) 
 Now the dropped record appears in the target while remaining in the source.
 
 To force copy behavior conditionally (e.g., when user holds Ctrl), check `e.Effects` against `DragDropEffects.Copy`.
-
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop-operations.md` § "Prevent Removing Items After Dropping".
 
 ## Visual Customization
 
@@ -234,8 +226,6 @@ Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-an
 > Verify the template's `DataContext` shape (`RecordCount`, `TargetDescription`, etc.) via DxDocs MCP — names depend on the internal `DragDropHintData` type:
 > `devexpress_docs_search(technology="WPF Data Grid", query="DragDropHintTemplate data context")`
 
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/drag-and-drop-hint.md`.
-
 ### Drop Marker (Insertion Indicator)
 
 The drop marker is the line / triangle that shows where the record will land.
@@ -247,8 +237,6 @@ The drop marker is the line / triangle that shows where the record will land.
     </DataTemplate>
 </dxg:TableView.DropMarkerTemplate>
 ```
-
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/drop-marker.md`.
 
 ## Auto-Expand and Auto-Scroll
 
@@ -294,8 +282,6 @@ That's it. The grids automatically support cross-grid drag-and-drop as long as:
 - Both bound collections accept the same data type (or one accepts a base type)
 - `AllowDragDrop="True"` on both views
 
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-gridcontrols.md`.
-
 ## Drag Between GridControl and ListBoxEdit
 
 `ListBoxEdit` uses a different drag-drop mechanism — attached behaviors instead of events. To enable cross-control drag-drop:
@@ -312,8 +298,6 @@ Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-an
 ```
 
 `DevExpress.Xpf.Core.ListBoxDragDropBehavior` exposes attached properties similar to the View's drag-drop options.
-
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-gridcontrol-and-listboxedit.md`.
 
 ## Drag Between GridControl and Standard WPF Controls
 
@@ -333,8 +317,6 @@ For standard `ListBox`, `TreeView`, etc., implement drag-drop manually:
 > Verify exact `StartRecordDragEventArgs.Data` API via DxDocs MCP if the property name differs in your version:
 > `devexpress_docs_search(technology="WPF Data Grid", query="StartRecordDrag custom data payload")`
 
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-gridcontrol-and-other-controls.md`.
-
 ## Drag Between Applications
 
 Drag-and-drop works across application instances by default. The grid serializes the dragged data via the system clipboard.
@@ -347,8 +329,6 @@ If your project targets **.NET 9**, you can drag and drop records **only within 
 2. Set `DevExpress.Utils.DeserializationSettings.EnableDataObjectBinarySerialization = true`.
 
 This is due to Microsoft deprecating `BinaryFormatter` in .NET 9. See the linked migration guide.
-
-Source: `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-applications.md` and the note at the top of `drag-and-drop.md` root article.
 
 ## Drag Within Master-Detail
 
@@ -381,15 +361,3 @@ All `DataViewBase`-level properties and events apply identically. Use `TreeListV
 ```
 
 The tree-specific feature: dragging **inside** a node makes the dragged record a child (rather than a sibling). `DropPosition.Inside` is the tree-specific drop position.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/drag-and-drop.md` (root)
-- `articles/controls-and-libraries/data-grid/drag-and-drop/drag-and-drop-options.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop-operations.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/drag-and-drop-hint.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/drop-marker.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-gridcontrols.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-gridcontrol-and-listboxedit.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-gridcontrol-and-other-controls.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop/process-drag-and-drop/drag-and-drop-between-applications.md`

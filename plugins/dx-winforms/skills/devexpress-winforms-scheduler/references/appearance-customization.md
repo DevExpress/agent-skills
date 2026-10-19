@@ -246,14 +246,3 @@ schedulerControl1.CustomDrawNavigationButton +=
 | Custom background appears behind the status strip | Status strip is drawn after `CustomDrawAppointmentBackground` | Use `CustomDrawAppointment` with `e.DrawDefault()` + overlay instead |
 | `InitAppointmentDisplayText` not firing | Appointment text area has zero height (too small) | Increase cell height or time scale |
 | Appointment text (foreground) disappears | `e.Handled = true` set in `CustomDrawAppointment` without drawing the text yourself — `Handled` there suppresses *all* default drawing, including text | Either draw the text in the handler (or call `e.DrawDefault()`), or move the customization to `CustomDrawAppointmentBackground`, where `Handled` suppresses only the default background and the foreground still renders |
-
----
-
-## Source Material
-
-- `articles/controls-and-libraries/scheduler/appearance/appointment-viewinfo-customizing.md` (`xref:1753`)
-- `articles/controls-and-libraries/scheduler/appearance/custom-draw-appointment.md` (`xref:1754`)
-- `articles/controls-and-libraries/scheduler/appearance/init-appointment-display-text.md` (`xref:1781`)
-- `DevExpress.XtraScheduler.SchedulerControl.AppointmentViewInfoCustomizing` (`xref:DevExpress.XtraScheduler.SchedulerControl.AppointmentViewInfoCustomizing`)
-- `DevExpress.XtraScheduler.SchedulerControl.CustomDrawAppointment` (`xref:DevExpress.XtraScheduler.SchedulerControl.CustomDrawAppointment`)
-- `DevExpress.XtraScheduler.Drawing.AppointmentViewInfo` (`xref:DevExpress.XtraScheduler.Drawing.AppointmentViewInfo`)

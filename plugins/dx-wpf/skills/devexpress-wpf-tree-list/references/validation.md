@@ -1,4 +1,4 @@
-﻿# Validation — DevExpress WPF TreeList
+# Validation — DevExpress WPF TreeList
 
 `TreeListControl` supports the same validation strategies as `GridControl` — **GridControl-level** (event / MVVM command on user edits) and **Data-level** (interfaces or DataAnnotations). The naming differs at the row scope: TreeList uses **`ValidateNodeCommand`** instead of `ValidateRowCommand`.
 
@@ -98,8 +98,8 @@ When a parent node is collapsed and a hidden child has a validation error, the p
 <dxg:TreeListView ShowChildErrorIndication="True"/>
 ```
 
-> Verify exact property name (`ShowChildErrorIndication` vs `IndicateChildErrors` vs similar) against the apidoc — paraphrased here from common DevExpress conventions:
-> `devexpress_docs_search(technology="WPF TreeList", query="show child error indication validation")`
+> Verify exact property name (`ShowChildErrorIndication` vs `IndicateChildErrors` vs similar) with the search below — paraphrased here from common DevExpress conventions:
+> `devexpress_docs_search(technologies=["WPF"], question="show child error indication validation")`
 
 Without this property: collapsed parent shows no error even though its child fails validation.
 
@@ -176,12 +176,3 @@ See [data-grid cell-display-and-editing.md § Edit Form](../../devexpress-wpf-da
 For all shared concerns (`ValidationErrorInfo`, severity types, interface-based, attribute-based, `ValidationService`, decision matrix), see [the data-grid skill's `references/validation.md`](../../devexpress-wpf-data-grid/references/validation.md).
 
 This tree-list reference covers only the renamed commands (`ValidateNodeCommand`, `InvalidNodeExceptionCommand`) and tree-specific patterns (parent-child validation, child error indication).
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/cell-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/row-validation.md` (contains `ValidateNodeCommand` mapping)
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/interface-based-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/input-validation/attribute-based-validation.md`
-- The data-grid skill's `references/validation.md` (full shared reference)

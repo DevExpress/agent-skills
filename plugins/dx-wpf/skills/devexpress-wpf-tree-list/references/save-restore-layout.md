@@ -1,4 +1,4 @@
-﻿# Save and Restore Layout — DevExpress WPF TreeList
+# Save and Restore Layout — DevExpress WPF TreeList
 
 `TreeListControl` uses the same layout-serialization API as `GridControl`: `SaveLayoutToXml/Stream` and `RestoreLayoutFromXml/Stream` (inherited from `DataControlBase`). The serialized state additionally captures TreeList-specific data — **node expand state** and **node check state** — alongside the standard column / sort / filter / group state.
 
@@ -77,8 +77,6 @@ For TreeList, `RestoreStateOnSourceChange="True"` preserves:
 For hierarchical mode (`ChildNodesPath`), `RestoreStateKeyFieldName` matches by a chosen unique field on the data class.
 
 > This is different from `SaveLayoutTo*` — that's for persistence to disk. `RestoreStateOnSourceChange` is for live data refreshes within a session.
-
-Source: `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md` § "Restore State On Source Change".
 
 ## ExpandStateBinding / ExpandStateFieldName — Alternative Persistence
 
@@ -199,10 +197,3 @@ For all shared serialization concepts (`DXSerializer`, `StoreLayoutMode`, `Allow
 See [the data-grid skill's `references/save-restore-layout.md`](../../devexpress-wpf-data-grid/references/save-restore-layout.md).
 
 This tree-list reference covers only the TreeList-specific state (expand / check) and ordering requirements (load before restore).
-
-## Source Material
-
-- `articles/common-concepts/save-and-restore-layouts.md`
-- `articles/controls-and-libraries/data-grid/miscellaneous/save-and-restore-layout.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/expand-and-collapse-nodes.md` § "Expand State"
-- The data-grid skill's `references/save-restore-layout.md` (shared infrastructure)

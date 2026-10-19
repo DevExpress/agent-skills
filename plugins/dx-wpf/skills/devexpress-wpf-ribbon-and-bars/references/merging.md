@@ -233,6 +233,6 @@ Bars/ribbons inside `LayoutPanel` (not `DocumentPanel`) **do NOT merge by defaul
 
 ## Source Material
 
-- `articles/controls-and-libraries/ribbon-bars-and-menu/common-concepts/merging.md` (https://docs.devexpress.com/content/WPF/118293?md=true)
-- `articles/controls-and-libraries/layout-management/dock-windows/mdi-bar-merging.md` (https://docs.devexpress.com/content/WPF/9155?md=true)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/features/mdi-ribbon-merging.md` (https://docs.devexpress.com/content/WPF/10587?md=true)
+- merging: https://docs.devexpress.com/content/WPF/118293?md=true
+- mdi-bar-merging: https://docs.devexpress.com/content/WPF/9155?md=true
+- mdi-ribbon-merging: https://docs.devexpress.com/content/WPF/10587?md=true

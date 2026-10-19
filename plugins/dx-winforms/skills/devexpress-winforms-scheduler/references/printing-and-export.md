@@ -69,7 +69,3 @@ The adapter composes the data set the report renders and lets you filter appoint
 ## Source Material
 
 - Print a Scheduler and show its Print Preview — `https://docs.devexpress.com/WindowsForms/2270`
-- `DevExpress.XtraScheduler.SchedulerControl.Print` (`xref:DevExpress.XtraScheduler.SchedulerControl.Print`)
-- `DevExpress.XtraScheduler.SchedulerControl.ShowPrintPreview` (`xref:DevExpress.XtraScheduler.SchedulerControl.ShowPrintPreview`)
-- `DevExpress.XtraScheduler.SchedulerControl.SchedulerPrintAdapter` (`xref:DevExpress.XtraScheduler.SchedulerControl.SchedulerPrintAdapter`)
-- `DevExpress.XtraScheduler.Printing.SchedulerPrintStyle` (`xref:DevExpress.XtraScheduler.Printing.SchedulerPrintStyle`)

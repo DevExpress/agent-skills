@@ -104,9 +104,3 @@ This stretches the accordion alongside the Ribbon title bar, giving an Outlook-s
 | Items not visible at runtime | `Elements` collection empty | Populate inside `Form_Load` or constructor after `InitializeComponent` |
 | Excessive flicker on bulk add | Adding elements one by one | Wrap with `BeginUpdate()` / `EndUpdate()` |
 | Accordion overlaps content area | `Dock` not set | Set `Dock = DockStyle.Left` (or Right/Top) |
-
-## Source Material
-
-- `articles/114553` (`xref:DevExpress.XtraBars.Navigation.AccordionControl`) — Accordion Control overview
-- `articles/120496` — How To: Create AccordionControl in code
-- `articles/DevExpress.XtraBars.Navigation.AccordionControl` — AccordionControl class reference

@@ -21,8 +21,6 @@ Use this when you need to:
 | `DataArea` | Cells (intersection) | Aggregated summaries of the bound column | Metrics: Sum, Count, Average, Min/Max |
 | `FilterArea` | Top filter selectors | Field values shown as filter dropdowns | Fields you want to slice the whole pivot by without showing on rows/columns |
 
-Source: `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md` and `articles/controls-and-libraries/pivot-grid/layout.md`.
-
 ### Multiple Fields in One Area
 
 Stacking multiple fields in Row or Column creates a hierarchy. For example:
@@ -93,7 +91,7 @@ PivotGridGroup group = pivotGridControl1.Groups.Add(fieldCategoryName, fieldProd
 - **`PivotGridField.GroupIndex`** controls a field's position *within* the group.
 - **`PivotGridField.ExpandedInFieldsGroup`** — `true` = child columns/rows visible; `false` = collapsed (only the parent shown).
 
-Source: `articles/controls-and-libraries/pivot-grid/layout/field-groups.md` (https://docs.devexpress.com/content/WPF/8020?md=true) and `examples/how-to-group-fields2152.md`.
+Docs: https://docs.devexpress.com/content/WPF/8020?md=true.
 
 ## Field List (Customization Form)
 
@@ -127,7 +125,7 @@ Lifecycle events: `ShownFieldList`, `HiddenFieldList`.
 
 For an embedded variant (inside your window instead of a popup), see https://docs.devexpress.com/content/WPF/11753?md=true (Standalone Customization Control). For arbitrary grouping of fields shown in the list, see https://docs.devexpress.com/content/WPF/11754?md=true (User Folders).
 
-Source: `articles/controls-and-libraries/pivot-grid/layout/customization-form/customization-form-overview.md` (https://docs.devexpress.com/content/WPF/11751?md=true) and `customization-form.md` (https://docs.devexpress.com/content/WPF/8018?md=true).
+Docs: https://docs.devexpress.com/content/WPF/11751?md=true, https://docs.devexpress.com/content/WPF/8018?md=true.
 
 ## Best Fit
 
@@ -141,7 +139,7 @@ pivotGridControl1.BestFitRow(...);     // a specific row
 
 `BestFit()` is a method on `PivotGridControl` only — `PivotGridField` does **not** have a `BestFit()` method. To influence how a field participates in best-fit, set `PivotGridField.BestFitArea`, `BestFitMode`, and `BestFitMaxRowCount`.
 
-Source: `articles/controls-and-libraries/pivot-grid/layout.md` § Best Fit (https://docs.devexpress.com/content/WPF/8331?md=true).
+Docs: https://docs.devexpress.com/content/WPF/8331?md=true.
 
 ## Save and Restore Layout
 
@@ -187,11 +185,4 @@ For multi-line headers or icons, use a `HeaderTemplate`.
 
 ## MVVM Integration
 
-The Pivot Grid supports MVVM patterns. See `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/` and https://docs.devexpress.com/content/WPF/115335?md=true. Bindable members include `DataSource` (TwoWay supported), focused row, drill-down arguments, etc.
-
-## Source Material
-
-- `articles/controls-and-libraries/pivot-grid.md` (root § Layout)
-- `articles/controls-and-libraries/pivot-grid/layout.md`
-- `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md`
-- `articles/controls-and-libraries/pivot-grid/mvvm-enhancements/`
+The Pivot Grid supports MVVM patterns. See https://docs.devexpress.com/content/WPF/115335?md=true. Bindable members include `DataSource` (TwoWay supported), focused row, drill-down arguments, etc.

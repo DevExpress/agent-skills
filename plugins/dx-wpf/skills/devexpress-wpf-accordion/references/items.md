@@ -313,10 +313,10 @@ Leaf items (no children) can act like buttons. Combine with `Click` event or bin
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items.md` (https://docs.devexpress.com/content/WPF/118548?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/adding-accordion-items.md` (https://docs.devexpress.com/content/WPF/119831?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-header-customization.md` (https://docs.devexpress.com/content/WPF/119847?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-glyph-customization.md` (https://docs.devexpress.com/content/WPF/119848?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/item-content-customization.md` (https://docs.devexpress.com/content/WPF/119849?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/expanding-and-collapsing.md` (https://docs.devexpress.com/content/WPF/119808?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/selection.md` (https://docs.devexpress.com/content/WPF/118345?md=true)
+- accordion-items: https://docs.devexpress.com/content/WPF/118548?md=true
+- adding-accordion-items: https://docs.devexpress.com/content/WPF/119831?md=true
+- item-header-customization: https://docs.devexpress.com/content/WPF/119847?md=true
+- item-glyph-customization: https://docs.devexpress.com/content/WPF/119848?md=true
+- item-content-customization: https://docs.devexpress.com/content/WPF/119849?md=true
+- expanding-and-collapsing: https://docs.devexpress.com/content/WPF/119808?md=true
+- selection: https://docs.devexpress.com/content/WPF/118345?md=true

@@ -172,4 +172,9 @@ import 'path/to/dx.material.brand.css';
 <link rel="stylesheet" href="css/dx.material.brand.css" />
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+<link rel="stylesheet" href="~/lib/devextreme/css/dx.material.brand.css" asp-append-version="true" />
+```
+
 For runtime switching with the custom theme, use the `data-theme` attribute with the name from the ThemeBuilder metadata's `baseTheme` field (visible in the **Copy Metadata** output).

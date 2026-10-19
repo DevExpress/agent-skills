@@ -142,6 +142,6 @@ For .NET Framework projects, install the same NuGet package (or add an assembly 
 
 ## Source Material
 
-- `articles/controls-and-libraries/property-grid/overview.md` (https://docs.devexpress.com/content/WPF/15641?md=true)
-- `articles/controls-and-libraries/property-grid/getting-started/creating-property-definitions.md` (https://docs.devexpress.com/content/WPF/15610?md=true)
-- `articles/controls-and-libraries/property-grid/getting-started/managing-collection-properties.md` (https://docs.devexpress.com/content/WPF/15718?md=true)
+- overview: https://docs.devexpress.com/content/WPF/15641?md=true
+- creating-property-definitions: https://docs.devexpress.com/content/WPF/15610?md=true
+- managing-collection-properties: https://docs.devexpress.com/content/WPF/15718?md=true

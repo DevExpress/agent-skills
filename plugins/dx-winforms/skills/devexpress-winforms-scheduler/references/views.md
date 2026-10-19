@@ -221,15 +221,3 @@ Resource selRes  = schedulerControl1.ActiveView.SelectedResource;
 | Timeline shows too many or too few rows | `ResourcesPerPage` not set | Adjust `TimelineView.ResourcesPerPage` |
 | Timeline resource rows too small for their appointments | Auto cell height disabled (grouped by resource) | Set `TimelineView.CellsAutoHeightOptions.AutoHeightMode = SchedulerCellAutoHeightMode.Limited` (or `Full`) |
 | View switch removes the selected date | `Start` property not updated | Sync `schedulerControl1.Start` after changing `ActiveViewType` |
-
-## Source Material
-
-- `articles/controls-and-libraries/scheduler/views.md` (`xref:1757`)
-- `articles/controls-and-libraries/scheduler/views/day-view.md` (`xref:1758`)
-- `articles/controls-and-libraries/scheduler/views/work-week-view.md` (`xref:1772`)
-- `articles/controls-and-libraries/scheduler/views/month-view.md` (`xref:1760`)
-- `articles/controls-and-libraries/scheduler/views/timeline-view.md` (`xref:3109`)
-- `articles/controls-and-libraries/scheduler/views/agenda-view.md` (`xref:115961`)
-- `articles/controls-and-libraries/scheduler/views/gantt-view.md` (`xref:10698`)
-- `articles/controls-and-libraries/scheduler/views/year-view.md` (`xref:401984`)
-- `DevExpress.XtraScheduler.SchedulerControl.ActiveViewType` (`xref:DevExpress.XtraScheduler.SchedulerControl.ActiveViewType`)

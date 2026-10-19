@@ -165,6 +165,4 @@ Every editor derived from `BaseEdit` exposes **`EditValue`** as the canonical bi
 
 ## Source Material
 
-- `articles/controls-and-libraries/data-editors.md` (root)
-- `articles/controls-and-libraries/data-editors/getting-started/how-to-create-a-registration-form/lesson-1-create-layout.md`
-- `articles/controls-and-libraries/data-editors/included-components.md` (https://docs.devexpress.com/content/WPF/6933?md=true)
+- included-components: https://docs.devexpress.com/content/WPF/6933?md=true

@@ -94,7 +94,4 @@ pageAdvanced.PageVisible = true;    // shown again
 
 ## Source Material
 
-- `articles/controls-and-libraries/form-layout-managers/tab-control.md` — "How to Add and Remove Pages", "How to Populate Pages with Controls"
-- `examples/xtratabcontrol_constructor728.md` — create a control with pages in code
-- `examples/xtratabcontrol.tabpages.move1203.md` — reorder pages
 - [XtraTabPageCollection](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.XtraTabPageCollection?md=true) — collection reference

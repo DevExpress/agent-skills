@@ -336,4 +336,3 @@ fluent.BindCommand(btnLoad, vm => vm.LoadAsync);
 - ViewModel Management: `https://docs.devexpress.com/content/WindowsForms/119492?md=true`
 - Conventions and Attributes: `https://docs.devexpress.com/content/WindowsForms/117014?md=true`
 - CodeGenerators GitHub: `https://github.com/DevExpress/DevExpress.Mvvm.CodeGenerators`
-- `ViewModelBase` class: `xref:DevExpress.Mvvm.ViewModelBase`

@@ -367,7 +367,7 @@ Register and use exactly like a predefined service:
 IMyService MyService => GetService<IMyService>();
 ```
 
-See `articles/mvvm-framework/services/create-a-custom-service.md` (https://docs.devexpress.com/content/WPF/16920?md=true) for the full pattern.
+See https://docs.devexpress.com/content/WPF/16920?md=true for the full pattern.
 
 ## Common Issues
 
@@ -381,11 +381,11 @@ See `articles/mvvm-framework/services/create-a-custom-service.md` (https://docs.
 
 ## Source Material
 
-- `articles/mvvm-framework/services.md` (https://docs.devexpress.com/content/WPF/17414?md=true)
-- `articles/mvvm-framework/services/getting-started.md` (https://docs.devexpress.com/content/WPF/17444?md=true)
-- `articles/mvvm-framework/services/predefined-set.md` (https://docs.devexpress.com/content/WPF/113931?md=true)
-- `articles/mvvm-framework/services/services-in-viewmodelbase-descendants.md` (https://docs.devexpress.com/content/WPF/17446?md=true)
-- `articles/mvvm-framework/services/services-in-generated-view-models.md` (https://docs.devexpress.com/content/WPF/17447?md=true)
-- `articles/mvvm-framework/services/services-in-custom-viewmodels.md` (https://docs.devexpress.com/content/WPF/17450?md=true)
-- `articles/mvvm-framework/services/create-a-custom-service.md` (https://docs.devexpress.com/content/WPF/16920?md=true)
-- `articles/mvvm-framework/services/predefined-set/dxmessageboxservice.md` (https://docs.devexpress.com/content/WPF/17415?md=true)
+- services: https://docs.devexpress.com/content/WPF/17414?md=true
+- getting-started: https://docs.devexpress.com/content/WPF/17444?md=true
+- predefined-set: https://docs.devexpress.com/content/WPF/113931?md=true
+- services-in-viewmodelbase-descendants: https://docs.devexpress.com/content/WPF/17446?md=true
+- services-in-generated-view-models: https://docs.devexpress.com/content/WPF/17447?md=true
+- services-in-custom-viewmodels: https://docs.devexpress.com/content/WPF/17450?md=true
+- create-a-custom-service: https://docs.devexpress.com/content/WPF/16920?md=true
+- dxmessageboxservice: https://docs.devexpress.com/content/WPF/17415?md=true

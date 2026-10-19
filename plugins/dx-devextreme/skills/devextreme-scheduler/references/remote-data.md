@@ -136,6 +136,21 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .DataSource(new JS("appointmentStore"))
+    .RemoteFiltering(true)
+    .CurrentDate(DateTime.Now)
+    .CurrentView("week")
+    .Height(600)
+)
+```
+
+> **Binding directly to a controller instead of a `CustomStore`?** Use `.Mvc()`/`.WebApi()` only for a controller in the *current* app; use `.RemoteController()` with `.LoadUrl()`/`.InsertUrl()`/`.UpdateUrl()`/`.DeleteUrl()` when the endpoints are absolute URLs on a different site. See the `devextreme-datasource` skill's "Binding to an API on a different site" section — the same distinction applies here as for DataGrid.
+
 ---
 
 ## Expected Server Response Shape

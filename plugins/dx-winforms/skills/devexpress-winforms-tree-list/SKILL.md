@@ -298,7 +298,7 @@ treeList.OptionsView.ShowSummaryFooter = true;
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. After any code changes, run `dotnet build` and report errors before claiming success.
 2. **Author the form's `.Designer.cs`, not the constructor body.** For a designer-backed form, declare the `TreeList`, its `TreeListColumn`s, and `RepositoryItem*` editors as fields of the `*.Designer.cs` partial class and create/configure them inside `InitializeComponent()`, wrapping `TreeList` setup in `((System.ComponentModel.ISupportInitialize)treeList).BeginInit()` … `EndInit()`. Keep only data loading (`DataSource`, building nodes) and event handlers in the form's `.cs` file. Do **not** `new` the control or build columns/editors in the constructor body — that leaves the designer file empty so the form cannot be reopened in the Visual Studio WinForms designer. Standalone snippets in this skill are deliberately condensed; place that code in `InitializeComponent()` when you generate a real form. See [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file).

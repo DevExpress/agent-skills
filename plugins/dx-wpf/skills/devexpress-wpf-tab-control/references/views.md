@@ -275,10 +275,10 @@ Pinned tabs stay on the left, unaffected by scroll/shrink of other tabs.
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views.md` (https://docs.devexpress.com/content/WPF/7979?md=true)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/views-overview.md` (https://docs.devexpress.com/content/WPF/113984?md=true)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/multiline-view.md` (https://docs.devexpress.com/content/WPF/113875?md=true)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/scroll-view.md` (https://docs.devexpress.com/content/WPF/113876?md=true)
-- `articles/controls-and-libraries/layout-management/tab-control/fundamentals/views/stretch-view.md` (https://docs.devexpress.com/content/WPF/113877?md=true)
-- `articles/controls-and-libraries/layout-management/tab-control/concepts/header-menu.md` (https://docs.devexpress.com/content/WPF/7977?md=true)
-- `articles/controls-and-libraries/layout-management/tab-control/concepts/adding-and-removing-tab-items.md` (https://docs.devexpress.com/content/WPF/113904?md=true)
+- views: https://docs.devexpress.com/content/WPF/7979?md=true
+- views-overview: https://docs.devexpress.com/content/WPF/113984?md=true
+- multiline-view: https://docs.devexpress.com/content/WPF/113875?md=true
+- scroll-view: https://docs.devexpress.com/content/WPF/113876?md=true
+- stretch-view: https://docs.devexpress.com/content/WPF/113877?md=true
+- header-menu: https://docs.devexpress.com/content/WPF/7977?md=true
+- adding-and-removing-tab-items: https://docs.devexpress.com/content/WPF/113904?md=true

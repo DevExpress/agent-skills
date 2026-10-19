@@ -44,8 +44,6 @@ Contact lists, product cards, ticket detail panels, dashboards with KPI cards �
 
 Columns become **card fields** — they appear vertically stacked inside each card. The same `GridColumn` definitions apply (`FieldName`, `EditSettings`, `CellTemplate`, sorting / filtering / grouping settings).
 
-Source: `articles/controls-and-libraries/data-grid/views/card-view.md`.
-
 ## Card Layout — Columns vs Rows
 
 ```xaml
@@ -65,8 +63,6 @@ Source: `articles/controls-and-libraries/data-grid/views/card-view.md`.
 ```
 
 In `Rows` layout, no more than 4 cards per row. In `Columns` layout, the same property caps cards per column.
-
-Source: `articles/controls-and-libraries/data-grid/views/card-view/cards-layout.md`.
 
 ## Card Alignment
 
@@ -105,8 +101,6 @@ For uniform-size cards:
 | `CardView.CardMargin` | Outer margin around each card (Thickness) |
 
 > Without `FixedSize`, `AllowCardResizing` has no effect — cards auto-size to content and the separator can't resize them.
-
-Source: `articles/controls-and-libraries/data-grid/views/card-view/card-settings.md`.
 
 ## Card Header
 
@@ -209,8 +203,6 @@ view.CollapseAllCards();
 
 Users can press <kbd>Ctrl</kbd>+<kbd>+</kbd> / <kbd>Ctrl</kbd>+<kbd>-</kbd> to expand or collapse the focused card.
 
-Source: `articles/controls-and-libraries/data-grid/views/card-view/expanding-and-collapsing-cards.md`.
-
 ## Features That Work the Same as Table View
 
 Card View shares most of the `DataViewBase` / `GridViewBase` infrastructure with Table View:
@@ -284,8 +276,6 @@ See [printing-exporting.md](printing-exporting.md) for the rest.
 - **TreeListView** features (hierarchical data with `KeyFieldName`/`ParentFieldName`) are NOT available in Card View.
 - **Bands** are typically TableView-oriented. CardView can use bands but the visual result differs — verify in your version.
 
-Source: `articles/controls-and-libraries/data-grid/printing-and-exporting/data-aware-export.md` (limitation note) and `master-detail/master-detail-mode-limitations.md`.
-
 ## Card View Visual Elements (for Styling / Templating)
 
 | Element | Purpose | Style property |
@@ -296,7 +286,7 @@ Source: `articles/controls-and-libraries/data-grid/printing-and-exporting/data-a
 | Group Header | Header for a group of cards | `GridViewBase.GroupRowStyle` |
 | Card Separator | Drag handle between cards | `CardView.AllowCardResizing` |
 
-See `articles/controls-and-libraries/data-grid/visual-elements/card-view-elements.md` for the full list.
+For the full list, search with `devexpress_docs_search` for "card view elements".
 
 ## Focus Appearance Specific to Card View
 
@@ -317,15 +307,3 @@ See `articles/controls-and-libraries/data-grid/visual-elements/card-view-element
 ## Apply to TreeListControl
 
 Card View is a view of `GridControl`. The standalone `TreeListControl` does NOT support a card layout — it uses `TreeListView` for hierarchical display. To get card-like display of hierarchical data, use `GridControl` with `CardView` and group the data, but this loses the tree expand/collapse semantics.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/views/card-view.md` (root)
-- `articles/controls-and-libraries/data-grid/views/card-view/cards-layout.md`
-- `articles/controls-and-libraries/data-grid/views/card-view/card-settings.md`
-- `articles/controls-and-libraries/data-grid/views/card-view/expanding-and-collapsing-cards.md`
-- `articles/controls-and-libraries/data-grid/visual-elements/card-view-elements.md`
-- `articles/controls-and-libraries/data-grid/end-user-capabilities/expanding-and-collapsing-cards.md`
-- `articles/controls-and-libraries/data-grid/end-user-capabilities/resizing-columns-and-cards.md`
-- `articles/controls-and-libraries/data-grid/paging-and-scrolling/card-view-scrolling-in-code.md`
-- `articles/controls-and-libraries/data-grid/grid-view-data-layout/rows-and-cards.md`

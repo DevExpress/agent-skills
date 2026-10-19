@@ -1,4 +1,4 @@
-﻿# Cell Display and Editing — DevExpress WPF Data Grid
+# Cell Display and Editing — DevExpress WPF Data Grid
 
 The Data Grid offers **nine techniques** to control how a cell displays its value and **three modes** to let users edit it (in-place, edit entire row, edit form). This reference is a decision matrix plus the API surface for each technique. The same patterns apply to `TreeListControl` — see § "Apply to TreeListControl" at the end.
 
@@ -40,8 +40,6 @@ Every formatting technique has trade-offs across four dimensions. Pick the techn
 - Need formatting only on display (not export / not search)? → **CellTemplate** with `DisplayFormatString` / `DisplayTextConverter`.
 - Need full per-cell control of display text via code? → **`CustomColumnDisplayText` event**.
 - Need different visuals for display vs edit (e.g., text label when not editing, full editor when editing)? → **`CellDisplayTemplate` + `CellEditTemplate`** (modern, preferred over single `CellTemplate`).
-
-Source: `articles/controls-and-libraries/data-grid/appearance-customization/format-cell-values.md`.
 
 ## 1. `CustomColumnDisplayText` Event
 
@@ -186,8 +184,6 @@ When to prefer split templates:
 
 `CellTemplate` is still useful for templates where display and edit share the same control (e.g., `CheckEdit` always shows a checkbox).
 
-Source: `articles/controls-and-libraries/data-grid/appearance-customization/format-cell-values.md` § Cell Templates tip block.
-
 ## Choosing Between Templates Based on Logic
 
 Use `CellTemplateSelector`, `CellDisplayTemplateSelector`, or `CellEditTemplateSelector` to switch templates per row based on data:
@@ -197,7 +193,7 @@ Use `CellTemplateSelector`, `CellDisplayTemplateSelector`, or `CellEditTemplateS
                 CellDisplayTemplateSelector="{StaticResource StatusTemplateSelector}"/>
 ```
 
-The selector implements `DataTemplateSelector` and inspects the row data to pick a template. See `articles/controls-and-libraries/data-grid/appearance-customization/choosing-templates-based-on-custom-logic.md`.
+The selector implements `DataTemplateSelector` and inspects the row data to pick a template.
 
 ## Read-Only vs. Disabled Editing
 
@@ -209,8 +205,6 @@ The selector implements `DataTemplateSelector` and inspects the row data to pick
 | **Disabled editing** | `DataViewBase.AllowEditing="False"` (view) or `ColumnBase.AllowEditing="False"` (column) | Users **cannot open the editor**. No selection / copy. |
 
 `ColumnBase.AllowEditing` has a special `Default` value — meaning "inherit from the View". `True` / `False` override.
-
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/disable-editing.md`.
 
 ## In-Place Editor Activation
 
@@ -227,8 +221,6 @@ Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/m
 | `GridViewBase.HiddenEditor` event | Fires after editor closes |
 | `DataViewBase.GetIsEditorActivationAction` | Per-action control (key press, click, typing) |
 | `DataViewBase.GetActiveEditorNeedsKey` | Tell the grid which keys the active editor should consume (vs. the grid handling for navigation) |
-
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/inplace-editors.md`.
 
 ## Edit Entire Row
 
@@ -250,8 +242,6 @@ End-user can also press `<kbd>Esc</kbd>` twice to discard. Programmatic equivale
 - `TableView.CancelRowChanges()` / `TableViewCommands.CancelRowChanges`
 
 > `Edit Entire Row` mode is only available when `NavigationStyle="Cell"`. With `NavigationStyle="Row"`, use **Edit Form** instead.
-
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/edit-entire-row.md`.
 
 ## Edit Form
 
@@ -321,8 +311,6 @@ When you override `EditFormTemplate`, the `RowEditStarted` event does NOT fire a
 
 `TableView.EditFormDialogServiceTemplate` customizes the dialog window in `Dialog` mode (window chrome, buttons, etc.).
 
-Source: `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/edit-form.md`.
-
 ## Decision: Edit Entire Row vs. Edit Form vs. In-Place
 
 | Scenario | Pick |
@@ -364,14 +352,3 @@ Everything in this reference applies identically to `TreeListControl` — the AP
 | `GridColumn.CellDisplayTemplate` / `CellEditTemplate` | `TreeListColumn.CellDisplayTemplate` / `CellEditTemplate` (inherited from `ColumnBase`) |
 
 In the `devexpress-wpf-tree-list` skill, `references/editing.md` covers tree-specific concerns (node add/remove, expand state); refer to this file for the shared cell display + editing details.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/appearance-customization/format-cell-values.md` (the decision matrix)
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/data-editing-and-validation.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/inplace-editors.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/edit-entire-row.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/edit-form.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/disable-editing.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/modify-cell-values/assign-an-editor-to-a-cell.md`
-- `articles/controls-and-libraries/data-grid/appearance-customization/choosing-templates-based-on-custom-logic.md`

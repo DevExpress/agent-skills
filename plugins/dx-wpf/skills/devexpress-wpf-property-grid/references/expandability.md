@@ -204,6 +204,6 @@ propertyGrid.CustomExpand += (s, e) => {
 
 ## Source Material
 
-- `articles/controls-and-libraries/property-grid/expandability-customization.md` (https://docs.devexpress.com/content/WPF/117149?md=true)
-- `articles/controls-and-libraries/property-grid/property-definitions.md` (https://docs.devexpress.com/content/WPF/15521?md=true)
-- `articles/controls-and-libraries/property-grid/property-attributes.md` (https://docs.devexpress.com/content/WPF/15623?md=true)
+- expandability-customization: https://docs.devexpress.com/content/WPF/117149?md=true
+- property-definitions: https://docs.devexpress.com/content/WPF/15521?md=true
+- property-attributes: https://docs.devexpress.com/content/WPF/15623?md=true

@@ -198,11 +198,3 @@ No code is needed for this behavior — it is handled by the form.
 | Content hidden when Overlay expands | Form layout not accounting for overlay | Use `FluentDesignForm` or handle overlay manually |
 | All groups collapse when one expands | `ExpandElementMode = Single` | Change to `ExpandElementMode = Multiple` |
 | Expand/collapse button shown on empty group | Default behavior | Set `ShowGroupExpandButtons = false` or handle `CustomDrawElement` per element |
-
-## Source Material
-
-- `articles/114553` — Accordion Control overview (Expand and Collapse section, Footer section)
-- `articles/120498` — Hamburger Menu View Style
-- `articles/DevExpress.XtraBars.Navigation.AccordionControl.ViewType` — ViewType property reference
-- `articles/DevExpress.XtraBars.Navigation.AccordionOptionsHamburgerMenu.DisplayMode` — DisplayMode enum reference
-- `articles/DevExpress.XtraBars.Navigation.OptionsMinimizing.State` — State property reference

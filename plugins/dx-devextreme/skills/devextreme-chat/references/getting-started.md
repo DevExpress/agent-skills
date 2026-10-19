@@ -68,6 +68,16 @@ function App() {
 export default App;
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .Width(400)
+    .Height(500)
+)
+```
+
 ---
 
 ## Configure Users
@@ -127,6 +137,30 @@ import { type ChatTypes } from 'devextreme-react/chat';
 const currentUser: ChatTypes.User = { id: '1', name: 'Alice' };
 
 <Chat user={currentUser} />
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .User(user => user
+        .Id(Model.CurrentUser.Id)
+        .Name(Model.CurrentUser.Name)
+    )
+)
+```
+
+```cs
+public class ChatUser
+{
+    public string Id { get; set; }
+    public string Name { get; set; }
+}
+```
+
+```cs
+public ChatUser CurrentUser = new ChatUser { Id = "1", Name = "Alice" };
 ```
 
 ---
@@ -199,7 +233,31 @@ const [messages, setMessages] = useState<ChatTypes.Message[]>(initialMessages);
 <Chat user={currentUser} items={messages} />
 ```
 
----
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .User(currentUser)
+    .DataSource(Model.Messages)
+)
+```
+
+```cs
+public static class ChatMessage
+{
+    public long Timestamp { get; set; }
+    public ChatUser Author { get; set; }
+    public string Text { get; set; }
+}
+```
+
+```cs
+public ChatMessage[] Messages = new ChatMessage[]
+{
+    new ChatMessage { Timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds(), Author = new ChatUser { Id = "2", Name = "Support Bot" }, Text = "Hello! How can I help you today?" }
+};
+```
 
 ## Appearance Options
 

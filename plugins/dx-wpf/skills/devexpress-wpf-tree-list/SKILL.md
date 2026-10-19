@@ -278,8 +278,6 @@ The root (President) is the row whose `ParentID` is `null` (when using `int?`) â
 ### What This Does
 Builds a tree of employees from a flat list, using `ID` and `ParentID` to determine parent-child relationships. Columns auto-generate from `Employee` public properties; the example explicitly defines three for ordering control. All nodes expand on load.
 
-Source: `articles/controls-and-libraries/tree-list/getting-started/lesson-1-add-a-treelistcontrol-to-a-project.md`.
-
 ## Key Properties & API Surface
 
 ### `TreeListControl` (`DevExpress.Xpf.Grid.TreeListControl`)
@@ -341,7 +339,7 @@ Source: `articles/controls-and-libraries/tree-list/getting-started/lesson-1-add-
 </dxg:TreeListControl>
 ```
 
-The root node is the record whose `ReportsTo` value does not match any other record's `ID`. See `articles/controls-and-libraries/data-grid/display-hierarchical-data.md` for the full algorithm.
+The root node is the record whose `ReportsTo` value does not match any other record's `ID`. For the full algorithm, search with `devexpress_docs_search` for "display hierarchical data".
 
 ### Pattern 2: Hierarchical Binding (Same Type)
 
@@ -373,8 +371,6 @@ void BuildTree() {
 }
 ```
 
-Source: `articles/controls-and-libraries/tree-list/getting-started/lesson-2-build-a-tree-in-unbound-mode.md`.
-
 ## Troubleshooting
 
 | Symptom | Cause | Solution |
@@ -389,7 +385,7 @@ Source: `articles/controls-and-libraries/tree-list/getting-started/lesson-2-buil
 
 ## Constraints & Rules
 
-CRITICAL â€” follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After any changes, run `dotnet build` and report errors before claiming success.
 2. **Target framework**: TreeList is Windows-only. The `.csproj` must target `net{version}-windows` with `<UseWPF>true</UseWPF>`.

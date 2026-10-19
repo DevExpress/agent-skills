@@ -121,10 +121,3 @@ change.OptionsColumn.ShowInCustomizationForm = false;
 ```
 
 For runtime-computed values that aren't a simple expression, handle the unbound-data event (use MCP to confirm the exact event name for your version).
-
-## Source Material
-
-- `articles/controls-and-libraries/tree-list/feature-center/data-binding/bound-mode.md` (`xref:116708`)
-- `articles/controls-and-libraries/tree-list/feature-center/data-binding/unbound-mode.md` (`xref:5557`)
-- `articles/controls-and-libraries/tree-list/feature-center/nodes.md` (`xref:5593`) — `AppendNode` parameters
-- `examples/unbound-mode-beforeexpand-event13299.md` — dynamic loading via `BeforeExpand`

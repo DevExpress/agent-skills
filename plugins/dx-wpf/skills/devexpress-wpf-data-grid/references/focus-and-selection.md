@@ -36,8 +36,6 @@ The `DataViewBase.NavigationStyle` property controls focus granularity:
 
 > When `NavigationStyle="Row"`, in-place editing is disabled. Users edit through the [Edit Form](cell-display-and-editing.md) instead.
 
-Source: `articles/controls-and-libraries/data-grid/focus-navigation-selection/focus.md`.
-
 ## Focused Row
 
 ### Read / Set in Code
@@ -159,8 +157,6 @@ The `DataControlBase.SelectionMode` property controls what the user can select:
 ```
 
 > Verify exact `MultiSelectMode` enum values via DxDocs MCP if needed — naming has slight variation between versions (`Row` vs `MultipleRow`, `Cell` vs `MultipleCell`). The properties listed in this reference are accurate per the source articles.
-
-Source: `articles/controls-and-libraries/data-grid/focus-navigation-selection/multiple-row-selection.md` and `multiple-cell-selection.md`.
 
 ## Selected Rows
 
@@ -362,7 +358,7 @@ To disable the built-in selected-row coloring entirely:
 
 `CurrentItem` is the focused row; `SelectedItem` is the first selected row; `SelectedItems` is the full collection. Bind whichever your ViewModel needs.
 
-For a complete example of binding `SelectedItems` to a `ObservableCollection<T>` on the ViewModel, see `articles/controls-and-libraries/data-grid/mvvm-enhancements/examples/binding-to-a-collection-of-selected-items.md`.
+For a complete example of binding `SelectedItems` to a `ObservableCollection<T>` on the ViewModel, search with `devexpress_docs_search` for "binding to a collection of selected items".
 
 ## Keyboard Navigation
 
@@ -433,15 +429,3 @@ For a complete example of binding `SelectedItems` to a `ObservableCollection<T>`
 | `DataViewBase.CanSelectRow` / `CanUnselectRow` events | same |
 | `TableView.SelectCell` / `UnselectCell` (by row handle) | **`TreeListView.SelectCell(TreeListNode, ColumnBase)`** |
 | `TableView.ShowCheckBoxSelectorColumn` | same (works for TreeList too) |
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection.md`
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/focus.md`
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/common-selection-features.md`
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/multiple-row-selection.md`
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/multiple-cell-selection.md`
-- `articles/controls-and-libraries/data-grid/end-user-capabilities/selecting-rows.md`
-- `articles/controls-and-libraries/data-grid/mvvm-enhancements/examples/binding-to-a-collection-of-selected-items.md`
-- `articles/controls-and-libraries/data-grid/visual-elements/table-view-elements/selector-column.md`
-- `articles/controls-and-libraries/data-grid/conditional-formatting/conditional-formats/formatting-focused-cells-and-rows.md`

@@ -2,14 +2,17 @@
 name: devexpress-office-file-api-pdf-new
 description: >-
   Create, load, modify, secure, and print PDF documents using the new DevExpress.Docs.Pdf API — a modern object-oriented DOM approach for .NET.
-  Use when building .NET applications that need to programmatically generate or edit PDF files using the new DevExpress PDF Document API (CTP).
-  Also use when someone mentions "DevExpress.Docs.Pdf", "new PDF API", "PdfDocument class", "pdf fragment", "pdf pages collection",
-  "pdf form fields", "pdf redaction", "pdf structure tree", "tagged pdf", "pdf/ua", "pdf encryption", "pdf annotations new API",
-  or asks to migrate from PdfDocumentProcessor to the new API. Covers both .NET and .NET Framework.
+  Use for any PDF task in a project that references the DevExpress.Docs.Pdf package, or when the developer asks for the new DevExpress PDF API (CTP):
+  merge or combine PDF files, split, reorder, rotate, or remove pages, generate a PDF with text, images, and shapes, fill a PDF form and lock its fields,
+  find and redact text, password-protect or encrypt a PDF, add a watermark or stamp, add annotations or links, attach a ZUGFeRD/Factur-X invoice.
+  Also use when someone mentions "DevExpress.Docs.Pdf", "new PDF API", "PdfDocument class", "pdf fragment",
+  "pdf form fields", "pdf redaction", "tagged pdf", "pdf/ua", "pdf encryption",
+  or asks to migrate from PdfDocumentProcessor to the new API. For projects that use PdfDocumentProcessor (DevExpress.Pdf) and are not migrating,
+  use the devexpress-office-file-api-pdf skill instead. Covers both .NET and .NET Framework.
 metadata:
   author: DevExpress
   version: "26.1"
-  source-commit: d4a70c0b5f39f3c991dd5ee8fa51f2d413ef26b6
+  source-commit: 932ab07491b248b8da882bf07edf08cdf51b3b00
   status: CTP
 ---
 
@@ -24,7 +27,7 @@ The new DevExpress PDF Document API (`DevExpress.Docs.Pdf`) is a cross-platform 
 
 - Create new PDF documents with text, images, shapes, and reusable templates
 - Load and modify existing PDF files (edit content, add/remove pages, manage annotations)
-- Manage interactive forms: create, fill, flatten, import/export AcroForm data
+- Manage interactive forms: create, fill, make read-only, import/export AcroForm data
 - Find, format, redact, or permanently remove text from PDF documents
 - Encrypt PDF documents and set granular permissions (print, modify, extract)
 - Build tagged/accessible PDFs (PDF/UA) using the structure tree API
@@ -65,6 +68,12 @@ Despite the new object model, `DevExpress.Docs.Pdf` is built on the same `DevExp
 
 ```bash
 dotnet add package DevExpress.Drawing.Skia
+```
+
+Redaction (`ApplyRedaction`) on non-Windows platforms also requires the Skia-based PDF renderer package:
+
+```bash
+dotnet add package DevExpress.Pdf.SkiaRenderer
 ```
 
 On **Linux**, also install the font libraries: `sudo apt-get install -y libc6 libicu-dev libfontconfig1` (Debian/Ubuntu) or `sudo yum install -y glibc-devel libicu fontconfig` (RHEL/CentOS/Fedora).
@@ -108,11 +117,15 @@ The new PDF API provides:
 ```csharp
 using DevExpress.Docs.Pdf;
 using DevExpress.Drawing.Printing;
+using System.Drawing;
 
 // Create new document
 using var doc = new PdfDocument();
 Page page = doc.Pages.Add(DXPaperKind.A4);
-page.AddTextFragment(new TextFragment { Text = "Hello", Location = new PointF(50, 770) });
+page.AddTextFragment("Hello", 50, 770);                       // text + position only
+page.Fragments.Add(new TextFragment {                         // configured fragment
+    Text = "World", Location = new PointF(50, 740), FontSize = 14
+});
 doc.Save(new FileStream("output.pdf", FileMode.Create));
 
 // Load existing document
@@ -155,7 +168,7 @@ When you need to:
 
 When you need to:
 - Create text boxes, checkboxes, radio buttons, list boxes, combo boxes, or signature fields
-- Fill, read, or flatten form fields
+- Fill or read form fields, and make them read-only
 - Import/export AcroForm data (FDF, XFDF, XML, TXT)
 - Group form fields or apply value formatting
 
@@ -183,7 +196,6 @@ When you need to:
 When you need to:
 - Create accessible tagged PDFs with a logical structure tree
 - Map custom tags to standard PDF roles
-- Validate a structure tree for PDF/UA compliance
 - Edit or remove elements from an existing document's structure
 
 ### Metadata and Attachments
@@ -229,14 +241,14 @@ using (PdfDocument pdfDocument = new PdfDocument()) {
     // Page 1: Title and text
     Page page1 = pdfDocument.Pages.Add(DXPaperKind.A4);
 
-    page1.AddTextFragment(new TextFragment {
+    page1.Fragments.Add(new TextFragment {
         Text = "Quarterly Sales Report",
         Location = new PointF(50, 770),
         Font = new TextFont("Arial", TextFontStyle.Bold),
         FontSize = 24
     });
 
-    page1.AddTextFragment(new TextFragment {
+    page1.Fragments.Add(new TextFragment {
         Text = "This report summarizes Q1 2026 sales data.",
         Location = new PointF(50, 730),
         Font = new TextFont("Arial"),
@@ -244,15 +256,14 @@ using (PdfDocument pdfDocument = new PdfDocument()) {
     });
 
     // Add a logo image
-    DXImage logo = DXImage.FromFile("logo.png");
-    page1.AddImageFragment(new ImageFragment(logo) {
-        Location = new PointF(50, 600),
-        Size = new SizeF(200, 100)
+    DXImage logo = DXImage.FromStream(File.OpenRead("logo.png"));
+    page1.Fragments.Add(new ImageFragment(logo) {
+        Location = new PointF(50, 600)
     });
 
     // Page 2: Data
     Page page2 = pdfDocument.Pages.Add(DXPaperKind.A4);
-    page2.AddTextFragment(new TextFragment {
+    page2.Fragments.Add(new TextFragment {
         Text = "North America: $1,250,000",
         Location = new PointF(50, 730),
         Font = new TextFont("Arial"),
@@ -292,13 +303,12 @@ using (PdfDocument pdfDocument = new PdfDocument()) {
 | Member | Type | Description |
 |--------|------|-------------|
 | `Fragments` | `FragmentCollection` | All content fragments (text, images, shapes) |
-| `Annotations` | `PageAnnotationCollection` | All page annotations |
+| `Annotations` | `AnnotationCollection` | All page annotations |
 | `Width`, `Height` | `double` | Page dimensions in points |
 | `Rotation` | `PageRotationAngle` | Page rotation (Clockwise90, etc.) |
-| `AddTextFragment(TextFragment)` | `void` | Add text content |
-| `AddImageFragment(ImageFragment)` | `void` | Add image content |
-| `AddPathFragment(PathFragment)` | `void` | Add shape/line content |
-| `AddFormFragment(FormFragment)` | `void` | Add reusable template |
+| `AddTextFragment(string text, float x, float y)` | `TextFragment` | Add text at a position; set other properties on the returned fragment |
+| `AddImageFragment(DXImage image, float x, float y)` | `ImageFragment` | Add an image at a position |
+| `AddFragment(PageFragment)` | `void` | Add a configured `TextFragment`, `ImageFragment`, `PathFragment`, `ParagraphFragment`, or `FormFragment` (same as `Fragments.Add`) |
 | `Clone()` | `Page` | Deep-copy this page |
 | `Resize(RectangleF, H, V)` | `void` | Resize page with alignment |
 | `RotateContent(double, double, double)` | `void` | Rotate content around a point |
@@ -311,11 +321,12 @@ using (PdfDocument pdfDocument = new PdfDocument()) {
 
 ```csharp
 using DevExpress.Docs.Pdf;
+using System.Drawing;
 
 using (PdfDocument doc = new PdfDocument(File.OpenRead("input.pdf"))) {
     // Add a watermark to every page
     for (int i = 0; i < doc.Pages.Count; i++) {
-        doc.Pages[i].AddTextFragment(new TextFragment {
+        doc.Pages[i].Fragments.Add(new TextFragment {
             Text = "DRAFT",
             Location = new PointF(150, 400),
             FontSize = 72,
@@ -347,6 +358,7 @@ using (PdfDocument doc = new PdfDocument(File.OpenRead("report.pdf"))) {
 
 ```csharp
 using DevExpress.Docs.Pdf;
+using System.Drawing;
 using System.Linq;
 
 using (PdfDocument doc = new PdfDocument(
@@ -375,14 +387,17 @@ using (PdfDocument doc = new PdfDocument(
 | Text not visible at expected coordinates | Coordinate origin is bottom-left, Y increases upward | Invert Y: for A4 (841.89 pts high), Y=770 is near top |
 | `PdfDocument` ctor throws on encrypted file | No password provided | Use `new PdfDocument(stream, new LoadOptions { Password = "..." })` |
 | Redaction doesn't remove underlying content | `ApplyRedaction` not called after creating annotation | Call `doc.ApplyRedaction(pageIndex, annotations)` to commit |
-| Missing type `TextFont` | Namespace not imported | Add `using DevExpress.Docs.Office;` |
+| Missing type `TextFont` | Namespace not imported | `TextFont` is in `DevExpress.Docs.Pdf`. Add `using DevExpress.Docs.Pdf;` |
+| `CS0104` ambiguous reference on `TextFont`, `SolidFill`, `Fill`, or `EncryptionOptions` | Both `DevExpress.Docs.Pdf` and `DevExpress.Docs.Office` are imported | Remove `using DevExpress.Docs.Office;` or qualify the type as `DevExpress.Docs.Pdf.TextFont` |
+| `CS7036` on `AddTextFragment` / `AddImageFragment` | A configured fragment object was passed | Use `page.Fragments.Add(fragment)` or `page.AddFragment(fragment)`; `AddTextFragment` takes `(string, float, float)` |
+| `The 'DevExpress.Pdf.v26.1.SkiaRenderer.dll' assembly reference is missing` on macOS/Linux | Redaction needs the Skia PDF renderer | `dotnet add package DevExpress.Pdf.SkiaRenderer` |
 | Build error: missing assembly | Wrong NuGet package | Install `DevExpress.Docs.Pdf`, not `DevExpress.Document.Processor` |
 | Form fields not visible in reader | Widget annotation not bound to page | Add the widget to `page.Annotations` after creating it |
 | License error at runtime | Missing DevExpress license | Register license key per DevExpress installation guide |
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **CTP status**: Always inform the developer this library is a CTP. Do not recommend it for production mission-critical use.
 2. **Build verification**: After changes, verify with `dotnet build` before reporting success.
@@ -390,7 +405,7 @@ CRITICAL — follow these rules in every interaction:
 4. **Stream ownership**: Open streams with appropriate `FileAccess`. Save to a separate output stream, not the input stream.
 5. **Redaction is permanent**: `ApplyRedaction` cannot be undone. Warn developers before applying.
 6. **Version consistency**: All DevExpress packages must share the same version.
-7. **Namespace clarity**: New API is `DevExpress.Docs.Pdf`. Legacy is `DevExpress.Pdf`. Do not mix in the same file without aliases.
+7. **Namespace clarity**: New API is `DevExpress.Docs.Pdf`. Legacy is `DevExpress.Pdf`. Do not mix in the same file without aliases. Do not import `DevExpress.Docs.Office` in PDF code; it duplicates `TextFont`, `SolidFill`, `Fill`, and `EncryptionOptions`.
 8. **Framework detection**: Check `.csproj` target framework before writing code.
 9. **Adding assembly references (.NET Framework)**: Resolve the required assemblies via the DevExpress Docs MCP, add the corresponding NuGet package, or — if a visual designer is available — have the developer drag the control from the Toolbox so references are added automatically. Avoid manually editing the `.csproj` references node to add new assembly references.
 

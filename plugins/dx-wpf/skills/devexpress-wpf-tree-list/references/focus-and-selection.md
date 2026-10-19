@@ -1,4 +1,4 @@
-﻿# Focus and Selection — DevExpress WPF TreeList
+# Focus and Selection — DevExpress WPF TreeList
 
 `TreeListControl` shares the focus and selection infrastructure with `GridControl` — same `DataViewBase` / `DataControlBase` API surface with TreeList-specific extensions for nodes (`FocusedNode`, `GetSelectedNodes`, node expansion in selection state).
 
@@ -127,7 +127,7 @@ void View_CanSelectCell(object sender, CanSelectCellEventArgs e) {
 }
 ```
 
-> Verify exact `CanSelectCellEventArgs` member names against the TreeListView apidoc — the event signature may include `Node` directly or `RowHandle` (then derive node via `GetNodeByRowHandle`).
+> Verify exact `CanSelectCellEventArgs` member names with `devexpress_docs_search` — the event signature may include `Node` directly or `RowHandle` (then derive node via `GetNodeByRowHandle`).
 
 ## Check-Box Selector Column in TreeList
 
@@ -175,13 +175,3 @@ For shared concepts (NavigationStyle, SelectionMode, BeginSelection / EndSelecti
 See [the data-grid skill's focus-and-selection.md](../../devexpress-wpf-data-grid/references/focus-and-selection.md).
 
 This tree-list reference covers only TreeList-specific extensions (`FocusedNode`, `GetSelectedNodes`, node-based cell selection, tree-specific keyboard shortcuts).
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/focus.md`
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/multiple-row-selection.md`
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/multiple-cell-selection.md`
-- `articles/controls-and-libraries/data-grid/focus-navigation-selection/common-selection-features.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/selecting-multiple-nodes.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/navigating-through-nodes-and-cells.md`
-- The data-grid skill's `references/focus-and-selection.md` (shared API surface)

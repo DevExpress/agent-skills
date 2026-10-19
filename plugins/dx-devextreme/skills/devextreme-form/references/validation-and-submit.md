@@ -104,6 +104,22 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@using DevExtreme.AspNet.Mvc
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .FormData(new { name = "", officeNumber = (int?)null, email = "" })
+    .ColCount(2)
+    .Items(items => {
+        items.AddSimple().DataField("name").IsRequired(true);
+        items.AddSimple().DataField("officeNumber").ValidationRules(rules => rules.AddNumeric());
+        items.AddSimple().DataField("email").ValidationRules(rules => rules.AddEmail());
+    })
+)
+``` 
+
 ## Showing a Validation Summary
 
 Set `showValidationSummary` to `true` to display a summary of all errors at the bottom of the form.
@@ -271,4 +287,26 @@ function App() {
         </form>
     );
 }
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@using DevExtreme.AspNet.Mvc
+<form action="/employee-page" id="form-container">
+    @(Html.DevExtreme().Form()
+        .ID("form")
+        .FormData(new { name = "", officeNumber = (int?)null, email = "" })
+        .ColCount(2)
+        .Items(items => {
+            items.AddGroup().Caption("Personal Information").ColCount(2)
+                .Items(groupItems => {
+                    groupItems.AddSimple().DataField("name").IsRequired(true);
+                    groupItems.AddSimple().DataField("officeNumber").ValidationRules(rules => rules.AddNumeric());
+                    groupItems.AddSimple().DataField("email").ValidationRules(rules => rules.AddEmail());
+                });
+            items.AddButton().ButtonOptions(options => options.Text("Submit").UseSubmitBehavior(true));
+        })
+    )
+</form>
 ```

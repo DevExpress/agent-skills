@@ -162,10 +162,3 @@ AccordionControlElement selected = accordion.SelectedElement;
 | Group header missing after rebind | `Expanded` not set | Set `Expanded = true` on root groups |
 | Data changes not reflected | No refresh call | Call `Elements.Clear()` + repopulate inside `BeginUpdate/EndUpdate` |
 | Cannot find item by ID at runtime | No identifier stored | Store ID/route in `Tag`; search with LINQ over `Elements` |
-
-## Source Material
-
-- `articles/114553` — Accordion Control overview (Items and Groups section)
-- `articles/120496` — How To: Create AccordionControl in code
-- `articles/DevExpress.XtraBars.Navigation.AccordionControl` — AccordionControl class reference
-- `articles/DevExpress.XtraBars.Navigation.AccordionControlElement` — AccordionControlElement class reference

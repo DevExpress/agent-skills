@@ -58,7 +58,7 @@ Add a stylesheet link in `<head>`. Use local files (npm) or CDN.
     <link rel="stylesheet" href="node_modules/devextreme/dist/css/dx.light.css" />
 
     <!-- or from CDN -->
-    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/26.1.0/css/dx.light.css" />
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/26.1.0/css/dx.material.blue.light.css" />
 </head>
 ```
 
@@ -105,6 +105,13 @@ import App from './App';
 import 'devextreme/dist/css/dx.material.blue.light.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+<!-- _Layout.cshtml -->
+<link rel="stylesheet" href="~/lib/devextreme/css/dx.material.blue.light.css" asp-append-version="true" />
 ```
 
 ---

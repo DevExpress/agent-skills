@@ -1,9 +1,5 @@
 // Quickstart ViewModel for the DevExpress WPF Data Grid.
 // Companion to quickstart-mainview.xaml.
-//
-// Verified APIs:
-//   - DevExpress.Mvvm.ViewModelBase (from DevExpress.Mvvm package, bundled
-//     with DevExpress.Wpf.Grid.Core)
 
 using System;
 using System.Collections.ObjectModel;

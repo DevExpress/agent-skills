@@ -232,8 +232,8 @@ For NavigationPane view mode, also bind `SelectedRootItem` — see [view-modes.m
 
 ## Source Material
 
-- `articles/controls-and-libraries/navigation-controls/accordion-control/data-binding.md` (https://docs.devexpress.com/content/WPF/118635?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/data-binding/children-path.md` (https://docs.devexpress.com/content/WPF/119810?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/data-binding/children-selector.md` (https://docs.devexpress.com/content/WPF/119809?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/data-binding/hierarchical-data-template.md` (https://docs.devexpress.com/content/WPF/119794?md=true)
-- `articles/controls-and-libraries/navigation-controls/accordion-control/accordion-items/adding-accordion-items.md` (https://docs.devexpress.com/content/WPF/119831?md=true)
+- data-binding: https://docs.devexpress.com/content/WPF/118635?md=true
+- children-path: https://docs.devexpress.com/content/WPF/119810?md=true
+- children-selector: https://docs.devexpress.com/content/WPF/119809?md=true
+- hierarchical-data-template: https://docs.devexpress.com/content/WPF/119794?md=true
+- adding-accordion-items: https://docs.devexpress.com/content/WPF/119831?md=true

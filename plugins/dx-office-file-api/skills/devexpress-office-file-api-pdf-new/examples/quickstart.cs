@@ -3,7 +3,6 @@
 // NOTE: This is a Community Technology Preview. Do not use in mission-critical production applications.
 
 using DevExpress.Docs.Pdf;
-using DevExpress.Docs.Office;
 using DevExpress.Drawing;
 using DevExpress.Drawing.Printing;
 using System.Drawing;
@@ -62,7 +61,8 @@ public class Program
                 Text = "Q1 results exceeded targets across all regions. " +
                        "North America led with 35% growth YoY, followed by EMEA at 22%.",
                 Location = new PointF(50, 690),
-                Font = new DXFont("Arial", 11),
+                Font = new TextFont("Arial"),
+                FontSize = 11,
                 Width = 495,
                 Height = 100,
                 StringFormat = new DXStringFormat
@@ -73,17 +73,19 @@ public class Program
             };
             page1.Fragments.Add(paragraph);
 
-            // Logo image (comment out if file doesn't exist)
-            // DXImage logo = DXImage.FromFile("logo.png");
-            // page1.AddImageFragment(new ImageFragment(logo)
-            // {
-            //     Location = new PointF(400, 750),
-            //     Size = new SizeF(145, 40)
-            // });
+            // Logo image (skipped if the file doesn't exist)
+            if (File.Exists("logo.png"))
+            {
+                DXImage logo = DXImage.FromStream(File.OpenRead("logo.png"));
+                page1.Fragments.Add(new ImageFragment(logo)
+                {
+                    Location = new PointF(400, 750)
+                });
+            }
 
             // Decorative rectangle
             var rect = PathFragment.Rectangle(new RectangleF(50, 650, 495, 2));
-            rect.Fill = Fill.CreateSolid(new PdfColor(0, 0, 139));
+            rect.Fill = Fill.CreateSolid(PdfColor.FromRgb(0, 0, 139));
             page1.Fragments.Add(rect);
 
             // Page 2: data table rows

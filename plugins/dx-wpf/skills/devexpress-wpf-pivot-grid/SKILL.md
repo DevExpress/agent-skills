@@ -142,8 +142,6 @@ void AddField(string caption, FieldArea area, string columnName, int index) {
 
 `DataProcessingEngine="Optimized"` enables the new high-performance engine (default in modern versions). `BeginUpdate` / `EndUpdate` batch field changes to avoid intermediate layout recalculations.
 
-Source: `articles/controls-and-libraries/pivot-grid/getting-started/NET-Core/lesson-1-bind-a-pivot-grid-to-an-mdb-database-net.md`.
-
 ## Documentation & Navigation Guide
 
 ### Getting Started
@@ -372,8 +370,6 @@ void LoadFromMdb() {
 }
 ```
 
-Source: `articles/controls-and-libraries/pivot-grid/getting-started/NET-Core/lesson-1-bind-a-pivot-grid-to-an-mdb-database-net.md`.
-
 ### Pattern 2: Bind to a List of POCOs (In-Memory)
 
 ```csharp
@@ -422,7 +418,7 @@ A user can expand a Year header to see Quarters underneath; collapse to roll up.
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After any changes, run `dotnet build` and report errors before claiming success.
 2. **Target framework**: PivotGrid is Windows-only. The `.csproj` must target `net{X}-windows` with `<UseWPF>true</UseWPF>`.

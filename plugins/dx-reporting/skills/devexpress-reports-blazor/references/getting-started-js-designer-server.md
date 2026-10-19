@@ -304,7 +304,7 @@ For generic troubleshooting steps (render mode, service registration, data sourc
 | Symptom | Cause | Fix |
 |---------|-------|-----|
 | `Unable to resolve service for type 'IUrlHelperFactory'` at startup | `AddMvc()` missing from service registration | Add `builder.Services.AddMvc()` **before** `AddDevExpressBlazorReporting()`. [Detailed guidance →](troubleshooting.md#quick-diagnostic-checklist) |
-| Save/Load/Open buttons do nothing | `ReportStorageWebExtension` registration order wrong | Register storage **after** `AddDevExpressBlazorReporting()`. [Common mistakes →](../troubleshooting.md#common-registration-order-mistakes) |
+| Save/Load/Open buttons do nothing | `ReportStorageWebExtension` registration order wrong | Register storage **after** `AddDevExpressBlazorReporting()`. [Common mistakes →](troubleshooting.md#common-registration-order-mistakes) |
 | Designer shows blank page | Missing render mode or resource scripts | Ensure `@rendermode InteractiveServer` on page; add `@DxResourceManager.RegisterScripts()` to `App.razor <head>`. [Details →](troubleshooting.md#quick-diagnostic-checklist) |
 | 404 errors when saving reports | Middleware or routing order wrong | Add `app.MapControllers()`; ensure `UseDevExpressBlazorReporting()` is called **after** `UseRouting()`. [Common mistakes →](troubleshooting.md#common-registration-order-mistakes) |
 | `NonTrustedTypeDeserializationException` during designer preview/save | Custom data source class not trusted | Register each class **before** `CreateBuilder()`: `DeserializationSettings.RegisterTrustedClass(typeof(YourClass))` and `.RegisterTrustedClass(typeof(YourClass[]))`. [Diagnostic steps →](troubleshooting.md#data-source-trust-registration-errors) |

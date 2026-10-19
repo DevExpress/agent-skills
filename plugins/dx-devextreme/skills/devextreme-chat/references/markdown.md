@@ -157,6 +157,30 @@ function App() {
 
 > **Security note**: `dangerouslySetInnerHTML` is XSS-prone. Pass AI-generated HTML through [DOMPurify](https://github.com/cure53/DOMPurify) before setting it.
 
+### ASP.NET Core Controls
+
+```cshtml
+@section ExternalDependencies {
+    <script type="module">
+        import { micromark } from 'https://esm.sh/micromark@3?bundle';
+        window.micromark = micromark;
+    </script>
+}
+
+@(Html.DevExtreme().Chat()
+    .ID("chat")
+    .Items(messages)
+    .OnMessageEntered("function(e) { e.component.renderMessage(e.message); }")
+    .MessageTemplate(new TemplateName("chatMessageTemplate"))
+)
+
+@using (Html.DevExtreme().NamedTemplate("chatMessageTemplate")) {
+    <div>
+        <div data-bind="html: micromark(message.text || '').replace(/^<p>/, '').replace(/<\/p>\n?$/, '')"></div>
+    </div>
+}
+```
+
 ---
 
 ## Using `unified` + `remark` + `rehype` (full-featured)

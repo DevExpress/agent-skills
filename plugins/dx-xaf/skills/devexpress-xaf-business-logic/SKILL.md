@@ -197,7 +197,7 @@ When you need to:
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After making changes, verify the project builds with `dotnet build`.
 2. **No XAFML/Model Editor editing**: Solve all problems via C# code.

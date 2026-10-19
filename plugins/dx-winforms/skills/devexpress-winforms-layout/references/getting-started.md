@@ -232,7 +232,4 @@ For a `DataLayoutControl`, declare it as a field and set `DataSource`/`RetrieveF
 
 ## Source Material
 
-- `LayoutControl` class: `xref:DevExpress.XtraLayout.LayoutControl`
-- `DataLayoutControl` class: `xref:DevExpress.XtraDataLayout.DataLayoutControl`
-- `DockManager` class: `xref:DevExpress.XtraBars.Docking.DockManager`
 - Form Layout Managers overview: `https://docs.devexpress.com/content/WindowsForms/114577?md=true`

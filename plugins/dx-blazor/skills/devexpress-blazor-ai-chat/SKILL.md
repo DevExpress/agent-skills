@@ -397,7 +397,7 @@ Obtain a component reference to call these methods imperatively:
 
 ## Constraints & Rules
 
-0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`) or the local `apidoc/` folder. Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxAIChat` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
+0. **Never invent API**: If a property, method, event, or feature is not documented in this skill or its references, do **not** assume it exists. When asked about an unfamiliar API, first try to verify it using the DevExpress documentation MCP (`devexpress_docs_search`). Only after checking: if confirmed, use the API; if not found, explicitly state that it does not appear to be part of the `DxAIChat` API. Do not warn that a feature "may have been introduced in a recent version" as a way to justify inventing it.
 1. **Build verification**: After changes, run `dotnet build` and fix errors before reporting success.
 2. **Never hardcode keys**: API keys and endpoints must come from environment variables, user secrets, or a vault.
 3. **Render mode required**: `DxAIChat` requires an interactive render mode. Static SSR is not supported.

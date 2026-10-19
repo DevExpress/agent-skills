@@ -437,7 +437,7 @@ The detail VM gets the selected `Product` via `ISupportParameter` and reaches th
 
 ## Source Material
 
-- `articles/mvvm-framework/viewmodels/passing-data-between-viewmodels-isupportparameter.md` (https://docs.devexpress.com/content/WPF/17448?md=true)
-- `articles/mvvm-framework/viewmodels/viewmodel-relationships-isupportparentviewmodel.md` (https://docs.devexpress.com/content/WPF/17449?md=true)
-- `articles/mvvm-framework/messenger.md` (https://docs.devexpress.com/content/WPF/17474?md=true)
-- `articles/mvvm-framework/services.md` (https://docs.devexpress.com/content/WPF/17414?md=true) — for `ServiceSearchMode.PreferParents`
+- passing-data-between-viewmodels-isupportparameter: https://docs.devexpress.com/content/WPF/17448?md=true
+- viewmodel-relationships-isupportparentviewmodel: https://docs.devexpress.com/content/WPF/17449?md=true
+- messenger: https://docs.devexpress.com/content/WPF/17474?md=true
+- services: https://docs.devexpress.com/content/WPF/17414?md=true — for `ServiceSearchMode.PreferParents`

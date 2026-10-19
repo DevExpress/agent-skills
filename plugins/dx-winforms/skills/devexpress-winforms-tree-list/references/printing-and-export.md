@@ -66,7 +66,4 @@ treeList.RestoreLayoutFromXml("layout.xml");
 
 ## Source Material
 
-- `articles/controls-and-libraries/tree-list/feature-center/printing.md` (`xref:311`)
-- `articles/controls-and-libraries/tree-list/feature-center/export-and-import-data.md` (`xref:2527`; export `xref:5717`, import `xref:5718`)
-- `articles/.../export-to-xls-xlsx-csv` (`xref:404047`)
 - [ExportToXlsx](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.ExportToXlsx.overloads?md=true), [ExportToPdf](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.ExportToPdf.overloads?md=true), [ExportToCsv](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.ExportToCsv.overloads?md=true), [ExportToHtml](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.ExportToHtml.overloads?md=true), [ShowPrintPreview](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.ShowPrintPreview?md=true), [PrintDialog](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.PrintDialog?md=true)

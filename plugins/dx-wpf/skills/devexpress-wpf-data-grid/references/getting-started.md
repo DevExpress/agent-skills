@@ -184,9 +184,3 @@ The grid opens with the bound data, full sorting/filtering/grouping enabled, and
 - [Sorting, Filtering, Grouping](sorting-filtering-grouping.md) — fine-tune end-user features
 - [Editing](editing.md) — in-place editors, validation, clipboard paste
 - [Conditional Formatting](conditional-formatting.md) — highlight cells based on rules
-
-## Source Material
-
-The instructions above are derived from these DevExpress articles in this docs repo:
-- `articles/controls-and-libraries/data-grid/getting-started/code/lesson-1-add-a-gridcontrol-to-a-project.md`
-- `articles/controls-and-libraries/data-grid/getting-started/code/lesson-2-display-and-edit-data.md`

@@ -65,6 +65,18 @@ import { DataGrid, FilterRow, SearchPanel, HeaderFilter, FilterPanel } from 'dev
 </DataGrid>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .FilterRow(filterRow => filterRow.Visible(true))
+    .SearchPanel(searchPanel => searchPanel.Visible(true).Width(240).Placeholder("Search..."))
+    .HeaderFilter(headerFilter => headerFilter.Visible(true))
+    .FilterPanel(filterPanel => filterPanel.Visible(true))
+)
+```
+
 ---
 
 ## Applying a Programmatic Filter
@@ -137,6 +149,16 @@ Sorting is enabled by default for all columns. Users click column headers to sor
 ```tsx
 // React
 <Column dataField="HireDate" sortOrder="desc" sortIndex={0} />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Columns(columns => {
+        columns.Add().DataField("HireDate").SortOrder(SortOrder.Descending).SortIndex(0);
+    })
+)
 ```
 
 ### Disable sorting globally

@@ -224,8 +224,8 @@ Both run on a separate UI thread; the migration is mostly an API rename + restru
 
 ## Source Material
 
-- `articles/controls-and-libraries/windows-and-utility-controls/splash-screen-manager.md` (https://docs.devexpress.com/content/WPF/401685?md=true)
-- `articles/controls-and-libraries/windows-and-utility-controls/wait-indicator.md` (https://docs.devexpress.com/content/WPF/114373?md=true)
-- `articles/controls-and-libraries/windows-and-utility-controls.md` (https://docs.devexpress.com/content/WPF/115521?md=true)
-- `articles/controls-and-libraries/windows-and-utility-controls/dxsplashscreen.md` (https://docs.devexpress.com/content/WPF/9949?md=true) — legacy
+- splash-screen-manager: https://docs.devexpress.com/content/WPF/401685?md=true
+- wait-indicator: https://docs.devexpress.com/content/WPF/114373?md=true
+- windows-and-utility-controls: https://docs.devexpress.com/content/WPF/115521?md=true
+- dxsplashscreen: https://docs.devexpress.com/content/WPF/9949?md=true — legacy
 - DxDocs API: `DevExpress.Xpf.Core.LoadingDecorator` (verified)

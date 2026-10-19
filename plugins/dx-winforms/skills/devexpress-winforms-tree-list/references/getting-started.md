@@ -206,7 +206,4 @@ Key points:
 
 ## Source Material
 
-- `articles/controls-and-libraries/tree-list.md` (`xref:2434`) — Tree List overview
-- `articles/controls-and-libraries/tree-list/feature-center/data-binding/bound-mode.md` (`xref:116708`)
-- `articles/controls-and-libraries/tree-list/examples/data-binding/how-to-create-treelist-at-runtime.md` (`xref:403837`)
 - [TreeList](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList?md=true) — class reference

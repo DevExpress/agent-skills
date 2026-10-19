@@ -274,7 +274,7 @@ If the user's project structure or component choice does not map unambiguously t
 - Designer components save/load/preview reports containing custom data sources
 - Viewer components load reports from storage (`ReportStorageWebExtension` or `IReportProvider` returning REPX)
 
-See 📄 [references/resolving-report-names.md — Data Source Trust Registration](resolving-report-names.md#security-trusted-types-for-custom-data-source-deserialization) for mapping details and registration procedures.
+See 📄 [references/resolving-report-names.md — Data Source Trust Registration](references/resolving-report-names.md#security-trusted-types-for-custom-data-source-deserialization) for mapping details and registration procedures.
 
 #### Integration output rules for multi-project solutions
 
@@ -353,7 +353,7 @@ Universal checks — apply regardless of scenario:
   - Verify no `IReportProvider` and `ReportStorageWebExtension` conflict (see Constraint 16)
   - Designer requires `ReportStorageWebExtension` for persistence; if project already has `IReportProvider`, remove it or replace with storage
 - [ ] **C24** — If a new `.razor` page is being added, a matching `<NavLink>` entry will be added to the navigation component (see Phase 3 Step 3B) with correct and route name
-- [ ] **C26 (NEW)** — For components with custom data sources (designer components OR viewers with storage): All data source classes registered with `RegisterTrustedClass()`, array types registered separately, registrations before `CreateBuilder()`. See 📄 [references/resolving-report-names.md](resolving-report-names.md#security-trusted-types-for-custom-data-source-deserialization) for details.
+- [ ] **C26** — For components with custom data sources (designer components OR viewers with storage): All data source classes registered with `RegisterTrustedClass()`, array types registered separately, registrations before `CreateBuilder()`. See 📄 [references/resolving-report-names.md](references/resolving-report-names.md#security-trusted-types-for-custom-data-source-deserialization) for details.
 
 Scenario-specific checks — also review the `## Antipatterns` section of **every reference file loaded in Step 1**. Fix any violations found there before continuing.
 
@@ -397,7 +397,7 @@ DevExpress.Utils.DeserializationSettings.RegisterTrustedClass(typeof(YourDataSou
 DevExpress.Utils.DeserializationSettings.RegisterTrustedClass(typeof(YourDataSourceClass[]));
 ```
 
-For step-by-step guidance with examples and code generation, see 📄 [references/resolving-report-names.md — Data Source Trust Registration](resolving-report-names.md#security-trusted-types-for-custom-data-source-deserialization).
+For step-by-step guidance with examples and code generation, see 📄 [references/resolving-report-names.md — Data Source Trust Registration](references/resolving-report-names.md#security-trusted-types-for-custom-data-source-deserialization).
 
 ### Step 4 — Present and Execute
 

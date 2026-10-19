@@ -125,8 +125,6 @@ int StatusWeight(object value) => value as string switch {
 
 Event-based alternative (non-MVVM): handle `GridControl.CustomColumnSort` directly.
 
-Source: `articles/controls-and-libraries/data-grid/sorting/sorting-modes-and-custom-sorting.md`.
-
 ### Sort Group Rows by Summary Values
 
 Sort groups by aggregated value (e.g., highest-total group first) rather than by the group key:
@@ -140,8 +138,6 @@ column.SortFieldName = "Amount";          // (verify; pattern from "sorting-grou
 
 > Verify exact `SortBySummary` API name via DxDocs MCP if needed:
 > `devexpress_docs_search(technology="WPF Data Grid", query="sort group rows by summary")`
-
-Source: `articles/controls-and-libraries/data-grid/sorting/sorting-group-rows-by-summary-values.md`.
 
 ### Immediate Update of Row Position
 
@@ -179,8 +175,6 @@ DevExpress provides several drop-down filter styles per column (`ColumnBase.Allo
 - **Excel-style** — Excel-mimicking filter dropdown with search, sort, and value list
 - **Date-Time** — calendar + relative date ranges ("Last 7 days", "This Year")
 - **Custom** — your own drop-down content
-
-Source: `articles/controls-and-libraries/data-grid/filtering-and-searching/filter-dropdown/`.
 
 ### Filter by Display Text (`ColumnFilterMode`)
 
@@ -233,8 +227,6 @@ grid.MergeColumnFilters("[Freight] > 100");
 ```
 
 Users can layer additional filters on top, but cannot remove the fixed criterion.
-
-Source: `articles/controls-and-libraries/data-grid/filtering-and-searching/filtering-in-code.md`.
 
 ### Data Analysis Filters (Top/Bottom, Above/Below Average, Unique, Duplicate)
 
@@ -302,8 +294,6 @@ Event-based alternative: handle `GridControl.CustomRowFilter` directly (non-MVVM
 
 > **Performance**: this runs for every row on every refresh. Keep the predicate fast.
 
-Source: `articles/controls-and-libraries/data-grid/filtering-and-searching/filter-modes-and-custom-filtering.md`.
-
 ### `SubstituteFilter` — Replace the User's Filter Before Application
 
 Modify the filter criterion the user produced (e.g., expand "USA" to include territories, or rewrite a regex match into a `Like` clause) before the grid applies it:
@@ -333,8 +323,6 @@ Use cases:
 - Map a display-text filter to a different field
 
 `SubstituteFilter` fires only when the user changes the filter via UI. To apply a global / always-on constraint, use `FixedFilter` instead.
-
-Source: `articles/controls-and-libraries/data-grid/filtering-and-searching/filter-modes-and-custom-filtering.md`.
 
 ### Search
 
@@ -371,7 +359,7 @@ var vectorCollection = new InMemoryCollection<string, VectorStoreRecord>(
 container.RegisterVectorCollection(vectorCollection);
 ```
 
-> The Data Grid supports AI-powered Semantic Search via the `DevExpress.AIIntegration.Wpf` package. Unlike substring search, semantic search analyzes the query as natural language. Source: `articles/ai-powered-extensions/semantic-search.md`.
+> The Data Grid supports AI-powered Semantic Search via the `DevExpress.AIIntegration.Wpf` package. Unlike substring search, semantic search analyzes the query as natural language.
 
 ### Customize Search Behavior
 
@@ -485,7 +473,7 @@ Group rows by **interval** instead of by raw value — e.g., group dates by mont
 | `DateRange` | Group by named range (Today, Yesterday, Last Week, Last Month, etc.) |
 | `Alphabetical` | Group strings by first letter |
 
-> Verify exact enum names against `apidoc/DevExpress.Xpf.Grid/ColumnGroupInterval/` if your version differs — the values listed are standard.
+> Verify exact enum names with `devexpress_docs_search` if your version differs — the values listed are standard.
 
 Multi-level date grouping (Year → Month):
 
@@ -493,8 +481,6 @@ Multi-level date grouping (Year → Month):
 <dxg:GridColumn FieldName="OrderDate" GroupIndex="0" GroupInterval="DateYear"  SortFieldName="OrderDate"/>
 <dxg:GridColumn FieldName="OrderDate" GroupIndex="1" GroupInterval="DateMonth" SortFieldName="OrderDate"/>
 ```
-
-Source: `articles/controls-and-libraries/data-grid/grouping/group-modes-and-custom-grouping.md`.
 
 ### Merged Grouping
 
@@ -562,8 +548,6 @@ public void CustomGroupDisplayText(CustomGroupDisplayTextArgs args) {
 }
 ```
 
-Source: `articles/controls-and-libraries/data-grid/grouping/group-modes-and-custom-grouping.md`.
-
 ### Customize Group Row Appearance
 
 | Property | Effect |
@@ -590,7 +574,7 @@ Source: `articles/controls-and-libraries/data-grid/grouping/group-modes-and-cust
 | `GridViewBase.ExpandAllGroups()` | Expand all |
 | `GridViewBase.CollapseAllGroups()` | Collapse all |
 
-> Verify exact method signatures against `apidoc/DevExpress.Xpf.Grid/GridViewBase/` if needed.
+> Verify exact method signatures with `devexpress_docs_search` if needed.
 
 ### Grouping Requires Sorting
 
@@ -622,8 +606,6 @@ The following do NOT work in server mode / virtual sources (the server does sort
 | Standard `FilterString` / `FilterCriteria` | ✅ | ✅ |
 | `Custom Sort` of group rows by summary | ❌ | ❌ |
 
-Source: `articles/controls-and-libraries/data-grid/bind-to-data/server-mode-and-instant-feedback/server-mode-limitations.md`.
-
 ## Apply to TreeListControl
 
 | GridControl member | TreeListControl equivalent |
@@ -636,7 +618,7 @@ Source: `articles/controls-and-libraries/data-grid/bind-to-data/server-mode-and-
 | `DataControlBase.FilterString` / `FilterCriteria` | same |
 | `DataViewBase.SearchStringToFilterCriteria` event | same |
 
-TreeListControl supports filtering with the same Criteria Language Syntax, plus tree-aware modes (see `articles/controls-and-libraries/data-grid/grid-view-data-layout/nodes/filter-nodes.md`).
+TreeListControl supports filtering with the same Criteria Language Syntax, plus tree-aware modes.
 
 ## Common Issues
 
@@ -645,25 +627,3 @@ TreeListControl supports filtering with the same Criteria Language Syntax, plus 
 - **DisplayText sort returns alphabetic order on numbers** — that's the intended behavior (display text is a string). Switch to `Value` if you want numeric ordering.
 - **Custom group caption shows raw value** — the `CustomGroupDisplayText` handler isn't matching the right `FieldName`, or fires before `CustomColumnGroup` has decided the bucket. Check both events have the column's `SortMode = Custom`.
 - **`SubstituteFilter` runs in a tight loop** — your handler reassigns `e.Filter` to a new criteria that the grid then passes back through `SubstituteFilter`. Guard with a flag or compare structurally.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/sorting.md`
-- `articles/controls-and-libraries/data-grid/sorting/sorting-modes-and-custom-sorting.md`
-- `articles/controls-and-libraries/data-grid/sorting/sorting-in-code.md`
-- `articles/controls-and-libraries/data-grid/sorting/sorting-group-rows-by-summary-values.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/filter-modes-and-custom-filtering.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/filtering-in-code.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/filter-dropdown/` (Regular, Checked, Excel-style, Date-Time, Custom)
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/automatic-filter-row.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/filter-editor.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/data-analysis-filters.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/conditional-formatting-filters.md`
-- `articles/controls-and-libraries/data-grid/filtering-and-searching/predefined-filters.md`
-- `articles/controls-and-libraries/data-grid/grouping.md`
-- `articles/controls-and-libraries/data-grid/grouping/group-modes-and-custom-grouping.md`
-- `articles/controls-and-libraries/data-grid/grouping/grouping-in-code.md`
-- `articles/controls-and-libraries/data-grid/grouping/processing-group-rows.md`
-- `articles/controls-and-libraries/data-grid/grouping/expanding-and-collapsing-group-rows.md`
-- `templates/ai-semantic-search-tip.md` (embedded include)

@@ -369,7 +369,7 @@ Use explicit links when an item must appear in multiple places.
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Window must be `ThemedWindow`** for Ribbon UI. Set `WindowKind="Ribbon"` for full title-bar integration.
 2. **Build verification**: After changes, run `dotnet build` and report errors before claiming success.

@@ -61,6 +61,22 @@ deptOptions = { dataSource: ['IT', 'HR', 'Finance'], placeholder: 'Select depart
 <SimpleItem dataField="department" editorType="dxSelectBox" editorOptions={deptOptions} />
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .Items(items => {
+        items.AddSimple().DataField("Department")
+            .Editor(e => e.SelectBox()
+                .DataSource(new[] { "IT", "HR", "Finance" })
+                .Placeholder("Select department")
+            );
+    })
+)
+```
+
+> **No `EditorType`/`EditorOptions` methods.** Use `.Editor(e => e.<Widget>()...)` to override an item's editor — it takes the same builder as the standalone component (e.g. `e.SelectBox()`, `e.DateBox()`, `e.TextArea()`). `EditorType` and `EditorOptions` are jQuery/JS option names and do not exist on the Razor item builders.
+
 ### Custom item template
 
 When you need an editor or content that is not a standard DevExtreme widget:
@@ -112,6 +128,19 @@ $('#form').dxForm({
     <SimpleItem dataField="position" />
     <SimpleItem dataField="notes" colSpan={2} />
 </Form>
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .ColCount(2)
+    .Items(items => {
+        items.AddFor(m => m.Name);
+        items.AddFor(m => m.Position);
+        items.AddFor(m => m.Notes).ColSpan(2);
+    })
+)
 ```
 
 ### Responsive columns
@@ -204,6 +233,29 @@ import { Form, SimpleItem, GroupItem } from 'devextreme-react/form';
 </Form>
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .ColCount(2)
+    .Items(items => {
+        items.AddGroup().Caption("Personal Information")
+            .Items(groupItems => {
+                groupItems.AddFor(m => m.Name);
+                groupItems.AddFor(m => m.Position);
+                groupItems.AddFor(m => m.HireDate);
+            });
+        items.AddGroup().Caption("Contacts")
+            .Items(groupItems => {
+                groupItems.AddFor(m => m.Phone);
+                groupItems.AddFor(m => m.Email);
+            });
+    })
+)
+```
+
+> **No `AddGroup(config => ...)` overload.** `AddGroup()` takes no arguments and returns a builder — chain `.Caption()`, `.ColCount()`, `.Items()`, etc. directly off it. The same fluent-chain pattern applies to `AddTabbed()`, `AddSimple()`, and `AddButton()`.
+
 ## Tabs
 
 Use `TabbedItem` when you want to show related items in switchable panels.
@@ -269,4 +321,24 @@ import { Form, TabbedItem, Tab, SimpleItem } from 'devextreme-react/form';
         </Tab>
     </TabbedItem>
 </Form>
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .Items(items => {
+        items.AddTabbed().Tabs(tabs => {
+            tabs.Add().Title("Personal")
+                .Items(tabItems => {
+                    tabItems.AddFor(m => m.Name);
+                });
+            tabs.Add().Title("Contacts")
+                .Items(tabItems => {
+                    tabItems.AddFor(m => m.Phone);
+                    tabItems.AddFor(m => m.Email);
+                });
+        });
+    })
+)
 ```

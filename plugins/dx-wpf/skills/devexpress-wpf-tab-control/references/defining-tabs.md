@@ -301,8 +301,8 @@ The user closes a tab → `TabHidden` fires → we remove the item from the sour
 
 ## Source Material
 
-- `articles/controls-and-libraries/layout-management/tab-control.md` (https://docs.devexpress.com/content/WPF/7975?md=true)
-- `articles/controls-and-libraries/layout-management/tab-control/concepts/binding-to-data-overview.md` (https://docs.devexpress.com/content/WPF/7978?md=true)
+- tab-control: https://docs.devexpress.com/content/WPF/7975?md=true
+- binding-to-data-overview: https://docs.devexpress.com/content/WPF/7978?md=true
 - `DevExpress.Xpf.Core.DXTabControl` class reference
 - `DevExpress.Xpf.Core.DXTabItem` class reference
-- `articles/controls-and-libraries/layout-management/tab-control/concepts/adding-and-removing-tab-items.md` (https://docs.devexpress.com/content/WPF/113904?md=true)
+- adding-and-removing-tab-items: https://docs.devexpress.com/content/WPF/113904?md=true

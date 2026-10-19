@@ -37,7 +37,7 @@ document.Save(new FileStream("Invoice2.pdf", FileMode.Create, FileAccess.Write))
 ```csharp
 Page page = document.Pages[0];
 FormTemplate form = new() { Bounds = page.MediaBox };
-form.AddTextFragment(new TextFragment {
+form.Fragments.Add(new TextFragment {
     Text = "Watermark",
     RotationAngle = 45,
     ForegroundFill = new SolidFill(PdfColor.Red),
@@ -62,6 +62,7 @@ foreach (var page in document.Pages) {
             ta.Title?.IndexOf("Brian Zetc", StringComparison.OrdinalIgnoreCase) >= 0) {
             ta.Content = "Resolved";
             ta.Color = PdfColor.Green;
+        }
     }
 }
 ```
@@ -96,7 +97,6 @@ document.Pages[0].Annotations.Add(new FreeTextAnnotation(new RectangleF(310, 50,
     BorderEffect = new AnnotationBorderEffect {
         Style = AnnotationBorderEffectStyle.CloudyEffect, Intensity = 1 },
     Border = new AnnotationBorder {
-    Border = new AnnotationBorder {
         Width = 2,
         Style = new LineStyle { DashPattern = new double[] { 1.5, 2.0 }, DashPhase = 2.5d },
         HorizontalCornerRadius = 5, VerticalCornerRadius = 5 },
@@ -130,7 +130,7 @@ page.Annotations.Add(new LinkAnnotation(new RectangleF(50, 530, 180, 50)) {
 
 ```csharp
 page.Annotations.Add(new LinkAnnotation(new RectangleF(50, 530, 180, 50)) {
-    Action = new GoToAction { Destination = new FitDestination { PageIndex = 2 } },
+    Action = new GoToAction { Destination = new FitDestination(), Page = document.Pages[2] },
     HighlightingMode = AnnotationHighlightingMode.Push
 });
 ```
@@ -140,7 +140,8 @@ page.Annotations.Add(new LinkAnnotation(new RectangleF(50, 530, 180, 50)) {
 ```csharp
 page.Annotations.Add(new LinkAnnotation(new RectangleF(50, 530, 180, 50)) {
     Action = new RemoteGoToAction {
-        Destination = new FitDestination { PageIndex = 1 },
+        PageIndex = 1,
+        Destination = new FitDestination(),
         FileSpecification = new FileSpecification { FileName = "Invoice.pdf" },
         OpenInNewWindow = true
     }
@@ -196,9 +197,9 @@ page.Annotations.Add(new CircleAnnotation(rect) {
 
 ```csharp
 // Static stamp
-document.Pages[0].Annotations.Add(new RubberStampAnnotation(new RectangleF(10, 550, 240, 50)) {
+document.Pages[0].Annotations.Add(
+    new RubberStampAnnotation(new RectangleF(10, 550, 240, 50), RubberStampAnnotationIconName.TopSecret) {
     Title = "Jesse Faden",
-    IconName = RubberStampAnnotationIconName.TopSecret,
     CreationDate = DateTime.Now,
     Subject = "Approval",
     Content = "This document has been approved."
@@ -211,9 +212,8 @@ document.Pages[0].Annotations.Add(
     });
 
 // Custom stamp from another PDF page
-var stamp = new RubberStampAnnotation(new RectangleF(10, 550, 240, 50));
 using var iconStream = File.OpenRead("document.pdf");
-stamp.SetCustomIcon(iconStream, 3);
+var stamp = new RubberStampAnnotation(new RectangleF(10, 550, 240, 50), iconStream, 3);
 document.Pages[0].Annotations.Add(stamp);
 ```
 
@@ -223,11 +223,12 @@ document.Pages[0].Annotations.Add(stamp);
 
 ```csharp
 // Add a reply (comment) to an annotation
-TextAnnotation ann = /* find annotation */;
-ann.AddReply(document.Pages[0], "Cardle Anita L", "Thank you!");
+Page page = document.Pages[0];
+TextAnnotation annotation = page.Annotations.OfType<TextAnnotation>().First();
+annotation.AddReply(page, "Cardle Anita L", "Thank you!");
 
 // Add a review
-annotation.AddReview(document.Pages[0], "Cardle Anita L", ReviewStatus.Accepted);
+annotation.AddReview(page, "Cardle Anita L", ReviewStatus.Accepted);
 // ReviewStatus values: None, Accepted, Rejected, Cancelled, Completed, AsIs
 
 // Get review history

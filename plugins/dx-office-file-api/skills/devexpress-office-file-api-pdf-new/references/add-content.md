@@ -92,7 +92,8 @@ using (PdfDocument pdfDocument = new PdfDocument()) {
                "generate, convert, merge, split, edit, password-protect, and digitally " +
                "sign PDF files.",
         Location = new PointF(10, 740),
-        Font = new DXFont("Courier New", 11, DXFontStyle.Regular),
+        Font = new TextFont("Courier New"),
+        FontSize = 11,
         Width = 500,
         Height = 500,
         StringFormat = new DXStringFormat() {
@@ -117,7 +118,8 @@ Using pdfDocument As New PdfDocument()
     Dim multiLine As New ParagraphFragment() With {
         .Text = "The PDF Document API is a non-visual .NET library...",
         .Location = New PointF(10, 740),
-        .Font = New DXFont("Courier New", 11, DXFontStyle.Regular),
+        .Font = New TextFont("Courier New"),
+        .FontSize = 11,
         .Width = 500,
         .Height = 500,
         .StringFormat = New DXStringFormat() With {
@@ -143,8 +145,7 @@ using System.IO;
 
 using (PdfDocument pdfDocument = new PdfDocument()) {
     var page = pdfDocument.Pages.Add(DXPaperKind.A4);
-    var image = new ImageFragment {
-        Image = DXImage.FromStream(new FileStream("logo.png", FileMode.Open, FileAccess.Read)),
+    var image = new ImageFragment(DXImage.FromStream(new FileStream("logo.png", FileMode.Open, FileAccess.Read))) {
         Location = new PointF(100, 100),
         SkewX = 20,
     };
@@ -162,8 +163,7 @@ Imports System.IO
 
 Using pdfDocument As New PdfDocument()
     Dim page = pdfDocument.Pages.Add(DXPaperKind.A4)
-    Dim image As New ImageFragment With {
-        .Image = DXImage.FromStream(New FileStream("logo.png", FileMode.Open, FileAccess.Read)),
+    Dim image As New ImageFragment(DXImage.FromStream(New FileStream("logo.png", FileMode.Open, FileAccess.Read))) With {
         .Location = New PointF(100, 100),
         .SkewX = 20
     }
@@ -172,7 +172,7 @@ Using pdfDocument As New PdfDocument()
 End Using
 ```
 
-**Alternative**: `DXImage.FromFile("logo.png")` or `new ImageFragment(dxImage) { Location = ..., Size = new SizeF(200, 100) }`.
+**Alternative**: `page.AddImageFragment(dxImage, x, y)` adds an image at a position and returns the `ImageFragment`.
 
 ## Add Shapes (PathFragment)
 

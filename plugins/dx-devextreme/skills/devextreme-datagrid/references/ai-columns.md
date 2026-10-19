@@ -40,6 +40,12 @@ import { AIIntegration } from 'devextreme-vue/common/ai-integration';
 import { AIIntegration } from 'devextreme-react/common/ai-integration';
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+<script src="~/js/dx.ai-integration.js" asp-append-version="true"></script>
+```
+
 ---
 
 ## Configure `AIIntegration`
@@ -204,6 +210,28 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .DataSource(Model.Products, "id")
+    .AiIntegration(new JS("columnAiIntegration"))
+    .Columns(columns => {
+        columns.Add().DataField("Name").Caption("Product");
+        columns.Add().DataField("Description").Caption("Description");
+        columns.Add().DataField("Summary")
+            .Type(GridCommandColumnType.AI)
+            .Caption("AI Summary")
+            .AI(ai => ai
+                .Mode(AIColumnMode.Auto)
+                .Prompt("Summarize this product in one sentence.")
+                .NoDataText("No summary available")
+            )
+            .Width(250);
+    })
+)
+```
 ---
 
 ## `ai` Column Options
@@ -287,6 +315,25 @@ function onAIColumnRequestCreating(e: DataGridTypes.AIColumnRequestCreatingEvent
 }
 
 <DataGrid onAIColumnRequestCreating={onAIColumnRequestCreating} />
+```
+
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .OnAIColumnRequestCreating("onAIColumnRequestCreating")
+)
+
+<script>
+function onAIColumnRequestCreating(e) {
+    e.data = e.data.map((item) => ({
+        id: item.id,
+        name: item.name,
+        description: item.description
+    }));
+}
+</script>
 ```
 
 ---

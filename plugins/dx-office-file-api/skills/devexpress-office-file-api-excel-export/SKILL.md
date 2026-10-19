@@ -11,7 +11,7 @@ metadata:
 
 The Excel Export Library is a low-level, streaming .NET API for generating Excel files (.xlsx, .xls, .csv) with a minimal memory footprint. It writes rows sequentially to an output stream and cannot read or modify existing files. Use it when you need to produce large Excel reports from databases or data grids without loading the entire document into RAM. The primary namespace is `DevExpress.Export.Xl`.
 
-## CRITICAL: Excel Export Library vs. Spreadsheet Document API
+## Excel Export Library vs. Spreadsheet Document API
 
 | | Excel Export Library | Spreadsheet Document API |
 |---|---|---|
@@ -389,7 +389,7 @@ using (IXlCell cell = row.CreateCell())
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Streaming only**: This API writes forward. You cannot go back to modify a previously written row or cell.
 2. **Dispose order matters**: Dispose `IXlCell` before creating the next cell, `IXlRow` before the next row, `IXlSheet` before the next sheet, and `IXlDocument` to finalize the file. Always use nested `using` blocks.

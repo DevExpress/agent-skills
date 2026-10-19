@@ -115,6 +115,27 @@ function App() {
 export default App;
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .DataSource(employees, "EmployeeID")
+    .ShowBorders(true)
+)
+```
+
+> **Don't pair `.DataSource(array)` with `.KeyExpr(...)`.** Passing a plain array/`IEnumerable` to `.DataSource()` implicitly wraps it in an `ArrayStore`, and `ArrayStore`'s key is set on the store itself, not via the grid's `keyExpr` — a separate, later-applied option. Use the `.DataSource(data, "KeyField")` overload instead; it sets the `ArrayStore` key correctly. Mixing the two produces warning `W1011` ("the keyExpr option is not applied when dataSource is not an array") and editing/selection silently misbehave.
+
+```cshtml
+@{
+    var employees = new[] {
+        new { EmployeeID = 1, FullName = "Nancy Davolio", Position = "Sales Representative" },
+        new { EmployeeID = 2, FullName = "Andrew Fuller", Position = "VP Sales" }
+    };
+}
+```
+
 ---
 
 ## Binding to a Remote Data Source
@@ -163,6 +184,16 @@ $('#data-grid').dxDataGrid({ dataSource, keyExpr: 'ID', remoteOperations: true }
 ```tsx
 // React
 <DataGrid dataSource={dataSource} keyExpr="ID" remoteOperations={true} />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .DataSource(dataSource)
+    .KeyExpr("ID")
+    .RemoteOperations(true)
+)
 ```
 
 ---

@@ -265,5 +265,5 @@ public class MainViewModel {
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/axes/axis-titles.md` (https://docs.devexpress.com/content/WPF/7096?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/axes/axis-labels.md` (https://docs.devexpress.com/content/WPF/6336?md=true)
+- axis-titles: https://docs.devexpress.com/content/WPF/7096?md=true
+- axis-labels: https://docs.devexpress.com/content/WPF/6336?md=true

@@ -195,6 +195,6 @@ dotnet run
 
 ## Source Material
 
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/overview/getting-started.md` (https://docs.devexpress.com/content/WPF/11443?md=true)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/ribbon-control.md` (https://docs.devexpress.com/content/WPF/7954?md=true)
-- `articles/controls-and-libraries/ribbon-bars-and-menu/ribbon/ribbon-structure/dxribbonwindow.md` (https://docs.devexpress.com/content/WPF/7980?md=true)
+- getting-started: https://docs.devexpress.com/content/WPF/11443?md=true
+- ribbon-control: https://docs.devexpress.com/content/WPF/7954?md=true
+- dxribbonwindow: https://docs.devexpress.com/content/WPF/7980?md=true

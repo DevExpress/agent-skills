@@ -273,7 +273,7 @@ ribbon.StatusBar.ItemLinks.Add(zoom);
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Verify builds**: after code changes, run `dotnet build` and fix every error before you claim success. If the build cannot be executed in this environment, say so explicitly and report the change as unverified — never report success on an unverified build.
 2. **Author the form's `.Designer.cs`, not the constructor body.** Declare the `RibbonControl` (or `BarManager`), its `RibbonPage`/`RibbonPageGroup`/`BarItem*` objects, and the `ItemLinks` as fields of the `*.Designer.cs` partial class and build them in `InitializeComponent()`, wrapping setup in `((System.ComponentModel.ISupportInitialize)(ribbonControl1)).BeginInit()` … `EndInit()`. Keep only `ItemClick` handlers and runtime data in the form's `.cs` file. Building the whole ribbon in the constructor leaves the designer file empty so the form cannot be reopened in the Visual Studio WinForms designer. See [references/getting-started.md](references/getting-started.md#authoring-the-designercs-file).

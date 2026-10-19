@@ -35,8 +35,6 @@ Use this when you need to:
 - `ExportToXlsx` / `ExportToXls` / `ExportToCsv` → Data-Aware mode
 - Everything else (`ExportToPdf`, `ExportToHtml`, `ExportToMht`, `ExportToRtf`, `ExportToImage`, `ExportToText`, `ExportToXps`) → WYSIWYG
 
-Source: `articles/controls-and-libraries/data-grid/printing-and-exporting/data-aware-export.md` and `wysiwyg-export.md`.
-
 ## Data-Aware Export
 
 Default mode for **XLS, XLSX, CSV**. Preserves:
@@ -57,8 +55,6 @@ view.ExportToCsv (@"C:\export\orders.csv");
 ```
 
 > `CardView` does NOT support Data-Aware export. Use WYSIWYG for cards.
-
-Source: `articles/controls-and-libraries/data-grid/printing-and-exporting/data-aware-export.md`.
 
 ### Customize Cells in the Output (Data-Aware)
 
@@ -284,8 +280,6 @@ The Print Preview window lets the user:
 - Configure page setup (orientation, margins, scaling)
 - Navigate pages
 
-Source: `articles/controls-and-libraries/data-grid/printing-and-exporting/print-data.md`.
-
 ## Embed Print Preview Into Your Window — `DocumentPreviewControl`
 
 For workflows where the preview should be part of the application UI (not a popup):
@@ -320,8 +314,6 @@ private void Button_Click_Print(object sender, RoutedEventArgs e) {
 ```
 
 `PrintableControlLink` wraps the view as a printable document; assign the link to the preview control's `DocumentSource`.
-
-Source: `articles/controls-and-libraries/data-grid/printing-and-exporting/print-data.md` § "Add Print Preview to a Project".
 
 ## Advanced Layout — `PrintableControlLink` and `CompositeLink`
 
@@ -416,13 +408,13 @@ For richer reports (designer-editable, parameters, multi-band layouts), generate
 // devexpress_docs_search(technology="WPF Data Grid", query="generate grid based report")
 ```
 
-See `articles/controls-and-libraries/data-grid/printing-and-exporting/grid-based-report-generation.md` and https://docs.devexpress.com/content/WPF/117300?md=true.
+See https://docs.devexpress.com/content/WPF/117300?md=true.
 
 ## Document Post-Processing
 
 After generation but before display / save, you can modify the document:
 
-See `articles/controls-and-libraries/data-grid/printing-and-exporting/document-post-processing.md`. Hook into the printing-exporting library's document tree (`DevExpress.XtraPrinting.PrintingSystem.Document.Pages`).
+Hook into the printing-exporting library's document tree (`DevExpress.XtraPrinting.PrintingSystem.Document.Pages`).
 
 ## Required NuGet Package
 
@@ -453,14 +445,3 @@ CardView supports only WYSIWYG export. Use `CardView.ExportToXlsx`/`Xls`/`Csv` o
 - **`AllowPrinting="False"` doesn't hide column in Data-Aware** — does work; check the column was actually configured before the export call (changes after `ExportToXlsx` is invoked don't apply to that call).
 - **CustomizeSheetHeader text shows literally for `&P`** — the page-number placeholder needs the right `Set*` overload. See the Excel sheet-header reference for valid format strings.
 - **Print preview empty for CardView** — `CardView` has different print properties (`PrintAutoCardWidth`, `PrintMaximumCardColumns`); make sure they're set to sensible values.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/printing-and-exporting.md` (root)
-- `articles/controls-and-libraries/data-grid/printing-and-exporting/data-aware-export.md`
-- `articles/controls-and-libraries/data-grid/printing-and-exporting/wysiwyg-export.md`
-- `articles/controls-and-libraries/data-grid/printing-and-exporting/print-data.md`
-- `articles/controls-and-libraries/data-grid/printing-and-exporting/grid-based-report-generation.md`
-- `articles/controls-and-libraries/data-grid/printing-and-exporting/document-post-processing.md`
-- `templates/grid-print-export-customization.md` (template include, resolved)
-- `articles/controls-and-libraries/data-grid/appearance-customization/format-cell-values.md` (cross-reference: which display techniques survive export)

@@ -1,4 +1,4 @@
-﻿# Editing — DevExpress WPF TreeList
+# Editing — DevExpress WPF TreeList
 
 `TreeListControl` uses the **same in-place editor infrastructure as `GridControl`** — `EditSettings`, `CellDisplayTemplate` + `CellEditTemplate`, Edit Forms, Edit Entire Row, `CustomColumnDisplayText`, unbound columns, read-only patterns. This reference covers TreeList-specific quirks; for the full editing decision matrix (9 display techniques, when to use which), see [the data-grid skill's `references/cell-display-and-editing.md`](../../devexpress-wpf-data-grid/references/cell-display-and-editing.md).
 
@@ -100,7 +100,7 @@ void AddManager(Employee parent, string name) {
 }
 ```
 
-For non-observable sources (`List<T>`), you must rebind the `ItemsSource` after a change. Source: `articles/controls-and-libraries/tree-list.md` references `Add and Remove Nodes` at https://docs.devexpress.com/content/WPF/6123?md=true.
+For non-observable sources (`List<T>`), you must rebind the `ItemsSource` after a change. See "Add and Remove Nodes": https://docs.devexpress.com/content/WPF/6123?md=true.
 
 ## Add / Remove Nodes — Unbound Mode
 
@@ -124,7 +124,7 @@ parentNode.Nodes.Remove(existingChild);
 
 ## Edit Forms
 
-`TreeListControl` supports Edit Forms (a popup form for editing a row instead of inline editing). See `articles/controls-and-libraries/data-grid/data-editing-and-validation/` (shared with GridControl) and https://docs.devexpress.com/content/WPF/403491?md=true.
+`TreeListControl` supports Edit Forms (a popup form for editing a row instead of inline editing). See https://docs.devexpress.com/content/WPF/403491?md=true.
 
 ```xaml
 <dxg:TreeListView EditFormShowMode="InlineHidePreviousRow"
@@ -178,9 +178,3 @@ private void View_CellValueChanged(object sender,
         $"Cell [{e.Row}][{e.Column.FieldName}] = {e.Value}");
 }
 ```
-
-## Source Material
-
-- `articles/controls-and-libraries/tree-list.md` (Edit Data section)
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/data-editing.md`
-- `articles/controls-and-libraries/data-grid/data-editing-and-validation/` (shared validation pipeline)

@@ -151,5 +151,5 @@ Required assembly references (when not using NuGet):
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/getting-started/getting-started.md` (https://docs.devexpress.com/content/WPF/5854?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/getting-started/lesson-1-bind-chart-series-to-data.md` (https://docs.devexpress.com/content/WPF/9757?md=true)
+- getting-started: https://docs.devexpress.com/content/WPF/5854?md=true
+- lesson-1-bind-chart-series-to-data: https://docs.devexpress.com/content/WPF/9757?md=true

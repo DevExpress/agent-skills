@@ -2,12 +2,6 @@
   Quickstart MainView for the DevExpress WPF TreeList.
   Drop this into a new WPF .NET 8 project after adding the
   DevExpress.Wpf.Grid.Core NuGet package.
-
-  Verified APIs (apidoc / lesson articles):
-    - DevExpress.Xpf.Grid.TreeListControl
-    - DevExpress.Xpf.Grid.TreeListView (KeyFieldName, ParentFieldName,
-      AutoWidth, AutoExpandAllNodes, AllowHeaderNavigation)
-    - DevExpress.Xpf.Grid.TreeListColumn (FieldName, Header, Width)
 -->
 <Window x:Class="DevExpressTreeListQuickstart.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

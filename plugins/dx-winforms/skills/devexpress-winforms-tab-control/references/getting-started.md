@@ -95,6 +95,5 @@ Key points:
 
 ## Source Material
 
-- `articles/controls-and-libraries/form-layout-managers/tab-control.md` (`xref:114576`) — Tab Control overview
 - [XtraTabControl](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.XtraTabControl?md=true) — `XtraTabControl` class reference
 - [XtraTabPage](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTab.XtraTabPage?md=true) — `XtraTabPage` class reference

@@ -28,8 +28,6 @@ Use this when you need to:
 | **Different details per row** | `DetailDescriptorSelector` + `DetailDescriptorTrigger` | Master rows have different types and need different details (VP → Subordinates, Sales Rep → Customers) | Selector can only bind to master row's properties |
 | **Focused-row inline expansion** (alternative to descriptors) | `TableView.RowDetailsTemplate` | Show extra info for the focused row only, inline below it | Single-row; not a per-row collection |
 
-Source: `articles/controls-and-libraries/data-grid/master-detail-data-representation.md` plus subtopics in `master-detail/`.
-
 ## Setup: Master Grid
 
 ```xaml
@@ -90,8 +88,6 @@ The most common case: each master row expands to a nested grid bound to a collec
 </dxg:DataControlDetailDescriptor>
 ```
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/data-grid-in-details.md`.
-
 ### Nested Detail Layouts (Multi-Level)
 
 ```xaml
@@ -146,8 +142,6 @@ The template's `DataContext` is the **master row's bound object** (e.g., `Custom
 
 > **Stacked details**: If you need to show multiple details per master row at once (not in tabs), wrap them in a single `ContentDetailDescriptor` with a UserControl that contains both. The Data Grid does not support stacked detail descriptors directly.
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/custom-content-in-details.md`.
-
 ## Pattern 3: Tabbed View (TabViewDetailDescriptor)
 
 Show multiple details per master row organized into tabs:
@@ -190,8 +184,6 @@ Show multiple details per master row organized into tabs:
 
 When detail content is wrapped in `DataControlDetailDescriptor`, users can use <kbd>Ctrl</kbd>+<kbd>1</kbd> through <kbd>Ctrl</kbd>+<kbd>9</kbd> to switch between the first nine tabs.
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/tabbed-view-for-details.md`.
-
 ## Pattern 4: Data-Dependent Details (DetailDescriptorSelector)
 
 Different master rows can show different kinds of details. For example: a Vice President shows a list of subordinates, a Sales Representative shows a list of customers:
@@ -228,8 +220,6 @@ Different master rows can show different kinds of details. For example: a Vice P
 
 The trigger's child can be any descriptor type (`DataControlDetailDescriptor`, `ContentDetailDescriptor`, `TabViewDetailDescriptor`, or even another `DetailDescriptorSelector`).
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/data-dependent-details.md`.
-
 ## Pattern 5: Row Details Template (Focused-Row Only)
 
 Alternative to descriptors: show extra content **only for the focused row**, inline below it. No expand buttons — the content appears when a row is selected, disappears when another row is selected.
@@ -253,8 +243,6 @@ Use `RowDetailsTemplate` when:
 - Detail belongs to one row at a time (no need to compare details across rows)
 - Detail is small and visually subordinate to the row
 - You want a less mouse-heavy UI than expand-buttons
-
-Source: `articles/controls-and-libraries/data-grid/master-detail/custom-content-in-details.md` § "Display Custom Content in Row Details".
 
 ## Hide Detail Buttons Conditionally
 
@@ -376,8 +364,6 @@ private void TableView_PreviewMouseDown(object sender, MouseButtonEventArgs e) {
 }
 ```
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/data-grid-in-details.md` § "Handle Detail Grid Events".
-
 ## Focus and Selection Across Master and Detail
 
 ### Bind Focused Items Per Level
@@ -469,8 +455,6 @@ Configure both:
 - The grid searches **only expanded** detail views. Master rows are NOT auto-expanded for search.
 - Result Info Panel, Navigation Buttons, and Scrollbar Annotations are **not supported** for detail search results.
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/data-grid-in-details.md` § "Enable Search Operations in Detail Grid".
-
 ## Show Detail Header
 
 Display a header above the detail grid:
@@ -534,8 +518,6 @@ For richer header content, use `DetailDescriptorBase.ContentTemplate` — the te
 | End-user grouping | Yes | No |
 | Different details for different rows | `DetailDescriptorSelector` | Not directly |
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/data-grid-in-details.md` § "Master-Detail vs TreeListView".
-
 ## Limitations
 
 ### Unsupported Features
@@ -557,8 +539,6 @@ Source: `articles/controls-and-libraries/data-grid/master-detail/data-grid-in-de
 - **Search** — only searches expanded details; does not auto-expand master rows for matches. No Result Info Panel / Navigation Buttons / Scrollbar Annotations.
 - **Fixed total summary row** — bottom summary rows are only visible when scrolled to the bottom of the detail view. Set the detail view's `TotalSummaryPosition="Top"` to keep visible.
 
-Source: `articles/controls-and-libraries/data-grid/master-detail/master-detail-mode-limitations.md`.
-
 ## TreeListControl
 
 `TreeListControl` does **NOT** support master-detail (which is a different relationship between master rows and child collections). For hierarchical data in a single tree, use `TreeListControl` directly. For Customer → Orders style master-detail, use `GridControl` with `DataControlDetailDescriptor`.
@@ -570,13 +550,3 @@ Source: `articles/controls-and-libraries/data-grid/master-detail/master-detail-m
 - **Selecting in a detail doesn't update ViewModel** — the binding source for the detail descriptor is per-row. Use `ParentPath` to enable TwoWay binding, or fall back to per-detail-control queries.
 - **`grid.GetDetail` returns null** — the master row is collapsed. Expand it first via `ExpandMasterRow`, then query.
 - **Detail column reorder affects all instances** — by design. There's no API to make per-master detail column layouts; if you need that, use `ContentDetailDescriptor` with a custom UserControl.
-
-## Source Material
-
-- `articles/controls-and-libraries/data-grid/master-detail-data-representation.md` (root)
-- `articles/controls-and-libraries/data-grid/master-detail/data-grid-in-details.md`
-- `articles/controls-and-libraries/data-grid/master-detail/custom-content-in-details.md`
-- `articles/controls-and-libraries/data-grid/master-detail/tabbed-view-for-details.md`
-- `articles/controls-and-libraries/data-grid/master-detail/data-dependent-details.md`
-- `articles/controls-and-libraries/data-grid/master-detail/master-detail-mode-limitations.md`
-- `articles/controls-and-libraries/data-grid/master-detail/master-detail-member-table.md`

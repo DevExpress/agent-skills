@@ -151,9 +151,3 @@ Stream-based overloads also exist. See [layout-and-fields.md](layout-and-fields.
 - [Layout and Fields](layout-and-fields.md) — areas, field groups, customization form
 - [End-User Features](end-user-features.md) — drag-drop, drill-down, filter dropdown, KPI
 - [Advanced Features](advanced-features.md) — conditional formatting, chart integration, print/export
-
-## Source Material
-
-- `articles/controls-and-libraries/pivot-grid/getting-started/NET-Core/lesson-1-bind-a-pivot-grid-to-an-mdb-database-net.md`
-- `articles/controls-and-libraries/pivot-grid/fundamentals/fields.md`
-- `templates/add-pivot-to-the-net-core-wpf-project.md` (template include resolved)

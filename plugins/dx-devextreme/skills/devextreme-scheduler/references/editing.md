@@ -59,6 +59,20 @@ import { Scheduler, Editing } from 'devextreme-react/scheduler';
 </Scheduler>
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .Editing(editing => editing
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+        .AllowDragging(false)
+        .AllowResizing(true)
+    )
+)
+```
+
 ### `editing` Properties
 
 | Property | Type | Default | Description |
@@ -151,6 +165,20 @@ onUpdating(e: DxSchedulerTypes.AppointmentUpdatingEvent): void {
 />
 ```
 
+### ASP.NET Core Controls — CRUD Events
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .OnAppointmentAdding("onAdding")
+    .OnAppointmentAdded("onAdded")
+    .OnAppointmentUpdating("onUpdating")
+    .OnAppointmentUpdated("onUpdated")
+    .OnAppointmentDeleting("onDeleting")
+    .OnAppointmentDeleted("onDeleted")
+)
+```
+
 ---
 
 ## Customizing the Edit Form (`onAppointmentFormOpening`)
@@ -190,6 +218,14 @@ function onAppointmentFormOpening(e: any): void {
 ```tsx
 // React
 <Scheduler onAppointmentFormOpening={onFormOpening} />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .OnAppointmentFormOpening("onFormOpening")
+)
 ```
 
 ### Make a Field Read-Only for Existing Appointments

@@ -233,7 +233,7 @@ When you need to:
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After making changes, verify the project builds with `dotnet build`. Check for errors before reporting success.
 2. **No XAFML/Model Editor editing**: Always solve problems via C# code — attributes, `IModelExtender`, `GeneratorUpdater`, controller overrides, `ModuleBase` overrides. Never suggest editing `.xafml` files or using the Model Editor UI.

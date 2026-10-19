@@ -245,13 +245,13 @@ Visual Studio includes a **Mask Editor** wizard accessible from the editor's sma
 
 ## Source Material
 
-- `articles/controls-and-libraries/data-editors/common-features/masked-input.md` (https://docs.devexpress.com/content/WPF/6945?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-numeric.md` (https://docs.devexpress.com/content/WPF/6950?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-date-time.md` (https://docs.devexpress.com/content/WPF/6947?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-simple.md` (https://docs.devexpress.com/content/WPF/6951?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-extended-regular-expressions.md` (https://docs.devexpress.com/content/WPF/6949?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-custom.md` (https://docs.devexpress.com/content/WPF/404108?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-date-only.md` (https://docs.devexpress.com/content/WPF/404171?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-time-only.md` (https://docs.devexpress.com/content/WPF/404172?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-date-time-offset.md` (https://docs.devexpress.com/content/WPF/404169?md=true)
-- `articles/controls-and-libraries/data-editors/common-features/masked-input/mask-type-timespan.md` (https://docs.devexpress.com/content/WPF/400699?md=true)
+- masked-input: https://docs.devexpress.com/content/WPF/6945?md=true
+- mask-type-numeric: https://docs.devexpress.com/content/WPF/6950?md=true
+- mask-type-date-time: https://docs.devexpress.com/content/WPF/6947?md=true
+- mask-type-simple: https://docs.devexpress.com/content/WPF/6951?md=true
+- mask-type-extended-regular-expressions: https://docs.devexpress.com/content/WPF/6949?md=true
+- mask-type-custom: https://docs.devexpress.com/content/WPF/404108?md=true
+- mask-type-date-only: https://docs.devexpress.com/content/WPF/404171?md=true
+- mask-type-time-only: https://docs.devexpress.com/content/WPF/404172?md=true
+- mask-type-date-time-offset: https://docs.devexpress.com/content/WPF/404169?md=true
+- mask-type-timespan: https://docs.devexpress.com/content/WPF/400699?md=true

@@ -1,6 +1,6 @@
 ---
 name: devexpress-wpf-data-grid
-description: Build WPF applications with the DevExpress Data Grid (GridControl) — a data-aware control that displays and edits data in table, card, and treelist layouts. Use when adding GridControl to a WPF project, binding to data sources (Entity Framework Core, XPO, local collections, ICollectionView, virtual sources, server mode), configuring columns and editors, sorting, filtering, grouping, summaries, master-detail, conditional formatting, printing, and exporting (XLSX/CSV/PDF). Also use when someone mentions "DevExpress WPF grid", "GridControl", "TableView", "CardView", "TreeListView", "dxg:GridControl", "DevExpress.Xpf.Grid", "DevExpress.Wpf.Grid", "Items Source Wizard", "WPF data grid", or asks about working with tabular data, server-mode large datasets, instant feedback mode, or grid CRUD operations in WPF. Covers both .NET 8+ and .NET Framework 4.6.2+.
+description: Build WPF applications with the DevExpress Data Grid (GridControl) — a data-aware control that displays and edits data in table, card, and treelist layouts. Use when adding GridControl to a WPF project, configuring columns and editors, sorting, filtering, grouping, summaries, master-detail, conditional formatting, printing, and exporting (XLSX/CSV/PDF). Also use when someone mentions "DevExpress WPF grid", "GridControl", "TableView", "CardView", "TreeListView", "dxg:GridControl", "DevExpress.Xpf.Grid", "DevExpress.Wpf.Grid", "Items Source Wizard", "WPF data grid", or asks about grid CRUD operations, or already knows which data-binding API to use (Entity Framework Core, XPO, ICollectionView, or a specific server-mode/instant-feedback class they've already picked). For deciding *which* data source to use in the first place — including large datasets or real-time/streaming grids — see the `devexpress-wpf-grid-datasource` skill. Covers both .NET 8+ and .NET Framework 4.6.2+.
 compatibility: Requires .NET 8+ or .NET Framework 4.6.2+ targeting Windows (net8.0-windows). A valid DevExpress license is required.
 metadata:
   author: DevExpress
@@ -127,6 +127,8 @@ For .NET Framework 4.x: see [references/getting-started-dotnet-fw.md](references
 
 ### Data Binding
 Refer to [references/data-binding.md](references/data-binding.md)
+
+For an agent-driven advisor that inspects your ViewModel/DbContext/service code and picks the right source automatically, see the [`devexpress-wpf-grid-datasource`](../devexpress-wpf-grid-datasource/SKILL.md) skill instead — this section is the reference once you (or that skill) already know which source type to use.
 
 When you need to:
 - Pick the right source type (decision matrix: local, **`ChunkList<T>`**, EF Core, Server Mode, Instant Feedback, Virtual Sources, `RealTimeSource`, `ICollectionView`, `DataTable`)
@@ -442,7 +444,7 @@ XAML wires the commands:
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After any changes to a project, run `dotnet build` and report errors before claiming success. WPF type errors often only surface in build, not at edit time.
 2. **Target framework**: Data Grid is Windows-only. The `.csproj` must target `net8.0-windows` (or earlier) with `<UseWPF>true</UseWPF>`. Do not target `net8.0` (without the `-windows` suffix).

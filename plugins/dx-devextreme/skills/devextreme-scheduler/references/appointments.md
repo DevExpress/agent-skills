@@ -209,4 +209,17 @@ function AppointmentTemplate({ data }: { data: { appointmentData: { text: string
 <Scheduler appointmentRender={AppointmentTemplate} />
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().Scheduler()
+    .ID("scheduler")
+    .AppointmentTemplate(new TemplateName("appointmentTemplate"))
+)
+
+@using (Html.DevExtreme().NamedTemplate("appointmentTemplate")) {
+    <div class="custom-appt"><%- appointmentData.text %></div>
+}
+```
+
 > The template receives `{ appointmentData, targetedAppointmentData }`. For recurring appointments, `targetedAppointmentData` contains the specific occurrence dates while `appointmentData` contains the series definition.

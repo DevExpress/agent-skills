@@ -93,7 +93,4 @@ treeList.CustomDrawNodeCell += (s, e) => {
 
 ## Source Material
 
-- `articles/controls-and-libraries/tree-list/feature-center/tree-list-look-and-feel/appearances/conditional-formatting.md` (`xref:17866`)
-- `articles/.../tree-list-look-and-feel/appearances.md` (`xref:304`) and custom drawing (`xref:303`, events `xref:5658`)
-- `examples/treelist-create-at-runtime.md` — icon-set format rule (verified)
 - [CustomDrawNodeCell](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.CustomDrawNodeCell?md=true), [FormatRules](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.TreeList.FormatRules?md=true)

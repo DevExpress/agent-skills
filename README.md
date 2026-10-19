@@ -1,5 +1,7 @@
 # **DevExpress AI Agent Skills**
 
+[![skills.sh](https://skills.sh/b/devexpress/agent-skills)](https://www.skills.sh/devexpress/agent-skills)
+
 This repository stores DevExpress AI agent skills for [GitHub Copilot](https://github.com/features/copilot), [Claude Code](https://claude.ai/code), [Cursor](https://cursor.sh/), [JetBrains AI Assistant](https://www.jetbrains.com/ai/), and other AI coding assistants. Each skill contains DevExpress product knowledge: correct APIs, import paths, and ready-to-run code examples. This information helps your AI assistant generate accurate DevExpress code and reduce hallucinations and dependence on third-party libraries.
 
 **See also:** The [DevExpress Documentation MCP Server](https://docs.devexpress.com/GeneralInformation/405551) connects AI assistants directly to 300,000+ DevExpress help topics. AI Agent Skills and the MCP Server complement each other. Skills encode patterns and guardrails. The MCP Server delivers live documentation lookup.
@@ -8,19 +10,15 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 
 | **Product/Skills Readme** | **Skills** | **Docs** |
 |---|---|---|
-| [DevExtreme JavaScript](plugins/dx-devextreme/README.md) | DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, Theming | [Overview](https://js.devexpress.com/Documentation/) |
+| [DevExtreme and ASP.NET Core Controls](plugins/dx-devextreme/README.md) | Angular, React, Vue, jQuery, and ASP.NET Core Razor guidance for DataGrid, Scheduler, Form, Chat, Button, SelectBox, DateBox, CheckBox, NumberBox, TextBox, TextArea, DataSource, and Theming | [DevExtreme](https://js.devexpress.com/Documentation/) · [ASP.NET Core](https://docs.devexpress.com/AspNetCore/400263/devextreme-based-controls) |
 | [Blazor Components](plugins/dx-blazor/README.md) | AI Chat, Charts, ComboBox, Gauges, Grid, Pivot Table, Ribbon, Scheduler, Toolbar, TreeList | [Overview](https://docs.devexpress.com/Blazor/) |
-| [WPF Controls](plugins/dx-wpf/README.md) | Data Grid, Tree List, Pivot Grid, Property Grid, Data Editors, Layout Management, Ribbon & Bars, Accordion, Tab Control, Charts, Scheduler, Loading Indicators, AI Chat, MVVM | [Overview](https://docs.devexpress.com/WPF/) |
+| [WPF Controls](plugins/dx-wpf/README.md) | Data Grid, Tree List, Pivot Grid, Property Grid, Data Editors, Layout Management, Ribbon & Bars, Accordion, Tab Control, Charts, Scheduler, Loading Indicators, AI Chat, MVVM, Dependency Injection, Grid Data Source Advisor, Theme Customization, Screen from Screenshot | [Overview](https://docs.devexpress.com/WPF/) |
 | [WinForms Controls](plugins/dx-winforms/README.md) | Data Grid, Tree List, Pivot Grid, Property Grid, Charts, Scheduler, AI Chat, Data Editors, Loading Indicators, Layout Management, Ribbon and Bars, Accordion, Tab Control, MVVM | [Overview](https://docs.devexpress.com/WindowsForms/) |
-| [DevExpress Reports](plugins/dx-reporting/README.md) | Core API, ASP.NET Core, Blazor, Visual Studio Designer | [Overview](https://docs.devexpress.com/XtraReports/) |
+| [DevExpress Reports](plugins/dx-reporting/README.md) | Core API, ASP.NET Core, Blazor, WinForms, WPF, Visual Studio Designer | [Overview](https://docs.devexpress.com/XtraReports/) |
 | [Office & PDF File API](plugins/dx-office-file-api/README.md) | Spreadsheet, Word Processing, PDF, PDF New (CTP), Presentation, Barcode, Unit Conversion, Excel Export, ZIP, AI-powered Extensions | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
 | [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | Business Model, Business Logic, Business Logic XPO, Controllers, Views, Editors, Filtering, Filtering XPO, Appearance, Validation, Security, Reports, Performance | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
-| ASP.NET Core Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/AspNetCore/) |
+| [BI Dashboard](plugins/dx-dashboard/README.md) | Data Sources, Export, Dashboard Parameters (ASP.NET Core, Blazor, WinForms, and WPF apps)  | [Overview](https://docs.devexpress.com/Dashboard/) |
 | VCL Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/VCL/) |
-| BI Dashboard | *(coming soon)* | [Overview](https://docs.devexpress.com/Dashboard/) |
-
-
-
 
 ## **Installation**
 

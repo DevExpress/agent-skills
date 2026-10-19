@@ -27,6 +27,16 @@ import { DataGrid, GroupPanel } from 'devextreme-react/data-grid';
 <DataGrid><GroupPanel visible={true} /></DataGrid>
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .GroupPanel(groupPanel => groupPanel
+        .Visible(true)
+    )
+)
+```
+
 ### Pre-group in code
 
 Set `groupIndex` on a column to pre-group data. Multiple columns can be grouped; `groupIndex: 0` is the outermost group.
@@ -56,6 +66,17 @@ columns: [
 // React
 <Column dataField="Country"    groupIndex={0} />
 <Column dataField="Department" groupIndex={1} />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Columns(columns => {
+        columns.Add().DataField("Country").GroupIndex(0);
+        columns.Add().DataField("Department").GroupIndex(1);
+    })
+)
 ```
 
 ### Auto-expand groups
@@ -142,6 +163,28 @@ const salaryFormat = { type: 'currency', precision: 0 };
 </DataGrid>
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Summary(summary => {
+        summary.TotalItems(totalItems => {
+            totalItems.Add()
+                .Column("Salary")
+                .SummaryType(SummaryType.Sum)
+                .DisplayFormat("Total: {0}")
+                .ValueFormat(valueFormat => valueFormat
+                    .Type(ValueFormatType.Currency)
+                    .Precision(0));
+            totalItems.Add()
+                .Column("FullName")
+                .SummaryType(SummaryType.Count)
+                .DisplayFormat("{0} employees");
+        });
+    })
+)
+```
+
 ### Group summaries
 
 Displayed inside each group row.
@@ -178,4 +221,23 @@ summary: {
     <GroupItem summaryType="count" displayFormat="{0} records" />
     <GroupItem column="Salary" summaryType="avg" displayFormat="Avg: {0}" alignByColumn={true} />
 </Summary>
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Summary(summary => {
+        summary.GroupItems(groupItems => {
+            groupItems.Add()
+                .SummaryType(SummaryType.Count)
+                .DisplayFormat("{0} records");
+            groupItems.Add()
+                .Column("Salary")
+                .SummaryType(SummaryType.Avg)
+                .DisplayFormat("Avg: {0}")
+                .AlignByColumn(true);
+        });
+    })
+)
 ```

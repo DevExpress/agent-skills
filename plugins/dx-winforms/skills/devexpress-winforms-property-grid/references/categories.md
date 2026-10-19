@@ -188,4 +188,3 @@ e.g. `"Window Style"` → `tab.CategoryNames.Add("Window_Style")`.
 
 - Rows (categories section): `https://docs.devexpress.com/content/WindowsForms/401851?md=true`
 - Office View (tabs): `https://docs.devexpress.com/content/WindowsForms/120262?md=true`
-- `CategoryRow` class: `xref:DevExpress.XtraVerticalGrid.Rows.CategoryRow`

@@ -36,7 +36,7 @@ For programmatic control over drag-drop pipeline, handle:
 > Exact event signatures inherit from `DataViewBase`. Verify member names via DxDocs MCP if needed:
 > `devexpress_docs_search(technology="WPF TreeList", query="drag and drop events")`
 
-Source: `articles/controls-and-libraries/tree-list.md` § Drag-and-Drop (https://docs.devexpress.com/content/WPF/11346?md=true).
+Docs: https://docs.devexpress.com/content/WPF/11346?md=true.
 
 ## Conditional Formatting
 
@@ -51,12 +51,10 @@ TreeList supports the same conditional formatting engine as GridControl: color s
 </dxg:TreeListControl>
 ```
 
-**Limitations** (per `articles/controls-and-libraries/data-grid/conditional-formatting.md`):
+**Limitations**:
 
 - Only `TreeListView` in **Optimized Mode** supports conditional formatting.
 - Conditional formatting does NOT work with **Hierarchical Data Templates** (mode `HierarchicalDataTemplate`).
-
-Source: `articles/controls-and-libraries/tree-list.md` § Conditional Formatting; `articles/controls-and-libraries/data-grid/conditional-formatting.md` (shared engine).
 
 ## Printing and Exporting
 
@@ -81,7 +79,7 @@ Required package: `DevExpress.Wpf.Printing`.
 
 > Verify exact method overloads (file-path vs. stream, options object types) via DxDocs MCP if needed.
 
-Source: `articles/controls-and-libraries/tree-list.md` § Print and Export (https://docs.devexpress.com/content/WPF/117296?md=true).
+Docs: https://docs.devexpress.com/content/WPF/117296?md=true.
 
 ## Design-Time Features
 
@@ -90,8 +88,6 @@ In Visual Studio with the Unified Component Installer:
 - **Quick Actions / Smart Tag**: Click the smart tag arrow on a TreeListControl to bind `ItemsSource`, add columns, configure the View.
 - **Items Source Wizard**: Generates binding + CRUD code for Entity Framework, XPO, OData, and other sources.
 - **Toolbox**: Drag `TreeListControl` from the DevExpress toolbox section.
-
-Source: `articles/controls-and-libraries/tree-list/design-time-features.md` and `articles/controls-and-libraries/tree-list/design-time-features/customizing-unbound-treelist.md`.
 
 ## MVVM: Bind Tree State
 
@@ -108,7 +104,7 @@ Source: `articles/controls-and-libraries/tree-list/design-time-features.md` and 
                      SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"/>
 ```
 
-> Verify exact property names against `apidoc/DevExpress.Xpf.Grid/DataControlBase/` if you need to bind less common state.
+> Verify exact property names with `devexpress_docs_search` if you need to bind less common state.
 
 ## Save / Restore Layout
 
@@ -117,7 +113,7 @@ treeListControl1.SaveLayoutToXml("treelist-layout.xml");
 treeListControl1.RestoreLayoutFromXml("treelist-layout.xml");
 ```
 
-The serialized state includes column order, widths, sort, filter, and expand state. See `articles/common-concepts/save-and-restore-layouts.md`.
+The serialized state includes column order, widths, sort, filter, and expand state.
 
 ## Compare With Standard WPF TreeView
 
@@ -130,12 +126,3 @@ The serialized state includes column order, widths, sort, filter, and expand sta
 | Manual TreeViewItem tracking | `TreeListNode` (unbound) or auto-derived from data source |
 | `TreeViewItem.IsExpanded` | `TreeListNode.ExpandStateBinding` |
 | No virtualization for very large trees | Full row virtualization in Optimized Mode |
-
-## Source Material
-
-- `articles/controls-and-libraries/tree-list.md` (root article — feature overview)
-- `articles/controls-and-libraries/tree-list/design-time-features.md`
-- `articles/controls-and-libraries/tree-list/concepts.md`
-- `articles/controls-and-libraries/data-grid/drag-and-drop.md` (shared events)
-- `articles/controls-and-libraries/data-grid/conditional-formatting.md` (shared engine)
-- `articles/controls-and-libraries/data-grid/printing-and-exporting.md` (shared library)

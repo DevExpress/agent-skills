@@ -185,7 +185,7 @@ public class SeriesTemplateSelector : DataTemplateSelector {
 | `INotifyPropertyChanged` on point properties | Yes — point appearance/value updates |
 | `DataTable` — `Rows.Add` | Yes |
 
-For high-frequency updates (real-time data), see `articles/.../provide-data/best-practices-display-large-data.md`.
+For high-frequency updates (real-time data), search with `devexpress_docs_search` for "best practices display large data".
 
 ## Filtering Series Data
 
@@ -215,9 +215,9 @@ series.FilterCriteria = CriteriaOperator.Parse("[Region] = 'Asia'");
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/provide-data/provide-data.md` (https://docs.devexpress.com/content/WPF/6854?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/provide-data/bind-a-series-to-a-data-source.md` (https://docs.devexpress.com/content/WPF/7921?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/provide-data/create-a-series-manually.md` (https://docs.devexpress.com/content/WPF/7919?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/provide-data/add-points-to-a-series-manually.md` (https://docs.devexpress.com/content/WPF/7920?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/provide-data/define-a-template-for-automatic-series.md` (https://docs.devexpress.com/content/WPF/7922?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/provide-data/series-scale-types.md` (https://docs.devexpress.com/content/WPF/8453?md=true)
+- provide-data: https://docs.devexpress.com/content/WPF/6854?md=true
+- bind-a-series-to-a-data-source: https://docs.devexpress.com/content/WPF/7921?md=true
+- create-a-series-manually: https://docs.devexpress.com/content/WPF/7919?md=true
+- add-points-to-a-series-manually: https://docs.devexpress.com/content/WPF/7920?md=true
+- define-a-template-for-automatic-series: https://docs.devexpress.com/content/WPF/7922?md=true
+- series-scale-types: https://docs.devexpress.com/content/WPF/8453?md=true

@@ -124,7 +124,4 @@ devexpress_docs_search(technologies=["WindowsForms"], question="TreeList Edit Fo
 
 ## Source Material
 
-- `articles/controls-and-libraries/tree-list/feature-center/data-editing.md` (`xref:5599`)
-- `articles/.../data-editing/inplace-editors.md` (`xref:318`), `assigning-editors-to-columns` (`xref:5632`), `assigning-editors-to-individual-cells` (`xref:5633`)
-- `articles/.../data-editing/edit-form.md` (`xref:401332`)
 - [TreeListColumn](https://docs.devexpress.com/content/WindowsForms/DevExpress.XtraTreeList.Columns.TreeListColumn?md=true) — column reference

@@ -231,6 +231,6 @@ The default browse button stays (because we didn't set `AllowDefaultButton="Fals
 
 ## Source Material
 
-- `articles/controls-and-libraries/data-editors/visual-elements/editor-button.md` (https://docs.devexpress.com/content/WPF/10457?md=true)
-- `articles/controls-and-libraries/data-editors/getting-started/how-to-create-a-functional-buttonedit.md` (https://docs.devexpress.com/content/WPF/10483?md=true)
-- `articles/controls-and-libraries/data-editors/examples/how-to-create-a-buttonedit-with-a-custom-button.md` (https://docs.devexpress.com/content/WPF/7420?md=true)
+- editor-button: https://docs.devexpress.com/content/WPF/10457?md=true
+- how-to-create-a-functional-buttonedit: https://docs.devexpress.com/content/WPF/10483?md=true
+- how-to-create-a-buttonedit-with-a-custom-button: https://docs.devexpress.com/content/WPF/7420?md=true

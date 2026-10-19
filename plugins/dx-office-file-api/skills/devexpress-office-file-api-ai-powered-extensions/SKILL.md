@@ -304,7 +304,7 @@ The protection adds system-level instructions to every AI request so the LLM can
 
 ---
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Async only**: All AI operations are `async Task` — always `await` them and make the calling method `async`.
 2. **Provider selection**: Never hardcode a provider. Confirm the developer's preferred AI provider before generating connection code.

@@ -23,7 +23,7 @@ Use this when you need to:
 | **Memory** | Higher — raw data lives in memory | Lower |
 | **When to pick** | < 1M points, want zoom-aware detail, no server logic available | Very large data sets (10M+ points), server-side analytics already aggregating |
 
-**Aggregation is the default choice for most apps.** Summaries are advanced (see `articles/.../calculate-summaries.md` https://docs.devexpress.com/content/WPF/400970?md=true).
+**Aggregation is the default choice for most apps.** Summaries are advanced (see https://docs.devexpress.com/content/WPF/400970?md=true).
 
 > **Aggregation is x-axis only.** The y-axis can't aggregate values — it always renders the computed result.
 
@@ -213,6 +213,6 @@ class StandardDeviationAggregate : CustomAggregateFunction {
 
 ## Source Material
 
-- `articles/controls-and-libraries/charts-suite/chart-control/data-aggregation.md` (https://docs.devexpress.com/content/WPF/16846?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/calculate-summaries.md` (https://docs.devexpress.com/content/WPF/400970?md=true)
-- `articles/controls-and-libraries/charts-suite/chart-control/histogram.md` (https://docs.devexpress.com/content/WPF/400974?md=true)
+- data-aggregation: https://docs.devexpress.com/content/WPF/16846?md=true
+- calculate-summaries: https://docs.devexpress.com/content/WPF/400970?md=true
+- histogram: https://docs.devexpress.com/content/WPF/400974?md=true

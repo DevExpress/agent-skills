@@ -96,6 +96,23 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@using DevExtreme.AspNet.Mvc
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .FormData("new { /* ... */ }")
+    .ReadOnly(false)
+)
+@(Html.DevExtreme().CheckBox()
+    .ID("readOnlyCheckBox")
+    .Text("Enable read-only mode")
+    .Value(false)
+    .OnValueChanged("function(e) { $('#form').dxForm('instance').option('readOnly', e.value); }")
+)
+```
+
 ## Updating a Specific Item Option
 
 Use the `itemOption(dataField, option, value)` method to change a single item property without re-rendering the whole form.
@@ -166,6 +183,21 @@ function App() {
 }
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@using DevExtreme.AspNet.Mvc
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .FormData("new { /* ... */ }")
+)
+<script>
+    function disableHireDate() {
+        var form = $('#form').dxForm('instance');
+        form.itemOption('hireDate', 'disabled', true);
+    }
+</script>
+```
+
 ## Updating Data Programmatically
 
 Use `updateData(dataField, value)` to update a specific field's value in `formData` and re-render the corresponding editor.
@@ -191,4 +223,12 @@ formRef.value?.instance.updateData('name', 'Jane Doe');
 ```ts
 // React
 formInstance.current?.updateData('name', 'Jane Doe');
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+<script>
+    const form = $('#form').dxForm('instance');
+    form.updateData('name', 'Jane Doe');
+</script>
 ```

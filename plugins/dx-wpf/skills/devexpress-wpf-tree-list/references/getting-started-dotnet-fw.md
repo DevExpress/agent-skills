@@ -24,8 +24,6 @@ This guide is for **.NET Framework** projects. For .NET 8+, see [getting-started
    - Add columns via **Add Columns**
    - Configure the View (`KeyFieldName`, `ParentFieldName`, `AutoExpandAllNodes`, etc.)
 
-Source: `articles/controls-and-libraries/tree-list/getting-started/lesson-1-add-a-treelistcontrol-to-a-project.md`.
-
 ## Path 2: NuGet Package
 
 ```powershell

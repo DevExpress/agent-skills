@@ -5,10 +5,6 @@
 
   Note: PivotGrid uses xmlns:dxpg (not dxg). The control is configured
   almost entirely in code-behind — XAML just hosts the empty control.
-
-  Verified APIs (apidoc / lesson articles):
-    - DevExpress.Xpf.PivotGrid.PivotGridControl
-    - DevExpress.Xpf.PivotGrid.PivotGridControl.DataProcessingEngine ("Optimized")
 -->
 <Window x:Class="DevExpressPivotGridQuickstart.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

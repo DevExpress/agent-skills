@@ -24,8 +24,6 @@ You can add DevExpress to a .NET Framework project in two ways:
 4. Open `MainView.xaml`, drag a **GridControl** from the toolbox onto the design surface. Visual Studio automatically adds the required references to your project.
 5. Use the **Quick Actions** smart tag on `GridControl` and click **Bind to a Data Source** to launch the **Items Source Wizard**. The wizard supports Entity Framework, XPO, OData, and other sources and generates binding + CRUD code in the View Model.
 
-This path matches the article: `articles/controls-and-libraries/data-grid/getting-started/designer/lesson-1-add-a-gridcontrol-to-a-project.md`.
-
 ## Path 2: NuGet Package
 
 Install via the Package Manager Console:
@@ -48,8 +46,6 @@ If you reference assemblies directly (no NuGet, no installer), add references to
 - `DevExpress.Xpf.Core.v<version>.dll`
 - `DevExpress.Xpf.Grid.v<version>.dll`
 - `DevExpress.Xpf.Grid.v<version>.Core.dll`
-
-Source: `articles/controls-and-libraries/data-grid/getting-started/code/lesson-1-add-a-gridcontrol-to-a-project.md`.
 
 ## Minimal XAML Example
 

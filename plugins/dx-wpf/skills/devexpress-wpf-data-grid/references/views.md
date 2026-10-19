@@ -48,8 +48,6 @@ Common `TableView` properties:
 | `ShowFixedTotalSummary` | Show the fixed total summary panel at the bottom. |
 | `TotalSummaryPosition` | `Top` or `Bottom` for the inline total summary. |
 
-Source: `articles/controls-and-libraries/data-grid/getting-started/code/lesson-2-display-and-edit-data.md`.
-
 ## Card View
 
 ```xaml
@@ -61,8 +59,6 @@ Source: `articles/controls-and-libraries/data-grid/getting-started/code/lesson-2
 ```
 
 Use Card View when each record has many fields and a vertical-per-record layout reads better than a wide table (e.g., contact lists, ticket details). Columns become "card fields"; the same `GridColumn` definitions apply.
-
-Source: `articles/controls-and-libraries/data-grid/views.md`.
 
 ## TreeList View
 
@@ -82,8 +78,6 @@ Use when data is hierarchical. There are three derivation modes:
     <dxg:GridColumn FieldName="HeadCount"/>
 </dxg:GridControl>
 ```
-
-Source: `articles/controls-and-libraries/data-grid/display-hierarchical-data.md`.
 
 The flat self-referential pattern:
 
@@ -134,13 +128,3 @@ End users can:
 - Right-click a header for the column context menu.
 
 To disable reordering for the whole view, set `TableView.AllowColumnMoving="False"`. To prevent hiding a specific column, set `GridColumn.ShowInColumnChooser="False"`.
-
-## Hierarchical Source Material
-
-For deeper coverage of TreeListView modes, see:
-
-- `articles/controls-and-libraries/data-grid/display-hierarchical-data.md`
-
-For the full view-overview article:
-
-- `articles/controls-and-libraries/data-grid/views.md`

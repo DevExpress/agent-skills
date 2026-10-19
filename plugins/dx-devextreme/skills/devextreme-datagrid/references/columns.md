@@ -111,6 +111,24 @@ const salaryFormat = { type: 'currency', precision: 0 };
 </DataGrid>
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .DataSource(employees, "EmployeeID")
+    .Columns(columns => {
+        columns.Add().DataField("FullName").Caption("Name").Width(200);
+        columns.Add().DataField("Position").Caption("Job Title");
+        columns.Add().DataField("HireDate").Caption("Hired").DataType(DevExtreme.AspNet.Mvc.DataType.Date).Format(f => f.Type(Format.ShortDate));
+        columns.Add().DataField("Salary").Caption("Salary").DataType(DevExtreme.AspNet.Mvc.DataType.Number).Format(f => f.Type(Format.Currency).Precision(0));
+        columns.Add().DataField("IsActive").Caption("Active").DataType(DevExtreme.AspNet.Mvc.DataType.Boolean);
+    })
+)
+```
+
+> **Prefer `.Format(f => f.Type(Format.X)...)` over a raw string or anonymous object.** The typed `Format` builder (`Format.Currency`, `Format.ShortDate`, `Format.Percent`, etc.) is validated at compile time; `.Format("currency")` or `.Format(new { type = "currency" })` are untyped and easy to get subtly wrong (e.g. mismatched property names).
+
 ---
 
 ## Lookup Column (SelectBox-like display)
@@ -154,6 +172,20 @@ import { Column, Lookup } from 'devextreme-react/data-grid';
 </Column>
 ```
 
+```
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Columns(columns => {
+        columns.Add().DataField("DepartmentID").Caption("Department").Lookup(lookup => lookup
+            .DataSource(departments)
+            .ValueExpr("ID")
+            .DisplayExpr("Name")
+        );
+    })
+)
+```
+
 ---
 
 ## Fixed (Frozen) Columns
@@ -171,6 +203,8 @@ import { Column, Lookup } from 'devextreme-react/data-grid';
 ---
 
 ## Cell Template (Custom Rendering)
+
+For the complete template contracts and framework-specific syntax, read [templates.md](templates.md) first. In particular, a cell template receives cell info: the raw cell value is `value`, formatted text is `text`, and the complete row is `data`.
 
 > **See also**: `devextreme-button` skill — for rendering action buttons inside cells.
 
@@ -208,6 +242,20 @@ function StatusCell({ data }: { data: { value: string } }) {
 }
 const renderStatus = (data: { value: string }) => <StatusCell data={data} />;
 <Column dataField="Status" cellRender={renderStatus} />
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Columns(columns => {
+        columns.Add().DataField("Status").CellTemplate(new TemplateName("statusTemplate"));
+    })
+)
+
+@using (Html.DevExtreme().NamedTemplate("statusTemplate")) {
+    <span class="badge badge-<%- (value || '').toLowerCase() %>"><%- value %></span>
+}
 ```
 
 ---

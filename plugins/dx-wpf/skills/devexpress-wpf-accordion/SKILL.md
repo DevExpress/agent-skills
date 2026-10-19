@@ -331,7 +331,7 @@ public class MainViewModel {
 
 ## Constraints & Rules
 
-CRITICAL — follow these rules in every interaction:
+Follow these rules in every interaction:
 
 1. **Build verification**: After changes, run `dotnet build` and report errors before claiming success.
 2. **Target framework**: Windows-only (`net{X}-windows`, `UseWPF=true`).

@@ -166,11 +166,11 @@ using (PdfDocument document = new PdfDocument(
 
 | Legacy | New |
 |--------|-----|
-| `PdfGraphics.DrawString` | `Page.AddTextFragment(TextFragment)` |
-| `PdfGraphics.DrawImage` | `Page.AddImageFragment(ImageFragment)` |
-| `PdfGraphics.DrawRectangle` | `Page.AddPathFragment(PathFragment)` |
-| `PdfGraphics.DrawLine` | `Page.AddPathFragment(PathFragment)` |
-| `PdfGraphics.DrawBezier` | `Page.AddPathFragment(PathFragment)` |
+| `PdfGraphics.DrawString` | `Page.AddTextFragment(string, float, float)` or `Page.Fragments.Add(TextFragment)` |
+| `PdfGraphics.DrawImage` | `Page.AddImageFragment(DXImage, float, float)` or `Page.Fragments.Add(ImageFragment)` |
+| `PdfGraphics.DrawRectangle` | `Page.Fragments.Add(PathFragment)` |
+| `PdfGraphics.DrawLine` | `Page.Fragments.Add(PathFragment)` |
+| `PdfGraphics.DrawBezier` | `Page.Fragments.Add(PathFragment)` |
 | `PdfPageFacade.ClearContent` | `PdfDocument.ClearContent(int, List<OrientedRectangle>, ...)` |
 
 ### Encryption
@@ -191,7 +191,7 @@ using (PdfDocument document = new PdfDocument(
 | `PdfColor` | `PdfColor` |
 | `PdfColorSpace` | `ColorSpace` |
 | `PdfTextJustification` | `TextJustification` |
-| `PdfFont` | `TextFont` (from `DevExpress.Docs.Office`) |
+| `PdfFont` | `TextFont` (from `DevExpress.Docs.Pdf`) |
 
 ### Document Metadata
 

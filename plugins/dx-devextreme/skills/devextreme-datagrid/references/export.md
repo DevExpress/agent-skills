@@ -171,6 +171,38 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .Export(e => e.Enabled(true).Formats(new[] { "xlsx", "pdf" }))
+    .OnExporting("onExporting")
+)
+<script>
+function onExporting(e) {
+    if (e.format === 'xlsx') {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Employees');
+        DevExpress.excelExporter.exportDataGrid({
+            worksheet,
+            component: e.component
+        }).then(() => {
+            workbook.xlsx.writeBuffer().then(buffer => {
+                saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Employees.xlsx');
+            });
+        });
+    } else if (e.format === 'pdf') {
+        const doc = new jsPDF();
+        DevExpress.pdfExporter.exportDataGrid({
+            jsPDFDocument: doc,
+            component: e.component
+        }).then(() => doc.save('Employees.pdf'));
+    }
+}
+</script>
+```
+
 ---
 
 ## Export Only Selected Rows

@@ -52,6 +52,18 @@ $('#data-grid').dxDataGrid({
 </DataGrid>
 ```
 
+```cshtml
+<!-- ASP.NET Core Controls -->
+@(Html.DevExtreme().DataGrid()
+    .ID("data-grid")
+    .KeyExpr("id")
+    .AiIntegration(new JS("aiIntegration"))
+    .AIAssistant(aiAssistant => aiAssistant
+        .Enabled(true)
+    )
+)
+```
+
 When enabled, a toolbar button opens the AI Assistant panel. The panel embeds a `dxChat` component.
 
 ---

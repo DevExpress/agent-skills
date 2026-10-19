@@ -28,8 +28,6 @@ End users sort by clicking column headers (hold Shift for multi-sort). Sorting i
 <dxg:TreeListColumn FieldName="Name" SortOrder="Ascending" SortIndex="0"/>
 ```
 
-Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/sorting.md`.
-
 ## Filtering
 
 `TreeListControl` supports all `GridControl` filter UIs:
@@ -47,7 +45,7 @@ Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/sorting
 
 When filtering, parent nodes remain visible even if they don't match the filter, as long as one of their descendants matches. This keeps the path to matching nodes visible.
 
-Source: `articles/controls-and-libraries/tree-list.md` references https://docs.devexpress.com/content/WPF/7356?md=true and the data-grid filtering article.
+Docs: https://docs.devexpress.com/content/WPF/7356?md=true.
 
 ## Search Panel
 
@@ -56,7 +54,7 @@ Source: `articles/controls-and-libraries/tree-list.md` references https://docs.d
                   SearchString="{Binding SearchText, Mode=TwoWay}"/>
 ```
 
-Source: `articles/controls-and-libraries/tree-list.md` references https://docs.devexpress.com/content/WPF/11403?md=true.
+Docs: https://docs.devexpress.com/content/WPF/11403?md=true.
 
 ## Data Summaries
 
@@ -73,9 +71,7 @@ TreeList supports total summaries and per-node summaries (summarize a node's des
 </dxg:TreeListControl>
 ```
 
-For per-node summaries (sum of children's values shown on the parent node), see `articles/controls-and-libraries/tree-list/examples/how-to-display-totals.md`.
-
-Source: `articles/controls-and-libraries/tree-list.md` § Display Summaries.
+For per-node summaries (sum of children's values shown on the parent node), search with `devexpress_docs_search` for "tree list display totals".
 
 ## Expand / Collapse
 
@@ -95,9 +91,7 @@ treeListView1.ExpandNode(rowHandle);
 treeListView1.CollapseNode(rowHandle);
 ```
 
-> Verify exact method names (`ExpandAllNodes` vs `ExpandAll`) against the apidoc directory `apidoc/DevExpress.Xpf.Grid/TreeListView/` or via DxDocs MCP. The naming follows the public DevExpress conventions.
-
-Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/expanding-and-collapsing-nodes.md`.
+> Verify exact method names (`ExpandAllNodes` vs `ExpandAll`) with `devexpress_docs_search`. The naming follows the public DevExpress conventions.
 
 ## Multiple Node / Cell Selection
 
@@ -121,8 +115,6 @@ For cell-level selection:
 > Verify the exact enum values via DxDocs MCP if the names differ in your version:
 > `devexpress_docs_search(technology="WPF TreeList", query="multi-row selection mode")`
 
-Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/selecting-multiple-nodes.md`.
-
 ## Column Chooser, Reordering, Resizing
 
 - Drag a column header to reorder.
@@ -134,8 +126,6 @@ Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/selecti
 <dxg:TreeListColumn FieldName="Internal" ShowInColumnChooser="False"/>
 ```
 
-Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/showing-and-hiding-columns.md` and `resizing-columns.md`.
-
 ## Keyboard Navigation
 
 ```xaml
@@ -144,16 +134,3 @@ Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/showing
 ```
 
 `AllowHeaderNavigation` includes the header row in Tab order. Arrow keys, Page Up/Down, Home/End navigate within the tree.
-
-Source: `articles/controls-and-libraries/tree-list/end-user-capabilities/navigating-through-nodes-and-cells.md`.
-
-## Source Material
-
-- `articles/controls-and-libraries/tree-list/end-user-capabilities.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/sorting.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/expanding-and-collapsing-nodes.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/selecting-multiple-nodes.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/showing-and-hiding-columns.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/navigating-through-nodes-and-cells.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/data-editing.md`
-- `articles/controls-and-libraries/tree-list/end-user-capabilities/customizing-summaries.md`

@@ -40,6 +40,12 @@ import { AIIntegration } from 'devextreme-vue/common/ai-integration';
 import { AIIntegration } from 'devextreme-react/common/ai-integration';
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+<script src="~/js/dx.ai-integration.js" asp-append-version="true"></script>
+```
+
 ---
 
 ## Configure `AIIntegration`
@@ -213,6 +219,36 @@ function App() {
 }
 ```
 
+### ASP.NET Core Controls
+
+```cshtml
+@using DevExtreme.AspNet.Mvc
+@(Html.DevExtreme().Form()
+    .ID("form")
+    .FormData(new { name = "", email = "", phone = "", company = "" })
+    .AiIntegration(new JS("aiIntegration"))
+    .Items(items => {
+        items.AddSimple().DataField("name");
+        items.AddSimple().DataField("email");
+        items.AddSimple().DataField("phone");
+        items.AddSimple().DataField("company");
+        items.AddButton().Name("smartPaste");
+    })
+    .OnSmartPasted("onSmartPasted")
+)
+<script>
+    function onSmartPasted(e) {
+        if (Object.keys(e.aiResult).length > 0) {
+            DevExpress.ui.notify('Smart Paste completed successfully', 'success', 2000);
+        } else {
+            DevExpress.ui.notify('No data could be extracted', 'warning', 2000);
+        }
+    }
+</script>
+```
+
+> **Naming trap: `AiIntegration`, not `AIIntegration`.** The Razor builder method follows standard .NET Pascal-casing for the acronym (`Ai`, two letters treated as a word), not the JS/TS `AIIntegration` class name. Writing `.AIIntegration(...)` is a compile error on the Form builder.
+
 ---
 
 ## Smart Paste Events
@@ -266,6 +302,14 @@ function App() {
     }
 
     return <Form onInitialized={handleInitialized} />;
+}
+```
+
+```cshtml
+<!-- ASP.NET Core Controls -->
+@{
+    var form = Html.DevExtreme().Form().GetInstance("form");
+    form.SmartPaste("Jane Doe, jane@example.com, Acme Corp");
 }
 ```
 
