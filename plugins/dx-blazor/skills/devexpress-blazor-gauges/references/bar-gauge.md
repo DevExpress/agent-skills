@@ -2,7 +2,7 @@
 
 `DxBarGauge` displays multiple numeric values as concentric arc bars on a circular scale.
 
-API Reference: [DxBarGauge members](xref:DevExpress.Blazor.DxBarGauge._members)
+API Reference: [DxBarGauge members](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxBarGauge._members)
 
 ## Basic Usage
 

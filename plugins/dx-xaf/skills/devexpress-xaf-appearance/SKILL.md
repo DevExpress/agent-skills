@@ -74,7 +74,7 @@ Criteria strings in `AppearanceAttribute` use `CriteriaOperator` syntax, which i
 - XPO-specific criteria functions (e.g., expressions relying on `[PersistentAlias]`-decorated properties) evaluate correctly in XPO but may not translate for EF Core.
 - EF Core projects should verify complex criteria against the EF Core criteria translator if problems arise.
 - XAF-level functions such as `CurrentUserId()` and `LocalDateTimeToday()` work with both ORMs.
-- Avoid [Delayed Properties](xref:2024) and [Free Joins](xref:8130) in criteria — `AppearanceController` evaluates criteria during paint, which can cause UI flicker or corrupt control state in WinForms.
+- Avoid [Delayed Properties](https://docs.devexpress.com/XPO/2024) and [Free Joins](https://docs.devexpress.com/CoreLibraries/8130) in criteria — `AppearanceController` evaluates criteria during paint, which can cause UI flicker or corrupt control state in WinForms.
 
 ## AppearanceAttribute — Declare Rules in Code
 

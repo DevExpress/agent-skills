@@ -2,7 +2,7 @@
 
 `DxSankey` renders a flow diagram (Sankey chart) that shows the volume of flows between a source set and a target set. Nodes represent entities; links represent the flow volume.
 
-API Reference: [DxSankey members](xref:DevExpress.Blazor.DxSankey._members)
+API Reference: [DxSankey members](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxSankey._members)
 
 ## Basic Usage
 

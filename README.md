@@ -18,7 +18,7 @@ This repository stores DevExpress AI agent skills for [GitHub Copilot](https://g
 | [Office & PDF File API](plugins/dx-office-file-api/README.md) | Spreadsheet, Word Processing, PDF, PDF New (CTP), Presentation, Barcode, Unit Conversion, Excel Export, ZIP, AI-powered Extensions | [Overview](https://docs.devexpress.com/OfficeFileAPI/) |
 | [XAF: Cross-Platform .NET App UI & Web API](plugins/dx-xaf/README.md) | Business Model, Business Logic, Business Logic XPO, Controllers, Views, Editors, Filtering, Filtering XPO, Appearance, Validation, Security, Reports, Performance | [Overview](https://docs.devexpress.com/eXpressAppFramework/) |
 | [BI Dashboard](plugins/dx-dashboard/README.md) | Data Sources, Export, Dashboard Parameters (ASP.NET Core, Blazor, WinForms, and WPF apps)  | [Overview](https://docs.devexpress.com/Dashboard/) |
-| VCL Controls | *(coming soon)* | [Overview](https://docs.devexpress.com/VCL/) |
+| [VCL Controls](plugins/dx-vcl/README.md) | Data Grids, Editors, Tree List, Scheduler, Layout Management, Ribbon and Bars, Navigation and Accordion Menu, Charts, Reports, Dashboards | [Overview](https://docs.devexpress.com/VCL/) |
 
 ## **Installation**
 

@@ -44,10 +44,15 @@ TreeList supports the same conditional formatting engine as GridControl: color s
 
 ```xaml
 <dxg:TreeListControl>
-    <!-- TODO: Verify exact XAML schema for FormatCondition inside TreeListControl.
-         The pattern matches GridControl (DevExpress.Xpf.Grid.ConditionalFormatting namespace).
-         devexpress_docs_search(technology="WPF TreeList",
-                                query="conditional formatting XAML FormatCondition") -->
+    <dxg:TreeListControl.View>
+        <dxg:TreeListView>
+            <dxg:TreeListView.FormatConditions>
+                <dxg:FormatCondition FieldName="Profit" Expression="[Profit] &lt; 0" PredefinedFormatName="RedText"/>
+                <dxg:DataBarFormatCondition FieldName="Sales" PredefinedFormatName="BlueGradientDataBar"/>
+                <dxg:TopBottomRuleFormatCondition Expression="[Sales]" Rule="TopPercent" Threshold="10" PredefinedFormatName="BoldText"/>
+            </dxg:TreeListView.FormatConditions>
+        </dxg:TreeListView>
+    </dxg:TreeListControl.View>
 </dxg:TreeListControl>
 ```
 

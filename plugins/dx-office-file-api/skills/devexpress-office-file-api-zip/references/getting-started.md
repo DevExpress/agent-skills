@@ -245,17 +245,26 @@ using (MemoryStream ms = new MemoryStream())
 
 ## Secure ZIP Policy (v26.1+)
 
-`SecureZipPolicy` (`DevExpress.Utils.Zip.SecureZipPolicy`) protects against ZIP-based attack vectors by enforcing resource limits. Pass `ResourceLimits` to `ZipArchive.Read()` overloads.
+`SecureZipPolicy` (`DevExpress.Utils.Zip.SecureZipPolicy`) protects against ZIP-based attack vectors by enforcing resource limits. Build a `SecureZipPolicy.ResourceLimits` with its fluent factory methods and pass it to a `ZipArchive.Read()` overload.
+
+| Limit | Default |
+|---|---|
+| `MaxEntryCount` | 32,768 |
+| `MaxDepth` | 32 |
+| `MaxEntryBytes` | 2 GB |
+| `MaxTotalBytes` | 4 GB |
+| `MaxCompressionRatio` (per entry) | 100 |
+| `MaxTotalCompressionRatio` (archive) | 25 |
 
 ```csharp
 using DevExpress.Compression;
 using DevExpress.Utils.Zip;
 
 // Apply resource limits per extraction call
-var limits = new SecureZipPolicy.ResourceLimits
-{
-    // TODO: Verify exact property names — use DxDocs MCP: devexpress_docs_search(technology="Compression", query="SecureZipPolicy ResourceLimits")
-};
+var limits = SecureZipPolicy.ResourceLimits
+    .Size(maxEntryBytes: 100L * 1024 * 1024, maxTotalBytes: 500L * 1024 * 1024)
+    .WithCountAndDepth(maxEntryCount: 1000, maxDepth: 16)
+    .WithCompression(maxCompressionRatio: 50, maxTotalCompressionRatio: 20);
 
 using (ZipArchive archive = ZipArchive.Read("untrusted.zip", limits))
 {
@@ -264,7 +273,7 @@ using (ZipArchive archive = ZipArchive.Read("untrusted.zip", limits))
 }
 ```
 
-The `SecureZipPolicy.TrustBoundaryViolation` event fires when a policy constraint is exceeded, allowing you to log violations before they result in an exception.
+To change limits application-wide, call `SecureZipPolicy.SetSizeLimits`, `SetCountAndDepthLimits`, or `SetCompressionLimits`. A limit violation throws `ResourceLimitViolationException`; to skip an entry instead, set `e.Throw = false` in the `SecureZipPolicy.ResourceLimitViolation` handler. Path traversal, absolute paths, reserved device names, and similar trust-boundary checks throw `TrustBoundaryViolationException`, which cannot be suppressed; handle `SecureZipPolicy.TrustBoundaryViolation` to log them. See [ZIP Security Policy](https://docs.devexpress.com/OfficeFileAPI/405924).
 
 > **Note**: `SecureZipPolicy` is new in v26.1 and enforces security best practices for applications that process ZIP files from untrusted sources (user uploads, email attachments). For confirmed API details, use the DxDocs MCP: `devexpress_docs_search(technology="Compression", query="SecureZipPolicy")`.
 

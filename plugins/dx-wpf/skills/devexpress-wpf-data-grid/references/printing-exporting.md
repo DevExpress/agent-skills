@@ -402,11 +402,45 @@ Source: `templates/grid-print-export-customization.md` (template include).
 
 For richer reports (designer-editable, parameters, multi-band layouts), generate a Report from the grid:
 
+Only `TableView` supports this. Reference the `DevExpress.Xpf.ReportDesigner` and `DevExpress.XtraReports` assemblies.
+
 ```csharp
-// TODO: Verify exact API. Typical pattern uses GridControl.CreateReport
-// or a ReportBuilder helper from the Printing-Exporting library.
-// devexpress_docs_search(technology="WPF Data Grid", query="generate grid based report")
+using System.Windows;
+using DevExpress.XtraReports.UI;
+using DevExpress.Xpf.Grid.Printing;
+using DevExpress.XtraExport.Helpers;
+using DevExpress.Xpf.Reports.UserDesigner;
+
+public static void ShowDesigner(IGridViewFactory<ColumnWrapper, RowBaseWrapper> factory) {
+    var report = new XtraReport();
+    ReportGenerationExtensions<ColumnWrapper, RowBaseWrapper>.Generate(report, factory);
+    var reportDesigner = new ReportDesigner();
+    reportDesigner.Loaded += (s, e) => reportDesigner.OpenDocument(report);
+    reportDesigner.ShowWindow(factory as FrameworkElement);
+}
+
+// Call with the grid's TableView:
+ShowDesigner(tableView);
 ```
+
+In XAML/MVVM, attach `GridReportManagerService` to the `TableView` and bind a bar item's `ReportManagerBehavior.Service` to it:
+
+```xaml
+<!-- xmlns:dxrudex="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesignerextensions" -->
+<dxb:BarSplitButtonItem>
+    <dxmvvm:Interaction.Behaviors>
+        <dxrudex:ReportManagerBehavior Service="{Binding ElementName=reportManagerService}"/>
+    </dxmvvm:Interaction.Behaviors>
+</dxb:BarSplitButtonItem>
+
+<dxg:TableView x:Name="view">
+    <dxmvvm:Interaction.Behaviors>
+        <dxrudex:GridReportManagerService x:Name="reportManagerService"/>
+    </dxmvvm:Interaction.Behaviors>
+</dxg:TableView>
+```
+
+Limitations: in master-detail mode only the master view is generated; merged cells export as separate cells; custom grouping, sorting, and summaries are not applied.
 
 See https://docs.devexpress.com/content/WPF/117300?md=true.
 

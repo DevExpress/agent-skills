@@ -1,7 +1,7 @@
 {
   "name": "dx-dashboard",
   "description": "DevExpress Dashboard skills: configure and register data sources (SQL, Object, Entity Framework, JSON, MongoDB, Excel, OLAP, XPO, Federation) in code, create and bind dashboard parameters, and export dashboards to PDF, Image, or Excel for ASP.NET Core, Blazor, WinForms, and WPF.",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "license": "MIT",
   "author": {
     "name": "DevExpress",
