@@ -2,7 +2,7 @@
 
 `DxRangeSelector` renders a horizontal scale with two draggable sliders. Users select a sub-range by moving the sliders. Optionally, a background chart provides context.
 
-API Reference: [DxRangeSelector members](xref:DevExpress.Blazor.DxRangeSelector._members)
+API Reference: [DxRangeSelector members](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxRangeSelector._members)
 
 ## Basic Usage (Numeric Scale)
 

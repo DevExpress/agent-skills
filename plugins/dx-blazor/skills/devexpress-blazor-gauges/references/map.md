@@ -2,7 +2,7 @@
 
 `DxMap` renders an interactive geo map with support for markers and routes. It integrates with Azure Maps, Google Maps, or Google Static Maps as the tile provider.
 
-API Reference: [DxMap members](xref:DevExpress.Blazor.DxMap._members)
+API Reference: [DxMap members](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxMap._members)
 
 Demo: `https://demos.devexpress.com/blazor/Map`
 

@@ -2,7 +2,7 @@
 
 `DxSparkline` is a compact, lightweight visualization component for embedding trend lines or bar charts inside other UI elements — such as Grid columns, cards, or list items.
 
-API Reference: [DxSparkline members](xref:DevExpress.Blazor.DxSparkline._members)
+API Reference: [DxSparkline members](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxSparkline._members)
 
 Demo: `https://demos.devexpress.com/blazor/ChartSparkline`
 

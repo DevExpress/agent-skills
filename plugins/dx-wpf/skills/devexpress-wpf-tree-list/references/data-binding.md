@@ -120,13 +120,32 @@ public class OrgChartChildSelector : IChildNodesSelector {
 
 ## Asynchronous Child-Nodes Selector
 
-For trees backed by remote services or DB queries, fetch children on demand so the UI stays responsive. The article (https://docs.devexpress.com/content/WPF/10366?md=true#fetch-nodes-asynchronously) covers this pattern. The interface is `IAsyncChildNodesSelector` (or similar — verify):
+For trees backed by remote services or DB queries, fetch children on demand so the UI stays responsive. The article (https://docs.devexpress.com/content/WPF/10366?md=true#fetch-nodes-asynchronously) covers this pattern. Implement `DevExpress.Xpf.Grid.IAsyncChildNodesSelector` (it extends `IChildNodesSelector`). Parent nodes show a loading indicator while children are fetched:
 
 ```csharp
-// TODO: Verify exact interface name (IAsyncChildNodesSelector vs IChildNodesSelectorAsync).
-// devexpress_docs_search(technology="WPF TreeList",
-//                        query="asynchronous child nodes selector fetch on demand")
+using DevExpress.Xpf.Grid;
+using System.Collections;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class AsyncOrgChartChildSelector : IAsyncChildNodesSelector {
+    // Decides whether the node shows an expand button.
+    public Task<bool> HasChildNode(object item, CancellationToken token) =>
+        Task.FromResult(item is not Employee);
+
+    public Task<IEnumerable> SelectChildrenAsync(object item, CancellationToken token) =>
+        Task.Run(() => item switch {
+            Department d => (IEnumerable)d.Teams,
+            Team       t => t.Members,
+            _          => null
+        }, token);
+
+    // Not called for async selectors; required by IChildNodesSelector.
+    public IEnumerable SelectChildren(object item) => throw new System.NotImplementedException();
+}
 ```
+
+Assign it to `TreeListView.ChildNodesSelector` with `TreeDerivationMode="ChildNodesSelector"`, as in the synchronous case. The async selector does not fetch nodes when `TreeListView.EnableDynamicLoading` is `false`.
 
 ## Hierarchical Data Templates
 

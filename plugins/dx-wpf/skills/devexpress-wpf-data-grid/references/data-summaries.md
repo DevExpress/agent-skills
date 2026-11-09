@@ -107,10 +107,30 @@ The grid must be bound to `ObservableCollection<T>` or `DevExpress.Xpf.ChunkList
 
 For aggregates that don't fit `Sum/Min/Max/Count/Average`, use `SummaryType="Custom"` and handle the `GridControl.CustomSummary` event:
 
-```csharp
-// TODO: Verify exact event arg names (CustomSummaryEventArgs members).
-// Use DxDocs MCP: devexpress_docs_search(technology="WPF Data Grid", query="CustomSummary event")
+```xaml
+<dxg:GridControl CustomSummary="OnCustomSummary">
+    <dxg:GridControl.TotalSummary>
+        <dxg:GridSummaryItem FieldName="Number" SummaryType="Custom"
+                             DisplayFormat="Empty cells: {0}"/>
+    </dxg:GridControl.TotalSummary>
+</dxg:GridControl>
 ```
+
+```csharp
+using DevExpress.Data;
+using DevExpress.Xpf.Grid;
+
+void OnCustomSummary(object sender, CustomSummaryEventArgs e) {
+    if (((GridSummaryItem)e.Item).FieldName != "Number")
+        return;
+    if (e.SummaryProcess == CustomSummaryProcess.Start)
+        e.TotalValue = 0;
+    if (e.SummaryProcess == CustomSummaryProcess.Calculate && e.FieldValue == null)
+        e.TotalValue = (int)e.TotalValue + 1;
+}
+```
+
+`SummaryProcess` runs `Start` → `Calculate` (once per row) → `Finalize`. `e.IsTotalSummary` / `e.IsGroupSummary` tell which summary is being calculated. To compute the value only in `Finalize` (for example, from other total summaries via `grid.GetTotalSummaryValue(item)`), set `e.TotalValueReady = true` in `Start` to skip the per-row `Calculate` calls. In MVVM, bind `GridControl.CustomSummaryCommand` instead of handling the event.
 
 See https://docs.devexpress.com/content/WPF/6129?md=true for the full custom summary article.
 
