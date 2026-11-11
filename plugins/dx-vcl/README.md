@@ -1,6 +1,6 @@
-# AI Agent Skills for DevExpress VCL Components
+# AI Agent Skills for DevExpress VCL Components (Delphi and C++Builder)
 
-This plugin contains AI agent skills for [DevExpress VCL Components](https://www.devexpress.com/products/vcl/) for Delphi and C++Builder. These skills equip AI coding assistants with verified component knowledge, valid DFM structure templates, API patterns, and runtime troubleshooting rules.
+This plugin contains AI agent skills for [DevExpress VCL Components](https://www.devexpress.com/products/vcl/). These skills equip AI coding assistants with verified component knowledge, valid DFM structure templates, API patterns, and runtime troubleshooting rules.
 
 Skills follow the open Agent Skills standard and work with [Kai for RAD Studio](https://www.embarcadero.com/products/rad-studio/kai), Claude Code, GitHub Copilot, Cursor, Gemini CLI, and other modern AI coding assistants.
 
@@ -12,7 +12,7 @@ Skills follow the open Agent Skills standard and work with [Kai for RAD Studio](
 - [DevExpress Documentation MCP Server](https://docs.devexpress.com/VCL/406057) (recommended)
 
 > **NOTE**  
-> To use [ExpressReports](https://www.devexpress.com/products/vcl/reports/) and [ExpressDashboards](https://www.devexpress.com/products/vcl/dashboard/) components, your development environment must meet the requirements outlined in the following help topic section: [Prerequisites & Deployment](https://docs.devexpress.com/VCL/405469/ExpressReports/vcl-reports#prerequisites--deployment).
+> To use [ExpressReports](https://www.devexpress.com/products/vcl/reports/) and [ExpressDashboards](https://www.devexpress.com/products/vcl/dashboard/), your development environment must meet the requirements outlined in the following help topic section: [Prerequisites & Deployment](https://docs.devexpress.com/VCL/405469/ExpressReports/vcl-reports#prerequisites--deployment).
 
 ## DevExpress Documentation MCP Server
 
@@ -22,7 +22,7 @@ The skills use the public DevExpress Documentation MCP server to retrieve detail
 - **URL:** `https://api.devexpress.com/mcp/docs`
 - **Transport:** Streamable HTTP, no authentication
 
-If you have already configured an MCP server that exposes `devexpress_docs_search` and `devexpress_docs_get_content` tools, the skills will automatically use it and no extra configuration is needed. Otherwise, register the public server. Refer to the following help topics for step-by-step instructions:
+If you have already configured an MCP server that exposes `devexpress_docs_search` and `devexpress_docs_get_content` tools, the skills will automatically use it and no extra configuration is necessary. Otherwise, register the public server. Refer to the following help topics for step-by-step instructions:
 
 - **Kai for RAD Studio:** [DevExpress VCL: Documentation MCP Server](https://docs.devexpress.com/VCL/406057)
 - **Other AI Assistants:** [DevExpress MCP Server: Configure Your AI-powered Coding Assistant](https://docs.devexpress.com/GeneralInformation/405551)
