@@ -17,6 +17,7 @@
 #include "dxReport.hpp"
 
 #pragma package(smart_init)
+#pragma link "dxForms"
 #pragma link "dxmdaset"
 #pragma link "dxBackend"
 #if defined(_WIN64)   // a dotted unit name needs the object-file extension
@@ -27,7 +28,7 @@
 #pragma link "dxReport"
 #pragma resource "*.dfm"
 TfrmReportQuickStart *frmReportQuickStart;
-__fastcall TfrmReportQuickStart::TfrmReportQuickStart(TComponent *Owner) : TForm(Owner) {}
+__fastcall TfrmReportQuickStart::TfrmReportQuickStart(TComponent *Owner) : TdxForm(Owner) {}
 
 // JsonDataSource XML: ConnectionName = the connection's DisplayName; the array name = DataSetAlias
 static const String JsonDataSourceXml =

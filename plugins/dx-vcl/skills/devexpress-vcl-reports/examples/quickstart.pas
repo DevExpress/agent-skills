@@ -8,11 +8,11 @@ unit quickstart;
 interface
 
 uses
-  System.SysUtils, System.Classes, System.NetEncoding, Vcl.Forms, Vcl.StdCtrls, Data.DB,
+  System.SysUtils, System.Classes, System.NetEncoding, Vcl.Forms, dxForms, Vcl.StdCtrls, Data.DB,
   dxmdaset, dxBackend, dxBackend.ConnectionString.JSON.DataSet, dxReport;
 
 type
-  TForm1 = class(TForm)
+  TForm1 = class(TdxForm)                   // DevExpress DPI-aware form (dxForms)
     procedure FormCreate(Sender: TObject);
   private
     FData: TdxMemData;

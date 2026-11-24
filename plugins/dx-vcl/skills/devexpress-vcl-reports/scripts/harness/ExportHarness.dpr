@@ -35,8 +35,7 @@ begin
   //   MainForm.dxReport1.ExportToHTML(OutDir + '\default.html');
   //   MainForm.dxReport1.ExportToImage(OutDir + '\default.png');
   //
-  //   // Parameters; touch subreport components first if the layout has XRSubreport:
-  //   // MainForm.repSub.Parameters.Count;
+  //   // Parameters:
   //   MainForm.dxReport1.Parameters['OrderIDParameter'].Value := 11001;
   //   MainForm.dxReport1.ExportToHTML(OutDir + '\p11001.html');
   //

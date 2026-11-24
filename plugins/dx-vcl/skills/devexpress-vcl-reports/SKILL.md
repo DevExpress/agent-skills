@@ -153,8 +153,8 @@ Complete units with data and a layout built in code: Delphi [examples/quickstart
 
 | Member | Notes |
 |--------|-------|
-| `TdxReport.ReportName` | **Required.** With `GroupName`, it identifies the layout in the backend: components with the same pair share one layout |
-| `TdxReport.GroupName` | Separate scope per viewer instance (GUID per MDI tab) |
+| `TdxReport.ReportName` | **Required, unique and stable.** With `GroupName`, it is the key that links the component, the backend and the Viewer/Designer to its layout, and a main report to its subreports (`ReportSourceUrl` = the subreport's `ReportName`). Not just an export file name. Case-sensitive, unlike Delphi identifiers: `'report'` and `'Report'` are different keys. To design a new layout, clear `ReportName` before `ShowDesigner`: the current layout is ignored and replaced by the one the user saves |
+| `TdxReport.GroupName` | Scope of the `ReportName` key. Main purpose: limit the subreports the Report Designer offers to the reports of the same group, not every report the backend knows in the session. It also keeps different layouts with the same `ReportName` in different contexts apart (a GUID per MDI tab). Example: a non-modal master-detail window names its reports `Master` and `Detail` and gives each window instance its own `GroupName` (all reports in the window share it), so each window's `Master` has its own layout and sees its own `Detail`. Components with the same `ReportName`+`GroupName` share one layout: a layout saved in the Designer is written to all of them, and if their layouts differ, the one activated (sent to the backend) last wins. Case-sensitive, like `ReportName` |
 | `TdxReport.Layout` | `TStringList` of REPX lines (UTF-8). `.dfm`: `Layout.Strings`. Files/BLOBs: `LoadFromFile`/`SaveToFile`/`Assign` |
 | `TdxReport.Parameters['P'].Value` | Report parameter values; multi-value: `VarArrayOf([...])` |
 | `TdxReport.FilterString` | Criteria applied to the report's data; **replaces** a filter stored in the layout |
@@ -175,13 +175,13 @@ Complete units with data and a layout built in code: Delphi [examples/quickstart
 | `The connection string contains no XpoProvider key or the specified key is invalid` (Connection name: X) | The layout's `<Connection Name="X" />` lacks `FromAppConfig="true"`, so it is not linked to the `TdxBackendDatabaseSQLConnection` |
 | `Connection "X" could not be resolved` | Set the connection `DisplayName` to the name used in the layout. Set it explicitly: when it equals `Name`, renaming the component renames it |
 | Viewer/control stays empty | `ReportName` is empty; `TdxReportControl.Active` is still `False` |
-| `Could not find report 'Sub' for session 'default'` | The `XRSubreport.ReportSourceUrl` has no `TdxReport` with that `ReportName` on the same form, or code read `Parameters` before the subreport was sent — touch `repSub.Parameters.Count` first |
+| `Could not find report 'Sub' for session 'default'` | No `TdxReport` with the `XRSubreport.ReportSourceUrl` name has the main report's owner and `GroupName`: create the subreport with the same owner (put it on the same form) |
 | Report shows all rows although a filter is set | Unknown field name in `FilterString` is ignored silently; code `FilterString` replaces the layout's filter |
 | `Object factory for class {…} is missing` (`TFDGUIxWaitCursor`, `FireDAC.Stan.Def`) | A FireDAC dataset is used: add the FireDAC driver units (Required Units) to `uses`, or switch SQLite/SQL Server data to `TdxBackendDatabaseSQLConnection` |
 | Prices truncated to integers (SQLite via FireDAC) | FireDAC maps `numeric` without precision to an integer type — add a FireDAC map rule to `dtDouble` |
 | `Field 'X' not found` / shifted values with `TdxMemData` | `TdxMemData` ignores `FieldDefs` and has a hidden first `RecId` field — create persistent fields; use `FieldByName`, not positional `AppendRecord` |
 | `SQLite Error 14: unable to open database file` | Relative `Data Source` resolves against the exe folder (`TdxBackend.SQLDataDirectory`), not the current folder |
-| Export from a worker thread never ends | Export on the main thread, or keep the main thread calling `CheckSynchronize` |
+| Export from a worker thread never ends | Call `ExportTo*` on the main thread |
 | UI stays English with `Language = 'de-DE'` | `localization\dx-reporting.de.json` (+ `dx-analytics-core`, `dx-rich`) must be in the **exe** folder |
 
 More rows (symptom → cause → fix): [troubleshooting.md](references/troubleshooting.md).
@@ -228,6 +228,14 @@ More rows (symptom → cause → fix): [troubleshooting.md](references/troublesh
 12. **Deployment**: ship `WebView2Loader.dll` (matching bitness) next to every exe that shows a viewer or designer;
     deploy `localization\` and data files relative to the exe folder, and build every path from
     `ExtractFilePath(ParamStr(0))`.
+13. **Forms derive from `TdxForm`** (unit `dxForms`; C++: `#include "dxForms.hpp"`, `#pragma link "dxForms"`,
+    `: public TdxForm`, constructor `: TdxForm(Owner)`). Every form you create, including viewer hosts and MDI
+    children, uses `TdxForm`, not `TForm`: it keeps DevExpress controls DPI-aware on mixed-DPI monitors
+    ([TdxForm](https://docs.devexpress.com/VCL/dxForms.TdxForm)). The `.dfm` does not change. In an existing `TForm`
+    form, suggest the switch (only the ancestor and `uses`/`#include` change) instead of doing it unasked.
+    A form built in code without a `.dfm` is created with `CreateNew` (Delphi: `TdxForm.CreateNew(Self)`, or
+    `inherited CreateNew(AOwner)` in a descendant's constructor; C++: `new TdxForm(this, 0)`): `Create` looks for the
+    form's `.dfm` resource and raises `EResNotFound`.
 
 ## DevExpress Documentation MCP
 
