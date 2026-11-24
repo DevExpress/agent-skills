@@ -4,10 +4,11 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
+#include "dxForms.hpp"
 #include <Data.DB.hpp>
 #include "dxmdaset.hpp"
 #include "dxReport.hpp"
-class TfrmReportQuickStart : public TForm
+class TfrmReportQuickStart : public TdxForm   // DevExpress DPI-aware form (dxForms)
 {
 __published:
     void __fastcall FormCreate(TObject *Sender);

@@ -42,6 +42,19 @@ Skill: [devexpress-vcl-reports](skills/devexpress-vcl-reports/)
 | `TdxBackendInMemoryJSONConnection` | In-memory JSON data connection that loads data from a URI, Web API endpoint, or raw string. | [Reference](https://docs.devexpress.com/VCL/dxBackend.ConnectionString.JSON.TdxBackendInMemoryJSONConnection) |
 | `TdxBackendDataSetJSONConnection` | Bridges native VCL `TDataSet` sources (FireDAC, TdxMemData, etc.) to reports as JSON. | [Reference](https://docs.devexpress.com/VCL/dxBackend.ConnectionString.JSON.DataSet.TdxBackendDataSetJSONConnection) |
 
+### VCL Dashboards
+
+Skill: [devexpress-vcl-dashboards](skills/devexpress-vcl-dashboards/)
+
+| Class | Purpose | Documentation |
+| ----- | ------- | ------------- |
+| `TdxDashboardControl` | Dashboard viewer and designer embedded in a form, frame, tab page, or MDI child: layout, user state (filters), parameters, and export. | [Reference](https://docs.devexpress.com/VCL/dxDashboard.Control.TdxDashboardControl) |
+| `TdxDashboard` | Non-visual dashboard: modal Viewer and Designer dialogs, and headless (non-UI) export from console apps and services. | [Reference](https://docs.devexpress.com/VCL/dxDashboard.TdxDashboard) |
+| `TdxBackendDataConnectionManager` | Centralized container that manages data connections used by dashboards. | [Reference](https://docs.devexpress.com/VCL/dxBackend.TdxBackendDataConnectionManager) |
+| `TdxBackendDatabaseSQLConnection` | SQL database connection supporting XPO-powered providers (SQL Server, SQLite, etc.) | [Reference](https://docs.devexpress.com/VCL/dxBackend.ConnectionString.SQL.TdxBackendDatabaseSQLConnection) |
+| `TdxBackendInMemoryJSONConnection` | In-memory JSON data connection that loads data from a URI, Web API endpoint, or raw string. | [Reference](https://docs.devexpress.com/VCL/dxBackend.ConnectionString.JSON.TdxBackendInMemoryJSONConnection) |
+| `TdxBackendDataSetJSONConnection` | Bridges native VCL `TDataSet` sources (FireDAC, TdxMemData, etc.) to dashboards as JSON. | [Reference](https://docs.devexpress.com/VCL/dxBackend.ConnectionString.JSON.DataSet.TdxBackendDataSetJSONConnection) |
+
 ### Data Grids, Editors, Tree List, Scheduler, Layout Management, and Other VCL Components
 
 Coming Soon...

@@ -31,16 +31,13 @@ begin
 end.
 ```
 
-- **No form, no `Application.Run`, no WebView2Loader.dll.** A main-thread `ExportTo*` works because the
-  export wait loop calls `Application.ProcessMessages` itself.
+- **No form, no `Application.Run`, no WebView2Loader.dll.**
 - **Keep `dxBackend.Bundled` in `uses`.** Without it, the per-process backend folder in `%TEMP%` is left behind
-  after every run. With it, the folder is removed when the process exits normally; a killed process (for example,
-  one hung in a worker-thread export) leaves it, so purge stale folders in services and scheduled jobs.
+  after every run. With it, the folder is removed when the process exits normally; a killed process leaves it, so purge stale folders in services and scheduled jobs.
 
 C++Builder: the same steps, with `Report->Parameters->ParamByName["OrderIdParameter"]->Value = 11077;` and the
 dotted units linked as object files ([troubleshooting.md](troubleshooting.md) #5e), and the file name built by
-concatenation (`"Order_" + IntToStr(OrderId) + ".pdf"`): `Format("...", ...)` is ambiguous in C++ (#5g). **Link a C++ console app with
-runtime packages**: statically linked, it crashes before `main` (#5f).
+concatenation (`"Order_" + IntToStr(OrderId) + ".pdf"`): `Format("...", ...)` is ambiguous in C++ (#5g).
 
 ## Formats
 
@@ -56,9 +53,9 @@ Backend start-up dominates a batch run. For batches, loop inside one process; cr
 
 ## Threads
 
-- **Export from a worker `TThread` hangs forever** if the main thread doesn't process synchronization.
-  The backend calls `TThread.Synchronize`/`Queue` and the export timeout is `INFINITE`.
-- **In a service or console host,** keep the main thread calling `CheckSynchronize(100)` in a loop, or export on the main thread.
+- **Call `ExportTo*` on the main thread.** The backend synchronizes with the main thread during the export
+  (`TThread.Synchronize`/`Queue`, no timeout): an export started from a worker `TThread` while the main thread waits
+  for it never completes.
 
 ## Errors and edge cases
 

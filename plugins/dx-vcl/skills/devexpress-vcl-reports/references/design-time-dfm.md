@@ -61,12 +61,12 @@ end
 
 ```delphi
 type
-  TForm1 = class(TForm)
+  TForm1 = class(TdxForm)
     dxBackendDataConnectionManager1: TdxBackendDataConnectionManager;
     NorthwindConnection: TdxBackendDatabaseSQLConnection;
     dxReport1: TdxReport;
   end;
-// uses dxBackend, dxBackend.ConnectionString.SQL, dxReport
+// uses dxForms, dxBackend, dxBackend.ConnectionString.SQL, dxReport
 ```
 
 SQLite: `ConnectionString = 'XpoProvider=SQLite;Data Source=C:\...\nwind.db'`. A relative `Data Source` resolves against

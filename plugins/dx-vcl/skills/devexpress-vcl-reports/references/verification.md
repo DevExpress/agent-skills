@@ -55,7 +55,7 @@ What the harness does for you:
 The harness is a Delphi program and does not build against C++ units.
 - **Layout in a `.repx` file or in code:** verify with a small C++ console exporter that loads the same layout and
   connection and calls `ExportToPDF`/`ExportToText`, as in [non-interactive-export.md](non-interactive-export.md)
-  (C++Builder paragraph: `ParamByName`, object-file links, runtime packages). Then check the output as below.
+  (C++Builder paragraph: `ParamByName`, object-file links). Then check the output as below.
 - **Layout only in a form's `.dfm`:** there is no tested C++ harness. Build, run `check-form-load.ps1`, and tell the
   developer that the report output is not verified.
 

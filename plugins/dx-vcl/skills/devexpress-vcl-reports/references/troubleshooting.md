@@ -8,12 +8,9 @@
 | 1 | Viewer/Designer fails: `"WebView2Loader.dll" is not found in folder ...` | The DLL isn't next to the exe (design time uses `$(BDS)\Redist`, runtime uses the app folder). | Post-build copy from `$(BDS)\Redist\win32` or `\win64`. |
 | 2 | Post-build "0 file(s) copied", or the DLL lands in the project root | `"$(OUTPUTDIR)"` ends with `\`, so `\"` escapes the closing quote. Some hand-made `.dproj` files also leave `$(OUTPUTDIR)` empty under command-line MSBuild, and an unquoted empty destination copies into the project folder. | `copy /Y "$(BDS)\Redist\win32\WebView2Loader.dll" ".\$(Platform)\$(Config)"` (match the project's `DCC_ExeOutput`; some examples use `.`). |
 | 3 | Runtime `FireDAC ... driver not registered` / no wait cursor class | The SQLite driver units aren't linked when the connection is configured only in the DFM. | Add the FireDAC driver units listed in [design-time-dfm.md](design-time-dfm.md#firedac-any-tdataset-through-a-dataset-connection), or use `TdxBackendDatabaseSQLConnection` (built-in SQLite, no FireDAC). |
-| 5a | `SQLite Error 14: 'unable to open database file'` at export | A relative `Data Source=nwind.db` in an XPO SQL connection resolves against `TdxBackend.SQLDataDirectory`, which defaults to the **exe folder**. The backend itself runs from `%TEMP%`. | Deploy the DB next to the exe, use an absolute path, or set `TdxBackend.SQLDataDirectory` before the backend starts. |
-| 5d | `SQLite Error 14` with `Data Source=\|DataDirectory\|\Data\nwind.db` (as in the DevExpress demos) | The `\|DataDirectory\|` macro did not resolve in a custom host, even with `TdxBackend.SQLDataDirectory` set. | Use `Data Source=Data\nwind.db` (relative to the exe folder) or an absolute path. |
+| 5a | `SQLite Error 14: 'unable to open database file'` at export | A relative `Data Source=nwind.db` in an XPO SQL connection resolves against `TdxBackend.SQLDataDirectory`, which defaults to the **exe folder**. The backend itself runs from `%TEMP%`. | Deploy the DB next to the exe, use an absolute path, or set `TdxBackend.SQLDataDirectory` before the backend starts. 26.2+ also resolves `\|DataDirectory\|` to that folder; on 26.1 use a relative path instead. |
 | 5b | App works from the IDE but "loses" files when started from a shortcut or another folder | Paths like `'data.dat'` / `'..\..\x.repx'` in `FormCreate` are relative to the **working folder**, while SQLite paths are relative to the exe folder: two different bases. | Build every path from `ExtractFilePath(ParamStr(0))`. |
-| 5c | C++Builder: `Unable to open file 'VCL.THEMES.OBJ'` (Win32) / `'.O'` (Win64) | A generated `*.dxSettings.cpp` contains `#pragma link "Vcl.Themes"` / `"System.SysUtils"`; these units are in `vcl.lib`/`rtl.lib`, not separate object files. | Remove those `#pragma link` lines (or link with runtime packages). |
 | 5e | C++Builder: `Fatal: Unable to open file 'DXBACKEND.CONNECTIONSTRING.SQL'` (or another dotted DevExpress unit) | The linker reads the last segment of a dotted `#pragma link` name as a file extension. | Link the object file explicitly: `#pragma link "dxBackend.ConnectionString.SQL.obj"` (Win32) / `".o"` (Win64), under `#if defined(_WIN64)`. |
-| 5f | C++Builder console app (statically linked) exits with an access violation before `main` runs, even with no arguments | Unit initialization order: `cxControls` initializes before `dxUxTheme` has loaded the theme functions and calls a null `BufferedPaintInit`. VCL forms apps are not affected. | Link the console app with runtime packages (`UsePackages=true` and `LinkPackageImports` for the Debug and Release configurations) and deploy the DevExpress BPLs, or move the export into a VCL forms app. |
 | 5g | C++Builder: `E5423: call to 'Format' is ambiguous` when building a file name or message | `Format("...", ARRAYOFCONST(...))` with a literal matches several `System::Sysutils::Format` overloads. | Concatenate strings: `"Order_" + IntToStr(OrderId) + ".pdf"`. |
 ## Report and component wiring
 
@@ -25,12 +22,11 @@
 | 8 | `TdxReportControl` stays empty / report never prepares | Empty `ReportName`. The Designer sets it on Save. | Set `ReportName` in the DFM. |
 | 9 | Report shows another tab's data, or one tab's layout changes another | Report components with the same `ReportName`+`GroupName` share one backend layout. | GUID `GroupName` per independent viewer instance (MDI child `OnCreate`). |
 | 10 | DataMember / JSON array name unexpected (`DataSource1`) | `DataSetAlias` defaults to the assigned DataSource/DataSet name. | Set `DataSetAlias` explicitly; use it as the layout `DataMember`. |
-| 11 | Subreport area empty or `Could not find report 'Sub'` | The `XRSubreport.ReportSourceUrl` doesn't match a `TdxReport.ReportName` on the same owner (and same `GroupName`). | Add the subreport `TdxReport` to the same form with that `ReportName`. |
+| 11 | Subreport area empty or `Could not find report 'Sub'` | The `XRSubreport.ReportSourceUrl` doesn't match a `TdxReport.ReportName` with the same owner and `GroupName` as the main report. | Create the subreport `TdxReport` with the main report's owner (the same form) and that `ReportName`. In code without a form, create both with the same owner component (not `nil`), for example one `TComponent` that owns the reports. |
 ## Parameters
 
 | # | Symptom | Cause | Fix |
 |---|---|---|---|
-| 12 | `EdxBackgroundCommandServerException: Could not find report 'Sub' for session 'default'` when reading/writing `TdxReport.Parameters` from code | `Parameters` loads parameters by sending only the main layout. The backend then loads the full report and can't resolve the subreport, which isn't sent yet (`Prepare` sends subreports first, `Parameters` doesn't). | Touch the subreport first: `repSub.Parameters.Count;` then use `repMain.Parameters[...]`. Layouts without subreports are not affected. |
 | 13 | Multi-value parameter set from code (`Parameters['P'].Value := VarArrayOf([...])`) is ignored at export: all values are used | `SelectAllValues="true"` wins over values passed from code during document creation. | Remove `SelectAllValues`. For "empty = all", use the optional pattern: `AllowNull="true"`, no default, filter `?P Is Null Or [Field] In (?P)`. |
 | 13a | Need defaults for a multi-value parameter | The value list syntax is pipe-separated. | `ValueInfo="USA\|UK"`; it can be combined with `SelectAllValues="true"`. |
 | 14 | After a lookup parameter comes from code, `Values.Count = 0` although the panel shows all selected | `SelectAllValues` is applied by the backend/web viewer, not reflected in the Delphi `Parameters` collection. | Don't infer "all selected" from `Values.Count` on the Delphi side. |
@@ -47,7 +43,7 @@
 
 | # | Symptom | Cause | Fix |
 |---|---|---|---|
-| 16a | Export from a worker thread never completes | The backend synchronizes to the main thread, and the export wait is `INFINITE`. | Export on the main thread, or keep the main thread calling `CheckSynchronize`. |
+| 16a | Export from a worker thread never completes | The backend synchronizes to the main thread, and the export wait is `INFINITE`. | Call `ExportTo*` on the main thread. |
 | 16b | ~95 MB folders pile up in `%TEMP%\<exe>\VCLBackend\<pid>` | The embedded backend is unpacked per process; cleanup can fail silently. | Keep `dxBackend.Bundled` in `uses`; purge stale folders on servers. |
 | 16c | Each run takes 6–8 s | Backend start-up (~4 s) per process. | Batch inside one process. |
 | 16d | Empty PDF, exit code 0, for a non-existent key | An empty data set is a valid document. | Validate the input data yourself. |
@@ -68,7 +64,7 @@
 | 18b | Saved subreport layouts overwrite the main record or get lost | The Designer creates extra `TdxReport` objects for subreports and copies `OnLayoutChanged` to them. A handler that always saves `dxReport1` ignores which report changed. | Use `ASender` in `OnLayoutChanged` and store each layout by `ASender.ReportName`. |
 | 18c | A REPX saved with `Layout.SaveToFile` gains a BOM, or LF becomes CRLF | `Layout` is a `TStringList` with `DefaultEncoding=UTF8`, `WriteBOM=True`, CRLF, `TrailingLineBreak=False`. A UTF-8+BOM+CRLF file round-trips byte-identically. | Expected. Set `Layout.WriteBOM := False` if needed; compare files after normalizing the BOM and line endings. |
 | 18d | `EEncodingError: No mapping for the Unicode character...` on `Layout.LoadFromFile` | The file isn't UTF-8 (e.g. Windows-1252). The XML `encoding=` attribute is ignored. | Re-save as UTF-8, or `Layout.LoadFromFile(F, TEncoding.GetEncoding(1252))`. |
-| 18e | Layout empty after changing the report name | `ReportName := ''` calls `Clear`, which empties `Layout`. | Set `ReportName` and `Layout` together; never blank the name temporarily. |
+| 18e | Layout empty after `ReportName := ''` | Clearing the name clears `Layout`: the standard way to start a new, empty layout in the Designer. | To rename a report and keep its layout, assign the new `ReportName` directly; never blank the name temporarily. |
 | 18f | Database storage: non-ASCII text garbled in the layout BLOB | `ftMemo` / ANSI fields. | Use a `TBlobField`; `Field.Assign(Report.Layout)` and `Report.Layout.Assign(Field)` round-trip UTF-8 (with BOM) losslessly. |
 ## Layout authoring and tooling
 
@@ -78,7 +74,7 @@
 | 19 | Garbled Cyrillic/accented text in the report after editing the DFM by hand | Non-ASCII must be `#NNNN` outside quotes in text DFMs. | Generate the block with `scripts/Set-DfmLayout.ps1`. |
 | 21 | Copying data-source XML from demo layouts yields old assembly versions | Demo REPX files declare v24.2/v25.2. | They still load, but write `v26.1` in new layouts. |
 | 22 | Detail band empty in a federation master-detail | Wrong `DataMember`. The federation relation is auto-named `<MasterAlias><DetailAlias>`. | `DataMember="CategoriesTable.CategoriesTableProductsTable"`, `DataSource="#Ref-<federation>"`. |
-| 23 | Backend `Object reference not set to an instance of an object` after changing `Layout.Text` and then using `Parameters` in the same run | Re-sending a modified layout under the same `ReportName` after the backend already loaded it. | Set the final layout before the first backend access (or use a new `ReportName`). |
+| 23 | Backend `Object reference not set to an instance of an object` after changing `Layout.Text` and then using `Parameters` in the same run | Re-sending a modified layout under the same `ReportName` after the backend already loaded it. | 26.1: set the final layout before the first backend access (or use a new `ReportName`). 26.2+ re-sends the changed layout without an error; the same code works on both. |
 ## Verification gotchas
 
 | # | Symptom | Cause | Fix |

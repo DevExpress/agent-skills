@@ -76,7 +76,6 @@ end;
 ## Setting report parameters from code
 
 ```pascal
-repSub.Parameters.Count;                         // only if the layout has subreports (troubleshooting #12)
 dxReport1.Parameters['OrderIDParameter'].Value := 11001;
 dxReport1.ShowViewer;                            // or ExportToPDF / dxReportControl1.Active := True
 ```
